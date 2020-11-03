@@ -91,7 +91,7 @@
                               </div>
                          </div>
 						 
-						<div class="item item-third">
+					<div class="item item-third">
                               <div class="caption">
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
