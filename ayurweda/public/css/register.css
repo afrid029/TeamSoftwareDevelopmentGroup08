@@ -407,15 +407,27 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   .slider .item-second {
-    background-image: url(../images/slider-image2.jpg);
+    background-image: url(../images/doctor.jpg);
   }
 
   .slider .item-third {
-    background-image: url(../images/slider-image3.jpg);
+    background-image: url(../images/patients3.jpg);
+  }
+
+  .slider .item-fourth {
+    background-image: url(../images/pharmacist.jpg);
+  }
+
+  .slider .item-fifth {
+    background-image: url(../images/medicineproducer.jpg);
+  }
+
+  .slider .item-sixth {
+    background-image: url(../images/ingredientssuppliers.jpg);
   }
 
   .slider .item-second .section-btn {
-    background: #292929;
+    background: #ce3232;
   }
 
   .slider .item-second .section-btn:hover {
@@ -424,12 +436,14 @@ http://www.templatemo.com/tm-515-eatery
 
   .slider .item-third .section-btn {
     background: transparent;
-    border: 1px solid #ffffff;
+    background: #ce3232;
   }
+  
 
   .slider .item-third .section-btn:hover,
+
   .slider .item-third .section-btn:focus {
-    background: #ce3232;
+    background: #ffffff;
     border-color: transparent;
     color: #ffffff;
   }
