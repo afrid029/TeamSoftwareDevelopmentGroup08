@@ -99,7 +99,7 @@
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><br>
                                                        <input class="form-control" type="text" name="address" placeholder="Address"><br>
                                                        <input class="form-control" type="text" name="phone number" placeholder="Phone Number"><br>
-                                                       <input class="form-control" type="text" email="email" placeholder="Email"><br>
+                                                       <input class="form-control" type="text" name="email" placeholder="Email"><br>
                                                        <input class="form-control" type="text" name="password" placeholder="Password"><br>
                                                        <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
                                                        <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
@@ -125,7 +125,7 @@
                                                   </div>
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="guardian" placeholder="Guardian"><br>
-                                                       <input class="form-control" type="text" email="email" placeholder="Email"><br>
+                                                       <input class="form-control" type="text" name="email" placeholder="Email"><br>
                                                        <input class="form-control" type="text" name="diseas" placeholder="Disease"><br>
                                                        <input class="form-control" type="text" name="password" placeholder="Password"><br>
                                                        <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
