@@ -61,134 +61,53 @@
 
           </div>
      </section>
-
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($msg=="Registered successfully.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@elseif($msg=="Password retype is wrong.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@endif
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
                <div class="row">
 
                     <div class="owl-carousel owl-theme">
-                         <div class="item item-first">
-                              <div class="caption">
-                                   <div class="container">
-                                        <div class="col-md-8 col-sm-12">
-                                            <form action="log" method="post" class="wow fadeInUp"> 
-                                                  <form action="log" method="post" class="wow fadeInUp"> 
-                                                       <h1>Register Here</h1><br><br>
-                                                       <div class="col-md-6 col-sm-6">
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Doctor" color="black"><br><br>
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Patient" color="black"><br><br>
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Pharmacist" color="black"><br><br>
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Medicine Producer" color="black"><br><br>
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Ingredients supplier" color="black"><br><br>                                                  
-                                                       </div>
-                                                  </form>
-                                                  
-                                             </form>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="item item-second">
-                              <div class="caption">
-                                   <div class="container">
-                                        <div class="col-md-8 col-sm-12">
-                                             <form action="log" method="post" class="wow fadeInUp"> 
-                                             <h1>Doctor</h1><br><br>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
-                                                       <input class="form-control" type="text" name="address" placeholder="Address"><br>
-                                                       <input class="form-control" type="text" name="phone number" placeholder="Phone Number"><br>
-                                                       <input class="form-control" type="text" name="email" placeholder="Email"><br>
-                                                       <input class="form-control" type="text" name="password" placeholder="Password"><br>
-                                                       <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
-                                                       <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
-                                                  </div>
-                                             </form>
-                                             
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
                          <div class="item item-third">
                               <div class="caption">
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
-                                             <form action="log" method="post" class="wow fadeInUp"> 
-                                             <h1>Patient</h1><br><br>
+                                             <form action="/saveuser" method="post" class="wow fadeInUp">
+                                             {{csrf_field()}} 
+                                             <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><br>
                                                        <input class="form-control" type="text" name="age" placeholder="Age"><br>
                                                        <input class="form-control" type="text" name="gender" placeholder="Gender"><br>
                                                        <input class="form-control" type="text" name="address" placeholder="Address"><br>
-                                                       <input class="form-control" type="text" name="phone number" placeholder="Phone Number"><br>
+                                                       <input class="form-control" type="text" name="phone" placeholder="Phone Number"><br>
                                                   </div>
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="guardian" placeholder="Guardian"><br>
-                                                       <input class="form-control" type="text" name="email" placeholder="Email"><br>
-                                                       <input class="form-control" type="text" name="diseas" placeholder="Disease"><br>
-                                                       <input class="form-control" type="text" name="password" placeholder="Password"><br>
-                                                       <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
-                                                       <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
-                                                  </div>
-                                             </form>
-                                             
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="item item-fourth">
-                              <div class="caption">
-                                   <div class="container">
-                                        <div class="col-md-8 col-sm-12">
-                                             <form action="log" method="post" class="wow fadeInUp"> 
-                                             <h1>Pharmacist</h1><br><br>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
-                                                       <input class="form-control" type="text" name="address" placeholder="Address"><br>
-                                                       <input class="form-control" type="text" name="phone number" placeholder="Phone Number"><br>
-                                                       <input class="form-control" type="text" name="password" placeholder="Password"><br>
-                                                       <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
-                                                       <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
-                                                  </div>
-                                             </form>
-                                             
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="item item-fifth">
-                              <div class="caption">
-                                   <div class="container">
-                                        <div class="col-md-8 col-sm-12">
-                                             <form action="log" method="post" class="wow fadeInUp"> 
-                                             <h1>Medicine Producer</h1><br><br>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
-                                                       <input class="form-control" type="text" name="address" placeholder="Address"><br>
-                                                       <input class="form-control" type="text" name="phone Number" placeholder="Phone Number"><br>
-                                                       <input class="form-control" type="text" name="password" placeholder="Password"><br>
-                                                       <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
-                                                       <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
-                                                  </div>
-                                             </form>
-                                             
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="item item-sixth">
-                              <div class="caption">
-                                   <div class="container">
-                                        <div class="col-md-8 col-sm-12">
-                                             <form action="log" method="post" class="wow fadeInUp"> 
-                                             <h1>Ingredients supplier</h1><br><br>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
-                                                       <input class="form-control" type="text" name="address" placeholder="Address"><br>
-                                                       <input class="form-control" type="text" name="phone Number" placeholder="Phone Number"><br>
-                                                       <input class="form-control" type="text" name="password" placeholder="Password"><br>
-                                                       <input class="form-control" type="text" name="confirm password" placeholder="Confirm Password"><br>
+                                                       <input class="form-control" type="email" name="email" placeholder="Email"><br>
+                                                       <input class="form-control" type="password" name="password" placeholder="Password"><br>
+                                                       <input class="form-control" type="password" name="rpassword" placeholder="Confirm Password"><br>
                                                        <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
                                                   </div>
                                              </form>

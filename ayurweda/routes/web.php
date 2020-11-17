@@ -24,3 +24,6 @@ Route::get('/test', function () {
 });
 Route::get('/login', 'PageController@login');
 Route::get('/register', 'PageController@register');
+
+Route::post('/saveuser', 'Store@register');
+Route::post('/log', 'login@log');

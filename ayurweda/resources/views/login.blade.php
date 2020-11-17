@@ -32,7 +32,7 @@
                
           </div>
      </section>
-
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -60,7 +60,17 @@
 
           </div>
      </section>
-
+@if($msg=="Wrong password or username")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@endif
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -71,10 +81,11 @@
                               <div class="caption">
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
-                                            <form action="log" method="post" class="wow fadeInUp"> 
+                                            <form action="/log" method="post" class="wow fadeInUp"> 
+                                            {{csrf_field()}}
                                              <h1>Login</h1><br><br>
                                              <div class="col-md-6 col-sm-6">
-                                             <input class="form-control" type="text" name="username" placeholder="Username"><br>
+                                             <input class="form-control" type="text" name="email" placeholder="Email"><br>
                                              <input class="form-control" type="password" name="password" placeholder="Password"><br><br>
                                              <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black">
                                              </div>
