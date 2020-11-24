@@ -97,7 +97,7 @@ Swal.fire({
                                              {{csrf_field()}} 
                                              <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
+                                                       <input class="form-control" type="text" name="name" placeholder="Name"><h4>{{"your id is $id"}}</h4><br>
                                                        <input class="form-control" type="text" name="age" placeholder="Age"><br>
                                                        <input class="form-control" type="text" name="gender" placeholder="Gender"><br>
                                                        <input class="form-control" type="text" name="address" placeholder="Address"><br>

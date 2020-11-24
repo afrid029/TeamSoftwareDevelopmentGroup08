@@ -9,8 +9,8 @@ class login extends Controller
 {
     public function log(Request $request){
 
-        $password=DB::table('all_users')->where('email',$request->email)->value('password');
-        $roll=DB::table('all_users')->where('email',$request->email)->value('roll');
+        $password=DB::table('all_users')->where('id',$request->id)->value('password');
+        $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
         if($password==$request->password){
             if($roll=="patient"){
                 return view('patient');

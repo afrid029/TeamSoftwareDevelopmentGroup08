@@ -14,10 +14,10 @@ class CreateAllUsersTable extends Migration
     public function up()
     {
         Schema::create('all_users', function (Blueprint $table) {
-            $table->string('email');
+            $table->string('id');
             $table->string('password');
             $table->string('roll');
-            $table->primary('email');
+            $table->primary('id');
             $table->timestamps();
         });
     }

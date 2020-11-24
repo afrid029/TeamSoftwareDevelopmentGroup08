@@ -29,7 +29,7 @@ class Store extends Controller
             $patient->password=$request->password;
             $patient->save();
             
-            $user->email=$request->email;
+            $user->id="Pat".$np;
             $user->password=$request->password;
             $user->roll="patient";
             $user->save();
@@ -38,7 +38,10 @@ class Store extends Controller
         else{
             $s="Password retype is wrong.";
         }
-        return view('register')->with('msg',$s);
+        $p=DB::table('patients')->get();
+        $np1=count($p)+1;
+        $id="Pat".$np1;
+        return view('register')->with('msg',$s)->with('id',$id);
         
     }
 }
