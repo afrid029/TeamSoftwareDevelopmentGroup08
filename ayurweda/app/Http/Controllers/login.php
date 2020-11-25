@@ -14,7 +14,7 @@ class login extends Controller
         if($password==$request->password){
             if($roll=="patient"){
                 $c=DB::table('patients')->where('Pat_id',$request->id)->first();
-                return view('patient')->with('c',$c)->with('msg',"");
+                return view('pat/patient')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="doctor"){
                 $c=DB::table('doctors')->where('Doc_id',$request->id)->first();

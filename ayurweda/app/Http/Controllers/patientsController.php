@@ -15,6 +15,12 @@ class patientsController extends Controller
     {
         $pw = DB::table('all_users')->where('id', $request->id)->value('password');
         if($request->opassword==$pw){
+            /*$details = DB::table('patients')->where('Pat_id',$request->id)->get();
+            $details->Pat_name = $request->name;
+            $details->Pat_email = $request->email;
+            $details->Pat_addr = $request->address;
+            $details->pNum = $request->phone;
+            $details->password = $request->npassword;*/
             $details = DB::table('patients')->where('Pat_id',$request->id)->update([
                 'Pat_name' => $request->name,
                 'Pat_email' => $request->email,
@@ -23,7 +29,7 @@ class patientsController extends Controller
                 'password' => $request->npassword,
              ]); 
            
-
+            
             $allUser = DB::table('all_users')->where('id', $request->id)->update([
                 'password' => $request->npassword
             ]);
@@ -35,9 +41,9 @@ class patientsController extends Controller
         {
             $m="Password is wrong";
         }
-        
+        session(['msg' => $m]);
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
-        return view('patient',compact('c'))->with('msg',$m);
+        return view('pat/patient',compact('c'))->with('msg',$m);
 
     }
 }

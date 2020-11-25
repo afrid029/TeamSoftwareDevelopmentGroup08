@@ -92,28 +92,31 @@
      </div>
      </div>
      </div>
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
-     @if($msg=="Profile Successfully Updated")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'success',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@elseif($msg=="Password is wrong")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'error',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
+ @if($msg == "Profile Successfully Updated")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
+     
+@elseif($msg == "Password is wrong")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'error',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
 @endif
+
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
