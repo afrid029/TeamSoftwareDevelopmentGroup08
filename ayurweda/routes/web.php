@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\patientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
 Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
 Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
 Route::get('available/{c}/', 'redirect@available')->name('available');
+Route::patch('patedit',[patientsController::class,'edit']);

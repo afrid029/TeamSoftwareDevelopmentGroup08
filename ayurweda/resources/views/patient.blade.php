@@ -71,8 +71,9 @@
                <span aria-hidden="true">&times;</span>
           </button>
           </div>
-          <form method="post" action="/docedit">
-          {{csrf_field()}}
+          <form method="post" action="/patedit">
+          @method('PATCH');
+          @csrf
           <div class="modal-body">
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Pat_name}}"><br>
                <input type="email" name="email" class="form-control" placeholder="Email" value="{{$c->Pat_email}}"><br>
@@ -92,7 +93,7 @@
      </div>
      </div>
 
-     @if($msg=="Updated successfully.")
+     @if($msg=="Profile Successfully Updated")
 <script>
 Swal.fire({
   position: 'middle',
@@ -102,7 +103,7 @@ Swal.fire({
   timer: 1500
 });
 </script>
-@elseif($msg=="Old password is wrong.")
+@elseif($msg=="Password is wrong")
 <script>
 Swal.fire({
   position: 'middle',
