@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\AllUsers;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Http\Request;
 
 class Store extends Controller
 {
@@ -28,7 +27,7 @@ class Store extends Controller
             $patient->guardian=$request->guardian;
             $patient->password=$request->password;
             $patient->save();
-            
+
             $user->id="Pat".$np;
             $user->password=$request->password;
             $user->roll="patient";

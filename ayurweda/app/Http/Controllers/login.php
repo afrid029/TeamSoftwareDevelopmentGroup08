@@ -13,19 +13,24 @@ class login extends Controller
         $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
         if($password==$request->password){
             if($roll=="patient"){
-                return view('patient');
+                $c=DB::table('patients')->where('Pat_id',$request->id)->first();
+                return view('patient')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="doctor"){
-                return view('doctor');
+                $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
+                return view('doc/doctor')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="pharmacist"){
-                return view('pharmacist');
+                $c=DB::table('pharmacists')->where('Phar_id',$request->id)->first();
+                return view('pharmacist')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="producer"){
-                return view('producer');
+                $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
+                return view('producer')->with('c',$c)->with('msg',"");
             }
             else{
-                return view('supllier');
+                $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
+                return view('supllier')->with('c',$c)->with('msg',"");
             }
         }
         else{

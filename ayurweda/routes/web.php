@@ -27,3 +27,8 @@ Route::get('/register', 'PageController@register');
 
 Route::post('/saveuser', 'Store@register');
 Route::post('/log', 'login@log');
+Route::post('/docedit', 'update@doc');
+Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
+Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
+Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
+Route::get('available/{c}/', 'redirect@available')->name('available');
