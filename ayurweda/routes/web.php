@@ -33,4 +33,10 @@ Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
 Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
 Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
 Route::get('available/{c}/', 'redirect@available')->name('available');
+
+//Patients Routings
 Route::patch('patedit',[patientsController::class,'edit']);
+Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
+Route::get('symp/{c}/','redirect@symp')->name('symp');
+Route::get('order/{c}/','redirect@order')->name('order');
+Route::get('book/{c}/','redirect@book')->name('book');

@@ -41,7 +41,7 @@ class patientsController extends Controller
         {
             $m="Password is wrong";
         }
-        session(['msg' => $m]);
+    
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
         return view('pat/patient',compact('c'))->with('msg',$m);
 

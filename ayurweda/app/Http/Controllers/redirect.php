@@ -24,4 +24,30 @@ class redirect extends Controller
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
         return view('doc/available')->with('c',$c)->with('msg',"");
     }
+
+    //patients redirection
+
+    public function pathome($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/patient',compact('c'))->with('msg',"");
+    }
+
+    public function symp($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/symptomps',compact('c'))->with('msg',"");
+    }
+
+    public function order($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/ordermedicine',compact('c'))->with('msg',"");
+    }
+
+    public function book($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/booking',compact('c'))->with('msg',"");
+    }
 }

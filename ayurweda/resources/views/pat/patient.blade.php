@@ -47,10 +47,10 @@
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('dochome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('prescription',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
-                         <li><a href="{{route('admitted',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                         <li><a href="{{route('available',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -105,6 +105,7 @@
           });
      </script>
      
+     
 @elseif($msg == "Password is wrong")
      <script>
           Swal.fire({
@@ -115,7 +116,9 @@
                timer: 1500
           });
      </script>
+    
 @endif
+
 
 
 <!-- HOME -->
