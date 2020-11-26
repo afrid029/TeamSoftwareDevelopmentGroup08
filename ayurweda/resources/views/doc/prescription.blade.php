@@ -119,10 +119,11 @@ Swal.fire({
                                                        <br></br>
                                                   </div>
                                              </form>
-                                             <div class="col-xs-5">
-                                                  <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                                                  <br>
-                                             </div>
+                                             <form class="example" action="/action_page.php" style="margin:auto;width:700px">
+                                                  <input type="text" placeholder="Search.." name="search2">
+                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                             </form>
+                                             <br></br>
                                         </div>
                                         
                                         <table class="table table-bordered" >

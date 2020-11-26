@@ -33,7 +33,7 @@
                
           </div>
      </section>
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+     <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -66,24 +66,24 @@
 
           </div>
      </section>
-@if($msg=="Wrong password or username")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'error',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@endif
+     @if($msg=="Wrong password or username")
+     <script>
+     Swal.fire({
+     position: 'middle',
+     icon: 'error',
+     title: '{{$msg}}',
+     showConfirmButton: false,
+     timer: 1500
+     });
+     </script>
+     @endif
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
                     <div class="owl-carousel owl-theme">
-                    <div class="item item-third">
+                         <div class="item item-third">
                               <div class="caption">
                                    <div class="container">
                                         <h3>Doctor ID <span class="label label-default">Doc123@</span></h3>
@@ -116,13 +116,12 @@ Swal.fire({
                                                        <br></br>
                                                        <br></br>
                                                   </div>
-                                                  
                                              </form>
-                                             
-                                             <div class="col-xs-5">     
-                                                  <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                                                  <br>
-                                             </div>
+                                             <form class="example" action="/action_page.php" style="margin:auto;width:700px">
+                                                  <input type="text" placeholder="Search.." name="search2">
+                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                             </form>
+                                             <br></br>
                                         </div>
                                         
                                         <table class="table table-bordered" >
