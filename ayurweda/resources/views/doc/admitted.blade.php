@@ -55,12 +55,12 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted Patients</a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted Patients</font></a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available Time</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+                         <li><a href="/login">Logout</a></li>
                     </ul>
                </div>
 
