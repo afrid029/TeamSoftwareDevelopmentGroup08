@@ -71,10 +71,11 @@
                <span aria-hidden="true">&times;</span>
           </button>
           </div>
-          <form method="post" action="/patedit">
-          @method('PATCH');
+          <form action="/patedit" method="post" >
+          
+          @method('PATCH')
           @csrf
-          <div class="modal-body">
+               <div class="modal-body">    
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Pat_name}}"><br>
                <input type="email" name="email" class="form-control" placeholder="Email" value="{{$c->Pat_email}}"><br>
                <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Pat_addr}}"><br>
@@ -93,6 +94,27 @@
      </div>
      </div>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               time: 100
+            
+          });
+     </script>
+@endif
 
  @if($msg == "Profile Successfully Updated")
      <script>
@@ -135,10 +157,18 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                       <img src="{{ asset('images/patient.png')}}" style="width:200px ; height:200px;">
+                                                       <img src="{{ asset('images/patient.png')}}" style="width:160px ; height:230px; ">
                                                        <br><br>
-                                                       <h3>Patient Name:{{$c->Pat_name}}</h3>
-                                                       <h3>Patient ID:{{$c->Pat_id}}</h3>
+                                                       <div style="float:left; margin-right:15px">
+                                                        <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; opacity:34%">
+                                                       </div>
+                                                       <div >
+                                                       <h3>{{$c->Pat_name}}</h3>
+                                                       <p><strong>{{$c->Pat_id}}</strong></p>
+                                                       </div>
+                                                      
+                                                      
+                                                       
                                                        <br><br>
                                                                                   
                                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -150,18 +180,40 @@
 
                                                 
                                                   <br><br>
-                                                  <h3>Age:{{$c->age}}</h3>
+                                                  
+                                                  <div style="float:left; margin-right:40px">
+                                                       <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->age}}</h3>
+                                                  
                                                   <br><br>
-                                                  <h3>Gender:{{$c->gender}}</h3>
-                                                  <br><br>
-                                                  <h3>Guardian:{{$c->guardian}}</h3>
-                                                  <br><br>
-                                                  <h3>Phone number:{{$c->Pat_pNum}}</h3>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->gender}}</h3>
 
                                                   <br><br>
-                                                  <h3>Email:{{$c->Pat_email}}</h3>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->guardian}}</h3>
+
                                                   <br><br>
-                                                  <h3>Address:{{$c->Pat_addr}}</h3>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->Pat_pNum}}</h3>
+
+                                                  <br><br>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->Pat_email}}</h3>
+                                                  <br><br>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                  </div>
+                                                  <h3>{{$c->Pat_addr}}</h3>
                                             
                                              </div>
                                         </div>
