@@ -160,11 +160,11 @@
                                                        <img src="{{ asset('images/patient.png')}}" style="width:160px ; height:230px; ">
                                                        <br><br>
                                                        <div style="float:left; margin-right:15px">
-                                                        <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; opacity:34%">
+                                                        <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                                        </div>
                                                        <div >
                                                        <h3>{{$c->Pat_name}}</h3>
-                                                       <p><strong>{{$c->Pat_id}}</strong></p>
+                                                       <p style="color:white; opacity:60%;"><strong>{{$c->Pat_id}}</strong></p>
                                                        </div>
                                                       
                                                       
@@ -182,36 +182,36 @@
                                                   <br><br>
                                                   
                                                   <div style="float:left; margin-right:40px">
-                                                       <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                       <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->age}}</h3>
                                                   
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                        <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->gender}}</h3>
 
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                        <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->guardian}}</h3>
 
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                        <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->Pat_pNum}}</h3>
 
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->Pat_email}}</h3>
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px; opacity:70%">
+                                                        <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                                   </div>
                                                   <h3>{{$c->Pat_addr}}</h3>
                                             

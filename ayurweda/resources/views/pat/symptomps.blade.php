@@ -61,15 +61,34 @@
           </div>
 </section>
 
-     
-     
+<!-- modal -->
+<div class = "modal fade" id = "fileupload">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h3>Upload Image</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">X</button>
+               </div>  
+               <form method='post' action='' enctype="multipart/form-data">
+               Select file : <input type='file' name='file' id='file' class='form-control' ><br>
+               <input type='button' class='btn btn-info' value='Upload' id='btn_upload'>
+               </form>
 
+        <!-- Preview-->
+        <div id='preview'></div>    
+          </div>
+
+     </div>
+
+</div>
+
+     
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div >
                          <div class="item item-first">
                          <!--    -->
                               <div class="collapse navbar-collapse">
@@ -90,87 +109,58 @@
                                              </select>
                                              </span></a>
                                              <!--   -->
+                                           
 
                                              <div class="row">
                                                   <div class="col-sm-11 ml-auto">
                                                        <div class="toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick= "document.execCommand( 'bold',false,null);" type="button" class=" btn btn-light ">
                                                                  <span class="fa fa-bold"></span>
                                                             </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.execCommand('italic',false,null);" type="button" class="btn btn-light">
                                                                  <span class="fa fa-italic"></span>
                                                             </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.execCommand( 'underline',false,null);" type="button" class="btn btn-light">
                                                                  <span class="fa fa-underline"></span>
                                                             </button>
                                                             </div>
                                                             <div class="btn-group">
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.getElementById('text').style.textAlign = 'left';" type="button" class="btn btn-light">
                                                                  <span class="fa fa-align-left"></span>
                                                             </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.getElementById('text').style.textAlign = 'right';" type="button" class="btn btn-light">
                                                                  <span class="fa fa-align-right"></span>
                                                             </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.getElementById('text').style.textAlign = 'center';" type="button" class="btn btn-light">
                                                                  <span class="fa fa-align-center"></span>
                                                             </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            <button onclick="document.getElementById('text').style.textAlign = 'justify';" type="button" class="btn btn-light">
                                                                  <span class="fa fa-align-justify"></span>
                                                             </button>
                                                             </div>
-                                                            <div class="btn-group">
-                                                            <button type="button" class="btn btn-light">
-                                                                 <span class="fa fa-indent"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-light">
-                                                                 <span class="fa fa-outdent"></span>
-                                                            </button>
-                                                            </div>
-                                                            <div class="btn-group">
-                                                            <button type="button" class="btn btn-light">
-                                                                 <span class="fa fa-list-ul"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-light">
-                                                                 <span class="fa fa-list-ol"></span>
-                                                            </button>
-                                                            </div>
-                                                            <button type="button" class="btn btn-light">
-                                                            <span class="fa fa-trash-o"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-light">
+                                                            
+                                                            <button type="button" data-target="#fileupload" data-toggle="modal" class="btn btn-light">
                                                             <span class="fa fa-paperclip"></span>
                                                             </button>
                                                             <button type="button" class="btn btn-default btn-sm">
                                                             <span class="glyphicon glyphicon-record"></span> Record
                                                             </button>
-                                                           <!--   <div class="btn-group">
-                                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                                                                 <span class="fa fa-tags"></span>
-                                                                 <span class="caret"></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-danger"> Home</span></a>
-                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-info"> Job</span></a>
-                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-success"> Clients</span></a>
-                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-warning"> News</span></a>
-                                                            </div>
-                                                            </div> -->
                                                        </div>
-                                                       <div class="form-group mt-4">
-                                                            <textarea class="form-control" id="message" name="body" rows="12" placeholder="Click here"></textarea>
+                                                       <div  class="form-group mt-4">
+                                                            <div placeholder="Say Here" id ="text" style="max-width:600px; width:600px; height:350px;  border:1px black; background-color:white" contenteditable="true">
+                                                            
+                                                            </div>
                                                        </div>
                                                        <div class="form-group">
                                                             <button type="submit" class="btn btn-success">Send</button>
-                                                            <button type="submit" class="btn btn-light">Draft</button>
-                                                            <button type="submit" class="btn btn-danger">Discard</button>
+                                                            
+                                                            <button  onclick = "document.getElementById('text').innerHTML = ''"; type="button" class="btn btn-danger">Discard</button>
                                                        </div>
                                                   </div>
                                              </div>
 
-                                          <!--   <div class="form-group">
-                                             <textarea class="form-control" rows="5" id="comment"></textarea>
-                                             </div>-->
+                                   
                                              
                                         </form>
                                    </div>

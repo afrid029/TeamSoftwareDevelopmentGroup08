@@ -67,7 +67,7 @@
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div>
                          <div class="item item-first">
                          <!--    -->
                          <div class="collapse navbar-collapse">
