@@ -22,6 +22,7 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
+     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     
 </head>
@@ -58,8 +59,9 @@
                </div>
 
           </div>
-     </section>
+</section>
 
+     
      
 
 
@@ -69,12 +71,160 @@
 
                     <div class="owl-carousel owl-theme">
                          <div class="item item-first">
-                         
+                         <!--    -->
+                              <div class="collapse navbar-collapse">
                               
+                              <br><br>
+                              <br><br>
+                              <br><br>
+                              <div class="col-xs-7">
+                              
+                                   <div class="form-group">
+                                        <form action="/action_page.php">
+                                             <a href="#" style="color:#ffffff;">Select a Doctor:  <span class="badge">
+                                             <select class="form-control" id="sel1">
+                                             <option>Dr.name1</option>
+                                             <option>Dr.name2</option>
+                                             <option>Dr.name3</option>
+                                             <option>Dr.name4</option>
+                                             </select>
+                                             </span></a>
+                                             <!--   -->
+
+                                             <div class="row">
+                                                  <div class="col-sm-11 ml-auto">
+                                                       <div class="toolbar" role="toolbar">
+                                                            <div class="btn-group">
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-bold"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-italic"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-underline"></span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-align-left"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-align-right"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-align-center"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-align-justify"></span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-indent"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-outdent"></span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-list-ul"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                                 <span class="fa fa-list-ol"></span>
+                                                            </button>
+                                                            </div>
+                                                            <button type="button" class="btn btn-light">
+                                                            <span class="fa fa-trash-o"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-light">
+                                                            <span class="fa fa-paperclip"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm">
+                                                            <span class="glyphicon glyphicon-record"></span> Record
+                                                            </button>
+                                                           <!--   <div class="btn-group">
+                                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                                                                 <span class="fa fa-tags"></span>
+                                                                 <span class="caret"></span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-danger"> Home</span></a>
+                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-info"> Job</span></a>
+                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-success"> Clients</span></a>
+                                                                 <a class="dropdown-item" href="#">add label <span class="badge badge-warning"> News</span></a>
+                                                            </div>
+                                                            </div> -->
+                                                       </div>
+                                                       <div class="form-group mt-4">
+                                                            <textarea class="form-control" id="message" name="body" rows="12" placeholder="Click here"></textarea>
+                                                       </div>
+                                                       <div class="form-group">
+                                                            <button type="submit" class="btn btn-success">Send</button>
+                                                            <button type="submit" class="btn btn-light">Draft</button>
+                                                            <button type="submit" class="btn btn-danger">Discard</button>
+                                                       </div>
+                                                  </div>
+                                             </div>
+
+                                          <!--   <div class="form-group">
+                                             <textarea class="form-control" rows="5" id="comment"></textarea>
+                                             </div>-->
+                                             
+                                        </form>
+                                   </div>
+                              
+                              </div>
+                              <div class="col-xs-5">
+                              <h2 style="color:#ffffff;">Your Medical Symptomps History</h2>
+                              
+                                        <table class="table table-bordered" >
+                                        
+                                             <thead>
+                                                  <tr>
+                                                       <th><p style="color:#ffffff;">Date</p></th>
+                                                       <th><p style="color:#ffffff;">Time</p></th>
+                                                       <th><p style="color:#ffffff;">Medical Symptomps</p></th> 
+                                                  </tr>
+                                             </thead>
+                                             <tbody>
+                                                  <tr>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                       <td><p style="color:#ffffff;"></p></td>
+                                                  </tr>
+                                             </tbody>
+                                        
+                                        </table>
+                              
+                              </div>
+                              </div>
+                         <!--    -->     
                          </div>
                     </div>
           </div>
-     </section>
+</section>
 
 
      <!-- SCRIPTS -->
