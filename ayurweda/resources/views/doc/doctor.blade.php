@@ -138,8 +138,8 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                                        <img src="{{ asset('images/doctorimage.jpg')}}" style="width:300px ;">
                                                        <br><br>
-                                                       <h3>Doctor Name:{{$c->Doc_name}}</h3>
-                                                       <h3>Doctor ID:{{$c->Doc_id}}</h3>
+                                                       <h3>{{$c->Doc_name}}</h3>
+                                                       <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>
                                                        <br><br>
                                                                                   
                                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -149,12 +149,23 @@ Swal.fire({
                                         
                                              <div class="col-md-6 col-sm-6">
 
+                                                  <h2 style="color:white"> Contact details </h2>
+                                                 
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
+                                                  </div>
+                                                  <h3>{{$c->Doc_pNum}}</h3>
+
                                                   <br><br>
-                                                  <h3>Phone Number:{{$c->Doc_pNum}}</h3>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
+                                                  </div>
+                                                  <h3>{{$c->Doc_email}}</h3>
                                                   <br><br>
-                                                  <h3>Email:{{$c->Doc_email}}</h3>
-                                                  <br><br>
-                                                  <h3>Address:{{$c->Doc_addr}}</h3>
+                                                  <div style="float:left; margin-right:40px">
+                                                        <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
+                                                  </div>
+                                                  <h3>{{$c->Doc_addr}}</h3>
                                             
                                              </div>
                                         </div>

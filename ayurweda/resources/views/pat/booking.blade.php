@@ -3,7 +3,7 @@
 <head>
     
     
-    <title>Online Booking Portal</title>
+    <title>Order Medicine Here</title>
 
     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -67,10 +67,135 @@
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div>
                          <div class="item item-first">
-                         
+                         <!--    -->
+                         <div class="collapse navbar-collapse">
+                              <br><br>
+                              <br><br>
+                              <br><br>
+                              <br><br>
                               
+                              
+                         <div class="col-xs-7">
+                         
+                         
+                         <div class="form-group">
+
+
+                         <form action="/action_page.php">
+                         <a href="#" style="color:#ffffff;">Select a Doctor:  <span class="badge">
+                                             <select class="form-control" id="sel1">
+                                             <option>Dr.name1</option>
+                                             <option>Dr.name2</option>
+                                             <option>Dr.name3</option>
+                                             <option>Dr.name4</option>
+                                             </select>
+                                             </span></a>
+                         </form>
+                         </div>
+                         <div class="p-3 mb-2 bg-info text-white">
+                         <table class="table table-bordered" style="background-color:#ffffff">
+                            
+                                        <thead>
+                                             <tr>
+                                                  <th>Available Date</th>
+                                                  <th>Available Time</th>
+                                                  <th>Booking</th> 
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                        </tbody>
+                                   
+                         </table>
+                         </div>
+                         </div>
+                         <div class="col-xs-5">
+                         
+                         <h2 style="color:#ffffff;">Your appointment time</h2>
+
+                         <table class="table table-bordered" >
+                         <p style="color:#ffffff;"> 
+                                        <thead>
+                                             <tr>
+                                             <th><p style="color:#ffffff;">Doctor</p></th>
+                                             <th><p style="color:#ffffff;">Date</p></th>
+                                             <th><p style="color:#ffffff;">Time</p></th> 
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                             </tr>
+                                             <tr>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                             </tr>
+                                             <tr>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                             </tr>
+                                             <tr>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                             </tr>
+                                             <tr>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                                  <td><p style="color:#ffffff;"></p></td>
+                                             </tr>
+                                        </tbody>
+                         </div>          
+                         </table>
+                                   
+                         </div>
+                         </div>
+                         <!--    -->
                          </div>
                     </div>
           </div>
