@@ -36,7 +36,9 @@ class redirect extends Controller
     public function symp($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/symptomps',compact('c'))->with('msg',"");
+        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->take(5)->get();
+        $dr = DB::table('doctors')->get();
+        return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
     }
 
     public function order($id)

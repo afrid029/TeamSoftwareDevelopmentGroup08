@@ -40,3 +40,5 @@ Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
 Route::get('symp/{c}/','redirect@symp')->name('symp');
 Route::get('order/{c}/','redirect@order')->name('order');
 Route::get('book/{c}/','redirect@book')->name('book');
+Route::post('addsymptomps/{c}',[patientsController::class, 'Add_Symptomps'])->name('addsymptomps');
+Route::get('viewSymp/{i}/{j}/',[patientsController::class, 'show'])->name('viewSymp');
