@@ -19,6 +19,7 @@ class CreateMedicalHistoriesTable extends Migration
             $table->string('Doc_id');
             $table->text('diagnosis');
             $table->string('disease');
+            $table->text('medicine');
             $table->foreign('Pat_id')->references('Pat_id')->on('patients');
             $table->foreign('Doc_id')->references('Doc_id')->on('doctors');
             $table->primary('Meeting_id');
