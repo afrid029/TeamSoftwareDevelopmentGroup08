@@ -66,11 +66,11 @@
 
           </div>
      </section>
-@if($msg=="Wrong password or username")
+@if($msg=="Prescription added successfully")
 <script>
 Swal.fire({
   position: 'middle',
-  icon: 'error',
+  icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
   timer: 1500
@@ -86,50 +86,56 @@ Swal.fire({
                     <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">Doc123@</span></h3>
+                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
                                         <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">2020/11/22</span></h3>
+                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
                                         </ul><br>
                                         <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">11:15 AM</span></h3>
+                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
                                         </ul>
                                         <br></br>
                                    
                                         <div class="col-md-8 col-sm-12">
                                              
-                                             <form action="/saveuser" method="post" class="wow fadeInUp">
+                                             <form action="/savepres" method="post" class="wow fadeInUp">
                                              {{csrf_field()}} 
                                                   <div class="col-md-6 col-sm-6">
-                                              
+
+                                                       <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                        <h3>Patient ID</h3>
                                                        <input class="form-control" type="text" name="patientid" ><br>
                                                        <h3>Diagnosis</h3>
-                                                       <input class="form-control input-lg" type="text" name="diagnosis" ><br>
+                                                       <input class="form-control" type="text" name="diagnosis" ><br>
                                                   </div>
                                                   <div class="col-md-6 col-sm-6">
 
                                                        <h3>Disease</h3>
                                                        <input class="form-control" type="text" name="disease" ><br>
                                                        <h3>Medicine</h3>
-                                                       <input class="form-control input-lg" type="text" name="medicine" ><br> 
-                                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       <input class="form-control" type="text" name="medicine" ><br> 
+                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                             Prescript Medicine
                                                        </button>
                                                        <br></br>
                                                        <br></br>
                                                   </div>
                                              </form>
-                                             <form class="example" action="/action_page.php" style="margin:auto;width:700px">
-                                                  <input type="text" placeholder="Search.." name="search2">
+                                             
+                                             <form action="/pressearch" method="post">
+                                             {{csrf_field()}}
+                                                  <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
+                                                  <input style="color:black" type="text" placeholder="Patient ID" name="patid">
+                                                  <input style="color:black" type="text" placeholder="Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                              </form>
-                                             <br></br>
-                                        </div>
-                                        
-                                        <table class="table table-bordered" >
+                                             
+                                             <br>
+                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
+                                        <table class="table">
                                         
                                              <thead>
                                                   <tr>
+                                                       <th>Meeting ID</th>
                                                        <th>Patient ID</th>
                                                        <th>Doctor ID</th>
                                                        <th>Date</th>
@@ -138,50 +144,26 @@ Swal.fire({
                                                        <th>Medicine</th>
                                                   </tr>
                                              </thead>
-                                             <tbody>
+                                             <tbody style="height:200px;overflow:auto;">
+                                                  @if($pres!="")
+                                                  @foreach($pres as $pr)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td>{{$pr->Meeting_id}}</td>
+                                                       <td>{{$pr->Pat_id}}</td>
+                                                       <td>{{$pr->Doc_id}}</td>
+                                                       <td>{{$pr->created_at}}</td>
+                                                       <td>{{$pr->disease}}</td>
+                                                       <td>{{$pr->diagnosis}}</td>
+                                                       <td>{{$pr->medicine}}</td>
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
+                                                  @endforeach
+                                                  @endif
                                              </tbody>
                                         
                                         </table>
+                                        </div>
+                                        </div><br>
+                                        
                                    </div>
                              </div>
                          </div>

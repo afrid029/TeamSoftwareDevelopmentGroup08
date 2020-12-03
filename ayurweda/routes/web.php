@@ -33,6 +33,14 @@ Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
 Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
 Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
 Route::get('available/{c}/', 'redirect@available')->name('available');
+Route::post('/savepres', 'Store@prescript');
+Route::post('/pressearch', 'search@pressearch');
+Route::post('/saveadmit', 'Store@admit');
+Route::post('/adsearch', 'search@adsearch');
+Route::post('/saveavailable', 'Store@available');
+Route::get('/avedit/{id}/{docid}', 'update@avedit')->name('avedit');
+Route::get('/avdelete/{id}/{docid}', 'update@avdelete')->name('avdelete');
+
 
 //Patients Routings
 Route::patch('/patedit',[patientsController::class,'edit']);

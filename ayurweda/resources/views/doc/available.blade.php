@@ -78,6 +78,18 @@ Swal.fire({
 </script>
 @endif
 
+@if($ro!="")
+@php
+$date=$ro->availableDate;
+$time=$ro->availableTime;
+@endphp
+@else
+@php
+$date="";
+$time="";
+@endphp
+@endif
+
      <!-- HOME -->
     <section id="home" class="slider" data-stellar-background-ratio="0.5">
         <div class="row">
@@ -86,26 +98,28 @@ Swal.fire({
                             <div class="item item-first">
                                 <div class="caption">
                                     <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">Doc123@</span></h3>
+                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
                                         <div class="col-md-8 col-sm-12">
                                              
                                              <br><br>
                                              <br><br>
-                                             <form action="/saveuser" method="post" class="wow fadeInUp">
+                                             <form action="/saveavailable" method="post" class="wow fadeInUp">
                                              {{csrf_field()}} 
+                                             <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <div class="col-xs-3">
-                                              
+
                                                        <label for="ex1">Date</label>
-                                                       <input class="form-control" type="date" name="date" ><br>
+                                                       
+                                                       <input class="form-control" type="date" name="date" value="{{$date}}"><br>
                                                        
                                                   </div>
                                                   <div class="col-xs-2">
                                                        <label for="ex1">Time</label>
-                                                       <input class="form-control" type="time" name="time" ><br>
+                                                       <input class="form-control" type="time" name="time" value="{{$time}}"><br>
                                                   </div>
                                                   <div class="col-xs-2">
                                                        <br></br>     
-                                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                             Insert
                                                        </button>
                                                        <br></br>
@@ -123,46 +137,16 @@ Swal.fire({
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                                  @if($av!="")
+                                                  @foreach($av as $a)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td>
-                                                       <button type="button" class="btn btn-link">Edit</button>
-                                                       <button type="button" class="btn btn-link">Delete</button>
-                                                       </td>
+                                                       <td>{{$a->availableDate}}</td>
+                                                       <td>{{$a->availableTime}}</td>
+                                                       <td><a href="{{route('avedit',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Edit</a></td>
+                                                       <td><a href="{{route('avdelete',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Delete</a></td>
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td>
-                                                       <button type="button" class="btn btn-link">Edit</button>
-                                                       <button type="button" class="btn btn-link">Delete</button>
-                                                       </td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td>
-                                                       <button type="button" class="btn btn-link">Edit</button>
-                                                       <button type="button" class="btn btn-link">Delete</button>
-                                                       </td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td>
-                                                       <button type="button" class="btn btn-link">Edit</button>
-                                                       <button type="button" class="btn btn-link">Delete</button>
-                                                       </td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td>
-                                                       <button type="button" class="btn btn-link">Edit</button>
-                                                       <button type="button" class="btn btn-link">Delete</button>
-                                                       </td>
-                                                  </tr>
+                                                  @endforeach
+                                                  @endif
                                              </tbody>
                                         </table>
                                         
