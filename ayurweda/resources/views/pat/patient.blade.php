@@ -73,7 +73,7 @@
           </div>
           <form action="/patedit" method="post" >
           
-          @method('PATCH')
+          @method('patch')
           @csrf
                <div class="modal-body">    
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Pat_name}}"><br>

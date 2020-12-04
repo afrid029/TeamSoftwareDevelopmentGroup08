@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
-        
+        DB::table('all_users')->insert([
+            'id'=> 'doc1',
+            'password' => '123456',
+            'roll' => 'doctor'
+        ]);
+
+     
     }
 }

@@ -67,14 +67,14 @@
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div>
+                    <div class="owl-theme">
                          <div class="item item-first">
-                         <!--    -->
-                         <div class="collapse navbar-collapse">
-                              <br><br>
-                              <br><br>
-                              <br><br>
-                              <br><br>
+                              <div class="caption">
+                                   <div class="container">
+                              <!--    -->
+                          <div.>
+                              <br>
+                              
                               
                               
                          <div class="col-xs-7">
@@ -109,7 +109,7 @@
                                                   <td></td>
                                                   <td></td>
                                                   <td>
-                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
                                                        <button type="button" class="btn btn-link">Cancel</button>
                                                        </td>
                                              </tr>
@@ -117,7 +117,7 @@
                                                   <td></td>
                                                   <td></td>
                                                   <td>
-                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
                                                        <button type="button" class="btn btn-link">Cancel</button>
                                                        </td>
                                              </tr>
@@ -125,7 +125,7 @@
                                                   <td></td>
                                                   <td></td>
                                                   <td>
-                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
                                                        <button type="button" class="btn btn-link">Cancel</button>
                                                        </td>
                                              </tr>
@@ -133,7 +133,7 @@
                                                   <td></td>
                                                   <td></td>
                                                   <td>
-                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
                                                        <button type="button" class="btn btn-link">Cancel</button>
                                                        </td>
                                              </tr>
@@ -141,7 +141,7 @@
                                                   <td></td>
                                                   <td></td>
                                                   <td>
-                                                       <button type="button" class="btn btn-link">Conform</button>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
                                                        <button type="button" class="btn btn-link">Cancel</button>
                                                        </td>
                                              </tr>
@@ -196,6 +196,8 @@
                          </div>
                          </div>
                          <!--    -->
+                         </div>
+                         </div>
                          </div>
                     </div>
           </div>

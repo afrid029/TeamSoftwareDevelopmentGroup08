@@ -20,7 +20,8 @@ class patientsController extends Controller
             'name'=>'required',
             'address'=>'required',
             'phone'=>'required|max:10',
-            'npassword'=>'required|min:6'
+            'npassword'=>'required|min:6',
+            'opassword'=>'required'
         ]);
         if($valid){
             $pw = DB::table('all_users')->where('id', $request->id)->value('password');
@@ -32,35 +33,25 @@ class patientsController extends Controller
                     'Pat_pNum' => $request->phone,
                     'password' => $request->npassword,
                  ]); 
-               
-                
                 $allUser = DB::table('all_users')->where('id', $request->id)->update([
                     'password' => $request->npassword
                 ]);
-                
-    
                 $m="Profile Successfully Updated";
             }
             else
             {
                 $m="Password is wrong";
             }
-        
         }
-
-       
-        $c = DB::table('patients')->where('Pat_id',$request->id)->first();
+         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
         return view('pat/patient',compact('c'))->with('msg',$m);
-
     }
 
     public function Add_Symptomps(Request $request,$id)
     {
         $valid = $request->validate([
-            'dr'=>'required',
-            'text'=>'required'
+            'dr'=>'required'
         ]);
-
         $symp = new add_symptomps;
         $symp->Doc_id = $request->get('dr');
         $symp->text = $request->get('text');
@@ -70,8 +61,7 @@ class patientsController extends Controller
         $symp->date = $d;
         $symp->time = $t;
         $imagedata;
-       
-        if($request->hasfile('image'))
+       if($request->hasfile('image'))
         {
            foreach($request->file('image') as $file)
            {
@@ -81,23 +71,14 @@ class patientsController extends Controller
            }
            $symp->img = json_encode($imagedata);
         }
-        
-        
-        $symp->save();
-
+         $symp->save();
         return redirect()->route('symp',$id);
-
     }
     public function show($id,$id2)
     {
         $c = DB::table('patients')->where('Pat_id',$id2)->first();
         $e = DB::table('add_symptomps')->where('id',$id)->first();
-        
-
         return view('pat/view',compact('c','e'));
-
-        //return view('pat\symptomps',compact('e'));
     }
-    
-  
+   
 }

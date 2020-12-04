@@ -74,9 +74,8 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                   
-                                   <div>
-                              
+
+                                        
                               <br><br>
                               
                               
@@ -123,6 +122,9 @@
                              
                                         
                                    </div>
+                                   
+                                   <div>
+                              
                               </div>
                          </div>
                     </div>
@@ -156,7 +158,7 @@
           <div class="modal-content">
                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Say Your Symptomps Here</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button  type="button" class="close btn-sm" data-dismiss="modal" >Close
                          <span aria-hidden="true">&times;</span>
                     </button>
                </div>
