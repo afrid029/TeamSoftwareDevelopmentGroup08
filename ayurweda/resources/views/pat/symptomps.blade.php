@@ -65,7 +65,6 @@
 </section>
 <!-- HOME -->
 
-<!--Modal 2-->
 
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -74,13 +73,7 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-
-                                        
-                              <br><br>
-                              
-                              
-                              
-                              <div style="width:50%; margin-left:25%; margin-right:15%;" class="col-lg-3">
+                                   <div style="width:50%; margin-left:25%; margin-right:15%;" class="col-lg-3">
                                    <h2 style="color:#ffffff;">Your Medical Symptomps History</h2>
                               
                                         <table class="table table-bordered" >
@@ -171,7 +164,10 @@
                                                  <select name="dr" class="form-control" id="sel1">
                                                       @if($dr)
                                                   @foreach($dr as $a)
-                                                     <option>{{$a->Doc_name}}</option>
+                                                  <optgroup style="font-size:12px;" label = "{{$a->Doc_name}}">
+                                                     <option style="font-size:10px;">{{$a->Doc_id}}</option>
+                                                  </optgroup>
+                                                     
                                                      @endforeach
                                                      
                                                      @endif

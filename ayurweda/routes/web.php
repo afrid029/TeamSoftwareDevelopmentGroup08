@@ -44,9 +44,10 @@ Route::get('/avdelete/{id}/{docid}', 'update@avdelete')->name('avdelete');
 
 //Patients Routings
 Route::patch('/patedit',[patientsController::class,'edit']);
-Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
-Route::get('symp/{c}/','redirect@symp')->name('symp');
-Route::get('order/{c}/','redirect@order')->name('order');
-Route::get('book/{c}/','redirect@book')->name('book');
+Route::get('pathome/{c}/',[patientsController::class,'pathome'])->name('pathome');
+Route::get('symp/{c}/',[patientsController::class,'symp'])->name('symp');
+Route::get('order/{c}/',[patientsController::class,'order'])->name('order');
+Route::get('book/{c}/',[patientsController::class,'book'])->name('book');
 Route::post('addsymptomps/{c}',[patientsController::class, 'Add_Symptomps'])->name('addsymptomps');
 Route::get('viewSymp/{i}/{j}/',[patientsController::class, 'show'])->name('viewSymp');
+Route::post('showAvail',[patientsController::class , 'showAvail']);

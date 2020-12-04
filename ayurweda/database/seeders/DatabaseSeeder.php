@@ -22,6 +22,15 @@ class DatabaseSeeder extends Seeder
             'roll' => 'doctor'
         ]);
 
+        DB::table('doctors')->insert([
+            'Doc_id' => 'doc1',
+            'Doc_name' => 'Afrid',
+            'Doc_email' => 'mafrid029@gmail.com',
+            'Doc_addr' => '98,KKp, Road Kalmunai 03',
+            'Doc_pNum' => '0771234567',
+            'password' => '123456'
+        ]);
+
      
     }
 }

@@ -81,4 +81,37 @@ class patientsController extends Controller
         return view('pat/view',compact('c','e'));
     }
    
+    public function showAvail(Request  $request)
+    {
+       
+    }
+
+
+
+    //Patient Redirection
+    public function pathome($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/patient',compact('c'))->with('msg',"");
+    }
+
+    public function symp($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->take(5)->get();
+        $dr = DB::table('doctors')->get();
+        return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
+    }
+
+    public function order($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/ordermedicine',compact('c'))->with('msg',"");
+    }
+
+    public function book($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/booking',compact('c'))->with('msg',"");
+    }
 }

@@ -83,38 +83,39 @@
                          <div class="form-group">
 
 
-                         <form action="/action_page.php">
-                         <a href="#" style="color:#ffffff;">Select a Doctor:  <span class="badge">
-                                             <select class="form-control" id="sel1">
+                         <form action="{{route('showAvail')}}" method = "post">
+                         @csrf
+
+                         <a href="#" style="color:#ffff;"><b>Select a Doctor:</b> <span class="badge">
+                                       
+                                             <select class="form-control"style = "float : right">
                                              <option>Dr.name1</option>
                                              <option>Dr.name2</option>
                                              <option>Dr.name3</option>
                                              <option>Dr.name4</option>
                                              </select>
                                              </span></a>
+                                        
+                                        <div  style = " float : right; margin-top:1%; margin-right:10%;">
+                                             <label  for="date" value = "Date"> Date</label>
+                                             <input style="color:black" type ="date" name="date" />
+                                             <buttton type = "submit" class = "btn btn-info">search</button>
+                                        </div>
                          </form>
                          </div>
                          <div class="p-3 mb-2 bg-info text-white">
-                         <table class="table table-bordered" style="background-color:#ffffff">
+                         <table class="table table-bordered" style="background-color:#ffffff; color:black">
                             
                                         <thead>
                                              <tr>
-                                                  <th>Available Date</th>
+                                                 
                                                   <th>Available Time</th>
                                                   <th>Booking</th> 
                                              </tr>
                                         </thead>
                                         <tbody>
                                              <tr>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td>
-                                                       <button type="button" class="btn btn-link">Confirm</button>
-                                                       <button type="button" class="btn btn-link">Cancel</button>
-                                                       </td>
-                                             </tr>
-                                             <tr>
-                                                  <td></td>
+                                             
                                                   <td></td>
                                                   <td>
                                                        <button type="button" class="btn btn-link">Confirm</button>
@@ -122,15 +123,7 @@
                                                        </td>
                                              </tr>
                                              <tr>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td>
-                                                       <button type="button" class="btn btn-link">Confirm</button>
-                                                       <button type="button" class="btn btn-link">Cancel</button>
-                                                       </td>
-                                             </tr>
-                                             <tr>
-                                                  <td></td>
+                                                 
                                                   <td></td>
                                                   <td>
                                                        <button type="button" class="btn btn-link">Confirm</button>
@@ -138,7 +131,23 @@
                                                        </td>
                                              </tr>
                                              <tr>
+                                                  
                                                   <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  
+                                                  <td></td>
+                                                  <td>
+                                                       <button type="button" class="btn btn-link">Confirm</button>
+                                                       <button type="button" class="btn btn-link">Cancel</button>
+                                                       </td>
+                                             </tr>
+                                             <tr>
+                                                  
                                                   <td></td>
                                                   <td>
                                                        <button type="button" class="btn btn-link">Confirm</button>
