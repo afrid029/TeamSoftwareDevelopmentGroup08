@@ -54,3 +54,4 @@ Route::get('showAvail/',[patientsController::class , 'showAvailable']);
 Route::get('appoint',[patientsController::class, 'appoint']);
 Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
 Route::get('/deleteAppoint',[patientsController::class, 'deleteAppointment']);
+Route::patch('changeprofile/{c}/',[patientsController::class, 'changeprofile'])->name('changeprofile');
