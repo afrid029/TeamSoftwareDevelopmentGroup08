@@ -48,7 +48,7 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
                         <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
-                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll"><font color="red">Order Medicines</font></a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                     </ul>
 

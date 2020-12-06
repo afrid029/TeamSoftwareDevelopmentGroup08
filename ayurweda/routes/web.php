@@ -50,4 +50,7 @@ Route::get('order/{c}/',[patientsController::class,'order'])->name('order');
 Route::get('book/{c}/',[patientsController::class,'book'])->name('book');
 Route::post('addsymptomps/{c}',[patientsController::class, 'Add_Symptomps'])->name('addsymptomps');
 Route::get('viewSymp/{i}/{j}/',[patientsController::class, 'show'])->name('viewSymp');
-Route::post('showAvail',[patientsController::class , 'showAvail']);
+Route::get('showAvail/',[patientsController::class , 'showAvailable']);
+Route::get('appoint',[patientsController::class, 'appoint']);
+Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
+Route::get('/deleteAppoint',[patientsController::class, 'deleteAppointment']);

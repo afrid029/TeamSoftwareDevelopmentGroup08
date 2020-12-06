@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Patient;
 use App\Models\AllUsers;
 use App\Models\add_symptomps;
+use App\Models\OnlineBooking;
 
 
 class patientsController extends Controller
@@ -57,7 +58,9 @@ class patientsController extends Controller
         $symp->text = $request->get('text');
         $symp->Pat_id = $id;
         $d = date('Y-m-d');
-        $t = date('h:i:s');
+       
+        $t = date('H:i');
+
         $symp->date = $d;
         $symp->time = $t;
         $imagedata;
@@ -81,11 +84,60 @@ class patientsController extends Controller
         return view('pat/view',compact('c','e'));
     }
    
-    public function showAvail(Request  $request)
+    public function showAvailable(Request  $request)
     {
-       
+       // return "okkkk";
+       if($request->date)
+       {
+            $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
+                                                ->where('availableDate',$request->date)
+                                                ->get();
+       }else
+       {
+        $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)->get();
+       }
+      
+
+        $c = DB::table('patients')->where('Pat_id',$request->patid)->first();
+        $dr = DB::table('doctors')->get();
+        $doc = $request->dr;
+
+        return view('pat/appoint')->with('t',$t)->with('c',$c)->with('dr',$dr)->with('doc',$doc);
+
     }
 
+    public function appoint(Request $request)
+    {
+        $c = DB::table('patients')->where('Pat_id',$request->id)->first();
+        $dr = DB::table('doctors')->get(); 
+        $t = [];
+        return view('pat\appoint' ,compact('c','dr','t'));
+    }
+
+    public function confirmAppoinment(Request $request)
+    {
+        $z = DB::table('online_bookings')->get();
+        $dc = DB::table('doctors')->where('Doc_id',$request->get('did'))->value('Doc_name');
+        $cnt = count($z)+1;
+
+        $book = new OnlineBooking;
+
+
+        $book->App_id="App".time().rand(1,100);
+        $book->Pat_id=$request->get('pid');
+        $book->Doc_id=$request->get('did');
+        $book->availableDate=$request->get('dt');
+        $book->availableTime=$request->get('tm');
+        $book->save();
+        return redirect()->route('book',['c'=>$request->pid])->with('msg',"You Have Appointed DR ".$dc." on ".$request->get('dt')." By ".$request->get('tm'));
+      
+    }
+    public function deleteAppointment(Request $request)
+    {
+        DB::table('online_bookings')->where('App_id',$request->appid)->delete();
+
+        return redirect()->route('book',['c'=>$request->ptid])->with('msg',"Appoinment is cancelled");
+    }
 
 
     //Patient Redirection
@@ -111,7 +163,16 @@ class patientsController extends Controller
 
     public function book($id)
     {
+        $d = date('Y-m-d');
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/booking',compact('c'))->with('msg',"");
+        $t = DB::table('online_bookings')
+        ->join('doctors', 'doctors.Doc_id', '=' , 'online_bookings.Doc_id')
+        ->select('online_bookings.App_id', 'online_bookings.Pat_id','online_bookings.Doc_id','online_bookings.availableDate','online_bookings.availableTime','doctors.Doc_name','online_bookings.updated_at')
+        ->where([
+            ['Pat_id','=',$id],
+            ['availableDate', '>=', $d]
+        ])
+        ->orderBy('updated_at','desc')->paginate(5);
+         return view('pat/booking',compact('c','t'))->with('msg');
     }
 }
