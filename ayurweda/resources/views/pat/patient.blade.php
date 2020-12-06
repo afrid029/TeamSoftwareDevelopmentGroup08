@@ -122,7 +122,7 @@
                          <div style ="margin:20px 40px 0 40px" class="custom-file-container" data-upload-id="myUniqueUploadId">
                               <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
                               <label class="custom-file-container__custom-file">
-                              <input  type="file" name = "profile" class="custom-file-container__custom-file__custom-file-input" accept=""  aria-label="Choose File">
+                              <input  type="file" name = "profile" class="custom-file-container__custom-file__custom-file-input" accept="image/*"  aria-label="Choose File">
                                    <span  class="custom-file-container__custom-file__custom-file-control"></span>
                               </label>
                                    
