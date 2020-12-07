@@ -23,13 +23,6 @@ class patientsController extends Controller
             'phone'=>'required|max:10',
             'npassword'=>'required|min:6',
             'opassword'=>'required'
-        ],
-        [
-            'name.required' => 'Name is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
-            'npassword.required' => 'New password is empty',
-            'opassword.required' => 'Old Password is empty'
         ]);
         if($valid){
             $pw = DB::table('all_users')->where('id', $request->id)->value('password');
@@ -52,7 +45,7 @@ class patientsController extends Controller
             }
         }
          $c = DB::table('patients')->where('Pat_id',$request->id)->first();
-        return redirect()->route('pathome',['c'=>$request->id])->with('msg',$m);
+        return view('pat/patient',compact('c'))->with('msg',$m);
     }
 
     public function Add_Symptomps(Request $request,$id)
@@ -97,15 +90,11 @@ class patientsController extends Controller
        if($request->date)
        {
             $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
-                                                ->where('availableDate',$request->date)->get();
-                                                
+                                                ->where('availableDate',$request->date)
+                                                ->get();
        }else
        {
-        $date = date('Y-m-d');
-        $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
-                                             ->where('availableDate','>=' , $date)
-                                             ->orderBy('availableDate','asc')->get();
-                                             
+        $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)->get();
        }
       
 
@@ -113,7 +102,7 @@ class patientsController extends Controller
         $dr = DB::table('doctors')->get();
         $doc = $request->dr;
 
-        return view('pat/appoint',compact('c','t','dr','doc'));
+        return view('pat/appoint')->with('t',$t)->with('c',$c)->with('dr',$dr)->with('doc',$doc);
 
     }
 
@@ -121,7 +110,7 @@ class patientsController extends Controller
     {
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
         $dr = DB::table('doctors')->get(); 
-        $t =[];
+        $t = [];
         return view('pat\appoint' ,compact('c','dr','t'));
     }
 
@@ -148,24 +137,6 @@ class patientsController extends Controller
         DB::table('online_bookings')->where('App_id',$request->appid)->delete();
 
         return redirect()->route('book',['c'=>$request->ptid])->with('msg',"Appoinment is cancelled");
-    }
-    public function changeprofile(Request $request,$id)
-    {       
-        $request->validate([
-            'profile'=>'required|image'
-        ],[
-            'profile.required' => 'You have not choose any file',
-            'profile.image'=>'Only Image is allowed'
-        ]);
-
-            $name = time().rand(1,100).'.'.$request->profile->extension();
-            $request->profile->move(public_path().'/upload/profile', $name); 
-           
-            DB::table('patients')->where('Pat_id',$id)->update([
-                'Pimage' => $name
-            ]);
-            
-            return redirect()->route('pathome',$id)->with('msg',"Profile Image is Successfully Updated");
     }
 
 
@@ -195,13 +166,13 @@ class patientsController extends Controller
         $d = date('Y-m-d');
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $t = DB::table('online_bookings')
-                    ->join('doctors', 'doctors.Doc_id', '=' , 'online_bookings.Doc_id')
-                    ->select('online_bookings.App_id', 'online_bookings.Pat_id','online_bookings.Doc_id','online_bookings.availableDate','online_bookings.availableTime','doctors.Doc_name','online_bookings.updated_at')
-                    ->where([
-                        ['Pat_id','=',$id],
-                        ['availableDate', '>=', $d]
-                        ])
-                    ->orderBy('updated_at','desc')->paginate(5);
-        return view('pat/booking',compact('c','t'))->with('msg');
+        ->join('doctors', 'doctors.Doc_id', '=' , 'online_bookings.Doc_id')
+        ->select('online_bookings.App_id', 'online_bookings.Pat_id','online_bookings.Doc_id','online_bookings.availableDate','online_bookings.availableTime','doctors.Doc_name','online_bookings.updated_at')
+        ->where([
+            ['Pat_id','=',$id],
+            ['availableDate', '>=', $d]
+        ])
+        ->orderBy('updated_at','desc')->paginate(5);
+         return view('pat/booking',compact('c','t'))->with('msg');
     }
 }

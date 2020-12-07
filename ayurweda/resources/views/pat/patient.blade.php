@@ -22,22 +22,7 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
-     <link rel="stylesheet" type="text/css" href="{{ asset('css/preview.css')}}">
-    <script src="{{ asset('js/preview.js') }}"></script>
-<style>
-.btn-dark{
-     display:none;
-    margin-top:2px;
-    width:100%;
-     background-color:Black;
-     opacity:0.8;
-}
 
-
-.img:hover + .btn-dark, .btn-dark:hover{
-     display:inline-block;
-}
-</style>
     
 </head>
 <body>
@@ -76,7 +61,7 @@
           </div>
      </section>
 
-     <!-- Modal 1-->
+     <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -100,71 +85,37 @@
                <input type="hidden" name="id" class="form-control" value="{{$c->Pat_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
-          </form>
+          
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
-         
+          </form>
      </div>
      </div>
      </div>
-
-<!-- Modal 2 -->
-<div style ="width:40%; margin-left:30%; margin-right:30%; margin-top:5%;" class = "modal fade" id = "profile" role = "dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role = "dialog">
-          <div class="modal-content">
-               <div class="modal-header">
-               <h5 class="modal-title">Upload Profile Picture</h5>
-               </div>
-                    <form action="{{ route ('changeprofile', ['c'=>$c->Pat_id]) }}" method="post" enctype="multipart/form-data">
-                    @csrf 
-                    @method('patch')
-                         <div style ="margin:20px 40px 0 40px" class="custom-file-container" data-upload-id="myUniqueUploadId">
-                              <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
-                              <label class="custom-file-container__custom-file">
-                              <input  type="file" name = "profile" class="custom-file-container__custom-file__custom-file-input" accept="image/*"  aria-label="Choose File">
-                                   <span  class="custom-file-container__custom-file__custom-file-control"></span>
-                              </label>
-                                   
-                              <div style="width:50%; height:150px; margin-left:15%" class="custom-file-container__image-preview">
-                              </div>
-                         </div>
-                              <script>
-                                   var upload = new FileUploadWithPreview('myUniqueUploadId')
-                              </script>
-                         <button style ="margin-left:35%; margin-top:-30px" type="submit" class="btn btn-success"><b>UPLOAD</b></button>
-                    </form>
-                    <div  class="modal-footer">
-                          <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                     </div>
-                    
-          </div>
-     </div>
-</div>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($errors->any())
      <script> var a=""; </script>
-    
      @foreach($errors->all() as $err)
-        
+  
      <script>
           a = a + "{{$err}}\n";
      </script>
-          
-     @endforeach
     
+     @endforeach
+
      <script>
      Swal.fire({
                position: 'top',
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               time: 2
+               time: 100
             
           });
      </script>
 @endif
-@if($msg=session()->get('msg'))
+
  @if($msg == "Profile Successfully Updated")
      <script>
           Swal.fire({
@@ -189,7 +140,6 @@
      </script>
     
 @endif
-@endif
 
 
 
@@ -207,15 +157,7 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                  <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:30px; height:235px; width:50%">
-                                                  @if($c->Pimage)
-                                                       <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="border-radius:30px; width:160px ; height:230px; ">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
-                                                  @else
-                                                       <img class="img" src="{{ asset('images/patient.png')}}" style="width:160px ; height:230px; ">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
-                                                  @endif
-                                                  </div>
+                                                       <img src="{{ asset('images/patient.png')}}" style="width:160px ; height:230px; ">
                                                        <br><br>
                                                        <div style="float:left; margin-right:15px">
                                                         <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">

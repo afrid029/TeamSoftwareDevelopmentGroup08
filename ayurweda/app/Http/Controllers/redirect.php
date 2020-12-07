@@ -43,6 +43,16 @@ class redirect extends Controller
             return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',"");
         }
     }
+    public function addpatdetails($t){
+        $p=DB::table('add_pats')->get();
+        $c=DB::table('doctors')->where('Doc_id',$t)->first();
+        if($p==null){
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
+        }
+    }
 
    
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\patientsController;
+use App\Http\Controllers\medproducer;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
 Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
 Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
 Route::get('available/{c}/', 'redirect@available')->name('available');
+Route::get('addpatdetails/{c}/', 'redirect@addpatdetails')->name('addpatdetails');
 Route::post('/savepres', 'Store@prescript');
 Route::post('/pressearch', 'search@pressearch');
 Route::post('/saveadmit', 'Store@admit');
@@ -54,4 +56,11 @@ Route::get('showAvail/',[patientsController::class , 'showAvailable']);
 Route::get('appoint',[patientsController::class, 'appoint']);
 Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
 Route::get('/deleteAppoint',[patientsController::class, 'deleteAppointment']);
-Route::patch('changeprofile/{c}/',[patientsController::class, 'changeprofile'])->name('changeprofile');
+
+
+//Medicine Producer Routings
+Route::get('mphome/{c}/', 'medproducer@mphome')->name('mphome');
+Route::get('issuemedicine/{c}/', 'medproducer@issuemedicine')->name('issuemedicine');
+Route::get('Ingstock/{c}/', 'medproducer@Ingstock')->name('Ingstock');
+Route::get('medstock/{c}/', 'medproducer@medstock')->name('medstock');
+Route::get('ordering/{c}/', 'medproducer@ordering')->name('ordering');

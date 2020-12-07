@@ -73,25 +73,25 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                   <div style="width:50%; margin-left:25%; margin-right:25%;" class="col-lg-3">
-                                   <h2 style="color:#ffffff; width:96%; margin: 0 2%;">Your Medical Symptomps History</h2>
+                                   <div style="width:50%; margin-left:25%; margin-right:15%;" class="col-lg-3">
+                                   <h2 style="color:#ffffff;">Your Medical Symptomps History</h2>
                               
-                                        <table style="background-color:white;border:5px; " class="table table-bordered" >
+                                        <table class="table table-bordered" >
                                         
                                              <thead>
                                              @if(count($d) > 0)
-                                                  <tr style="background-color:#800000; ">
-                                                       <th><p style=" color:#FFFFFF;text-align:center"><b>Date</p></b></th>
-                                                       <th><p style="color:#FFFFFF;text-align:center" ><b>Time</p></b></th>
-                                                       <th><p style=" color:#FFFFFF;text-align:center"><b>Medical Symptomps</b></p></th> 
+                                                  <tr>
+                                                       <th><p style="color:#ffffff;">Date</p></th>
+                                                       <th><p style="color:#ffffff;">Time</p></th>
+                                                       <th><p style="color:#ffffff;">Medical Symptomps</p></th> 
                                                   </tr>
                                              </thead>
                                              <tbody>
                                                   
                                                   @foreach($d as $info)
                                                   <tr>
-                                                       <td><p >{{$info->date}}</p></td>
-                                                       <td><p >{{$info->time}}</p></td>
+                                                       <td><p style="color:#ffffff;">{{$info->date}}</p></td>
+                                                       <td><p style="color:#ffffff;">{{$info->time}}</p></td>
                                                        <input type="hidden" id = "dbtext" data-text = "{{$info->text}}"/>
                                                        <input type="hidden" id = "dbid" value = "{{$info->id}}"/>
 
@@ -103,8 +103,7 @@
                                                        
                                                   </tr>
                                                   @endforeach
-                                                 @else
-                                                 <button style = "width:80%; margin:0 10% 0 10%" class="btn btn-danger btn-lg" disabled><b>You didn't say any symptomps</b></button>
+                                                 
                                              @endif     
                                              </tbody>
                                         
@@ -232,7 +231,7 @@
                                                        <div class="custom-file-container" data-upload-id="myUniqueUploadId">
                                                             <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
                                                             <label class="custom-file-container__custom-file">
-                                                                <input  type="file" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose File">
+                                                                <input  type="file" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="" multiple aria-label="Choose File">
                                                                 <span  class="custom-file-container__custom-file__custom-file-control"></span>
                                                             </label>
 
