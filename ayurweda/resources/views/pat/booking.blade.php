@@ -143,7 +143,7 @@
                                              @endforeach
 
                                              @else
-                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">You Don't Have Any Future Appoinments</button>
+                                                  <button style = "width:80%; margin:0 10% 0 10%" class="btn btn-danger btn-lg" disabled><b>You dont have Any future appoinments</b></button>
                                              @endif
                                             
                                         </tbody>
@@ -186,7 +186,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 5000
+               timer: 3000
           });
      </script>
 @endif

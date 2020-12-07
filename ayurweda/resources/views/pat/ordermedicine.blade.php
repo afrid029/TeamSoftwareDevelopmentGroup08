@@ -160,7 +160,7 @@
                                    <h2 style="color:#ffffff;">Order here</h2>
                                    <div class="col-xs-6">
                                              
-                                                <form action="/pressearch" method="post">
+                                              
                                            
                                                   
                                                   
@@ -169,8 +169,8 @@
                                                         <button type="submit"><i class="fa fa-search"></i></button>
                                                        
                                                        <h3>Quantity</h3>
-                                                       <input class="form-control" type="text" name="Quantity" ><br> 
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       <textarea id="uservar" style="color:black;" ></textarea><br> 
+                                                       <button type="button" class=" btn-uservar btn btn-primary" onclick="addtext()">
                                                             Add
                                                        </button>
                                                        <br></br>
@@ -178,7 +178,19 @@
                                                        <br></br>
                                                        <br></br>
                                                   
-                                             </form>
+                                             
+                                             <textarea style="color:black;" name="" id="textarea" cols="30" rows="10">dddffd</textarea>
+                                             <script type="text/javascript">
+                                                  function addtext()
+                                                  {
+                                                       var a = document.getElementById('uservar').value;
+                                                       document.write(a);
+                                                       var b = document.getElementById('textarea').value;
+
+                                                       b.appendChild(a);
+                                                       
+                                                  }
+                                             </script>
                                            
                                         <h2 style="color:#ffffff;">Unreceived orders</h2>
                                         <table class="table" style="height:200px;">
