@@ -103,7 +103,8 @@
                                                        
                                                   </tr>
                                                   @endforeach
-                                                 
+                                             @else
+                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">You Have Not Add Any Symptomps</button>
                                              @endif     
                                              </tbody>
                                         

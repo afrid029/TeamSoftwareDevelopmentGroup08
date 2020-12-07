@@ -141,6 +141,9 @@
                                                   </td>
                                              </tr>
                                              @endforeach
+
+                                             @else
+                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">You Don't Have Any Future Appoinments</button>
                                              @endif
                                             
                                         </tbody>
