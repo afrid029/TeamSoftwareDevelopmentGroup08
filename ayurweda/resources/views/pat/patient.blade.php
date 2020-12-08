@@ -183,7 +183,16 @@
                timer: 1500
           });
      </script>
-    
+@else
+<script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
 @endif
 @endif
 
@@ -206,10 +215,10 @@
                                              <div class="col-md-6 col-sm-6">
                                              <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:30px; height:235px; width:50%">
                                                   @if($c->Pimage)
-                                                       <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="border-radius:30px; width:160px ; height:230px; ">
+                                                       <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="padding-left:1%;  border-radius:30px; width:99%; height:230px; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                                   @else
-                                                       <img class="img" src="{{ asset('images/patient.png')}}" style="width:160px ; height:230px; ">
+                                                       <img class="img" src="{{ asset('images/patient.png')}}" style="width:98% ; height:230px; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                                   @endif
                                                   </div>

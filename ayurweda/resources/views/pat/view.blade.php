@@ -96,7 +96,7 @@
 
                             <div class="modal-footer">
                                 <form action="{{route('symp',$c->Pat_id)}}" method="get" >
-                                        <button type="submit" class="btn btn-secondary bt-sm"   aria-label="Close">Close</button>
+                                        <button type="submit" class="btn btn-danger bt-sm"   aria-label="Close">Close</button>
                                 </form>
                             </div>
                                 

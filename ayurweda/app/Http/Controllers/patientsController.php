@@ -82,7 +82,7 @@ class patientsController extends Controller
            $symp->img = json_encode($imagedata);
         }
          $symp->save();
-        return redirect()->route('symp',$id);
+        return redirect()->route('symp',$id)->with('msg',"Symptomp note has sent");
     }
     public function show($id,$id2)
     {
@@ -180,7 +180,7 @@ class patientsController extends Controller
     public function symp($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->take(5)->get();
+        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->paginate(5);
         $dr = DB::table('doctors')->get();
         return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
     }

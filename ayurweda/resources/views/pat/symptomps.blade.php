@@ -25,7 +25,34 @@
 
      <link rel="stylesheet" type="text/css" href="{{ asset('css/preview.css')}}">
     <script src="{{ asset('js/preview.js') }}"></script>
-
+    <style>
+   a {
+        font-weight: bold;
+   }
+   .link a:link{
+     background-color: #00BFFF;
+     
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     padding:8px;
+     border-radius: 5px;
+   }
+   .link a:visited {
+     background-color: #8B0000;
+     color: white;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+   }
+   
+   
+   
+   .link a:active {
+    
+     background-color: #8B0000;
+   }
+   </style>
     
 </head>
 <body>
@@ -80,7 +107,7 @@
                                         
                                              <thead>
                                              @if(count($d) > 0)
-                                                  <<tr style="background-color:#800000; ">
+                                                  <tr style="background-color:#800000; ">
                                                        <th><p style=" color:#FFFFFF;text-align:center"><b>Date</p></b></th>
                                                        <th><p style="color:#FFFFFF;text-align:center" ><b>Time</p></b></th>
                                                        <th><p style=" color:#FFFFFF;text-align:center"><b>Medical Symptomps</b></p></th> 
@@ -102,16 +129,17 @@
                                                        </form>
                                                        
                                                   </tr>
-                                                  @endforeach
-                                                  @else
-                                                 <button style = "width:80%; margin:0 10% 0 10%" class="btn btn-danger btn-lg" disabled><b>You didn't say any symptomps</b></button>
-                                             @endif     
+                                                  @endforeach   
+                                                  
                                              @else
-                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">You Have Not Add Any Symptomps</button>
+                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">You Have Not Added Any Symptomps</button>
                                              @endif     
                                              </tbody>
                                         
                                         </table>
+                                        <div class="link" style="width:30%;border-radius:10%; margin-top:-12px; margin-bottom: 10px; font-size:12px;">
+                                             <a> {{ $d->links() }}</a>
+                                        </div>
                                         <button style="width:100%;" data-toggle = "modal" data-target = "#symptomp" type="button" class="btn btn-primary btn-lg">Add Symptomp</button>
                               
                               </div>
@@ -144,11 +172,24 @@
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               time: 100
+               timer: 1000
             
           });
      </script>
 @endif
+@if($msg = session()->get('msg'))
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
+
 <!--Modal-->
 <div class="modal fade" id="symptomp" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
      <div class="modal-dialog" role="document">
@@ -164,13 +205,13 @@
                                              @csrf
                                              <input type="hidden" name="id" class="form-control" value="{{$c->Pat_id}}">
                                              <a href="#" style="color:black;"><b>Select a Doctor: </b> 
-                                                <span class="badge">
-                                                 <select name="dr" class="form-control" id="sel1">
+                                                <span >
+                                                 <select style="width:50%; margin-bottom:2%;" name="dr" class="form-control" id="sel1">
                                                       @if($dr)
                                                   @foreach($dr as $a)
-                                                  <optgroup style="font-size:12px;" label = "{{$a->Doc_name}}">
-                                                     <option style="font-size:10px;">{{$a->Doc_id}}</option>
-                                                  </optgroup>
+                                                 
+                                                     <option style="font-size:10px;">{{$a->Doc_id}} &nbsp; &nbsp; &nbsp;  {{$a->Doc_name}}</option>
+                                                  
                                                      
                                                      @endforeach
                                                      
@@ -216,14 +257,14 @@
                                                             
                                                        </div>
 
-                                                       <div style=" margin-top: -40px; margin-right: 5px" class="nav navbar-nav navbar-right">
+                                                       <div style=" margin-top: -7%; margin-right: 5px" class="nav navbar-nav navbar-right">
                                                             <button type="submit" class="btn btn-success btn-sm">Send</button>
                                                             
                                                             <button  onclick = "document.getElementById('original').innerHTML = ''"; type="button" class="btn btn-danger btn-sm">Discard</button>
                                                        </div>
                                                        
                                                        <div class="form-group mt-4" placeholder="Say Here" id ="original" style="-moz-appearance: textfield-multiline;
-                                                            -webkit-appearance: textarea;border: 1px solid gray;font: medium -moz-fixed;font: -webkit-small-control;height:250px;
+                                                            -webkit-appearance: textarea;border: 1px solid gray;font: medium -moz-fixed;font: -webkit-small-control;height:210px;
                                                             overflow: auto;resize: both;width: 500px; margin-left: 8px; background-color:white; color:black; border-radius:10px;" contenteditable="true">
                                                        </div>
                                                        <input type="hidden" name="text" id="copy"/>
@@ -236,11 +277,11 @@
                                                             <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
                                                             <label class="custom-file-container__custom-file">
                                                             <input  type="file" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose File">
-                                                                <span  class="custom-file-container__custom-file__custom-file-control"></span>
+                                                            <span  class="custom-file-container__custom-file__custom-file-control"></span>
                                                             </label>
 
 
-                                                                <span  class="custom-file-container__custom-file__custom-file-control"></span>
+                                                                
                                                             </label>
 
                                                             
