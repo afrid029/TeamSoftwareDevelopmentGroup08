@@ -26,7 +26,7 @@ class login extends Controller
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
-                return view('producer')->with('c',$c)->with('msg',"");
+                return view('medprod/producer')->with('c',$c)->with('msg',"");
             }
             else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
