@@ -48,3 +48,6 @@ Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
 Route::get('symp/{c}/','redirect@symp')->name('symp');
 Route::get('order/{c}/','redirect@order')->name('order');
 Route::get('book/{c}/','redirect@book')->name('book');
+
+
+

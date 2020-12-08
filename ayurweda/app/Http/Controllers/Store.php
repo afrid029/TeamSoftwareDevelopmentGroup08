@@ -102,7 +102,7 @@ class Store extends Controller
         $a->save();
         $s="Inserted successfully.";
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('doc_available_times')->get();
+        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
         if($p==null){
             return view('doc/available')->with('c',$c)->with('msg',"")->with('av',"")->with('ro',"");
         }

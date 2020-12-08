@@ -79,7 +79,7 @@
                <span aria-hidden="true">&times;</span>
           </button>
           </div>
-          <form method="post" action="/docedit">
+          <form method="post" action="/docedit" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="modal-body">
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Doc_name}}"><br>
@@ -88,6 +88,7 @@
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Doc_pNum}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="file" name="image" class="form-control-file"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
@@ -136,7 +137,7 @@ Swal.fire({
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                       <img src="{{ asset('images/doctorimage.jpg')}}" style="width:300px ;">
+                                                       <img src="{{ asset($c->Doc_im)}}" style="width:300px ;">
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>

@@ -20,6 +20,7 @@ class CreateDoctorsTable extends Migration
             $table->string('Doc_addr');
             $table->string('Doc_pNum');
             $table->string('password');
+            $table->string('Doc_im');
             $table->primary('Doc_id');
             $table->timestamps();
         });
