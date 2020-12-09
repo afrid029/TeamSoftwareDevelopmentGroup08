@@ -108,7 +108,7 @@ Swal.fire({
                                                        <input class="form-control" type="email" name="email" placeholder="Email"><br>
                                                        <input class="form-control" type="password" name="password" placeholder="Password"><br>
                                                        <input class="form-control" type="password" name="rpassword" placeholder="Confirm Password"><br>
-                                                       Profile Picture:<input type="file" id="img" name="img" accept="image/*"><br>
+                                                       
                                                        <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
                                                   </div>
                                              </form>
