@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        
-        DB::table('all_users')->insert([
+         DB::table('all_users')->insert([
             'id'=> 'doc2',
             'password' => '123456',
             'roll' => 'doctor'
@@ -30,7 +29,21 @@ class DatabaseSeeder extends Seeder
             'Doc_pNum' => '0771234567',
             'password' => '123456'
         ]);
+        
+            //  For Pharmacist
+        DB::table('all_users')->insert([
+            'id'=> 'pha1',
+            'password' => 'asasas',
+            'roll' => 'pharmacist'
+        ]);
 
-     
+        DB::table('pharmacists')->insert([
+            'Phar_id' => 'pha1',
+            'Phar_name' => 'Ajantha',
+            'Phar_addr' => '98,KKp, Road Kalmunai 03',
+            'Phar_pNum' => '0771234567',
+            'password' => 'asasas'
+        ]);
+
     }
 }
