@@ -21,7 +21,7 @@ class login extends Controller
             }
             elseif($roll=="pharmacist"){
                 $c=DB::table('pharmacists')->where('Phar_id',$request->id)->first();
-                return view('pharmacist')->with('c',$c)->with('msg',"");
+                return view('pharmacist/pharmacist')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
@@ -29,7 +29,7 @@ class login extends Controller
             }
             else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
-                return view('supllier')->with('c',$c)->with('msg',"");
+                return view('supllier/supllier')->with('c',$c)->with('msg',"");
             }
         }
         else{
