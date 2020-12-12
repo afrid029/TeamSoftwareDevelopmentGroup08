@@ -16,19 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
-        DB::table('all_users')->insert([
-            'id'=> 'doc2',
-            'password' => '123456',
-            'roll' => 'doctor'
-        ]);
-
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc2',
-            'Doc_name' => 'Ajantha',
-            'Doc_email' => 'mafrid029@gmail.com',
-            'Doc_addr' => '98,KKp, Road Kalmunai 03',
-            'Doc_pNum' => '0771234567',
-            'password' => '123456'
+       
+       
+        DB::table('medical_histories')->insert([
+            'Meeting_id' => 'App16',
+            'Pat_id' => 'Pat1',
+            'Doc_id' => 'doc1',
+            'diagnosis' => 'An essay is generally a short piece of writing outlining the writer’s perspective or story. It is often considered synonymous with a story or a paper or an article. Essays can be formal as well as informal. Formal essays are generally academic in nature and tackle serious topics. We will be focusing on informal essays which are more personal and often have humorous elements.',
+            'disease' => 'corona,hfghfg Dengue',
+            'medicine' => 'Hot Water, fidsjhhfhghs kidfdsjfiodsjo idjf sdfiods dsifjdsi fiodsjfds fiodsjfi sdfiodsjfiosdfiods ufdsiofds iofsdif isdf usd '
+            
         ]);
 
      

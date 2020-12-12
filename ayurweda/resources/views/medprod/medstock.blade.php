@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
 
-<<<<<<< HEAD
+
      <title>Medicine Stock</title>
-=======
-     <title>Producer</title>
->>>>>>> 0b0a4bea4c38198ef1600f7dbcd56cb0d63c8066
+
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -56,10 +54,6 @@
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
-<<<<<<< HEAD
-
-=======
->>>>>>> 0b0a4bea4c38198ef1600f7dbcd56cb0d63c8066
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
@@ -67,19 +61,12 @@
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine Stock</font></a></li>
                          <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
                     </ul>
-<<<<<<< HEAD
-                     
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
-                    </ul>
-               </div>
-=======
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="login">Logout</a></li>
                     </ul>
                </div>
 
->>>>>>> 0b0a4bea4c38198ef1600f7dbcd56cb0d63c8066
+
           </div>
      </section>
 

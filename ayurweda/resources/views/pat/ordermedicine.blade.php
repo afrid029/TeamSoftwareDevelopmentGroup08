@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    
+    <title>Online Medicine Ordering</title>
 
-     <title>Prescription</title>
-
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="">
@@ -17,29 +18,63 @@
      <link rel="stylesheet" href="{{ asset('css/owl.carousel.css')}}">
      <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
      <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
-
-     <!-- MAIN CSS -->
+     
+      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
+     <style>
+   a {
+        font-weight: bold;
+   }
+   .link a:link{
+     background-color: #00BFFF;
+     
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     padding:8px;
+     border-radius: 5px;
+   }
+   .link a:visited {
+     background-color: #8B0000;
+     color: white;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+   }
+   
+   
+   
+   .link a:active {
+    
+     background-color: #8B0000;
+   }
+   </style>
+
 </head>
 <body>
-
-     <!-- PRE LOADER -->
-     <section class="preloader">
-          <div class="spinner">
-
-               <span class="spinner-rotate"></span>
-               
-          </div>
-     </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($errors->any())
+@foreach($errors->all() as $err)
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'error',
+               title: '{{$err}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endforeach
+@endif
 
-     <!-- MENU -->
-     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
+<!-- MENU -->
+<section style="padding-left:5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div style="width:100" class="container">
 
-               <div class="navbar-header">
+               <div style="margin-left:-8%; " class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
@@ -47,233 +82,181 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-nav-first">
+               <div style = "width:90%;" class="collapse navbar-collapse">
+               <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
                         <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll"><font color="red">Order Medicines</font></a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         
                     </ul>
+                    <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Logout</a></li>
+                    </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
-                    </ul>
+                    
                </div>
 
           </div>
      </section>
-
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-     <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <form action="/patedit" method="post" >
-          
-          @method('patch')
-          @csrf
-               <div class="modal-body">    
-               <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Pat_name}}"><br>
-               <input type="email" name="email" class="form-control" placeholder="Email" value="{{$c->Pat_email}}"><br>
-               <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Pat_addr}}"><br>
-               <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Pat_pNum}}"><br>
-               <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <input type="hidden" name="id" class="form-control" value="{{$c->Pat_id}}"><br>
-               <button type="submit" class="btn btn-primary">Update</button>
-          </div>
-          
-          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-          </form>
-     </div>
-     </div>
-     </div>
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-@if($errors->any())
-     <script> var a=""; </script>
-     @foreach($errors->all() as $err)
-  
-     <script>
-          a = a + "{{$err}}\n";
-     </script>
-    
-     @endforeach
-
-     <script>
-     Swal.fire({
-               position: 'top',
-               icon: 'warning',
-               title: a,
-               showConfirmButton: false,
-               time: 100
-            
-          });
-     </script>
-@endif
-
- @if($msg == "Profile Successfully Updated")
-     <script>
-          Swal.fire({
-               position: 'middle',
-               icon: 'success',
-               title: '{{$msg}}',
-               showConfirmButton: false,
-               timer: 1500
-          });
-     </script>
-     
-     
-@elseif($msg == "Password is wrong")
-     <script>
-          Swal.fire({
-               position: 'middle',
-               icon: 'error',
-               title: '{{$msg}}',
-               showConfirmButton: false,
-               timer: 1500
-          });
-     </script>
-    
-@endif
-     <!-- HOME -->
-     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+<!-- HOME -->
+<section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
-
-          <div class="owl-carousel owl-theme">    
-                    <div class="item item-first">
-                              <div class="caption">
+                    <div class="owl-theme">
+                         <div class="item item-first">
+                         <div class="caption">
                                    <div class="container">
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                   <h2 style="color:#ffffff;">Order here</h2>
-                                   <div class="col-xs-6">
-                                             
+                                   
+                                   <button style="width:40%; margin-left:30%; margin-right:30%; margin-top:-5%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Medicine</button>
+                                   <div style="width:60%; margin-left:20%; margin-right:20%;" class="col-lg-3">
+                                        <h2 style="color:#ffffff; text-align:center; width:96%; margin: 0 2%;">Unrecieved Orders</h2>
+                              
+                                        <table style="background-color:white;border:5px; " class="table table-bordered" >
+                                        
+                                             <thead>
+                                            
+                                                  <tr style="background-color:#800000; ">
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Date</b></th>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>View</b></th>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Order Status</b></th> 
+                                                       
+                                                  </tr>
+                                             </thead> 
+                                             @if(count($orders) > 0)
+                                             <tbody>
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
+                                                  <tr>
+                                                       <td><p >{{$order->PatMedOrder_date}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                       </td>
+                                                       <td><p>{{$order->status}}</p></td>
+                                                      
+                                                       
+                                                  </tr>
+                                                  <?php $no++; ?>
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
+                                             </tbody>
+                                                 
                                               
-                                           
                                                   
+                                                   
                                                   
-                                                        <h3>Medicine Name</h3>
-                                                        <input style="color:black" type="text" placeholder="Search" name="MedicineName">
-                                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                                       
-                                                       <h3>Quantity</h3>
-                                                       <textarea id="uservar" style="color:black;" ></textarea><br> 
-                                                       <button type="button" class=" btn-uservar btn btn-primary" onclick="addtext()">
-                                                            Add
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                       <br></br>
-                                                       <br></br>
-                                                  
+                                              
                                              
-                                             <textarea style="color:black;" name="" id="textarea" cols="30" rows="10">dddffd</textarea>
-                                             <script type="text/javascript">
-                                                  function addtext()
-                                                  {
-                                                       var a = document.getElementById('uservar').value;
-                                                       document.write(a);
-                                                       var b = document.getElementById('textarea').value;
+                                          
+                                        </table>
+                                       
+                                        <div class="link" style="width:30%;border-radius:10%; margin-top:-12px; margin-bottom: 10px; font-size:12px;">
+                                             <a> {{ $orders->links() }}</a>
+                                        </div>
+                                        <script>
+                                             function viewing(id){
+                                                  var a = document.getElementById('medi'+id).value;
+                                                  Swal.fire({
+                                                       position: 'top',
+                                                       width:400,
+                                                       text:"Order details",
+                                                       icon: 'info',
+                                                       title: a,
+                                                      
+                                                       showConfirmButton: true,
+                                                      
+                                                  
+                                                  });
+                                             }
+                                             
+                                             
+                                            
 
-                                                       b.appendChild(a);
-                                                       
-                                                  }
-                                             </script>
-                                           
-                                        <h2 style="color:#ffffff;">Unreceived orders</h2>
-                                        <table class="table" style="height:200px;">
-                                        
-                                        
-                                             
-                                                  <tr>
-                                                       <th>Date</th>
-                                                       <th>Time</th>
-                                                       <th>View</th>
-                                                       
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                  </tr>
-                                    </table>
-                                    </div>     
-                                             
-                                    <div class="col-xs-6">
-                                             <br>
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
-                                        
-                                        <table class="table">
-                                        
-                                        
-                                             
-                                                  <tr>
-                                                       <th>Medicine Name</th>
-                                                       <th>Quantity</th>
-                                                       
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                  </tr>
-                                    </table>
-                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Send</button>    
-
-                                    </div>
-                                    </div><br>
+                                                  
+                                        </script>
+                              
+                                   </div>
                                         
                                    </div>
-                             </div>
+                              </div>
                          </div>
-                         
                     </div>
-
           </div>
-     </section>
+</section>
+
+<!--Modal-->
+<div class="modal fade" id="ordermedicine" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order Medicine Here</h5>
+                    <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
+               </div>
+               <div style="margin-top:-2%;" class="modal-body">
+                    <h4>Medicine Name</h4>
+                                                
+                    <select size="5" class="form-control" id="mname" aria-label="multiple select example">
+                         <option   disabled hidden> 
+                              Select Medicine
+                         </option> 
+                    
+                    @foreach($stocks as $stock)
+                         <option >{{$stock->Med_name}}</option>
+                    @endforeach
+                    </select>
+                    
+                     <h5>Quantity</h5>
+                    <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
+                     <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
+
+                     <form action="{{ route('ordermedicine') }}" method = "post">
+                     @csrf
+                         <input type="hidden" name="pid" value = "{{$c->Pat_id}}"/>
+                         <textarea class="form-control" name="order" id="order" cols="10" rows="10"></textarea>
+                         
+                                   <script>
+                                        function addtext(){
+                                             var  old = document.getElementById('order').value;
+                                        
+                                             var med = document.getElementById('mname').value;
+                                             
+                                             if(med){
+                                                  var qty = document.getElementById('qty').value;
+                                                  if(qty){
+                                                       document.getElementById('order').value = old+"\n"+med+ "   " + qty;
+                                                  }
+                                            
+                                             }
+                                             document.getElementById('mname').value = " ";
+                                             document.getElementById('qty').value = "  ";
+                                            
+                                        }
+
+                                        function prepareDiv(){
+                                             document.getElement('')
+                                        }
+                              </script>
+                              <button style="margin-top:1.5%;" class="btn btn-success" type ="submit">Send Order</button>
+                    </form>
+                    
+                                       
+               </div>
+               <div class="modal-footer">
+               
+               </div>
+          </div>
+     </div>
+</div>
 
 
      <!-- SCRIPTS -->
@@ -285,6 +268,24 @@
      <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
      <script src="{{ asset('js/smoothscroll.js')}}"></script>
      <script src="{{ asset('js/custom.js')}}"></script>
+
+     
+
+
+     
+@if($msg = session()->get('msg'))
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
+
 
 </body>
 </html>

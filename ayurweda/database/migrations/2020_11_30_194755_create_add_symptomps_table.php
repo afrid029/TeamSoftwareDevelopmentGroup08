@@ -19,6 +19,7 @@ class CreateAddSymptompsTable extends Migration
             $table->string('Pat_id');
             $table->longText('text')->nullable();
             $table->string('img')->nullable();
+            $table->string('audio')->nullable();
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->timestamps();

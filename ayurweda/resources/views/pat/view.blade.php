@@ -24,16 +24,24 @@
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
      <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
+     <style>
+        #audio {
+            
+            height:25px;
+            width: 70%;
+        }
+     </style>
+
     
 </head>
 <body>
 
 
 <!-- MENU -->
-<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
+<section style="padding-left:5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div style="width:100" class="container">
 
-               <div class="navbar-header">
+               <div style="margin-left:-8%; " class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
@@ -41,26 +49,28 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                            <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                            <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
-                            <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                            <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
-                </ul>
-                   
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+               <div style = "width:90%;" class="collapse navbar-collapse">
+               <ul   class="nav navbar-nav navbar-nav-first">
+                         <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         
                     </ul>
+                    <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Logout</a></li>
+                    </div>
+
+                    
                </div>
 
           </div>
-</section>
-
+     </section>
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -76,17 +86,34 @@
     });
 
 </script>
-                        <div style = "overflow:scroll;margin-top:70px;" class="modal  show"  tabindex="-1" id = "myModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    
+                      <div style = "overflow:scroll;margin-top:5%;" class="modal  show"  tabindex="-1" id = "myModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="dialog">
-                        <div class="modal-content">
+                        <div class="modal-content" style="width:150%; margin-left:-25%; margin-right:-25%;">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">View Symptomp</h5>
+                                <h4 class="modal-title" id="exampleModalLabel">View Symptomp</h4>
+                                <h6 style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%;">&nbsp; &nbsp; &nbsp; DATE: {{$e->date}}</h6>
+                                <h6 style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%; margin-right:20%;">Time: {{$e->time}}</h6>
                                 
                                 </div>
                                 
                             <div class ="modal-body">
-                                <p  style = "overflow:'visible';">{!! $e->text !!}</p>
+                                <h3 style="color:grey; float:left; ">To: <b>{{$e->Doc_id}}</b></h3>
+                                
+                                <br><p  style = "overflow:'visible';">{!! $e->text !!}</p>
+                                @if($e->audio)
+                                    <label >Audio:  </label>
+                                <div>
+                                <audio id="audio"  controls>
+                                    <source style="height:10%" src="{{asset('upload/voicerecordings')}}/{{$e->audio}}">
+                                    Browser doesn't support this audio file
+                                </audio>
+                                <br><br>
+                                </div>
+                                
+                            @endif
                             @if($e->img)
+                            <label >Image(s):  </label><br>
                                 @foreach(json_decode($e->img,true) as $image)
                                     <img src = "{{asset('upload/images')}}/{{$image}}" style="width:100px; height:200px"/>
 

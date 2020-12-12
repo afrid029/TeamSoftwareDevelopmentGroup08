@@ -62,11 +62,10 @@
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
-                         <li><a href="/login">Logout</a></li>
-=======
+                    
                          <li><a href="login">Logout</a></li>
->>>>>>> 0b0a4bea4c38198ef1600f7dbcd56cb0d63c8066
+
+
                     </ul>
                </div>
 
