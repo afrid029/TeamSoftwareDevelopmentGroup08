@@ -13,8 +13,7 @@ class login extends Controller
         $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
         if($password==$request->password){
             if($roll=="patient"){
-                $c=DB::table('patients')->where('Pat_id',$request->id)->first();
-                return view('pat/patient')->with('c',$c)->with('msg',"");
+                return redirect()->route('pathome',['c'=>$request->id]);
             }
             elseif($roll=="doctor"){
                 $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
@@ -26,7 +25,7 @@ class login extends Controller
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
-                return view('producer')->with('c',$c)->with('msg',"");
+                return view('medprod/producer')->with('c',$c)->with('msg',"");
             }
             else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();

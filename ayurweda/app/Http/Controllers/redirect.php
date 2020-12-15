@@ -43,30 +43,27 @@ class redirect extends Controller
             return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',"");
         }
     }
-
-    //patients redirection
-
-    public function pathome($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/patient',compact('c'))->with('msg',"");
+    public function addpatdetails($t){
+        $p=DB::table('add_pats')->get();
+        $c=DB::table('doctors')->where('Doc_id',$t)->first();
+        if($p==null){
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
+        }
     }
-
-    public function symp($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/symptomps',compact('c'))->with('msg',"");
+    public function docsymp($t){
+        $c=DB::table('doctors')->where('Doc_id',$t)->first();
+        $d = DB::table('add_symptomps')->where('Doc_id',$t)->orderBy('created_at','desc')->get();
+        $pa = DB::table('patients')->get();
+        return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
     }
-
-    public function order($id)
+    public function show($id,$id2)
     {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/ordermedicine',compact('c'))->with('msg',"");
+        $c = DB::table('doctors')->where('Doc_id',$id2)->first();
+        $e = DB::table('add_symptomps')->where('id',$id)->first();
+        return view('doc/view',compact('c','e'));
     }
-
-    public function book($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/booking',compact('c'))->with('msg',"");
-    }
+   
 }

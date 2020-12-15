@@ -20,7 +20,7 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/register.css')}}">
-     
+
 
 </head>
 <body>
@@ -84,6 +84,29 @@ Swal.fire({
 </script>
 @endif
 
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
+
+
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
                <div class="row">
@@ -93,7 +116,7 @@ Swal.fire({
                               <div class="caption">
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
-                                             <form action="/saveuser" method="post" class="wow fadeInUp">
+                                             <form name="regform" action="/saveuser" method="post" class="wow fadeInUp">
                                              {{csrf_field()}} 
                                              <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
@@ -108,7 +131,7 @@ Swal.fire({
                                                        <input class="form-control" type="email" name="email" placeholder="Email"><br>
                                                        <input class="form-control" type="password" name="password" placeholder="Password"><br>
                                                        <input class="form-control" type="password" name="rpassword" placeholder="Confirm Password"><br>
-                                                       Profile Picture:<input type="file" id="img" name="img" accept="image/*"><br>
+                                                       
                                                        <input class="section-btn btn btn-default smoothScroll" type="submit" value="Register" color="black">
                                                   </div>
                                              </form>

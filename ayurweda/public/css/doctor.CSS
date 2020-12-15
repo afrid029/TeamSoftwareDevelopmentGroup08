@@ -194,7 +194,7 @@ http://www.templatemo.com/tm-515-eatery
     animation: spinner .9s linear infinite;
   }
 
-  @-webkit-@keyframes spinner {
+  @_webkit-@keyframes spinner {
     to {transform: rotate(360deg);}
   }
 
