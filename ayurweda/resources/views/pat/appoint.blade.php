@@ -80,10 +80,10 @@
 
 
 <!-- MENU -->
-<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
+<section style="padding-left:5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div style="width:100" class="container">
 
-               <div class="navbar-header">
+               <div style="margin-left:-8%; " class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
@@ -91,32 +91,35 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-             
-                <ul class="nav navbar-nav navbar-nav-first">
-                            <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                            <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
-                            <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                            <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
-                </ul>
-                   
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+               <div style = "width:90%;" class="collapse navbar-collapse">
+               <ul   class="nav navbar-nav navbar-nav-first">
+                         <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll"><font color="red">Online Booking</font></a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         
                     </ul>
-               
+                    <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Logout</a></li>
+                    </div>
+
+                    
+               </div>
+
           </div>
-</section>
+     </section>
 
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
-
-                    <div >
-                         <div class="item item-first">
+     <div class="row">
+          <div>
+               <div class="item item-first">
 
 
 <script>
@@ -125,102 +128,84 @@
     });
 
 </script>
-                        <div  style = "margin-top:50px; margin-bottom:0.01px;" class="modal  show"  tabindex="-1" id = "myModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div  style = "margin-top:50px; margin-bottom:0.01px;" class="modal  show"  tabindex="-1" id = "myModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="dialog">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Book a Doctor</h5>
+                              <div class="modal-content">
+                                   <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Book a Doctor</h5>
+                                   </div>
                                 
-                                </div>
-                                
-                            <div class ="modal-body">
-                                <div class="form-group">
+                                   <div class ="modal-body">
+                                        <div class="form-group">
 
-<form action="/showAvail" method="get">
-@csrf
-
-<a href="#" style="color:black;"><b>Select a Doctor:</b> <span class="badge">
-              
-               <select class="form-control" name = "dr"  style = "float : right">
-               @if($dr)
-                         @foreach($dr as $a)
-                         <optgroup style="font-size:12px;" label = "{{$a->Doc_name}}">
-                            <option style="font-size:10px;">{{$a->Doc_id}}</option>
-                         </optgroup>
-                            
-                            @endforeach
-                            
-                            @endif
-               </select>
-               <input type = "hidden" name = "patid" value = "{{$c->Pat_id}}"/>
-                    </span></a>
-               
-               <div  style = " float : right; margin-top:1%; margin-right:2%;">
-                    <label  for="date" value = "Date"> Date</label>
-                    <input style="color:black" type ="date" name="date" value="{{$date ?? ''}}"/>
-                    <button type = "submit" class = "btn btn-info" value = "Search">Search</button>
-               </div>
-</form>
-</div>
-<div class="p-3 mb-2 bg-info text-white">
-     
-@if(count($t) > 0)
-<table class="table table-bordered table-scroll" style="background-color:#ffffff; color:black">
-   
-               <thead>
-                    <tr>
-                        
-                         <th>Available Date</th>
-                         <th>Available Time</th>
-                         <th>Booking</th> 
-                    </tr>
-               </thead>
-               <tbody class="body-half-screen">
-               
-                  @if(count($t) > 0)
-                    @foreach($t as $time)
-                    <tr>
-                         <td>{{$time->availableDate}}</td>
-                         <td>{{$time->availableTime}}</td>
-                         <td>
-                        <form action = "/confirmAppoinment" method="post">
-                        @csrf
-                            <input type = "hidden" name = "pid" value = "{{$c->Pat_id}}">
-                            <input type = "hidden" name = "did" value = "{{$doc}}">
-                            <input type = "hidden" name = "tm" value = "{{$time->availableTime}}">
-                            <input type = "hidden" name = "dt" value = "{{$time->availableDate}}">
-                        <button type="submit" class="btn btn-success">Appoint</button>
-                         </form>   
-                        </td>
-                    </tr>
-                    @endforeach
-                    @endif                    
-                    @endif                    
-
-                 
-               
-               </tbody>
+                                             <form action="/showAvail" method="get">
+                                                  @csrf
+                                                  <select class="form-control" name = "dr"  style = "width:40%;">
+                                                       <option value="none" selected disabled hidden> 
+                                                            Select a Doctor
+                                                       </option> 
+                                                       @if($dr)
+                                                       @foreach($dr as $a)
+                                                            <optgroup style="font-size:12px;" label = "{{$a->Doc_name}}">
+                                                                 <option style="font-size:10px;">{{$a->Doc_id}}</option>
+                                                            </optgroup>
+                                                       @endforeach
+                                                       @endif
+                                                  </select>
+                                                  <input type = "hidden" name = "patid" value = "{{$c->Pat_id}}"/>
+                                                  <div  style = " float : left ; margin-top:-5.5%; margin-left:50%; ">
+                                                       <input  class="form-control"  type ="date" name="date" value="{{$date ?? ''}}"/>
+                                                  </div> 
+                                                  <button style="float : right; margin-top:-5.5%;" type = "submit" class = "btn btn-info" value = "Search">Search</button>
+                                             </form>
+                                        </div>
+                                        <div class="p-3 mb-2 bg-info text-white">
+                                             <table class="table table-bordered table-scroll" style="background-color:#ffffff; color:black">
+                                                  <thead>
+                                                       <tr>
+                                                            <th>Available Date</th>
+                                                            <th>Available Time</th>
+                                                            <th>Booking</th> 
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody class="body-half-screen">
+                                                  @if(count($t) > 0)
+                                                       @foreach($t as $time)
+                                                            <tr>
+                                                                 <td>{{$time->availableDate}}</td>
+                                                                 <td>{{$time->availableTime}}</td>
+                                                                 <td>
+                                                                      <form action = "/confirmAppoinment" method="post">
+                                                                      @csrf
+                                                                           <input type = "hidden" name = "pid" value = "{{$c->Pat_id}}">
+                                                                           <input type = "hidden" name = "did" value = "{{$doc}}">
+                                                                           <input type = "hidden" name = "tm" value = "{{$time->availableTime}}">
+                                                                           <input type = "hidden" name = "dt" value = "{{$time->availableDate}}">
+                                                                           <button type="submit" class="btn btn-success">Appoint</button>
+                                                                      </form>   
+                                                                 </td>
+                                                            </tr>
+                                                       @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="3"><h3 style=" color:black;text-align: center;">No Doctors Available. Search Another</h3></td>
+                                                  </tr>
+                                                  @endif                    
+                                                  </tbody>
           
-</table>
-    </div>
+                                             </table>
+                                        </div>
 
-                            <div style = "height:35px; padding-top:8px;"  class="modal-footer">
-                                <form action="{{route('book',$c->Pat_id)}}" method="get" >
-                                   <button type="submit" class="btn btn-secondary btn-danger bt-sm"   aria-label="Close">Close</button>
-                                </form>
-                            </div>
-                                
-                                
-                                
+                                        <div style = "height:35px; padding-top:8px;"  class="modal-footer">
+                                             <form action="{{route('book',$c->Pat_id)}}" method="get" >
+                                                  <button type="submit" class="btn btn-secondary btn-danger bt-sm"   aria-label="Close">Close</button>
+                                             </form>
+                                        </div>
+                                   </div>
+                              </div>
                         </div>
-                        </div>
-                        </div>
-
-
-
-
-                         </div>
                     </div>
+               </div>
           </div>
 </section>
 

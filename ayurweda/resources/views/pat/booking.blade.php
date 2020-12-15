@@ -34,7 +34,7 @@
   border-radius: 5px;
 }
 .link a:visited {
-  background-color: #00BFFF;
+  background-color: #8B0000;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -45,7 +45,7 @@
 
 .link a:active {
  
-  background-color: #00BFFF;
+  background-color: #8B0000;
 }
 </style>
      
@@ -56,118 +56,103 @@
 
 
 <!-- MENU -->
-<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
-
-               <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                    </button>
-
-                    <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
-               </div>
-
-               <!-- MENU LINKS -->
-               <div >
-               <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
-                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll"><font color="red">Online Booking</font></a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
-                    </ul>
-               </div>
-
+<section style="padding-left:5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+     <div style="width:100" class="container">
+          <div style="margin-left:-8%; " class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
+               <!-- lOGO TEXT HERE -->
+               <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
           </div>
-     </section>
+          <!-- MENU LINKS -->
+          <div style = "width:90%;" class="collapse navbar-collapse">
+               <ul   class="nav navbar-nav navbar-nav-first">
+                    <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
+                    <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                    <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
+                    <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll"> <font color="red">Online Booking</font></a></li>
+                    <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+               </ul>
+               <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Logout</a></li>
+               </div>
+           </div>
+     </div>
+</section>
 
      
 
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
-
-                    <div class="owl-theme">
-                         <div class="item item-first">
-                              <div class="caption">
-                                   <div class="container">
-                          
-                          <div style="width:50%;" >
-                              <br>
-                             
+     <div class="row">
+          <div class="owl-theme">
+               <div class="item item-first">
+                    <div class="caption">
+                         <div class="container">
+                              <div  style="width:60%; margin-left:20%; margin-right:20%; margin-top:-5%;" >
+                                        <form action = "/appoint" method = "get">
+                                                  <input type = "hidden" value = "{{$c->Pat_id}}" name = "id">
+                                                  <button style="width:76%; margin-left:12%; margin-right:12%;" class = "btn btn-primary btn-lg" type="submit" >Get Appointment</button>
+                                        </form>
                               
-                         <div  style="width:100%; margin-left:40%; margin-right:20%;" >
-                         <form action = "/appoint" method = "get">
-                                   <input type = "hidden" value = "{{$c->Pat_id}}" name = "id">
-                                   <button style="width:100%;" class = "btn btn-primary btn-lg" type="submit" >Get Appointment</button>
-                         </form>
-                         
-                         <div >
-                         
-                         <h2 style="text-align:center; color:#ffffff;">Your appointment times</h2>
-                         @if(count($t) > 0)
-                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color:white;color:black; width:100;">
-                         <p style="color:#ffffff;"> 
-                                        <thead style="overflow:fixed;">
-                                             <tr>
-                                             <th><b>Doctor</b></th>
-                                             <th><b>Date</b></th>
-                                             <th><b >Time</b></th> 
-                                             <th><b>Cancel</b></th>
-                                             </tr>
-                                        </thead>
-                                        <tbody  style="overflow:scrol;">
-                                            
-                                             @foreach($t as $apps)
-                                             <tr>
-                                                  <td><p>{{$apps->Doc_name}}</p></td>
-                                                  <td><p>{{$apps->availableDate}}</p></td>
-                                                  <td><p>{{$apps->availableTime}}</p></td>
-                                                  <td>
-                                                       <form action="/deleteAppoint" method="get">
-                                                            @csrf
-                                                           
-                                                            <input type="hidden" name ="appid" value="{{$apps->App_id}}"/>
-                                                            <input type="hidden" name ="ptid" value="{{$c->Pat_id}}"/>
-                                                            <button class ="btn btn-primary btn-danger">Delete</button>
-                                                       </form>
-                                                  </td>
-                                             </tr>
-                                             @endforeach
+                                   <div>
+                                        <h2 style="text-align:center; color:#ffffff;">Your appointment times</h2>
+                                        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color:white;color:black; width:100;">
+                                        
+                                             <thead style="background-color:#800000; color:white; text-align:center;overflow:fixed;">
+                                                  <tr>
+                                                       <th style="text-align:center;"><b>Doctor</b></th>
+                                                       <th style="text-align:center;"><b>Date</b></th>
+                                                       <th style="text-align:center;"><b >Time</b></th> 
+                                                       <th style="text-align:center;"><b>Cancel</b></th>
+                                                  </tr>
+                                             </thead>
+                                                  @if(count($t) > 0)
+                                                       <tbody>
+                                                            @foreach($t as $apps)
+                                                                 <tr>
+                                                                      <td><p>{{$apps->Doc_name}}</p></td>
+                                                                      <td><p>{{$apps->availableDate}}</p></td>
+                                                                      <td><p>{{$apps->availableTime}}</p></td>
+                                                                      <td>
+                                                                           <form action="/deleteAppoint" method="get">
+                                                                                @csrf
+                                                                           
+                                                                                <input type="hidden" name ="appid" value="{{$apps->App_id}}"/>
+                                                                                <input type="hidden" name ="ptid" value="{{$c->Pat_id}}"/>
+                                                                                <button class ="btn btn-primary btn-danger">Delete</button>
+                                                                           </form>
+                                                                      </td>
+                                                                 </tr>
+                                                            @endforeach
 
-                                             @else
-                                                  <button style = "width:80%; margin:0 10% 0 10%" class="btn btn-danger btn-lg" disabled><b>You dont have Any future appoinments</b></button>
-                                             @endif
-                                            
-                                        </tbody>
-                                       
-                         </div>          
-                         </table>
-                         <div class="link" style="width:30%;border-radius:10%; padding:5px; font-size:14px;">
-                             <a> {{ $t->links() }}</a>
-                         </div>
-                        
-                                   
-                         </div>
-                        
-                         </div>
-                        
-                         <!--    -->
-                         </div>
-                         </div>
+                                                  @else
+                                                            <tr>
+                                                                 <td colspan="4"><h3 style=" color:black;text-align: center;">At the moment you don't have any appointment</h3></td>
+                                                            </tr>
+                                                  @endif
+                                                       </tbody>
+
+                                        </table>       
+                                   </div>          
+                                        
+                                   <div class="link" style="width:30%;border-radius:10%; padding:5px; font-size:14px;">
+                                        <a> {{ $t->links() }}</a>
+                                   </div>
+                              </div>
                          </div>
                     </div>
+               </div>
           </div>
-     </section>
+     </div>
+</section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
      
+
 @if($msg=session()->get('msg'))
 @if($msg == "Appoinment is cancelled")
 <script>
@@ -192,7 +177,6 @@
 @endif
 @endif
 
-
     
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>
@@ -203,8 +187,7 @@
      <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
      <script src="{{ asset('js/smoothscroll.js')}}"></script>
      <script src="{{ asset('js/custom.js')}}"></script>
-     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+     
 
 
 </body>

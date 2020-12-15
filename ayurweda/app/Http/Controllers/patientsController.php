@@ -10,6 +10,7 @@ use App\Models\Patient;
 use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use App\Models\OnlineBooking;
+use App\Models\Pat_med_ordering;
 
 
 class patientsController extends Controller
@@ -80,6 +81,14 @@ class patientsController extends Controller
                $imagedata[] = $name;
            }
            $symp->img = json_encode($imagedata);
+        }
+
+        if($request->hasFile('audio'))
+        {
+            $aud = time().rand(1,250).'.'.$request->audio->extension();
+            $request->audio->move(public_path().'/upload/voicerecordings', $aud);
+            
+            $symp->audio = $aud;
         }
          $symp->save();
         return redirect()->route('symp',$id)->with('msg',"Symptomp note has sent");
@@ -169,6 +178,29 @@ class patientsController extends Controller
             return redirect()->route('pathome',$id)->with('msg',"Profile Image is Successfully Updated");
     }
 
+    public function ordermedicine(Request $req){
+        $req->validate([
+            'order'=> 'required'
+        ],[
+            'order.required'=>'Add medicines and their quantities to order'
+        
+        ]);
+
+        $ordering = new Pat_med_ordering();
+        $ordering->PatMedOrder_id = "Ord".rand(1,100).time();
+        $ordering->Pat_id = $req->get('pid');
+        $ordering->medicines = $req->get('order');
+        
+        $date = date('Y-m-d');
+        $ordering->PatMedOrder_date = $date;
+        
+
+        $ordering->save();
+
+        return redirect()->route('order',['c'=>$req->pid])->with('msg',"Your Order is placed");
+    }
+
+
 
     //Patient Redirection
     public function pathome($id)
@@ -188,7 +220,14 @@ class patientsController extends Controller
     public function order($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/ordermedicine',compact('c'))->with('msg',"");
+        $stocks = DB::table('medicine_stocks')
+                                            ->orderBy('Med_name','asc') 
+                                            ->get();
+        $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
+                                               ->orderBy('status','desc')
+                                               ->orderBy('created_at','desc')
+                                                ->paginate(5);
+        return view('pat/ordermedicine',compact('c','stocks','orders'))->with('msg',"");
     }
 
     public function book($id)
@@ -204,5 +243,17 @@ class patientsController extends Controller
                         ])
                     ->orderBy('updated_at','desc')->paginate(5);
         return view('pat/booking',compact('c','t'))->with('msg');
+    }
+
+    public function history($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        $hist = DB::table('medical_histories')
+                                            ->join('online_bookings','medical_histories.Meeting_id','=','online_bookings.App_id')
+                                            ->select('online_bookings.availableDate','medical_histories.*')
+                                            ->where('medical_histories.Pat_id',$id)
+                                            ->orderBy('created_at','desc')
+                                            ->paginate(5);
+        return view('pat/medicalHistory',compact('c','hist'));
     }
 }

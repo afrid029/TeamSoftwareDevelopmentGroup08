@@ -43,10 +43,10 @@
 
 
 <!-- MENU -->
-<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
+<section style="padding-left: 5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div style="width:100" class="container">
 
-               <div class="navbar-header">
+               <div style="margin-left:-8%; " class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
@@ -54,21 +54,24 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-nav-first">
+               <div style = "width:90%;" class="collapse navbar-collapse">
+               <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                         <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         
                     </ul>
+                    <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Logout</a></li>
+                    </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
-                    </ul>
+                    
                </div>
 
           </div>

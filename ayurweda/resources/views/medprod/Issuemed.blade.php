@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
 
+<<<<<<< HEAD
      <title>Issue Medicine</title>
+=======
+
+     <title>Issue Medicine</title>
+
+>>>>>>> 04eadaae6a19f0ef27160f4dda328f21826f643f
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -52,10 +58,7 @@
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b0a4bea4c38198ef1600f7dbcd56cb0d63c8066
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue Medicines</font></a></li>
