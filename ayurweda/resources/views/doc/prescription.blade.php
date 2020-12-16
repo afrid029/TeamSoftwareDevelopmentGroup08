@@ -47,7 +47,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital </a>
                </div>
 
                <!-- MENU LINKS -->
@@ -55,9 +55,11 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll"><font color="red">Prescriptions</font></a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted Patients</a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available Time</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">AddPat Details</a></li>
+                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
+                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -145,7 +147,7 @@ Swal.fire({
                                                        <th>Medicine</th>
                                                   </tr>
                                              </thead>
-                                             <tbody style="height:200px;overflow:auto;">
+                                             <tbody>
                                                   @if($pres!="")
                                                   @foreach($pres as $pr)
                                                   <tr>

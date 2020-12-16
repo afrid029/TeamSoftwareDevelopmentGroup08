@@ -53,4 +53,27 @@ class search extends Controller
         }
         
     }
+
+    public function admitsearch(Request $request){
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        if($request->patid!=""&&$request->date!=""){
+            $p=DB::table('add_pats')->where('Pat_id',$request->patid)->whereDate('ad_date',$request->date)->get();
+        }
+        elseif($request->patid==""&&$request->date!=""){
+            $p=DB::table('add_pats')->whereDate('ad_date',$request->date)->get();
+        }
+        elseif($request->patid!=""&&$request->date==""){
+            $p=DB::table('add_pats')->where('Pat_id',$request->patid)->get();
+        }
+        else{
+            $p=DB::table('add_pats')->get();
+        }
+        if($p==null){
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
+        }
+        
+    }
 }

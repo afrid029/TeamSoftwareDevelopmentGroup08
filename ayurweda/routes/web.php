@@ -42,10 +42,24 @@ Route::post('/adsearch', 'search@adsearch');
 Route::post('/saveavailable', 'Store@available');
 Route::get('/avedit/{id}/{docid}', 'update@avedit')->name('avedit');
 Route::get('/avdelete/{id}/{docid}', 'update@avdelete')->name('avdelete');
+Route::post('/patadmit', 'Store@patadmit');
+Route::post('/admitsearch', 'search@admitsearch');
+Route::post('/proedit', 'update@pro');
+Route::get('docsymp/{c}/', 'redirect@docsymp')->name('docsymp');
+Route::get('docviewSymp/{i}/{j}/','redirect@show')->name('docviewSymp');
+Route::post('/docreply', 'update@docreply');
+
 
 
 //Patients Routings
 Route::patch('/patedit',[patientsController::class,'edit']);
+Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
+Route::get('symp/{c}/','redirect@symp')->name('symp');
+Route::get('order/{c}/','redirect@order')->name('order');
+Route::get('book/{c}/','redirect@book')->name('book');
+
+
+
 Route::get('pathome/{c}/',[patientsController::class,'pathome'])->name('pathome');
 Route::get('symp/{c}/',[patientsController::class,'symp'])->name('symp');
 Route::get('order/{c}/',[patientsController::class,'order'])->name('order');

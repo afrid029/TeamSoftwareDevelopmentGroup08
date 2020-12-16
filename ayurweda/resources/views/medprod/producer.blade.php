@@ -62,7 +62,18 @@
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
                          <li><a href="/login">Logout</a></li>
+=======
+<<<<<<< HEAD
+                         <li><a href="/login">Logout</a></li>
+=======
+                    
+                         <li><a href="login">Logout</a></li>
+
+
+>>>>>>> 04eadaae6a19f0ef27160f4dda328f21826f643f
+>>>>>>> 8ee662628b2698c83392a99a9c5d2fdff7da6dcb
                     </ul>
                </div>
 
@@ -81,7 +92,7 @@
                <span aria-hidden="true">&times;</span>
           </button>
           </div>
-          <form method="post" action="/docedit">
+          <form method="post" action="/proedit">
           
           <div class="modal-body">
                <input type="text" name="name" class="form-control" placeholder="Name" value=""><br>             
@@ -89,6 +100,8 @@
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value=""><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="file" name="image" class="form-control-file"><br>
+               <input type="hidden" name="id" class="form-control" value="{{$c->Pro_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
           
@@ -99,6 +112,50 @@
      </div>
      </div>
      </div>
+
+     @if($msg=="Updated successfully.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@elseif($msg=="Old password is wrong.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@endif
+
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -116,8 +173,8 @@
                                              <div class="col-md-6 col-sm-6">
                                                        <img src="{{ asset('images/medprodimg.jpg')}}" style="width:300px ;">
                                                        <br><br>
-                                                       <h3>Producer Name</h3>
-                                                       <h3>Producer ID</h3>
+                                                       <h3>{{$c->Pro_name}}</h3>
+                                                       <h3>{{$c->Pro_id}}</h3>
                                                        
                                                        <br><br>
                                                                                   
@@ -133,14 +190,14 @@
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>phone number</h3>
+                                                  <h3>{{$c->Pro_pNum}}</h3>
 
                                                   <br><br>
                                                   
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>Address</h3>
+                                                  <h3>{{$c->Pro_addr}}</h3>
                                             
                                              </div>
                                         </div>

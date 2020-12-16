@@ -5,6 +5,7 @@ use App\Models\Patient;
 use App\Models\AllUsers;
 use App\Models\Medical_history;
 use App\Models\Add_pat_up;
+use App\Models\Add_pat;
 use App\Models\Doc_available_time;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,29 @@ class Store extends Controller
     public function register(Request $request){
 
         //dd($request->all);
+        $request->validate([
+            'name'=>['required'],
+            'age'=>['required'],
+            'gender'=>['required'],
+            'address'=>['required'],
+            'phone'=>['required'],
+            'guardian'=>['required'],
+            'email'=>['required'],
+            'password'=>['required'],
+            'rpassword'=>['required'],
+        ],
+        [
+            'name.required' => 'Name is empty',
+            'age.required' => 'Age is empty',
+            'gender.required' => 'Gender is empty',
+            'address.required' => 'Address is empty',
+            'phone.required' => 'Phone is empty',
+            'guardian.required' => 'Guardian is empty',
+            'email.required' => 'Email is empty',
+            'password.required' => 'Password is empty',
+            'rpassword.required' => 'Password retype is empty'
+        ]);
+
         $p=DB::table('patients')->get();
         $np=count($p)+1;
         $patient=new Patient;
@@ -102,12 +126,34 @@ class Store extends Controller
         $a->save();
         $s="Inserted successfully.";
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('doc_available_times')->get();
+        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
         if($p==null){
             return view('doc/available')->with('c',$c)->with('msg',"")->with('av',"")->with('ro',"");
         }
         else{
             return view('doc/available')->with('c',$c)->with('msg',$s)->with('av',$p)->with('ro',"");
+        }
+    }
+
+    public function patadmit(Request $request){
+
+        
+        $a=new Add_pat;
+        $a->Pat_id=$request->patid;
+        $a->Doc_id=$request->docid;
+        $a->disease=$request->disease;
+        $a->ad_date=date("Y-m-d");
+        $a->disch_date=$request->ddate;
+        $a->bedno=$request->bedno;
+        $a->save();
+        $s="Patient admitted successfully.";
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        $p=DB::table('add_pats')->get();
+        if($p==null){
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
         }
     }
 

@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 
+<<<<<<< HEAD
+     <title>Medicine Stock</title>
+=======
 
      <title>Medicine Stock</title>
 
+>>>>>>> 04eadaae6a19f0ef27160f4dda328f21826f643f
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -61,12 +65,20 @@
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine Stock</font></a></li>
                          <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
                     </ul>
+<<<<<<< HEAD
+                     
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="/login">Logout</a></li>
+                    </ul>
+               </div>
+=======
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="/login">Logout</a></li>
                     </ul>
                </div>
 
 
+>>>>>>> 04eadaae6a19f0ef27160f4dda328f21826f643f
           </div>
      </section>
 

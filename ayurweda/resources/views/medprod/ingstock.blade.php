@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
 
-
-     <title>Producer</title>
-
+     <title>Ingredient Stock</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -54,9 +52,6 @@
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
-
-               
-
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
@@ -64,8 +59,7 @@
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine Stock</a></li>
                          <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
                     </ul>
-
-               
+                     
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="/login">Logout</a></li>
                     </ul>

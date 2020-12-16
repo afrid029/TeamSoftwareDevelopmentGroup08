@@ -35,7 +35,7 @@ class redirect extends Controller
     }
     public function available($t){
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
-        $p=DB::table('doc_available_times')->get();
+        $p=DB::table('doc_available_times')->where('Doc_id',$t)->get();
         if($p==null){
             return view('doc/available')->with('c',$c)->with('msg',"")->with('av',"")->with('ro',"");
         }
@@ -53,6 +53,17 @@ class redirect extends Controller
             return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
         }
     }
-
+    public function docsymp($t){
+        $c=DB::table('doctors')->where('Doc_id',$t)->first();
+        $d = DB::table('add_symptomps')->where('Doc_id',$t)->orderBy('created_at','desc')->get();
+        $pa = DB::table('patients')->get();
+        return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
+    }
+    public function show($id,$id2)
+    {
+        $c = DB::table('doctors')->where('Doc_id',$id2)->first();
+        $e = DB::table('add_symptomps')->where('id',$id)->first();
+        return view('doc/view',compact('c','e'));
+    }
    
 }

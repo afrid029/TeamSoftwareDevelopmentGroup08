@@ -47,7 +47,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -55,9 +55,11 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted Patients</a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available Time</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">AddPat Details</a></li>
+                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
+                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -76,11 +78,8 @@
      <div class="modal-content">
           <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-          </button>
           </div>
-          <form method="post" action="/docedit">
+          <form method="post" action="/docedit" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="modal-body">
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Doc_name}}"><br>
@@ -89,6 +88,7 @@
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Doc_pNum}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="file" name="image" class="form-control-file"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
@@ -123,6 +123,28 @@ Swal.fire({
 </script>
 @endif
 
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
+
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -137,7 +159,7 @@ Swal.fire({
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                       <img src="{{ asset('images/doctorimage.jpg')}}" style="width:300px ;">
+                                                       <img src="{{ asset($c->Doc_im)}}" style="width:300px ;">
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>
