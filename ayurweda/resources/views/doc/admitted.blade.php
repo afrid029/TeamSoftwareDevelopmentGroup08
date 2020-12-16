@@ -22,6 +22,21 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -47,7 +62,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -55,9 +70,12 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted Patients</font></a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available Time</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">AddPat Details</a></li>
+                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patients</font></a></li>
+                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
+                         
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -77,7 +95,45 @@
      timer: 1500
      });
      </script>
+     @elseif($msg=="The patient doesn't exist.")
+     <script>
+     Swal.fire({
+     position: 'middle',
+     icon: 'error',
+     title: '{{$msg}}',
+     showConfirmButton: false,
+     timer: 1500
+     });
+     </script>
      @endif
+
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update records</h5>
+          </div>
+          <form method="post" action="/saveadmit" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="modal-body">
+          <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
+          <input class="form-control" type="text" name="patientid" placeholder="Patient ID"><br>
+          <textarea class="form-control" rows="4" cols="3"name="medicine" placeholder="Medicine"></textarea><br>
+          <textarea class="form-control" name="condition" rows="4" cols="3" placeholder="Condition"></textarea>
+          <br></br>
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+               Insert
+          </button>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+     </div>
+     </div>
+     </div>
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -87,39 +143,14 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
-                                        </ul><br>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
-                                        </ul>
+                                        
                                         <br></br>
                                    
                                         <div class="col-md-8 col-sm-12">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                             Update records
+                                        </button><br><br><br><br>
                                              
-                                             <form action="/saveadmit" method="post" class="wow fadeInUp">
-                                             {{csrf_field()}} 
-                                                  <div class="col-md-6 col-sm-6">
-                                                  <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                       <h3>Patient ID</h3>
-                                                       <input class="form-control" type="text" name="patientid" ><br>
-                                                       <h3>Medicine</h3>
-                                                       <textarea class="form-control" rows="4" cols="3"name="medicine"></textarea><br>
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       
-                                                       <h3>Condition</h3>
-                                                       
-                                                       <textarea class="form-control" name="condition" rows="4" cols="3"></textarea>
-                                                       <br></br>
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
@@ -129,10 +160,10 @@
                                              </form>
                                              <br></br>
 
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
+                                             <div class="tableFixHead">
                                         <table class="table table-bordered" >
                                         
-                                             <thead>
+                                             <thead style="position: sticky;top: 0;">
                                                   <tr>
                                                        <th>Patient ID</th>
                                                        <th>Doctor ID</th>
@@ -142,7 +173,7 @@
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  @if($ad!="")
+                                                  @if(count($ad)>0)
                                                   @foreach($ad as $a)
                                                   <tr>
                                                        <td>{{$a->Pat_id}}</td>
@@ -152,6 +183,10 @@
                                                        <td>{{$a->condition}}</td>
                                                   </tr>
                                                   @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="5"><h3 style=" color:black;text-align: center;">No records found</h3></td>
+                                                  </tr>
                                                   @endif
                                                   
                                              </tbody>

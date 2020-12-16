@@ -22,6 +22,21 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -47,7 +62,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -55,9 +70,12 @@
                         <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted Patients</a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available Time</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll"><font color="red">AddPat Details</font></a></li>
+                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patient <br>Details</font></a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
+                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
+                         
                         </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -68,6 +86,57 @@
           </div>
      </section>
 
+@if($msg=="Patient admitted successfully.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@elseif($msg=="The patient doesn't exist.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@endif
+
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Admit a patient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <form method="post" action="/patadmit" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="modal-body">
+               <input type="text" name="patid" class="form-control" placeholder="Patient ID" value=""><br>
+               <input type="text" name="disease" class="form-control" placeholder="Disease" value=""><br>
+               <input type="text" name="bedno" class="form-control" placeholder="Bed No" value=""><br>
+               <input type="text" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
+               <input type="hidden" name="docid" class="form-control" value="{{$c->Doc_id}}"><br>
+               <button type="submit" class="btn btn-primary">Insert</button>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+     </div>
+     </div>
+     </div>
+
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -76,26 +145,25 @@
                     <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
-                                        </ul><br>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
-                                        </ul>
+                                        
+                                        <br></br>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       Admit a patient
+                                        </button>
                                         <br></br>
                                         <br></br>
-                                        <br></br>
+                                        
                                    
                                         <div class="col-md-8 col-sm-12">
-                                            <form action="/adsearch" method="post" style="margin:auto;width:700px">
+                                            <form action="/admitsearch" method="post" style="margin:auto;width:700px">
+                                            {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Date" name="date">
+                                                  <input style="color:black" type="text" placeholder="Admitted Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                             </form>
                                             <br></br>
-                                            <div style="position:relative;height:200px;overflow:auto;display:block;">
+                                            <div class="tableFixHead">
                                         <table class="table table-bordered" >
                                         
                                              <thead>
@@ -106,47 +174,26 @@
                                                        <th>Disease</th>
                                                        <th>Bed Number</th>
                                                        <th>Discharge Date</th>
-                                                       <th></th>
+                                                       
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  
+                                                  @if(count($ad) > 0)
+                                                  @foreach($ad as $a)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-link">Edit</button></td>
+                                                       <td>{{$a->Pat_id}}</td>
+                                                       <td>{{$a->Doc_id}}</td>
+                                                       <td>{{$a->ad_date}}</td>
+                                                       <td>{{$a->disease}}</td>
+                                                       <td>{{$a->bedno}}</td>
+                                                       <td>{{$a->disch_date}}</td>
                                                   </tr>
+                                                  @endforeach
+                                                  @else
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-link">Edit</button></td>
+                                                       <td colspan="6"><h3 style=" color:black;text-align: center;">No patients found</h3></td>
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-link">Edit</button></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-link">Edit</button></td>
-                                                  </tr>
+                                                  @endif
                                                   
                                              </tbody>
                                         

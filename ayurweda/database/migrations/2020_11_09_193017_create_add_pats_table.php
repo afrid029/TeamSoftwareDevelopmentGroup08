@@ -14,6 +14,7 @@ class CreateAddPatsTable extends Migration
     public function up()
     {
         Schema::create('add_pats', function (Blueprint $table) {
+            $table->id();
             $table->string('Pat_id');
             $table->string('disease');
             $table->date('ad_date');

@@ -22,6 +22,21 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -47,7 +62,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -55,9 +70,12 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted Patients</a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll"><font color="red">Available Time</font></a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">AddPat Details</a></li>
+                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
+                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
+                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll"><font color="red">Available <br>Time</font></a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
+                         
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -67,7 +85,17 @@
 
           </div>
      </section>
-@if($msg=="Wrong password or username")
+@if($msg=="Inserted successfully.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@elseif($msg=="The perticular time is already exist.")
 <script>
 Swal.fire({
   position: 'middle',
@@ -99,7 +127,7 @@ $time="";
                             <div class="item item-first">
                                 <div class="caption">
                                     <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
+                                        
                                         <div class="col-md-8 col-sm-12">
                                              
                                              <br><br>
@@ -128,17 +156,20 @@ $time="";
                                                   </div>
                                                   
                                              </form>
-                                        </div>
+                                             <br><br><br><br><br>
+                                             
+                                             <div class="tableFixHead">
                                         <table class="table table-hover" >
                                              <thead>
                                                   <tr>
                                                        <th>Available Date</th>
                                                        <th>Available Time</th>
                                                        <th></th>
+                                                       <th></th>
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  @if($av!="")
+                                                  @if(count($av)>0)
                                                   @foreach($av as $a)
                                                   <tr>
                                                        <td>{{$a->availableDate}}</td>
@@ -147,11 +178,19 @@ $time="";
                                                        <td><a href="{{route('avdelete',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Delete</a></td>
                                                   </tr>
                                                   @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No available times found</h3></td>
+                                                  </tr>
                                                   @endif
                                              </tbody>
                                         </table>
+                                        </div>
+                                        </div>
+                                        
                                         
                                     </div>
+                                    
                                 </div>
                             </div>
                          

@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
 
-
      <title>Medicine Stock</title>
-
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -61,12 +59,11 @@
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine Stock</font></a></li>
                          <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
                     </ul>
+                     
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+                         <li><a href="/login">Logout</a></li>
                     </ul>
                </div>
-
-
           </div>
      </section>
 
