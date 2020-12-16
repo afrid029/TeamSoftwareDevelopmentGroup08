@@ -2,13 +2,7 @@
 <html lang="en">
 <head>
 
-<<<<<<< HEAD
      <title>Issue Medicine</title>
-=======
-
-     <title>Issue Medicine</title>
-
->>>>>>> 04eadaae6a19f0ef27160f4dda328f21826f643f
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
