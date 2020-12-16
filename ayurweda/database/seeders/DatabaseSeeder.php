@@ -17,7 +17,22 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         
        
-       
+       DB::table('doctors')->insert([
+            'Doc_id'=> 'doc1',
+            'Doc_name'=>'Afrid',
+            'Doc_email'=> 'mafrid029@gmail.com',
+            'Doc_addr' => '98,KKp Road, Kalmunai 03',
+            'Doc_pNum' => '0771234567',
+            'password' => '123456'
+       ]);
+
+       DB::table('all_users')->insert([
+            'id' => 'doc1',
+            'password' => '123456',
+            'roll' => 'doctor'
+       ]);
+
+      
         
 
     }

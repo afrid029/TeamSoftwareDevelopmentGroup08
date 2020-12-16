@@ -61,7 +61,7 @@
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
@@ -147,7 +147,7 @@
      @foreach($errors->all() as $err)
   
      <script>
-          a = a + "{{$err}}\n";
+          a = a + "*{{$err}}\n";
      </script>
     
      @endforeach
@@ -204,92 +204,76 @@
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
-
-                    <div class="owl-carousel owl-theme">
-                         <div class="item item-first">
-                         <div class="caption">
-                                   <div class="container">
-                                   
-                                        <div class="col-md-8 col-sm-12">
-                                             
-                                             <br><br>
-                                             <br><br>
-                                             <div class="col-md-6 col-sm-6">
-                                             <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:30px; height:235px; width:50%">
-                                                  @if($c->Pimage)
-                                                       <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="padding-left:1%;  border-radius:30px; width:99%; height:230px; ">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
-                                                  @else
-                                                       <img class="img" src="{{ asset('images/patient.png')}}" style="width:98% ; height:230px; ">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
-                                                  @endif
-                                                  </div>
-                                                       <br><br>
-                                                       <div style="float:left; margin-right:15px">
-                                                        <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
-                                                       </div>
-                                                       <div >
-                                                       <h3>{{$c->Pat_name}}</h3>
-                                                       <p style="color:white; opacity:60%;"><strong>{{$c->Pat_id}}</strong></p>
-                                                       </div>
-                                                      
-                                                      
-                                                       
-                                                       <br><br>
-                                                                                  
-                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                       Edit Profile
-                                                  </button>
-                                             </div>
-                                        
-                                             <div class="col-md-6 col-sm-6">
-
-                                                
-                                                  <br><br>
-                                                  
-                                                  <div style="float:left; margin-right:40px">
-                                                       <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->age}}</h3>
-                                                  
-                                                  <br><br>
-                                                  <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->gender}}</h3>
-
-                                                  <br><br>
-                                                  <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->guardian}}</h3>
-
-                                                  <br><br>
-                                                  <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->Pat_pNum}}</h3>
-
-                                                  <br><br>
-                                                  <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->Pat_email}}</h3>
-                                                  <br><br>
-                                                  <div style="float:left; margin-right:40px">
-                                                        <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
-                                                  </div>
-                                                  <h3>{{$c->Pat_addr}}</h3>
-                                            
-                                             </div>
+     <div class="row">
+          <div class="owl-theme">
+               <div class="item item-first">
+                    <div class="caption">
+                         <div class="container">
+                               <div class="col-md-8 col-sm-12">
+                                   <br><br><br><br>
+                                   <div class="col-md-6 col-sm-6">
+                                        <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:235px; width:50%">
+                                             @if($c->Pimage)
+                                                  <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="padding-left:1%;  border-radius:30px; width:99%; height:230px; ">
+                                                  <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
+                                             @else
+                                                  <img class="img" src="{{ asset('images/patient.png')}}" style="width:98% ; height:230px; ">
+                                                  <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
+                                             @endif
                                         </div>
+                                        <br><br>
+                                        <div style="float:left; margin-right:15px">
+                                             <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
+                                        </div>
+                                        <div>
+                                             <h3>{{$c->Pat_name}}</h3>
+                                             <p style="color:white; opacity:60%;"><strong>{{$c->Pat_id}}</strong></p>
+                                        </div>
+                                        <br><br>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                             Edit Profile
+                                        </button>
+                                   </div>
+                                   <div style="margin-top:-5%;" class="col-md-6 col-sm-6">
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->age}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->gender}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->guardian}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->Pat_pNum}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->Pat_email}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->Pat_addr}}</h3>
+                                            
                                    </div>
                               </div>
                          </div>
                     </div>
+               </div>
           </div>
-     </section>
+     </div>
+</section>
 
 
      <!-- SCRIPTS -->

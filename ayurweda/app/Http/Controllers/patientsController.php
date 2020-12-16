@@ -16,9 +16,16 @@ use App\Models\Pat_med_ordering;
 class patientsController extends Controller
 {
     //
+
+    /*--------------Patient Home------------------*/
+    public function pathome($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        return view('pat/patient',compact('c'))->with('msg',"");
+    }
     public function edit(Request $request)
     {
-        $valid = $request->validate([
+        $request->validate([
             'name'=>'required',
             'address'=>'required',
             'phone'=>'required|max:10',
@@ -32,7 +39,7 @@ class patientsController extends Controller
             'npassword.required' => 'New password is empty',
             'opassword.required' => 'Old Password is empty'
         ]);
-        if($valid){
+        
             $pw = DB::table('all_users')->where('id', $request->id)->value('password');
             if($request->opassword==$pw){
                 $details = DB::table('patients')->where('Pat_id',$request->id)->update([
@@ -51,9 +58,37 @@ class patientsController extends Controller
             {
                 $m="Password is wrong";
             }
-        }
-         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
-         return redirect()->route('pathome',['c'=>$request->id])->with('msg',$m);
+        
+         
+         return redirect()->back()->with('msg',$m);
+    }
+
+    public function changeprofile(Request $request,$id)
+    {       
+        $request->validate([
+            'profile'=>'required|image'
+        ],[
+            'profile.required' => 'You have not choose any file',
+            'profile.image'=>'Only Image is allowed'
+        ]);
+
+            $name = time().rand(1,100).'.'.$request->profile->extension();
+            $request->profile->move(public_path().'/upload/profile', $name); 
+
+            DB::table('patients')->where('Pat_id',$id)->update([
+                'Pimage' => $name
+            ]);
+
+            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+    }
+
+    /*-----------Symptomps-------------*/
+    public function symp($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->paginate(5);
+        $dr = DB::table('doctors')->get();
+        return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
     }
 
     public function Add_Symptomps(Request $request,$id)
@@ -91,7 +126,7 @@ class patientsController extends Controller
             $symp->audio = $aud;
         }
          $symp->save();
-        return redirect()->route('symp',$id)->with('msg',"Symptomp note has sent");
+        return redirect()->back()->with('msg',"Symptomp note has sent");
     }
     public function show($id,$id2)
     {
@@ -99,22 +134,44 @@ class patientsController extends Controller
         $e = DB::table('add_symptomps')->where('id',$id)->first();
         return view('pat/view',compact('c','e'));
     }
+
+    /*--------Online Booking----------------*/
+
+    public function book($id)
+    {
+        $d = date('Y-m-d');
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        $t = DB::table('online_bookings')
+                    ->join('doctors', 'doctors.Doc_id', '=' , 'online_bookings.Doc_id')
+                    ->select('online_bookings.App_id', 'online_bookings.Pat_id','online_bookings.Doc_id','online_bookings.availableDate','online_bookings.availableTime','doctors.Doc_name','online_bookings.updated_at')
+                    ->where([
+                        ['Pat_id','=',$id],
+                        ['availableDate', '>=', $d]
+                        ])
+                    ->orderBy('updated_at','desc')->paginate(5);
+        return view('pat/booking',compact('c','t'))->with('msg');
+    }
    
     public function showAvailable(Request  $request)
     {
-       // return "okkkk";
-       if($request->date)
+       
+       if($request->date && $request->dr)
        {
             $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
                                                 ->where('availableDate',$request->date)
                                                 ->where('availableDate',$request->date)->get();
-       }else
+       }else if($request->dr)
        {
         $date = date('Y-m-d');
         $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
                                              ->where('availableDate','>=' , $date)
                                              ->orderBy('availableDate','asc')->get();
 
+       }else{
+        $date = date('Y-m-d');
+        $t = DB::table('doc_available_times')
+                                             ->where('availableDate','>=' , $date)
+                                             ->orderBy('availableDate','asc')->get();
        }
       
 
@@ -130,7 +187,10 @@ class patientsController extends Controller
     {
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
         $dr = DB::table('doctors')->get(); 
-        $t = [];
+        $date = date('Y-m-d');
+        $t = DB::table('doc_available_times')
+                                             ->where('availableDate','>=' , $date)
+                                             ->orderBy('availableDate','asc')->get();
         return view('pat\appoint' ,compact('c','dr','t'));
     }
 
@@ -143,7 +203,7 @@ class patientsController extends Controller
         $book = new OnlineBooking;
 
 
-        $book->App_id="App".time().rand(1,100);
+        $book->App_id="App".rand(1,250).rand(1,100);
         $book->Pat_id=$request->get('pid');
         $book->Doc_id=$request->get('did');
         $book->availableDate=$request->get('dt');
@@ -156,28 +216,23 @@ class patientsController extends Controller
     {
         DB::table('online_bookings')->where('App_id',$request->appid)->delete();
 
-        return redirect()->route('book',['c'=>$request->ptid])->with('msg',"Appoinment is cancelled");
+        return redirect()->back()->with('msg',"Appoinment is cancelled");
     }
 
-    public function changeprofile(Request $request,$id)
-    {       
-        $request->validate([
-            'profile'=>'required|image'
-        ],[
-            'profile.required' => 'You have not choose any file',
-            'profile.image'=>'Only Image is allowed'
-        ]);
+    /*--------------Order Medicine----------------*/
 
-            $name = time().rand(1,100).'.'.$request->profile->extension();
-            $request->profile->move(public_path().'/upload/profile', $name); 
-
-            DB::table('patients')->where('Pat_id',$id)->update([
-                'Pimage' => $name
-            ]);
-
-            return redirect()->route('pathome',$id)->with('msg',"Profile Image is Successfully Updated");
+    public function order($id)
+    {
+        $c = DB::table('patients')->where('Pat_id',$id)->first();
+        $stocks = DB::table('medicine_stocks')
+                                            ->orderBy('Med_name','asc') 
+                                            ->get();
+        $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
+                                               ->orderBy('status','desc')
+                                               ->orderBy('created_at','desc')
+                                                ->paginate(5);
+        return view('pat/ordermedicine',compact('c','stocks','orders'))->with('msg',"");
     }
-
     public function ordermedicine(Request $req){
         $req->validate([
             'order'=> 'required'
@@ -197,61 +252,17 @@ class patientsController extends Controller
 
         $ordering->save();
 
-        return redirect()->route('order',['c'=>$req->pid])->with('msg',"Your Order is placed");
+        return redirect()->back()->with('msg',"Your Order is placed");
     }
 
 
 
-    //Patient Redirection
-    public function pathome($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/patient',compact('c'))->with('msg',"");
-    }
-
-    public function symp($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->paginate(5);
-        $dr = DB::table('doctors')->get();
-        return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
-    }
-
-    public function order($id)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $stocks = DB::table('medicine_stocks')
-                                            ->orderBy('Med_name','asc') 
-                                            ->get();
-        $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
-                                               ->orderBy('status','desc')
-                                               ->orderBy('created_at','desc')
-                                                ->paginate(5);
-        return view('pat/ordermedicine',compact('c','stocks','orders'))->with('msg',"");
-    }
-
-    public function book($id)
-    {
-        $d = date('Y-m-d');
-        $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $t = DB::table('online_bookings')
-                    ->join('doctors', 'doctors.Doc_id', '=' , 'online_bookings.Doc_id')
-                    ->select('online_bookings.App_id', 'online_bookings.Pat_id','online_bookings.Doc_id','online_bookings.availableDate','online_bookings.availableTime','doctors.Doc_name','online_bookings.updated_at')
-                    ->where([
-                        ['Pat_id','=',$id],
-                        ['availableDate', '>=', $d]
-                        ])
-                    ->orderBy('updated_at','desc')->paginate(5);
-        return view('pat/booking',compact('c','t'))->with('msg');
-    }
-
+    /*---------------Medical History---------------*/
+    
     public function history($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $hist = DB::table('medical_histories')
-                                            ->join('online_bookings','medical_histories.Meeting_id','=','online_bookings.App_id')
-                                            ->select('online_bookings.availableDate','medical_histories.*')
-                                            ->where('medical_histories.Pat_id',$id)
+        $hist = DB::table('medical_histories')->where('medical_histories.Pat_id',$id)
                                             ->orderBy('created_at','desc')
                                             ->paginate(5);
         return view('pat/medicalHistory',compact('c','hist'));

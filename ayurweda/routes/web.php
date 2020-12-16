@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\patientsController;
 use App\Http\Controllers\medproducer;
+use App\Http\Controllers\pharmacistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,20 @@ Route::get('issuemedicine/{c}/', 'medproducer@issuemedicine')->name('issuemedici
 Route::get('Ingstock/{c}/', 'medproducer@Ingstock')->name('Ingstock');
 Route::get('medstock/{c}/', 'medproducer@medstock')->name('medstock');
 Route::get('ordering/{c}/', 'medproducer@ordering')->name('ordering');
+
+
+
+
+//Pharmacist Routings
+Route::get('phahome/{c}/',[pharmacistController::class, 'phaHome'])->name('phahome');
+Route::post('phaedit',[pharmacistController::class, 'phaEdit']);
+Route::patch('pharprofilepic/{c}/',[pharmacistController::class, 'pharprofilepicture'])->name('pharprofilepic');
+
+Route::get('medicalstock/{c}/',[pharmacistController::class, 'medicalstock'])->name('medicalstock');
+Route::post('addmedicine/',[pharmacistController::class, 'AddMedicine']);
+Route::post('updatemedicine/{c}',[pharmacistController::class, 'Updatemedicine']);
+Route::post('DelMedicine/{c}',[pharmacistController::class, 'DeleteMedicine']);
+
+Route::get('issueMedicine/{c}/',[pharmacistController::class, 'issueMedicine'])->name('issueMedicine');
+
+Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');

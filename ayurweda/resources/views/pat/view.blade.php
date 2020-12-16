@@ -56,7 +56,7 @@
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
@@ -91,7 +91,7 @@
                         <div class="modal-dialog" role="dialog">
                         <div class="modal-content" style="width:150%; margin-left:-25%; margin-right:-25%;">
                                 <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel">View Symptomp</h4>
+                                <h4 class="modal-title" id="exampleModalLabel">View Symptom</h4>
                                 <h6 style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%;">&nbsp; &nbsp; &nbsp; DATE: {{$e->date}}</h6>
                                 <h6 style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%; margin-right:20%;">Time: {{$e->time}}</h6>
                                 

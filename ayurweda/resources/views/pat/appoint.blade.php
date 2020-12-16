@@ -98,7 +98,7 @@
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll"><font color="red">Online Booking</font></a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
@@ -140,7 +140,8 @@
 
                                              <form action="/showAvail" method="get">
                                                   @csrf
-                                                  <select class="form-control" name = "dr"  style = "width:40%;">
+                                                  <select class="form-control" name = "dr" style = "width:40%;">
+                                                       
                                                        <option value="none" selected disabled hidden> 
                                                             Select a Doctor
                                                        </option> 
@@ -163,6 +164,7 @@
                                              <table class="table table-bordered table-scroll" style="background-color:#ffffff; color:black">
                                                   <thead>
                                                        <tr>
+                                                            <th>Doctor ID</th>
                                                             <th>Available Date</th>
                                                             <th>Available Time</th>
                                                             <th>Booking</th> 
@@ -172,13 +174,14 @@
                                                   @if(count($t) > 0)
                                                        @foreach($t as $time)
                                                             <tr>
+                                                                 <td>{{$time->Doc_id}}</td>
                                                                  <td>{{$time->availableDate}}</td>
                                                                  <td>{{$time->availableTime}}</td>
                                                                  <td>
                                                                       <form action = "/confirmAppoinment" method="post">
                                                                       @csrf
                                                                            <input type = "hidden" name = "pid" value = "{{$c->Pat_id}}">
-                                                                           <input type = "hidden" name = "did" value = "{{$doc}}">
+                                                                           <input type = "hidden" name = "did" value = "{{$time->Doc_id}}">
                                                                            <input type = "hidden" name = "tm" value = "{{$time->availableTime}}">
                                                                            <input type = "hidden" name = "dt" value = "{{$time->availableDate}}">
                                                                            <button type="submit" class="btn btn-success">Appoint</button>
@@ -188,7 +191,7 @@
                                                        @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="3"><h3 style=" color:black;text-align: center;">No Doctors Available. Search Another</h3></td>
+                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No Doctors Available. Search Another</h3></td>
                                                   </tr>
                                                   @endif                    
                                                   </tbody>
