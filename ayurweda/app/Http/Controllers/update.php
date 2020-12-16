@@ -68,23 +68,17 @@ class update extends Controller
         $ro=DB::table('doc_available_times')->where('id',$id)->first();
         DB::table('doc_available_times')->where('id',$id)->delete();
         $p=DB::table('doc_available_times')->where('Doc_id',$docid)->get();
-        if($p==null){
-            return view('doc/available')->with('c',$c)->with('msg',"")->with('ad',"")->with('ro',$ro);
-        }
-        else{
-            return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',$ro);
-        }
+        
+        return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',$ro);
+        
     }
     public function avdelete($id,$docid){
         $c=DB::table('doctors')->where('Doc_id',$docid)->first();
         DB::table('doc_available_times')->where('id',$id)->delete();
         $p=DB::table('doc_available_times')->where('Doc_id',$docid)->get();
-        if($p==null){
-            return view('doc/available')->with('c',$c)->with('msg',"")->with('ad',"")->with('ro',"");
-        }
-        else{
-            return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',"");
-        }
+        
+        return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',"");
+        
     }
 
     public function pro(Request $request){

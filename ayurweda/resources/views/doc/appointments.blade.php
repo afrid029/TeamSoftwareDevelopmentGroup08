@@ -133,7 +133,7 @@
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  @if($ad!="")
+                                                  @if(count($ad)>0)
                                                   @foreach($ad as $a)
                                                   <tr>
                                                        <td>{{$a->App_id}}</td>
@@ -142,6 +142,10 @@
                                                        <td>{{$a->availableTime}}</td>
                                                   </tr>
                                                   @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="7"><h3 style=" color:black;text-align: center;">No appointments found</h3></td>
+                                                  </tr>
                                                   @endif
                                                   
                                              </tbody>

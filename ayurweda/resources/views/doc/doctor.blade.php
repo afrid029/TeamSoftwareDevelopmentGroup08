@@ -160,8 +160,13 @@ Swal.fire({
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                       <img src="{{ asset($c->Doc_im)}}" style="width:300px ;">
+                                                       @if($c->Doc_im)
+                                                       <img class="img" src="{{ asset($c->Doc_im)}}" style="  border-radius:30px; height:200px; width:auto;">
                                                        
+                                                       @else
+                                                       <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
+                                                       
+                                                       @endif
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>

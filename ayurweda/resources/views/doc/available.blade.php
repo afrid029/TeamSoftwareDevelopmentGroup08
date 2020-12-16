@@ -95,6 +95,16 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@elseif($msg=="The perticular time is already exist.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
 @endif
 
 @if($ro!="")
@@ -159,7 +169,7 @@ $time="";
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  @if($av!="")
+                                                  @if(count($av)>0)
                                                   @foreach($av as $a)
                                                   <tr>
                                                        <td>{{$a->availableDate}}</td>
@@ -168,6 +178,10 @@ $time="";
                                                        <td><a href="{{route('avdelete',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Delete</a></td>
                                                   </tr>
                                                   @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No available times found</h3></td>
+                                                  </tr>
                                                   @endif
                                              </tbody>
                                         </table>

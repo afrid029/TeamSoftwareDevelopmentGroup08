@@ -75,86 +75,101 @@ class Store extends Controller
 
         $p=DB::table('medical_histories')->get();
         $np=count($p)+1;
-        $pr=new Medical_history;
-        $pr->Meeting_id="Pres".$np;
-        $pr->Pat_id=$request->patientid;
-        $pr->Doc_id=$request->docid;
-        $pr->diagnosis=$request->diagnosis;
-        $pr->disease=$request->disease;
-        $pr->medicine=$request->medicine;
-        $pr->save();
+        try{
+            $pr=new Medical_history;
+            $pr->Meeting_id="Pres".$np;
+            $pr->Pat_id=$request->patientid;
+            $pr->Doc_id=$request->docid;
+            $pr->diagnosis=$request->diagnosis;
+            $pr->disease=$request->disease;
+            $pr->medicine=$request->medicine;
+            $pr->save();
+        }
+        catch(\Illuminate\Database\QueryException $exception){
+            $s="The patient doesn't exist.";
+            $p=DB::table('medical_histories')->get();
+            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        
+            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+        }
         $s="Prescription added successfully";
         $p=DB::table('medical_histories')->get();
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        if($p==null){
-            return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',"");
-        }
-        else{
-            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
-        }
+        
+        return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+        
         
         
     }
     public function admit(Request $request){
 
-        
-        $a=new Add_pat_up;
-        $a->Pat_id=$request->patientid;
-        $a->Doc_id=$request->docid;
-        $a->medicines=$request->medicine;
-        $a->condition=$request->condition;
-        $a->date=date("Y-m-d");
-        $a->save();
+        try{
+            $a=new Add_pat_up;
+            $a->Pat_id=$request->patientid;
+            $a->Doc_id=$request->docid;
+            $a->medicines=$request->medicine;
+            $a->condition=$request->condition;
+            $a->date=date("Y-m-d");
+            $a->save();
+        }
+        catch(\Illuminate\Database\QueryException $exception){
+            $s="The patient doesn't exist.";
+            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+            $p=DB::table('add_pat_ups')->get();
+            return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        }
         $s="Inserted successfully.";
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         $p=DB::table('add_pat_ups')->get();
-        if($p==null){
-            return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',"");
-        }
-        else{
-            return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
-        }
+        return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        
     }
         
     public function available(Request $request){
 
-    
-        $a=new Doc_available_time;
-        $a->Doc_id=$request->docid;
-        $a->availableDate=$request->date;
-        $a->availableTime=$request->time;
-        $a->save();
-        $s="Inserted successfully.";
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
-        if($p==null){
-            return view('doc/available')->with('c',$c)->with('msg',"")->with('av',"")->with('ro',"");
+        $x=DB::table('doc_available_times')->where('Doc_id',$request->docid)->where('availableDate',$request->date)->where('availableTime',$request->time)->get();
+        if(count($x)>0){
+            $s="The perticular time is already exist.";
         }
         else{
-            return view('doc/available')->with('c',$c)->with('msg',$s)->with('av',$p)->with('ro',"");
+            $a=new Doc_available_time;
+            $a->Doc_id=$request->docid;
+            $a->availableDate=$request->date;
+            $a->availableTime=$request->time;
+            $a->save();
+            $s="Inserted successfully.";
         }
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
+        
+        
+        return view('doc/available')->with('c',$c)->with('msg',$s)->with('av',$p)->with('ro',"");
+        
     }
 
     public function patadmit(Request $request){
 
-        
-        $a=new Add_pat;
-        $a->Pat_id=$request->patid;
-        $a->Doc_id=$request->docid;
-        $a->disease=$request->disease;
-        $a->ad_date=date("Y-m-d");
-        $a->disch_date=$request->ddate;
-        $a->bedno=$request->bedno;
-        $a->save();
+        try{
+            $a=new Add_pat;
+            $a->Pat_id=$request->patid;
+            $a->Doc_id=$request->docid;
+            $a->disease=$request->disease;
+            $a->ad_date=date("Y-m-d");
+            $a->disch_date=$request->ddate;
+            $a->bedno=$request->bedno;
+            $a->save();
+        }
+        catch(\Illuminate\Database\QueryException $exception){
+            $s="The patient doesn't exist.";
+            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+            $p=DB::table('add_pats')->get();
+            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        }
         $s="Patient admitted successfully.";
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         $p=DB::table('add_pats')->get();
-        if($p==null){
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
-        }
-        else{
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
-        }
+        return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        
     }
 
     

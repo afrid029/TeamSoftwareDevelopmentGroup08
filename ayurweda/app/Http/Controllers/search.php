@@ -22,12 +22,8 @@ class search extends Controller
         else{
             $p=DB::table('medical_histories')->get();
         }
-        if($p==null){
-            return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',"");
-        }
-        else{
-            return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p);
-        }
+        
+        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p);
         
     }
 
@@ -45,12 +41,8 @@ class search extends Controller
         else{
             $p=DB::table('add_pat_ups')->get();
         }
-        if($p==null){
-            return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',"");
-        }
-        else{
-            return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',$p);
-        }
+        return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',$p);
+        
         
     }
 
@@ -68,15 +60,14 @@ class search extends Controller
         else{
             $p=DB::table('add_pats')->get();
         }
-        if($p==null){
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',"");
-        }
-        else{
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
-        }
+        
+        return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
+       
         
     }
     public function appsearch(Request $request){
+        $td=DB::table('online_bookings')->where('Doc_id',$request->docid)->where('availableDate',date("Y-m-d"))->get();
+        $na=count($td);
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->date!=""){
             $p=DB::table('online_bookings')->whereDate('availableDate',$request->date)->get();
@@ -84,12 +75,8 @@ class search extends Controller
         else{
             $p=DB::table('online_bookings')->get();
         }
-        if($p==null){
-            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',"");
-        }
-        else{
-            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p);
-        }
+        return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p)->with('na',$na);
+        
         
     }
 }

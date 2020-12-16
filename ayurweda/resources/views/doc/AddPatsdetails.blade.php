@@ -96,6 +96,16 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@elseif($msg=="The patient doesn't exist.")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
 @endif
 
      <!-- Modal -->
@@ -168,7 +178,7 @@ Swal.fire({
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  @if($ad!="")
+                                                  @if(count($ad) > 0)
                                                   @foreach($ad as $a)
                                                   <tr>
                                                        <td>{{$a->Pat_id}}</td>
@@ -179,6 +189,10 @@ Swal.fire({
                                                        <td>{{$a->disch_date}}</td>
                                                   </tr>
                                                   @endforeach
+                                                  @else
+                                                  <tr>
+                                                       <td colspan="6"><h3 style=" color:black;text-align: center;">No patients found</h3></td>
+                                                  </tr>
                                                   @endif
                                                   
                                              </tbody>
