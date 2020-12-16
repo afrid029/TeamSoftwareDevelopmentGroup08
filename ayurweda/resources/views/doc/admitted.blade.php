@@ -97,6 +97,34 @@
      </script>
      @endif
 
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update records</h5>
+          </div>
+          <form method="post" action="/saveadmit" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="modal-body">
+          <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
+          <input class="form-control" type="text" name="patientid" placeholder="Patient ID"><br>
+          <textarea class="form-control" rows="4" cols="3"name="medicine" placeholder="Medicine"></textarea><br>
+          <textarea class="form-control" name="condition" rows="4" cols="3" placeholder="Condition"></textarea>
+          <br></br>
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+               Insert
+          </button>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+     </div>
+     </div>
+     </div>
+
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -105,39 +133,14 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
-                                        </ul><br>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
-                                        </ul>
+                                        
                                         <br></br>
                                    
                                         <div class="col-md-8 col-sm-12">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                             Update records
+                                        </button><br><br><br><br>
                                              
-                                             <form action="/saveadmit" method="post" class="wow fadeInUp">
-                                             {{csrf_field()}} 
-                                                  <div class="col-md-6 col-sm-6">
-                                                  <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                       <h3>Patient ID</h3>
-                                                       <input class="form-control" type="text" name="patientid" ><br>
-                                                       <h3>Medicine</h3>
-                                                       <textarea class="form-control" rows="4" cols="3"name="medicine"></textarea><br>
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       
-                                                       <h3>Condition</h3>
-                                                       
-                                                       <textarea class="form-control" name="condition" rows="4" cols="3"></textarea>
-                                                       <br></br>
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">

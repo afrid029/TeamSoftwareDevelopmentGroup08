@@ -105,14 +105,9 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
                                         <h4>No. of appointments today:<span class="label label-default">{{$na}}</span><h4>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
-                                        </ul><br>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
-                                        </ul>
+                                        
+                                        
                                         <br></br>
                                    
                                         <div class="col-md-8 col-sm-12">

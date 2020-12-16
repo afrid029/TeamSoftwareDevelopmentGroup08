@@ -85,11 +85,11 @@
 
           </div>
      </section>
-@if($msg=="Wrong password or username")
+@if($msg=="Inserted successfully.")
 <script>
 Swal.fire({
   position: 'middle',
-  icon: 'error',
+  icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
   timer: 1500
@@ -117,7 +117,7 @@ $time="";
                             <div class="item item-first">
                                 <div class="caption">
                                     <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
+                                        
                                         <div class="col-md-8 col-sm-12">
                                              
                                              <br><br>

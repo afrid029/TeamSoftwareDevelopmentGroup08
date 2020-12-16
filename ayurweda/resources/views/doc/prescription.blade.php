@@ -96,6 +96,35 @@ Swal.fire({
 </script>
 @endif
 
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a prescription</h5>
+          
+          </div>
+          <form method="post" action="/savepres" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="modal-body">
+          <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
+          <input class="form-control" type="text" name="patientid" placeholder="Patient ID"><br>
+          <input class="form-control" type="text" name="disease" placeholder="Disease"><br>
+          <textarea class="form-control" rows="3" cols="3"name="diagnosis" placeholder="Diagnosis"></textarea><br>
+          <textarea class="form-control" rows="3" cols="3" name="medicine" placeholder="Medicine"></textarea><br>
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+               Prescript Medicine
+          </button>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+     </div>
+     </div>
+     </div>
+
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -104,40 +133,14 @@ Swal.fire({
                     <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <h3>Doctor ID <span class="label label-default">{{$c->Doc_id}}</span></h3>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Date<span class="label label-default">{{date("Y-m-d")}}</span></h3>
-                                        </ul><br>
-                                        <ul class="nav navbar-nav navbar-right">
-                                             <h3>Time<span class="label label-default">{{date("h:i:sa")}}</span></h3>
-                                        </ul>
+                                        
                                         <br></br>
                                    
                                         <div class="col-md-8 col-sm-12">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       Add a prescription
+                                        </button><br><br><br></br>
                                              
-                                             <form action="/savepres" method="post" class="wow fadeInUp">
-                                             {{csrf_field()}} 
-                                                  <div class="col-md-6 col-sm-6">
-
-                                                       <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                       <h3>Patient ID</h3>
-                                                       <input class="form-control" type="text" name="patientid" ><br>
-                                                       <h3>Diagnosis</h3>
-                                                       <input class="form-control" type="text" name="diagnosis" ><br>
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-
-                                                       <h3>Disease</h3>
-                                                       <input class="form-control" type="text" name="disease" ><br>
-                                                       <h3>Medicine</h3>
-                                                       <input class="form-control" type="text" name="medicine" ><br> 
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Prescript Medicine
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
                                              
                                              <form action="/pressearch" method="post">
                                              {{csrf_field()}}
@@ -147,7 +150,7 @@ Swal.fire({
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                              </form>
                                              
-                                             <br>
+                                             <br><br>
                                              <div class="tableFixHead">
                                         <table class="table">
                                         

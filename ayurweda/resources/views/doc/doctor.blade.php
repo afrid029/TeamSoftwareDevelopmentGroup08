@@ -161,6 +161,7 @@ Swal.fire({
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
                                                        <img src="{{ asset($c->Doc_im)}}" style="width:300px ;">
+                                                       
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>
