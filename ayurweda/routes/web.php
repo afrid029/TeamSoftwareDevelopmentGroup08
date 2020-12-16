@@ -48,7 +48,8 @@ Route::post('/proedit', 'update@pro');
 Route::get('docsymp/{c}/', 'redirect@docsymp')->name('docsymp');
 Route::get('docviewSymp/{i}/{j}/','redirect@show')->name('docviewSymp');
 Route::post('/docreply', 'update@docreply');
-
+Route::get('appointment/{c}/', 'redirect@appointment')->name('appointment');
+Route::post('/appsearch', 'search@appsearch');
 
 
 //Patients Routings

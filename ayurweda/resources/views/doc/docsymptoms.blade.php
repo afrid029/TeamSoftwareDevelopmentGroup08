@@ -53,7 +53,18 @@
      background-color: #8B0000;
    }
    </style>
-    
+    <style>
+      .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+    </style>
+
+
 </head>
 <body>
     
@@ -83,6 +94,7 @@
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll"><font color="red">Medical <br>Symptomps</font></a></li>
+                        <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -104,7 +116,7 @@
                                    <div class="container">
                                    <div style="width:50%; margin-left:25%; margin-right:25%;" class="col-lg-3">
                                    <h2 style="color:#ffffff; width:96%; margin: 0 2%;">Patients' Medical Symptomps History</h2>
-                              
+                                   <div class="tableFixHead">
                                    <table style="background-color:white;border:5px; " class="table table-bordered" >
                                         
                                              <thead>
@@ -139,6 +151,7 @@
                                              </tbody>
                                         
                                         </table>
+                                        </div>
                                         <div class="link" style="width:30%;border-radius:10%; margin-top:-12px; margin-bottom: 10px; font-size:12px;">
                                              <a></a>
                                         </div>

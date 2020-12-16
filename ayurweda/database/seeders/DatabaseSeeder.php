@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         
         DB::table('all_users')->insert([
-            'id'=> 'doc2',
+            'id'=> 'doc3',
             'password' => '123456',
             'roll' => 'doctor'
         ]);
@@ -28,11 +28,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('doctors')->insert([
-            'Doc_id' => 'doc2',
+            'Doc_id' => 'doc3',
             'Doc_name' => 'Ajantha',
             'Doc_email' => 'mafrid029@gmail.com',
             'Doc_addr' => '98,KKp, Road Kalmunai 03',
             'Doc_pNum' => '0771234567',
+            'Doc_im' => '',
             'password' => '123456'
         ]);
         DB::table('doctors')->insert([
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'Doc_email' => 'mafrid029@gmail.com',
             'Doc_addr' => '98,KKp, Road Kalmunai 03',
             'Doc_pNum' => '0771234567',
+            'Doc_im' => '',
             'password' => '1234'
         ]);
 

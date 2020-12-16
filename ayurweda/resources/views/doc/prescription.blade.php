@@ -22,6 +22,20 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
+     <style>
+      .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+     
 </head>
 <body>
 
@@ -59,6 +73,7 @@
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
                          <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
 
@@ -133,7 +148,7 @@ Swal.fire({
                                              </form>
                                              
                                              <br>
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
+                                             <div class="tableFixHead">
                                         <table class="table">
                                         
                                              <thead>

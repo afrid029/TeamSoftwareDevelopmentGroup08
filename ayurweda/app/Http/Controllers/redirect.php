@@ -65,5 +65,18 @@ class redirect extends Controller
         $e = DB::table('add_symptomps')->where('id',$id)->first();
         return view('doc/view',compact('c','e'));
     }
+
+    public function appointment($t){
+        $td=DB::table('online_bookings')->where('Doc_id',$t)->where('availableDate',date("Y-m-d"))->get();
+        $na=count($td);
+        $p=DB::table('online_bookings')->where('Doc_id',$t)->orderBy('created_at','desc')->get();
+        $c=DB::table('doctors')->where('Doc_id',$t)->first();
+        if($p==null){
+            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p)->with('na',$na);
+        }
+    }
    
 }

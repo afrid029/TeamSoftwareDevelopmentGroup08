@@ -76,4 +76,20 @@ class search extends Controller
         }
         
     }
+    public function appsearch(Request $request){
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        if($request->date!=""){
+            $p=DB::table('online_bookings')->whereDate('availableDate',$request->date)->get();
+        }
+        else{
+            $p=DB::table('online_bookings')->get();
+        }
+        if($p==null){
+            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',"");
+        }
+        else{
+            return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p);
+        }
+        
+    }
 }
