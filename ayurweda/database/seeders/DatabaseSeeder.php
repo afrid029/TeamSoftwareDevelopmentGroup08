@@ -233,6 +233,132 @@ class DatabaseSeeder extends Seeder
             'guardian' => 'Danushka Dias',
             'password' => 'pat3@'
         ]);
+        //pat4
+        DB::table('all_users')->insert([
+            'id'=> 'pat4',
+            'password' => 'pat4@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat4',
+            'Pat_name' => 'Pithuja Sritharan',
+            'Pat_email' => 'Pithuja&S@gmail.com',
+            'Pat_addr' => 'No.3, ABC road, Batticaloa',
+            'Pat_pNum' => '0711212023',
+            'Pimage' => '',
+            'age' => '20',
+            'gender' => 'female',
+            'guardian' => 'kamala Sritharan',
+            'password' => 'pat4@'
+        ]);
+        //pat5
+        DB::table('all_users')->insert([
+            'id'=> 'pat5',
+            'password' => 'pat5@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat5',
+            'Pat_name' => 'Vincent Jackshan',
+            'Pat_email' => 'Vincent@gmail.com',
+            'Pat_addr' => 'No.13, BB road, Ampara',
+            'Pat_pNum' => '0716789023',
+            'Pimage' => '',
+            'age' => '55',
+            'gender' => 'female',
+            'guardian' => 'Priya Jackshan',
+            'password' => 'pat5@'
+        ]);
+        //pat6
+        DB::table('all_users')->insert([
+            'id'=> 'pat6',
+            'password' => 'pat6@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat6',
+            'Pat_name' => 'Maaran Suresh',
+            'Pat_email' => 'Sureshss@gmail.com',
+            'Pat_addr' => 'No.2, Valluvan road, Ampara',
+            'Pat_pNum' => '0716789023',
+            'Pimage' => '',
+            'age' => '23',
+            'gender' => 'male',
+            'guardian' => 'Ramesh Suresh',
+            'password' => 'pat6@'
+        ]);
+        //pat7
+        DB::table('all_users')->insert([
+            'id'=> 'pat7',
+            'password' => 'pat7@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat7',
+            'Pat_name' => 'Jenu Kirisanth',
+            'Pat_email' => 'Kirisanth111@gmail.com',
+            'Pat_addr' => 'No.13, Pannikar road, Ampara',
+            'Pat_pNum' => '0776789122',
+            'Pimage' => '',
+            'age' => '32',
+            'gender' => 'male',
+            'guardian' => 'Bala Kirisanth',
+            'password' => 'pat7@'
+        ]);
+        //pat8
+        DB::table('all_users')->insert([
+            'id'=> 'pat8',
+            'password' => 'pat8@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat8',
+            'Pat_name' => 'Sarath Balu',
+            'Pat_email' => 'BaluBalu12@gmail.com',
+            'Pat_addr' => 'No.13, VSS road, Ampara',
+            'Pat_pNum' => '0716712323',
+            'Pimage' => '',
+            'age' => '80',
+            'gender' => 'male',
+            'guardian' => 'Vishva Helan',
+            'password' => 'pat8@'
+        ]);
+        //pat9
+        DB::table('all_users')->insert([
+            'id'=> 'pat9',
+            'password' => 'pat9@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat9',
+            'Pat_name' => 'John Devid',
+            'Pat_email' => 'DevidAR@gmail.com',
+            'Pat_addr' => 'No.13, N5 road, Ampara',
+            'Pat_pNum' => '0776781223',
+            'Pimage' => '',
+            'age' => '48',
+            'gender' => 'male',
+            'guardian' => 'Danush Devid',
+            'password' => 'pat9@'
+        ]);
+        //pat10
+        DB::table('all_users')->insert([
+            'id'=> 'pat10',
+            'password' => 'pat10@',
+            'roll' => 'patient'
+        ]);
+        DB::table('patients')->insert([
+            'Pat_id' => 'pat10',
+            'Pat_name' => 'Kajan Varan',
+            'Pat_email' => 'Kajan@gmail.com',
+            'Pat_addr' => 'No.1, KS road, Ampara',
+            'Pat_pNum' => '0776789023',
+            'Pimage' => '',
+            'age' => '30',
+            'gender' => 'male',
+            'guardian' => 'Kamal Varan',
+            'password' => 'pat10@'
+        ]);
 
         
     }
