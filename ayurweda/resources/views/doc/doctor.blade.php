@@ -21,7 +21,21 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/preview.css')}}">
+     <script src="{{ asset('js/preview.js') }}"></script>
 
+     <style>
+.btn-dark{
+     display:none;
+    margin-top:2px;
+    width:100%;
+     background-color:Black;
+     opacity:0.8;
+}
+.img:hover + .btn-dark, .btn-dark:hover{
+     display:inline-block;
+}
+</style>
 </head>
 <body>
 
@@ -89,7 +103,6 @@
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Doc_pNum}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <input type="file" name="image" class="form-control-file"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
@@ -101,6 +114,39 @@
      </div>
      </div>
      </div>
+
+     <!-- Modal 2 -->
+<div style ="width:40%; margin-left:30%; margin-right:30%; margin-top:5%;" class = "modal fade" id = "profile" role = "dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role = "dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+               <h5 class="modal-title">Upload Profile Picture</h5>
+               </div>
+                    <form action="/docpic" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                         <div style ="margin:20px 40px 0 40px" class="custom-file-container" data-upload-id="myUniqueUploadId">
+                              <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
+                              <label class="custom-file-container__custom-file">
+                              <input type="hidden" name="id" class="form-control" value="{{$c->Doc_id}}"><br>
+                              <input  type="file" name = "image" class="custom-file-container__custom-file__custom-file-input" accept="image/*"  aria-label="Choose File">
+                                   <span  class="custom-file-container__custom-file__custom-file-control"></span>
+                              </label>
+
+                              <div style="width:50%; height:150px; margin-left:15%" class="custom-file-container__image-preview">
+                              </div>
+                         </div>
+                              <script>
+                                   var upload = new FileUploadWithPreview('myUniqueUploadId')
+                              </script>
+                         <button style ="margin-left:35%; margin-top:-30px" type="submit" class="btn btn-success"><b>UPLOAD</b></button>
+                    </form>
+                    <div  class="modal-footer">
+                          <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     </div>
+
+          </div>
+     </div>
+</div>
 
 @if($msg=="Updated successfully.")
 <script>
@@ -117,6 +163,16 @@ Swal.fire({
 Swal.fire({
   position: 'middle',
   icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+@elseif($msg=="Profile picture changed")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
   timer: 1500
@@ -160,13 +216,15 @@ Swal.fire({
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
+                                             <div style=" padding:1% 1% 1% 1%; border-radius:30px; height:200px; width:50%">
                                                        @if($c->Doc_im)
-                                                       <img class="img" src="{{ asset($c->Doc_im)}}" style="  border-radius:30px; height:200px; width:auto;">
-                                                       
+                                                       <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:auto;">
+                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
-                                                       
+                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @endif
+                                                       </div>
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>

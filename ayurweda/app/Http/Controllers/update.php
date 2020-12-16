@@ -20,7 +20,6 @@ class update extends Controller
             'email'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
-            'image'=>['required'],
         ],
         [
             'name.required' => 'Name is empty',
@@ -29,27 +28,16 @@ class update extends Controller
             'email.required' => 'Email is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
-            'image.required' => 'Image is empty'
         ]);
 
         $p=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
         if($request->opassword==$p){
             
-            if ($request->hasFile('image')) {
-                    $image=$request->file('image');
-                    $extension = $image->getClientOriginalExtension();
-                    $image->storeAs('/public/docprof', $request->id.".".$extension);
-                    $url = '/storage/docprof/'.$request->id.".".$extension;
-            }
-            else{
-                $url="";
-            }       
 
             DB::table('doctors')->where('Doc_id',$request->id)->update(['Doc_name'=>$request->name,
                                                                         'Doc_addr'=>$request->address,
                                                                         'Doc_email'=>$request->email,
                                                                         'Doc_pNum'=>$request->phone,
-                                                                        'Doc_im'=>$url,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -89,7 +77,6 @@ class update extends Controller
             'phone'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
-            'image'=>['required'],
         ],
         [
             'name.required' => 'Name is empty',
@@ -97,27 +84,17 @@ class update extends Controller
             'phone.required' => 'Phone is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
-            'image.required' => 'Image is empty'
         ]);
 
         $p=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
         if($request->opassword==$p){
             
-            if ($request->hasFile('image')) {
-                    $image=$request->file('image');
-                    $extension = $image->getClientOriginalExtension();
-                    $image->storeAs('/public/docprof', $request->id.".".$extension);
-                    $url = '/storage/docprof/'.$request->id.".".$extension;
-            }
-            else{
-                $url="";
-            }       
+           
 
             DB::table('doctors')->where('Doc_id',$request->id)->update(['Doc_name'=>$request->name,
                                                                         'Doc_addr'=>$request->address,
                                                                         'Doc_email'=>$request->email,
                                                                         'Doc_pNum'=>$request->phone,
-                                                                        'Doc_im'=>$url,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -137,5 +114,24 @@ class update extends Controller
         $d = DB::table('add_symptomps')->where('Doc_id',$request->docid)->orderBy('created_at','desc')->get();
         $pa = DB::table('patients')->get();
         return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
+    }
+    public function docpic(Request $request)
+    {
+        $request->validate([
+            'image'=>'required|image'
+        ],[
+            'image.required' => 'You have not choose any file',
+            'image.image'=>'Only Image is allowed'
+        ]);
+
+            $name = time().rand(1,100).'.'.$request->image->extension();
+            $request->image->move(public_path().'/upload/docprof', $name); 
+
+            DB::table('doctors')->where('Doc_id',$request->id)->update([
+                'Doc_im' => $name
+            ]);
+            $s="Profile picture changed";
+            $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
+        return view('doc/doctor')->with('c',$c)->with('msg',$s);
     }
 }

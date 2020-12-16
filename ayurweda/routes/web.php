@@ -50,6 +50,7 @@ Route::get('docviewSymp/{i}/{j}/','redirect@show')->name('docviewSymp');
 Route::post('/docreply', 'update@docreply');
 Route::get('appointment/{c}/', 'redirect@appointment')->name('appointment');
 Route::post('/appsearch', 'search@appsearch');
+Route::post('/docpic', 'update@docpic');
 
 
 //Patients Routings
