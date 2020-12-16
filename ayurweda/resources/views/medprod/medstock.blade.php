@@ -62,7 +62,7 @@
                          <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+                         <li><a href="/login">Logout</a></li>
                     </ul>
                </div>
 

@@ -67,7 +67,7 @@
 
                
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
+                         <li><a href="/login">Logout</a></li>
                     </ul>
                </div>
 
