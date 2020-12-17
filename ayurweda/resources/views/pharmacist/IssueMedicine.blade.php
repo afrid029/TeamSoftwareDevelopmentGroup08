@@ -31,11 +31,7 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
      For Table Style -->
      <style>
-     body {
-     color: #404E67;
-     background: #F5F7FA;
-     font-family: 'Open Sans', sans-serif;
-     }
+     
      .table-wrapper {
      width: 700px;
      margin: 30px auto;
@@ -136,37 +132,35 @@
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
      <!-- MENU -->
-     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
+     <section style="background-color:white; height:10%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+     <div class="container">
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
 
-               <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                    </button>
-
-                    <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
-               </div>
-
-               <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
-
-                    <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('mphome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pat_id)}}" class="smoothScroll">Maintain Medical Stock</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pat_id)}}" class="smoothScroll">Issue Medicine</a></li>
-                         <li><a href="{{route('medstock',$c->Pat_id)}}" class="smoothScroll">Order Medicine</a></li>
-                    </ul>
-                     
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="login">Logout</a></li>
-                    </ul>
-               </div>
-
+               <!-- lOGO TEXT HERE -->
+               <a style= "color:black;" href="/welcome" class="navbar-brand">Hospital</a>
           </div>
-     </section>
+
+          <!-- MENU LINKS -->
+          <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
+                    <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
+                    <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll"><font color="red">Issue medicine</font></a></li>
+                    <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
+                         
+               </ul>
+
+               <ul class="nav navbar-nav navbar-right">
+                    <li><a style= "color:black;" href="/login">Logout</a></li>
+               </ul>
+          </div>
+     </div>
+</section>
 
      
 

@@ -20,8 +20,7 @@ class login extends Controller
                 return view('doc/doctor')->with('c',$c)->with('msg',"");
             }
             elseif($roll=="pharmacist"){
-                $c=DB::table('pharmacists')->where('Phar_id',$request->id)->first();
-                return view('pharmacist/pharmacist')->with('c',$c)->with('msg',"");
+                return redirect()->route('phahome',['c'=>$request->id]);
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();

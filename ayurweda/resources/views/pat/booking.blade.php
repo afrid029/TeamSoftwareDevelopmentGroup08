@@ -71,7 +71,7 @@
           <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                     <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                    <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                    <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
                     <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                     <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll"> <font color="red">Online Booking</font></a></li>
                     <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
@@ -105,6 +105,7 @@
                                         
                                              <thead style="background-color:#800000; color:white; text-align:center;overflow:fixed;">
                                                   <tr>
+                                                       <th style="text-align:center;"><b>Appointment ID</b></th>
                                                        <th style="text-align:center;"><b>Doctor</b></th>
                                                        <th style="text-align:center;"><b>Date</b></th>
                                                        <th style="text-align:center;"><b >Time</b></th> 
@@ -114,7 +115,8 @@
                                                   @if(count($t) > 0)
                                                        <tbody>
                                                             @foreach($t as $apps)
-                                                                 <tr>
+                                                                 <tr >
+                                                                      <td  ><p style = "font-weight: bold;">{{$apps->App_id}}</p></td>
                                                                       <td><p>{{$apps->Doc_name}}</p></td>
                                                                       <td><p>{{$apps->availableDate}}</p></td>
                                                                       <td><p>{{$apps->availableTime}}</p></td>
@@ -132,7 +134,7 @@
 
                                                   @else
                                                             <tr>
-                                                                 <td colspan="4"><h3 style=" color:black;text-align: center;">At the moment you don't have any appointment</h3></td>
+                                                                 <td colspan="5"><h3 style=" color:black;text-align: center;">At the moment you don't have any appointment</h3></td>
                                                             </tr>
                                                   @endif
                                                        </tbody>

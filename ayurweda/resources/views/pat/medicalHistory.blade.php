@@ -76,7 +76,7 @@
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptomps</a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll"><font color="red">Medical History</font></a></li>
@@ -104,7 +104,7 @@
                                         
                                     <thead style="background-color:#800000; color:white; text-align:center;overflow:fixed;">
                                         <tr>
-                                            <th style="text-align:center;"><b>Appoinment ID</b></th>
+                                            <th style="text-align:center;"><b>Meeting ID</b></th>
                                             <th style="text-align:center;"><b>Date</b></th>
                                             <th style="text-align:center;"><b >View</b></th> 
                                         </tr>
@@ -115,14 +115,14 @@
                                             @foreach($hist as $history)
                                                 <tr>
                                                     <td><p>{{$history->Meeting_id}}</p></td>
-                                                    <td><p>{{$history->availableDate}}</p></td>
+                                                    <td><p>{{$history->created_at}}</p></td>
                                                     <td>
                                                         <input type="hidden" value="{{$history->Doc_id}}" id="did<?php echo $n; ?>">
                                                         <input type="hidden" value="{{$history->disease}}" id="dis<?php echo $n; ?>">
                                                         <input type="hidden" value="{{$history->diagnosis}}" id="diag<?php echo $n; ?>">
                                                         <input type="hidden" value="{{$history->medicine}}" id="med<?php echo $n; ?>">
                                                         <input type="hidden" value="{{$history->Meeting_id}}" id="mid<?php echo $n; ?>">
-                                                        <input type="hidden" value="{{$history->availableDate}}" id="dt<?php echo $n; ?>">
+                                                        <input type="hidden" value="{{$history->created_at}}" id="dt<?php echo $n; ?>">
                                                         <button type="button" class="btn btn-primary btn-sm" onclick="VHistory(<?php echo $n; ?>)" data-toggle="modal" data-target="#viewhist">View </button>
                                                     </td>
                                                                       

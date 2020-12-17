@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'doc1@'
         ]);
 
+
         DB::table('all_users')->insert([
             'id'=> 'doc2',
             'password' => 'doc2@',
@@ -359,7 +360,129 @@ class DatabaseSeeder extends Seeder
             'guardian' => 'Kamal Varan',
             'password' => 'pat10@'
         ]);
-
+        
+        //state symptomps1
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as1',
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Feeling sick, vomiting and a cough',
+            'img' => '',
+            'date' => '2020-03-03',
+            'time' => '08:00:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        //2
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as2',
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat2',
+            'text' => 'wheezing, chest tightness',
+            'img' => 'skin_rash.jpg',
+            'date' => '2020-03-10',
+            'time' => '08:30:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        //3
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as3',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat3',
+            'text' => 'tummy pain',
+            'img' => '',
+            'date' => '2020-02-12',
+            'time' => '12:00:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        //4
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as4',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat3',
+            'text' => 'feeling sick',
+            'img' => '',
+            'date' => '2020-04-08',
+            'time' => '15:00:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        //5
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as5',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat5',
+            'text' => 'diarrhoea',
+            'img' => '',
+            'date' => '2020-04-02',
+            'time' => '14:00:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        //6
+        DB::table('add_symptomps')->insert([
+            'id'=> 'as6',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat1',
+            'text' => 'feeling sick',
+            'img' => '',
+            'date' => '2020-04-02',
+            'time' => '08:00:00',
+            'reply' => '',
+            'audio' => ''
+        ]);
+        
+       //Online booking
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob1',
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'availableDate' => '2021-02-14',
+            'availableTime' => '09:00:00'
+        ]);
+        //2
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob2',
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat2',
+            'availableDate' => '2021-04-23',
+            'availableTime' => '13:00:00'
+        ]);
+        //3
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob3',
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat3',
+            'availableDate' => '2021-04-24',
+            'availableTime' => '07:00:00'
+        ]);
+        //4
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob4',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat4',
+            'availableDate' => '2021-04-25',
+            'availableTime' => '07:00:00'
+        ]);
+        //5
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob5',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat5',
+            'availableDate' => '2021-04-26',
+            'availableTime' => '07:00:00'
+        ]);
+        //6
+        DB::table('online_bookings')->insert([
+            'App_id'=> 'ob6',
+            'Doc_id' => 'doc2',
+            'Pat_id' => 'pat6',
+            'availableDate' => '2021-04-28',
+            'availableTime' => '07:00:00'
+        ]);
+       
         
     }
 }

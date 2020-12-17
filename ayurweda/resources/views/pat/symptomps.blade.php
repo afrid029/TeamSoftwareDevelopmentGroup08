@@ -78,7 +78,7 @@
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll"><font color="red">State Medical Symptomps</font></a></li>
+                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll"><font color="red">State Medical Symptoms</font></a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
@@ -105,7 +105,7 @@
                                    <div class="container">
                                    <button style="width:40%; margin-left:30%; margin-right:30%; margin-top:-5%;" data-toggle = "modal" data-target = "#symptomp" type="button" class="btn btn-primary btn-lg">Add Symptomp</button>
                                    <div style="width:60%; margin-left:20%; margin-right:20%;" class="col-lg-3">
-                                        <h2 style="color:#ffffff; text-align:center; width:96%; margin: 0 2%;">Your Medical Symptomps History</h2>
+                                        <h2 style="color:#ffffff; text-align:center; width:96%; margin: 0 2%;">Your Medical Symptoms History</h2>
                               
                                         <table style="background-color:white;border:5px; " class="table table-bordered" >
                                         
@@ -114,7 +114,7 @@
                                                   <tr style="background-color:#800000; height:1px;">
                                                        <th style=" color:#FFFFFF;text-align:center"><b>Date</b></th>
                                                        <th style=" color:#FFFFFF;text-align:center"><b>Time</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Medical Symptomps</b></th> 
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Medical Symptoms</b></th> 
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -137,7 +137,7 @@
                                                   
                                              @else
                                              <tr>
-                                                  <td colspan="3"><h3 style=" color:black;text-align: center;">You don't state any symptomps</h3></td>
+                                                  <td colspan="3"><h3 style=" color:black;text-align: center;">You don't state any symptoms</h3></td>
                                              </tr>
                                              @endif     
                                              </tbody>
@@ -201,7 +201,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Say Your Symptomps Here</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Say Your Symptoms Here</h5>
                    
                          
 

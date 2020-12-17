@@ -191,7 +191,7 @@ section {
   border-radius: 50%;
   border: 1px solid #575757;
   border-top-color: #ffffff;
-  animation: spinner .9s linear infinite;
+  animation: spinner .4s linear infinite;
 }
 
 @_webkit-@keyframes spinner {
