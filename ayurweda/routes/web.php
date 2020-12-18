@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\patientsController;
 use App\Http\Controllers\medproducer;
 use App\Http\Controllers\pharmacistController;
+use App\Http\Controllers\ingsupplier;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,3 +115,8 @@ Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->nam
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');
 Route::post('oredertopro/{c}/',[pharmacistController::class, 'oredertopro'])->name('oredertopro');
+
+//Ingredients Supplier Routings
+Route::get('suphome/{c}/', 'redirect@suphome')->name('suphome');
+Route::get('ingredientstock/{c}/', 'redirect@ingredientstock')->name('ingredientstock');
+Route::get('ingordering/{c}/', 'redirect@ingordering')->name('ingordering');
