@@ -51,7 +51,7 @@
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
+               <div style="background-color:#154360 " class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>

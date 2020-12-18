@@ -51,8 +51,8 @@
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
-
+               <div style="background-color:#154360 " class="collapse navbar-collapse">
+               
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue Medicines</font></a></li>
@@ -109,52 +109,30 @@
                                    <div class="container">
                                         <br></br>
                                         <br></br>
-                                        <br></br>
 
                                         <div class="col-md-8 col-sm-12">
                                              
-                                             <form action="/saveadmit" method="post" class="wow fadeInUp">
-                                                  
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Order ID</h3>
-                                                       <input class="form-control" type="text" name="orderid" ><br>
-                                                       <h3>Medicine ID</h3>
-                                                       <input class="form-control" type="text" name="medicine " ><br>
-                                                       <h3>Quantity</h3>
-                                                       <input class="form-control" type="number" name="qty" ><br>
-                                                       
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Pharmacist ID</h3>
-                                                       <input class="form-control" type="text" name="pharmacistid" ><br>
-                                                       <h3>Order Date</h3>
-                                                       <input class="form-control" type="date" name="orderdate" ><br>
-                                                       <br></br>
-
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="ID" name="search">
+                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="search">
                                                   <input style="color:black" type="date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
+                                             <br></br>
                                              <br></br>
 
                                              <div style="position:relative;height:200px;overflow:auto;display:block;">
-                                        <table class="table table-bordered" >
+
+                                             
+                                        <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
-                                                  <tr>
+                                                  <tr style="background-color:#800000; ">
                                                        <th>Order ID</th>
                                                        <th>Medicine ID</th>
                                                        <th>Quantity</th>
                                                        <th>Pharmacist ID</th>
                                                        <th>Order Date</th>
+                                                       <th></th>
                                                       
                                                   </tr>
                                              </thead>
@@ -165,6 +143,7 @@
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
@@ -172,6 +151,7 @@
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
@@ -179,6 +159,7 @@
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
@@ -186,7 +167,9 @@
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
                                                   </tr>
+                                                  
                                              </tbody>
                                         
                                         </table>

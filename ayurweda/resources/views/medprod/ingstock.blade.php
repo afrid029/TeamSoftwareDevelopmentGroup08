@@ -51,7 +51,7 @@
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
+               <div style="background-color:#154360 " class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
@@ -107,46 +107,29 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
+                                        
 
                                         <div class="col-md-8 col-sm-12">
+                                        <h1 style="color:#ffffff" >Ingredients Stock</h1>
                                              
-                                             <form action="/saveadmit" method="post" class="wow fadeInUp">
-                                                  
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Ingredient ID</h3>
-                                                       <input class="form-control" type="text" name="ingid" ><br>
-                                                       <h3>Ingredient Name</h3>
-                                                       <input class="form-control" type="text" name="ingname " ><br>    
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Quantity</h3>
-                                                       <input class="form-control" type="number" name="qty" ><br>
-                                                       <br></br>
-
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                                   <input style="color:black" type="text" placeholder="search.." name="search">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
+                                             <br></br>
                                              <br></br>
 
                                              <div style="position:relative;height:200px;overflow:auto;display:block;">
-                                        <table class="table table-bordered" >
+
+                                             
+                                        <table class="table table-bordered" style="background-color:#ffffff" >
                                         
                                              <thead>
-                                                  <tr>
+                                                  <tr style="background-color:#800000; ">
                                                        <th>Ingredient ID</th>
                                                        <th>Ingredient Name</th>
                                                        <th>Quantity</th>
+                                                       <th></th>
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -154,21 +137,25 @@
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
                                                        <td></td>
+                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
                                                   </tr>
                                              </tbody>
                                         

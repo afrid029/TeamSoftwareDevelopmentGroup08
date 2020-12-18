@@ -170,7 +170,7 @@ class DatabaseSeeder extends Seeder
         DB::table('all_users')->insert([
             'id'=> 'prod1',
             'password' => 'prod1@',
-            'roll' => 'medicine producer'
+            'roll' => 'producer'
         ]);
         DB::table('medicine_producers')->insert([
             'Pro_id' => 'prod1',
@@ -363,73 +363,73 @@ class DatabaseSeeder extends Seeder
         
         //state symptomps1
         DB::table('add_symptomps')->insert([
-            'id'=> 'as1',
+            'id'=> '',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
             'text' => 'Feeling sick, vomiting and a cough',
             'img' => '',
-            'date' => '2020-03-03',
-            'time' => '08:00:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
         //2
         DB::table('add_symptomps')->insert([
-            'id'=> 'as2',
+            'id'=> '',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat2',
             'text' => 'wheezing, chest tightness',
             'img' => 'skin_rash.jpg',
-            'date' => '2020-03-10',
-            'time' => '08:30:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
         //3
         DB::table('add_symptomps')->insert([
-            'id'=> 'as3',
+            'id'=> '',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat3',
             'text' => 'tummy pain',
             'img' => '',
-            'date' => '2020-02-12',
-            'time' => '12:00:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
         //4
         DB::table('add_symptomps')->insert([
-            'id'=> 'as4',
+            'id'=> '',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat3',
             'text' => 'feeling sick',
             'img' => '',
-            'date' => '2020-04-08',
-            'time' => '15:00:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
         //5
         DB::table('add_symptomps')->insert([
-            'id'=> 'as5',
+            'id'=> '',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat5',
             'text' => 'diarrhoea',
             'img' => '',
-            'date' => '2020-04-02',
-            'time' => '14:00:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
         //6
         DB::table('add_symptomps')->insert([
-            'id'=> 'as6',
+            'id'=> '',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat1',
             'text' => 'feeling sick',
             'img' => '',
-            'date' => '2020-04-02',
-            'time' => '08:00:00',
+            'date' => '',
+            'time' => '',
             'reply' => '',
             'audio' => ''
         ]);
