@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
+        //doctor sample data
         DB::table('all_users')->insert([
             'id'=> 'doc1',
             'password' => 'doc1@',
@@ -166,7 +167,7 @@ class DatabaseSeeder extends Seeder
             'Doc_im' => '',
             'password' => 'doc10@'
         ]);
-
+        // producer sample data
         DB::table('all_users')->insert([
             'id'=> 'prod1',
             'password' => 'prod1@',
@@ -180,7 +181,7 @@ class DatabaseSeeder extends Seeder
             'Pro_im' => '',
             'password' => 'prod1@'
         ]);
-
+        //patient sample data
         DB::table('all_users')->insert([
             'id'=> 'pat1',
             'password' => 'pat1@',
@@ -360,7 +361,25 @@ class DatabaseSeeder extends Seeder
             'guardian' => 'Kamal Varan',
             'password' => 'pat10@'
         ]);
+		
+		
+		
+		//Pharmacist sample data
+        DB::table('all_users')->insert([
+            'id'=> 'pha1',
+            'password' => 'pha1@',
+            'roll' => 'pharmacist'
+        ]);
+        DB::table('pharmacists')->insert([
+            'Phar_id' => 'pha1',
+            'Phar_name' => 'Karan Saran',
+            'Phar_addr' => 'No.1, AML road, Ampara',
+            'Phar_pNum' => '0776789023',
+            'password' => 'pha1@'
+        ]);
+		
         
+<<<<<<< HEAD
         //state symptomps1
         DB::table('add_symptomps')->insert([
             'id'=> '',
@@ -435,54 +454,153 @@ class DatabaseSeeder extends Seeder
         ]);
         
        //Online booking
+=======
+       
+        //maintain medicine stock
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med1',
+            'Med_name' => 'Ashwagandha',
+            'unitprice' => '30',
+            'stock_qty' => '12',
+            'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
+            'manufactureDate' => '2020-02-02',
+            'expireDate' => '2022-02-02'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med2',
+            'Med_name' => 'Boswellia',
+            'unitprice' => '50',
+            'stock_qty' => '40',
+            'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
+            'manufactureDate' => '2020-04-02',
+            'expireDate' => '2023-04-02'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med3',
+            'Med_name' => 'Brahmi',
+            'unitprice' => '90',
+            'stock_qty' => '60',
+            'description' => 'Brahmi is an Ayurvedic herb believed to lower inflammation, improve brain function, and reduce symptoms of ADHD. It may also increase your body’s ability to deal with stress, though more research is needed.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2023-04-08'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med4',
+            'Med_name' => 'Cumin',
+            'unitprice' => '45',
+            'stock_qty' => '70',
+            'description' => 'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2021-04-08'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med5',
+            'Med_name' => 'Turmeric',
+            'unitprice' => '100',
+            'stock_qty' => '12',
+            'description' => 'Turmeric is the Ayurvedic spice that gives curry its yellow color. Curcumin, its main compound, may help reduce inflammation and improve heart and brain health. However, large amounts are likely needed to attain these benefits.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2023-04-08'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med6',
+            'Med_name' => 'Licorice',
+            'unitprice' => '80',
+            'stock_qty' => '90',
+            'description' => 'Licorice root is an Ayurvedic spice that may help reduce inflammation and protect against various infections. It may also treat digestive problems and relieve skin irritations.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2022-12-08'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med7',
+            'Med_name' => 'Bitter melon',
+            'unitprice' => '40',
+            'stock_qty' => '100',
+            'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2023-04-08'
+        ]);
+        DB::table('medicine_stocks')->insert([
+            'Med_id' => 'med8',
+            'Med_name' => 'Cardamom',
+            'unitprice' => '40',
+            'stock_qty' => '210',
+            'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
+            'manufactureDate' => '2020-04-08',
+            'expireDate' => '2022-04-08'
+        ]);
+        //Online booking
+>>>>>>> c736b334b3fe6edb7e06bf35182933354d9a466b
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob1',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'availableDate' => '2021-02-14',
-            'availableTime' => '09:00:00'
+            'availableDate' => '2021-02-04',
+            'availableTime' => '08:00:00'
         ]);
-        //2
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob2',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat2',
-            'availableDate' => '2021-04-23',
-            'availableTime' => '13:00:00'
+            'availableDate' => '2021-01-04',
+            'availableTime' => '08:00:00'
         ]);
-        //3
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob3',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat3',
-            'availableDate' => '2021-04-24',
-            'availableTime' => '07:00:00'
+            'availableDate' => '2021-05-04',
+            'availableTime' => '08:00:00'
         ]);
-        //4
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob4',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat4',
-            'availableDate' => '2021-04-25',
-            'availableTime' => '07:00:00'
+            'availableDate' => '2021-04-04',
+            'availableTime' => '08:00:00'
         ]);
-        //5
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob5',
             'Doc_id' => 'doc2',
             'Pat_id' => 'pat5',
-            'availableDate' => '2021-04-26',
-            'availableTime' => '07:00:00'
+            'availableDate' => '2021-03-04',
+            'availableTime' => '08:00:00'
         ]);
-        //6
-        DB::table('online_bookings')->insert([
-            'App_id'=> 'ob6',
-            'Doc_id' => 'doc2',
-            'Pat_id' => 'pat6',
-            'availableDate' => '2021-04-28',
-            'availableTime' => '07:00:00'
+
+        //state symptomps1
+        DB::table('add_symptomps')->insert([
+
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Skin rash',
+            'img' => 'skin_rash.jpg'
         ]);
-       
-        
+        DB::table('add_symptomps')->insert([
+
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Feeling sick'
+        ]);
+        DB::table('add_symptomps')->insert([
+
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Feeling sick'
+        ]);
+        DB::table('add_symptomps')->insert([
+
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Feeling sick'
+        ]);
+        DB::table('add_symptomps')->insert([
+
+            'Doc_id' => 'doc1',
+            'Pat_id' => 'pat1',
+            'text' => 'Continousely Vomiting'
+        ]);
+
+
+
     }
 }
