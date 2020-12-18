@@ -624,6 +624,76 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2020-12-04 04:00:00'
         ]);
 
+        //supplier
+        DB::table('all_users')->insert([
+            'id'=> 'sup1',
+            'password' => 'sup1@',
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup1',
+            'Sup_name' => 'Sanath Geegana',
+            'Sup_addr' => 'No. 123, ABC road, Rabukkana',
+            'Sup_pNum' => '0716720783',
+            'Sup_im' => '',
+            'password' => 'sup1@'
+        ]);
+
+        DB::table('all_users')->insert([
+            'id'=> 'sup2',
+            'password' => 'sup2@',
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup2',
+            'Sup_name' => 'Yogarajan Danesh',
+            'Sup_addr' => 'No. 13, QOP road, Jaffna',
+            'Sup_pNum' => '0782349345',
+            'Sup_im' => '',
+            'password' => 'sup2@'
+        ]);
+
+        DB::table('all_users')->insert([
+            'id'=> 'sup3',
+            'password' => 'sup3@',
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup3',
+            'Sup_name' => 'K Nadarasa',
+            'Sup_addr' => 'No. 45, daffny road, Ampara',
+            'Sup_pNum' => '0785678134',
+            'Sup_im' => '',
+            'password' => 'sup3@'
+        ]);
+
+        DB::table('all_users')->insert([
+            'id'=> 'sup4',
+            'password' => 'sup4@',
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup4',
+            'Sup_name' => 'Naduni Rodrigo',
+            'Sup_addr' => 'No. 23, Kandy road, Kandy',
+            'Sup_pNum' => '0728934567',
+            'Sup_im' => '',
+            'password' => 'sup4@'
+        ]);
+
+        DB::table('all_users')->insert([
+            'id'=> 'sup5',
+            'password' => 'sup5@',
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'doc5',
+            'Sup_name' => 'Ruvini Nethmi',
+            'Sup_addr' => 'No. 67, KN road, Trincomalee',
+            'Sup_pNum' => '0762345678',
+            'Sup_im' => '',
+            'password' => 'sup5@'
+        ]);
 
         ///admin
 
