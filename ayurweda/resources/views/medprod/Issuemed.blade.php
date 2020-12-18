@@ -103,14 +103,13 @@
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <br></br>
-                                        <br></br>
 
                                         <div class="col-md-8 col-sm-12">
+                                             <h1 style="color:#ffffff">Pharmacist's Medicine Orders</h1>
                                              
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                                   <input style="color:black" type="text" placeholder="Pharmacist ID" name="search">

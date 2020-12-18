@@ -98,74 +98,85 @@
      </div>
      </div>
 
-     <!-- HOME -->
-     <section id="home" class="slider" data-stellar-background-ratio="0.5">
-     <div class="owl-carousel owl-theme">
-                         <div class="item item-first">
-                              <div class="caption">
-                                   <div class="container">
+<!-- HOME -->
+<section id="home" class="slider" data-stellar-background-ratio="0.5">
+     <div class="row">
+          <div class="">
+               <div class="item item-first">
+                    <div class="caption">
+                         <br><br>
+                         <div style="height:70%; width:88%; margin: -12% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
+                              <div class="col-md-16 col-sm-12">
+                                   <div  class="container-lg">
+                                        <div  class="table-responsive">
+                                             <div  class="table-wrapper">
+                                                  <div style="width:50%; margin-right: -20%; float:left; margin-left:2%;"><h2>Medicines Stock</h2></div>
+                                                       <div class="table-title">
+                                                            <div style="margin-top:2%; margin-right:2%;color:gray; width:20%; float:left;">
+                                                                 <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Medicine By ID" title="Type ID">   
+                                                            </div>
+                                                            <input style="margin-top:2%; width: 20%; float:left;"  class="form-control" type="text" id="myInput1" onkeyup="myFunction()" placeholder="Search Medicine By Name" title="Type Name">
+                                                            <div style="margin-top:2%; float:left; margin-left:4%;" class="col-sm-1">
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
+                                                            </div>
+                                                       </div>
+                                                       <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Medicine ID </th>
+                                                                      <th>Medicine Name</th>
+                                                                      <th>Stock Qty</th>
+                                                                      <th></th>
+                                                                 </tr>
+                                                            </thead>
 
-                                        <div class="col-md-8 col-sm-12">
-                                        <h1 style="color:#ffffff" >Medicines Stock</h1>
-                                             
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="search.." name="search">
-                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
-                                             </form>
-                                             <br></br>
-                                             <br></br>
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            
+                                                                 <tr>
+                                                                      <td></td>
+                                                                      <td></td>
+                                                                      <td></td>
+                                                                      <td>
+                                                                           <button data-toggle="modal"  data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<button data-toggle="modal" data-target="#delete" onclick = "del()" class = "btn btn-danger btn-sm">Delete</button>
+                                                                      </td>
+                                                                 </tr>
+                                                            
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines</h3></td>
+                                                                 </tr>
+                                                                 
+                                                            </tbody>
+                                                       </table>
 
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
-
-                                        <table class="table table-bordered" style=" background-color:#ffffff" >
-                                        
-                                             <thead>
-                                                  <tr style="background-color:#800000; ">
-                                                       <th>Medicine ID</th>
-                                                       <th>Medicine Name</th>
-                                                       <th>Quantity</th>
-                                                       <th></th>
-                                                  </tr>
-                                             </thead>
-                                             <tbody>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-                                                  </tr>
-                                             </tbody>
-                                        
-                                        </table>
-                                        </div>
-                                        </div>
-                                        
+                                                      
+                                                  </div>
+                                             </div>
+                                        </div>                                
                                    </div>
+                               </div>
+                               
+                         </div>
+                         <div style="background-color:white;border-radius:8%; width:86.4%; margin:-12% 7% 0 7.8%; padding-left:1%;">
+                              <h3 style="color:red;">Warnings:</h3>
+                              
+                              <div style="overflow-y:scroll; position:relative; display:block; height:150px;">
+                                   
+                                        
+                                        <h3 style = "color: grey;">All medicines are upto date</h3>
+                                  
+
+                                   
+                                        <h3 style = "color: grey;">All medicine stocks are available</h3>
+                                   
                               </div>
                          </div>
                          
                     </div>
-
+                </div>
           </div>
-     </section>
+     </div>
+</section>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

@@ -104,7 +104,7 @@
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-first">
                               <div class="caption">
                                   
@@ -118,21 +118,23 @@
                                          
                                              <button style="width:60%; margin-left:42%; margin-right:30%; margin-top:-5%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
 
-                                             <h2 style="color:#ffffff; text-align:center; width:96%; margin-left:22%;">Unrecieved Orders</h2>
+                                             <h2 style="color:#ffffff; text-align:center; width:96%; margin-left:22%;">Your Orders</h2>
                                    
 
-                                        <div style="width:100%; margin-left:22%; margin-right:20%;" class="col-lg-3">
-
-                                             <table style="background-color:white;border:5px;"  class="table table-bordered" >
+                                        <div style="width:90%; margin-left:26%; margin-right:22%;" class="col-lg-3">
+                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
+                                                  <input style="color:black" type="text" placeholder="ID" name="search">
+                                                  <input style="color:black" type="date" name="date">
+                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
+                                             </form>
+                                             <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
                                             
                                                   <tr style="background-color:#800000; ">
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Order ID</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Ingredient ID</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Supplier ID</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Order Date</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Quantity</b></th>
+                                                       <th>Order ID</th>
+                                                       <th>Order Date</th>
+                                                       <th></th>
                                                        
                                                   </tr>
                                              </thead> 
@@ -140,39 +142,31 @@
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                              </tbody>
                                              </table>
                                              <br></br>
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="ID" name="search">
-                                                  <input style="color:black" type="date" name="date">
-                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
-                                             </form>
+                                             
                                              <br></br>
                                         </div>
                                         
