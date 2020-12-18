@@ -30,7 +30,7 @@
         font-weight: bold;
    }
    .link a:link{
-     background-color: #00BFFF;
+     background-color: #8B0000;
      
      text-align: center;
      text-decoration: none;
@@ -119,20 +119,32 @@
                                              </thead>
                                              <tbody>
                                              @if(count($d) > 0)
+                                             <?php $z = 0; ?>
                                                   @foreach($d as $info)
                                                   <tr>
                                                        <td><p style=" text-align:center" >{{$info->date}}</p></td>
                                                        <td><p style=" text-align:center">{{$info->time}}</p></td>
-                                                       <input type="hidden" id = "dbtext" data-text = "{{$info->text}}"/>
-                                                       <input type="hidden" id = "dbid" value = "{{$info->id}}"/>
+                                                       <input type="hidden" id = "dbtext<?php echo $z; ?>" value = "{{$info->text}}"/>
+                                                       <input type="hidden" id = "dbid<?php echo $z; ?>" value = "{{$info->id}}"/>
+                                                       <input type="hidden" id = "dbdate<?php echo $z; ?>" value = "{{$info->date}}"/>
+                                                       <input type="hidden" id = "dbtime<?php echo $z; ?>" value = "{{$info->time}}"/>
+                                                       <input type="hidden" id = "dbdrid<?php echo $z; ?>" value = "{{$info->Doc_id}}"/>
+                                                       <input type="hidden" id = "dbaudio<?php echo $z; ?>" value = "{{$info->audio}}"/>
+                                                       <input type="hidden" id = "dbimg<?php echo $z; ?>" value = "{{$info->img}}"/>
+                                                       <input type="hidden" id = "dbreply<?php echo $z; ?>" value = "{{$info->reply}}"/>
 
-                                                       <form action="{{ route ('viewSymp',['i'=> $info->id, 'j'=>$c->Pat_id]) }}" method = "get">
+                                                       
                                                       
-                                                            <td style=" text-align:center"><button type="submit" id = "button" class="btn btn-primary btn-sm" >View</button></td>
+                                                       <td style=" text-align:center">
+                                                       
+                                                       <button type="submit" id = "button" data-toggle="modal" onclick="viewSymp(<?php echo $z; ?>)" data-target="#viewsymp" class="btn btn-primary btn-sm" >View</button>
+                                                       
+                                                       </td>
 
-                                                       </form>
+                                                  
                                                        
                                                   </tr>
+                                                  <?php $z++;?>
                                                   @endforeach   
                                                   
                                              @else
@@ -161,6 +173,153 @@
                     </div>
           </div>
 </section>
+<!--Modal 2-->
+<div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="viewsymp" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
+     <div class="modal-dialog" role="dialog">
+          <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+               <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">View Symptom</h4>
+                   <h6 id="dttag" style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%;">  </h6> 
+                   <h6 id ="tmtag"style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%; margin-right:20%;">Time: </h6>
+                    
+               </div>
+               <div id="bdy" class="modal-body">
+               <h4 id = "doctag" style="color:grey; ">To: </h4>
+               <p id = "texttag"></p>
+
+               <label id = "imtag" style="display:none;">Image(s): </label>
+                    
+                    
+                                        
+               </div>
+               <div class="modal-footer">
+               <button style = "float:right; " type="submit" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+               </div>
+          </div>
+     </div>
+</div>
+
+<script>
+function viewSymp(id)
+{
+     document.getElementById('tmtag').innerHTML = "Time: "+ document.getElementById('dbtime'+id).value;
+
+     document.getElementById('dttag').innerHTML ="Date: " + document.getElementById('dbdate'+id).value;
+     
+     document.getElementById('texttag').innerHTML = document.getElementById('dbtext'+id).value;
+
+     document.getElementById('doctag').innerHTML = "To: " + document.getElementById('dbdrid'+id).value;
+
+     var bdy = document.getElementById('bdy');
+
+     var bk = document.createElement('br');
+     var imgs = document.getElementById('dbimg'+id).value; 
+     if(imgs.length > 0){
+
+          if(document.getElementById('shimg')){
+               document.getElementById('shimg').remove();
+               console.log('del');
+          }
+          var  div = document.createElement('div');
+          div.setAttribute('id','shimg');
+     
+          var imgs = imgs.substring(2, imgs.length-2)
+         imgs = imgs.replace(/\"/g,'');
+          var imgs = imgs.split(","); 
+        
+          document.getElementById('imtag').style.display = "block";
+         
+     
+           for(var i = 0 ; i < imgs.length ; i++){
+               im = document.createElement('img');
+               im.setAttribute('src',"{{asset('upload/images')}}/"+imgs[i]);
+               im.setAttribute("style","width:100px; height:200px;margin-right:1%;");
+               div.appendChild(im);
+               bdy.appendChild(div); 
+               
+          }
+         
+
+     }else{
+          document.getElementById('imtag').style.display = "none";
+          if(document.getElementById('shimg')){
+               document.getElementById('shimg').remove();
+               
+          }
+     }
+     
+
+     var adio = document.getElementById('dbaudio'+id).value;
+     
+     
+     if(adio.length > 0){
+          if(document.getElementById('showaudio')){
+               document.getElementById('showaudio').remove();
+               
+          }
+          var adiv = document.createElement('div');
+          adiv.setAttribute('id','showaudio');
+
+          var lbl = document.createElement('label')
+          lbl.innerHTML = "Audio: ";
+          var tdiv = document.createElement('div');
+          var aud = document.createElement('audio');
+        
+          aud.setAttribute('style','height:30px; width:70%;');
+          aud.setAttribute('controls',true);
+          aud.setAttribute('controlsList','nodownload');
+          aud.setAttribute('src',"{{asset('upload/voicerecordings')}}/"+adio);  
+          
+          aud.innerHTML = "Browser doesn't support this audio file";
+          tdiv.appendChild(aud);
+          adiv.appendChild(lbl);
+          adiv.appendChild(bk);
+          adiv.appendChild(tdiv);
+
+
+          bdy.appendChild(adiv);
+
+     }else{
+
+          if(document.getElementById('showaudio')){
+               document.getElementById('showaudio').remove();
+               
+          }
+     }
+
+     if(document.getElementById('dre')){
+          document.getElementById('dre').remove();
+     }
+
+     var div2 = document.createElement('div');
+     div2.setAttribute('id','dre');
+
+          var lb = document.createElement('label');
+          lb.style.color = "blue";
+          lb.innerHTML = "Reply From Doctor: ";
+          div2.appendChild(lb);
+
+          var p = document.createElement('p');
+
+          var data = document.getElementById('dbreply'+id).value;
+          if(data.length > 0){
+               p.style = "color:Teal; font-weight:bold;"
+               p.innerHTML = data;
+          }else{
+              
+               p.innerHTML = "Doctor doesn't send any reply"
+          }
+
+          div2.appendChild(p);
+     bdy.appendChild(div2);
+     
+
+     
+     
+
+
+}
+</script>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($errors->any())
      <script> var a=""; </script>
@@ -276,11 +435,7 @@
                                                             overflow: auto;resize: both;width: 500px; margin-left: 8px; background-color:white; color:black; border-radius:10px;" contenteditable="true">
                                                        </div>
                                                        <input type="hidden" name="text" id="copy"/>
-                                                       <script type="text/javascript">
-                                                            function prepareDiv() {
-                                                                 document.getElementById("copy").value = document.getElementById("original").innerHTML;
-                                                            }
-                                                       </script>
+                                                       
                                                        <label for="audio">Audio: &nbsp;</label>   Choose Your Voice Record
                                                             <input  type="file" name = "audio"  accept="audio/*"  placeholder="Choose Your Voice Record"/><br>
 
@@ -289,14 +444,19 @@
                                                        <div class="custom-file-container" data-upload-id="myUniqueUploadId">
                                                             <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
                                                             <label class="custom-file-container__custom-file">
-                                                                 <input  type="file" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose File">
+                                                                 
+                                                                 <input  type="file" id="images" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose File">
                                                                  <span  class="custom-file-container__custom-file__custom-file-control"></span>
                                                             </label>
                                                             
 
                                                                 
                                                            
-
+                                                       <script type="text/javascript">
+                                                            function prepareDiv() {
+                                                                 document.getElementById("copy").value = document.getElementById("original").innerHTML;
+                                                            }
+                                                       </script>
                                                             
                                                             <div class="custom-file-container__image-preview">
 
@@ -319,6 +479,7 @@
           </div>
      </div>
 </div>
+
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

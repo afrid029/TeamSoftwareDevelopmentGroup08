@@ -14,15 +14,13 @@ class CreateIngredientOrderingsTable extends Migration
     public function up()
     {
         Schema::create('ingredient_orderings', function (Blueprint $table) {
-            $table->string('IngOrder_id');
-            $table->string('Ing_id');
-            $table->integer('Ing_qty');
+            $table->id();
+            $table->longtext('Ingredients');
             $table->string('Pro_id');
             $table->string('Sup_id');
             $table->date('MedOrder_date');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
             $table->foreign('Sup_id')->references('Sup_id')->on('ingredient_suppliers');
-            $table->primary('IngOrder_id');
             $table->timestamps();
         });
     }

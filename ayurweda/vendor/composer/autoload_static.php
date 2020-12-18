@@ -541,6 +541,7 @@ class ComposerStaticInitb096c83ad0c96fa8146934901568e313
         'App\\Models\\Pharmacist' => __DIR__ . '/../..' . '/app/Models/Pharmacist.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\add_symptomps' => __DIR__ . '/../..' . '/app/Models/add_symptomps.php',
+        'App\\Models\\admin' => __DIR__ . '/../..' . '/app/Models/admin.php',
         'App\\Models\\ingredients' => __DIR__ . '/../..' . '/app/Models/ingredients.php',
         'App\\Models\\medicines' => __DIR__ . '/../..' . '/app/Models/medicines.php',
         'App\\Models\\new_med_stock' => __DIR__ . '/../..' . '/app/Models/new_med_stock.php',

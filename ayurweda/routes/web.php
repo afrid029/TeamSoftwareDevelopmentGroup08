@@ -69,7 +69,6 @@ Route::get('symp/{c}/',[patientsController::class,'symp'])->name('symp');
 Route::get('order/{c}/',[patientsController::class,'order'])->name('order');
 Route::get('book/{c}/',[patientsController::class,'book'])->name('book');
 Route::post('addsymptomps/{c}',[patientsController::class, 'Add_Symptomps'])->name('addsymptomps');
-Route::get('viewSymp/{i}/{j}/',[patientsController::class, 'show'])->name('viewSymp');
 Route::get('showAvail/',[patientsController::class , 'showAvailable']);
 Route::get('appoint',[patientsController::class, 'appoint']);
 Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
@@ -93,6 +92,11 @@ Route::get('promeddelete/{c}/', 'update@promeddelete')->name('promeddelete');
 Route::post('/proadding', 'store@proadding');
 Route::get('proingdelete/{c}/', 'update@proingdelete')->name('proingdelete');
 Route::post('/proupdateing', 'update@proupdateing');
+Route::post('/proingorder', 'store@proingorder');
+Route::post('/propic', 'update@propic');
+Route::post('/ordersearch', 'search@ordersearch');
+Route::post('/issusearch', 'search@issusearch');
+Route::get('reorder/{c}/', 'update@reorder')->name('reorder');
 
 //Pharmacist Routings
 Route::get('phahome/{c}/',[pharmacistController::class, 'phaHome'])->name('phahome');
@@ -109,3 +113,4 @@ Route::post('issuepatorder',[pharmacistController::class, 'issuepatorder'])->nam
 Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->name('issuedocorder');
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');
+Route::post('oredertopro/{c}/',[pharmacistController::class, 'oredertopro'])->name('oredertopro');

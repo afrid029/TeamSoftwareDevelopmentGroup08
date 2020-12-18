@@ -74,35 +74,30 @@ class redirect extends Controller
     }
     public function issuemedicine($t){
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
-        $p=DB::table('medicine_orderings')->get();
-        if($p==null){
-            return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('pres',"");
-        }
-        else{
-            return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('pres',$p);
-        }     
+        $p=DB::table('medicine_orderings')->where('Pro_id',$t)->get();
+        return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('p',$p);
+            
     }
     public function Ingstock($t){
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $ingredients = DB::table('ingredients')->get();
         $ing=DB::table('ingredient_stocks')->where('Pro_id',$t)->get();
-        return view('medprod/ingstock')->with('c',$c)->with('msg',"")->with('ing',$ing);
+        return view('medprod/ingstock')->with('c',$c)->with('msg',"")->with('ing',$ing)->with('ingredients',$ingredients);
         
     }
     public function medstock($t){
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $medicines = DB::table('medicines')->get();
         $med = DB::table('new_med_stocks')->where('Pro_id',$t)->get();
-        return view('medprod/medstock')->with('c',$c)->with('msg',"")->with('med',$med);
+        return view('medprod/medstock')->with('c',$c)->with('msg',"")->with('med',$med)->with('medicines',$medicines);
         
     }
     public function ordering($t){
+        $ingredients = DB::table('ingredients')->get();
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
-        $p=DB::table('ingredient_orderings')->get();
-        if($p==null){
-            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',"");
-        }
-        else{
-            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',$p);
-        }
+        $p=DB::table('ingredient_orderings')->where('Pro_id',$t)->get();
+        return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('p',$p)->with('ingredients',$ingredients);
+        
     }
    
 }

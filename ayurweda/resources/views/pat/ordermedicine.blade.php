@@ -50,6 +50,65 @@
     
      background-color: #8B0000;
    }
+    
+    .table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #191970;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 55vh;
+  
+}
+.small-col{flex-basis:10%;}
+ 
    </style>
 
 </head>
@@ -212,29 +271,54 @@
                     <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
                </div>
                <div style="margin-top:-2%;" class="modal-body">
-                    <h4>Medicine Name</h4>
-                    @if(count($stocks) > 0)                          
-                    
-                    <?php $k = 0; ?>
-                    <div class = "form-control"style="height:120px; border:1px solid; overflow-y:scroll;">
-                    
-                    @foreach($stocks as $stock)
-                         
-                         <input type="checkbox"  id = "med<?php echo $k; ?>" name = "med<?php echo $k; ?>" value = "{{$stock->Med_name}}" onclick="qtybox(<?php echo $k; ?>)"/>
-                         <label>{{$stock->Med_name}}</label>
-                         <button class="btn btn-info btn-sm fa fa-plus-circle " onclick="add(<?php echo $k; ?>)" id="btn<?php echo $k; ?>" style="display:none; float:right; padding:0.7%;"></button>
-                         <input type="number" id="qnt<?php echo $k; ?>" name="qnt<?php echo $k; ?>" class="form-control" style="display:none; width : 20%; height:18px; float:right; margin-right:2%; margin-top:0.5%;">
-                         <label style="display:none; margin-top:0.5%; float:right; font-size:10px; margin-right:12px; color:gray;"  id="qnty<?php echo $k; ?>">Quantity: </label>
+               <!-------------------------------------------------------------------------------------------------->
+               <div style="margin-top:2%; margin-right:2%;color:gray; width:60%; ">
+                         <input autocomplete="off" class="form-control" type="text" id="medsearch"  onkeyup="medicine()"  placeholder="Select Medicines" title="Type ID" style="float:left;"> 
+               </div>&nbsp; <i style="margin-top:-1%;" id="medshow" onclick="medshowlist()" class="btn btn-outline fa fa-plus-circle fa-2x" aria-hidden="true"></i> 
 
-                        
-                         <br>
-                         <?php $k++; ?>
-                         
-                    @endforeach
-                    </div>
-                    @else
-                         <p><i>No Medicines in Stock</i></p>
-                    @endif
+               <div id="medlist" style="z-index:10; position:absolute; width:80%; background-color:white; display:none;">
+
+                    <table class="table table-bordered table-scroll">
+                              <thead style="width:100%;">
+                                   <tr>
+                                        <th style="width:15%;"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></th>
+                                        <th style="width:45%;">Name</th>
+                                        <th style="width:40%;">Quantity</th>
+                                   </tr>
+                              </thead>
+                              <tbody style="width:100%;" class = "body-half-screen">
+                              @if(count($stocks) > 0)                          
+
+                              <?php $a = 0; ?>
+                                   @foreach($stocks as $st)
+                                        <tr>
+                                             
+                                             <td style="width:15%;"><input type="checkbox"  class="fa fa-check-circle-o"  id = "med<?php echo $a; ?>" name = "med<?php echo $a; ?>" value = "{{$st->Med_name}}" onclick="qtybox(<?php echo $a; ?>)" /></td>
+                                        
+                                             <td style="width:45%;">{{$st->Med_name}}</td>
+                                             <td style="width:40%;">
+                                                  <div id = "qti<?php echo $a; ?>" style="display:none;">
+                                                       <input type="number" class="form-control" style="width:50%; float:left; height: 30px;" id="qnt<?php echo $a; ?>">
+                                                       <button type = "button" class = "btn btn-primary fa fa-plus" onclick = "add(<?php echo $a; ?>)"></button>
+                                                  </div>
+                                                  
+
+                                             </td>
+
+                                        </tr>
+                                   <?php $a++; ?>
+                                   @endforeach
+                              </tbody>
+                              @else
+                                   <p><i>No Medicines in Stock</i></p>
+                              @endif
+
+                    </table>
+
+               </div>
+
+               <!------------------------------------------------------------------------------------------------->
+                    <h4>Medicine Name</h4>
                     
                     
                     <h3 id="head" style="display:none;">Medicine Order Details</h3>
@@ -255,20 +339,50 @@
                     </div>
                    
                     <script>
+                     function medshowlist(){
+                             var cls = document.getElementById('medshow').className;
+                             console.log(cls);
+                             if(cls == "btn btn-outline fa fa-plus-circle fa-2x"){
+                                  document.getElementById('medshow').className = "btn btn-outline fa fa-times-circle fa-2x";
+
+                                  document.getElementById('medlist').style.display = "block";
+                             }else{
+                                   document.getElementById('medshow').className = "btn btn-outline fa fa-plus-circle fa-2x";
+                                   document.getElementById('medlist').style.display = "none";
+                             }
+                              
+                         }
+                         function medicine() {
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("medsearch");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("medlist");
+                              tr = table.getElementsByTagName("tr");
+                              for (i = 0; i < tr.length; i++) {
+                                   td = tr[i].getElementsByTagName("td")[1];
+                                   if (td) {
+                                        txtValue = td.textContent || td.innerText;
+                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                        } else {
+                                        tr[i].style.display = "none";
+                                        }
+                                   }       
+                              }
+                         }
                          function qtybox(id){
                               var chk = document.getElementById("med"+id);
-                              var qty = document.getElementById("qnt"+id);
-                              var qtyL = document.getElementById("qnty"+id);
-                              var btn = document.getElementById("btn"+id);
+                              var qty = document.getElementById("qti"+id);
+                              
 
                               if(chk.checked == true){
                                    qty.style.display = "block";
-                                   qtyL.style.display = "block";
-                                   btn.style.display = "block";
+                                   chk.className = "fa fa-check-circle";
+                                   
                               }else{
                                    qty.style.display = "none";
-                                   qtyL.style.display = "none";
-                                   btn.style.display = "none";
+                                   chk.className = "fa fa-check-circle-o";
+                                   
                               }
                          }
                          var form = document.getElementById("form");
@@ -311,7 +425,7 @@
                                    input1.setAttribute("value",med);
                                    input1.setAttribute("readonly",true);
                                    input1.setAttribute("class","form-control");
-                                   input1.setAttribute("style","margin-right:5px; width:20%; float:left;");
+                                   input1.setAttribute("style","margin-right:5px; width:40%; float:left;");
                                    
                                    var input2 = document.createElement("input");
                                    input2.setAttribute("type","number");
@@ -320,7 +434,7 @@
                                    input2.setAttribute("value",qty);
                                    input2.setAttribute("readonly",true);
                                    input2.setAttribute("class","form-control");
-                                   input2.setAttribute("style","margin-right:5px; width:20%;");
+                                   input2.setAttribute("style","margin-right:5px; width:15%;");
 
                                  
                                     var br = document.createElement("br");
@@ -332,7 +446,7 @@
                                    var rem = document.createElement("button");
                                    rem.setAttribute("class", "btn btn-danger fa fa-minus-circle ");
                                    rem.setAttribute("type", "button");
-                                   rem.setAttribute("style","margin-right:5px; float:right; margin-top:-6%; margin-right:45%;");
+                                   rem.setAttribute("style"," float:right; margin-top:-6%; margin-right:25%;");
                                    rem.setAttribute("id", "del"+id);
                                    rem.setAttribute("onclick", "remove("+id+")");
                                    div.appendChild(rem);
@@ -345,9 +459,8 @@
                                   
                                   
 
-                                   document.getElementById("btn"+id).style.display="none";
-                                   document.getElementById("qnt"+id).style.display="none";
-                                   document.getElementById("qnty"+id).style.display="none";
+                                   document.getElementById("qti"+id).style.display="none";
+                                  
                                    
                               }
                               

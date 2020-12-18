@@ -85,6 +85,7 @@
 
           </div>
      </section>
+@if($msg=session()->get('msg'))
 @if($msg=="Inserted successfully.")
 <script>
 Swal.fire({
@@ -105,6 +106,28 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@endif
+@endif
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
 @endif
 
 @if($ro!="")

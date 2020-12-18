@@ -62,6 +62,7 @@
           </div>
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($msg = session()->get('msg'))
 @if($msg=="Registered successfully.")
 <script>
 Swal.fire({
@@ -82,6 +83,7 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@endif
 @endif
 
 @if($errors->any())

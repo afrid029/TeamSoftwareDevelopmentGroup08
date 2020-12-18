@@ -111,9 +111,11 @@
                                         <div class="col-md-8 col-sm-12">
                                              <h1 style="color:#ffffff">Pharmacist's Medicine Orders</h1>
                                              
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="search">
+                                             <form action="/issusearch" method="post" style="margin:auto;width:700px">
+                                             @csrf
+                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="pharid">
                                                   <input style="color:black" type="date" name="date">
+                                                  <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
                                                   <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
                                              <br></br>
@@ -127,51 +129,85 @@
                                              <thead>
                                                   <tr style="background-color:#800000; ">
                                                        <th>Order ID</th>
-                                                       <th>Medicine ID</th>
-                                                       <th>Quantity</th>
+                                                       <th>Medicines</th>
                                                        <th>Pharmacist ID</th>
                                                        <th>Order Date</th>
-                                                       <th></th>
+                                                       <th>Order status</th>
+
                                                       
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                             @if($p1=session()->get('p1'))
+                                             <?php $orders=$p1; ?>
+                                             @else
+                                             <?php $orders=$p; ?>
+                                             @endif
+                                             
+                                             @if(count($orders) > 0)
+                                             
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
+                                                       <td><p >{{$order->MedOrder_id}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                       
+                                                       </td>
+                                                       <td><p >{{$order->Phar_id}}</p></td>
+                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       @if($order->status=="Unrecieved")
+                                                       <td><a href="{{route('reorder',$order->MedOrder_id)}}" class="btn btn-primary btn-sm">Recieve</a></td>
+                                                       @else
+                                                       <td><p >{{$order->status}}</p></td>
+                                                       @endif
+                                                       
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
+                                                  <?php $no++; ?>
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
+                                                  
                                                   
                                              </tbody>
                                         
                                         </table>
+                                        <script>
+                                             function viewing(id){
+                                                  var a = document.getElementById('medi'+id).value;
+                                                  var k = a.substring(2, a.length-2)
+                                                  var d = k.split(",");
+                                                  console.log(k);
+                                                  console.log(d);
+                                                  var result = "";
+                                                  for(var i = 0; i < d.length ; i++){
+                                                       if(i%2 == 0){
+                                                            result = result + d[i]; 
+                                                       }else{
+                                                            result = result + " "+d[i]+"\n";
+                                                       }
+                                                  }
+                                                
+                                                  console.log(d.length);
+                                                  Swal.fire({
+                                                       position: 'top',
+                                                       width:400,
+                                                       text:"Order details",
+                                                       icon: 'info',
+                                                       title: result,
+                                                      
+                                                       showConfirmButton: true,
+                                                      
+                                                  
+                                                  });
+                                             }
+                                                 
+                                        </script>
                                         </div>
                                         </div>
                                         

@@ -26,14 +26,42 @@
       .tableFixHead {
         overflow-y: auto;
         height: 200px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
-      th {
-        background: gray;
-      }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
     <script>
     function myFunction() {
@@ -131,6 +159,27 @@ Swal.fire({
 });
 </script>
 @endif
+@endif
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
 @endif
 
 
@@ -330,24 +379,26 @@ Swal.fire({
                     <div class="owl-carousel owl-theme">
                     <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
                                         <br></br>
                                    
-                                        <div class="col-md-8 col-sm-12">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                       Add a prescription
-                                        </button><br><br><br></br>
+                                        
                                              
-                                             
+                                             <div style="float:left;">
                                              <form action="/pressearch" method="post">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <div style="float:left;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
+                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
-                                             
+                                             </div>
+                                             <div style="float:right;">
+                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                       Add a prescription
+                                             </button>
+                                             </div>
                                              <br><br>
                                              <div class="tableFixHead">
                                              
@@ -365,10 +416,15 @@ Swal.fire({
                                                        <th>Medicine</th>
                                                   </tr>
                                              </thead>
+                                             @if($pres1=session()->get('pres1'))
+                                             <?php $press=$pres1; ?>
+                                             @else
+                                             <?php $press=$pres; ?>
+                                             @endif
                                              <tbody>
-                                                  @if(count($pres) > 0)
+                                                  @if(count($press) > 0)
                                                   <?php $no = 0; ?>
-                                                  @foreach($pres as $pr)
+                                                  @foreach($press as $pr)
                                                   <tr>
                                                        <td>{{$pr->Meeting_id}}</td>
                                                        <td>{{$pr->Pat_id}}</td>
@@ -394,7 +450,7 @@ Swal.fire({
                                         </table>
                                         </div>
                                         
-                                        </div><br>
+                                        <br>
                                         
                                    </div>
                              </div>
