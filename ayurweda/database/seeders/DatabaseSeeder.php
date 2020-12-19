@@ -93,80 +93,69 @@ class DatabaseSeeder extends Seeder
             'password' => 'doc5@'
         ]);
 
-        DB::table('all_users')->insert([
-            'id'=> 'doc6',
-            'password' => 'doc6@',
-            'roll' => 'doctor'
+        //Available Time
+
+        DB::table('doc_available_times')->insert([
+            'id'=> '01',
+            'Doc_id' => 'doc1',
+            'availableDate' => '2021-06-15',
+            'availableTime' => '15:00:00'
         ]);
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc6',
-            'Doc_name' => 'Jenny Rudrigo',
-            'Doc_email' => 'jrudrigo6@gmail.com',
-            'Doc_addr' => 'No.10/D, Stage 3,Badulla',
-            'Doc_pNum' => '0715671110',
-            'Doc_im' => '',
-            'password' => 'doc6@'
+        DB::table('doc_available_times')->insert([
+            'id'=> '02',
+            'Doc_id' => 'doc1',
+            'availableDate' => '2021-06-20',
+            'availableTime' => '15:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '03',
+            'Doc_id' => 'doc2',
+            'availableDate' => '2021-06-21',
+            'availableTime' => '16:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '04',
+            'Doc_id' => 'doc2',
+            'availableDate' => '2021-06-21',
+            'availableTime' => '14:30:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '05',
+            'Doc_id' => 'doc3',
+            'availableDate' => '2021-06-23',
+            'availableTime' => '17:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '06',
+            'Doc_id' => 'doc4',
+            'availableDate' => '2021-06-24',
+            'availableTime' => '09:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '07',
+            'Doc_id' => 'doc1',
+            'availableDate' => '2021-06-15',
+            'availableTime' => '15:30:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '08',
+            'Doc_id' => 'doc2',
+            'availableDate' => '2021-06-21',
+            'availableTime' => '17:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '09',
+            'Doc_id' => 'doc1',
+            'availableDate' => '2021-06-15',
+            'availableTime' => '16:00:00'
+        ]);
+        DB::table('doc_available_times')->insert([
+            'id'=> '10',
+            'Doc_id' => 'doc1',
+            'availableDate' => '2021-06-15',
+            'availableTime' => '16:30:00'
         ]);
 
-        DB::table('all_users')->insert([
-            'id'=> 'doc7',
-            'password' => 'doc7@',
-            'roll' => 'doctor'
-        ]);
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc7',
-            'Doc_name' => 'Luvis johnathan',
-            'Doc_email' => 'luvis7@gmail.com',
-            'Doc_addr' => 'No.28, Nelumkulama, Anuradhapura',
-            'Doc_pNum' => '0761002340',
-            'Doc_im' => '',
-            'password' => 'doc7@'
-        ]);
-
-        DB::table('all_users')->insert([
-            'id'=> 'doc8',
-            'password' => 'doc8@',
-            'roll' => 'doctor'
-        ]);
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc8',
-            'Doc_name' => 'Jessy Mogan',
-            'Doc_email' => 'jmogan@gmail.com',
-            'Doc_addr' => 'N0.365,stage 2,AK road,Hambanthota',
-            'Doc_pNum' => '0712098765',
-            'Doc_im' => '',
-            'password' => 'doc8@'
-        ]);
-
-        DB::table('all_users')->insert([
-            'id'=> 'doc9',
-            'password' => 'doc9@',
-            'roll' => 'doctor'
-        ]);
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc9',
-            'Doc_name' => 'Jessica Wishcholk',
-            'Doc_email' => 'jwish9@gmail.com',
-            'Doc_addr' => 'N0.78, kks road, Jaffna',
-            'Doc_pNum' => '0762895601',
-            'Doc_im' => '',
-            'password' => 'doc9@'
-        ]);
-
-        DB::table('all_users')->insert([
-            'id'=> 'doc10',
-            'password' => 'doc10@',
-            'roll' => 'doctor'
-        ]);
-        DB::table('doctors')->insert([
-            'Doc_id' => 'doc10',
-            'Doc_name' => 'Sarath Guruge',
-            'Doc_email' => 'sarath10@gmail.com',
-            'Doc_addr' => 'No.45, stage 5, Kelaniya',
-            'Doc_pNum' => '0712306793',
-            'Doc_im' => '',
-            'password' => 'doc10@'
-        ]);
         // producer sample data
         DB::table('all_users')->insert([
             'id'=> 'prod1',
@@ -181,6 +170,35 @@ class DatabaseSeeder extends Seeder
             'Pro_im' => '',
             'password' => 'prod1@'
         ]);
+        DB::table('all_users')->insert([
+            'id'=> 'prod2',
+            'password' => 'prod2@',
+            'roll' => 'producer'
+        ]);
+        DB::table('medicine_producers')->insert([
+            'Pro_id' => 'prod2',
+            'Pro_name' => 'Krishanthi Samarakoon',
+            'Pro_addr' => 'No.67, stage 5, Katunayake',
+            'Pro_pNum' => '0714567890',
+            'Pro_im' => '',
+            'password' => 'prod2@'
+        ]);
+        DB::table('all_users')->insert([
+            'id'=> 'prod3',
+            'password' => 'prod3@',
+            'roll' => 'producer'
+        ]);
+        DB::table('medicine_producers')->insert([
+            'Pro_id' => 'prod3',
+            'Pro_name' => 'Ganesh Darmapala',
+            'Pro_addr' => 'No.9, stage 2, Anuradhapura',
+            'Pro_pNum' => '0789564786',
+            'Pro_im' => '',
+            'password' => 'prod3@'
+        ]);
+
+
+
         //patient sample data
         DB::table('all_users')->insert([
             'id'=> 'pat1',
@@ -362,7 +380,62 @@ class DatabaseSeeder extends Seeder
             'password' => 'pat10@'
         ]);
 		
-		
+        //admitted patients details
+        
+        DB::table('add_pats')->insert([
+            'id' => '01',
+            'Pat_id' => 'pat1',
+            'disease' => 'Skin rash',
+            'ad_date' => '2020-01-10',
+            'disch_date' => '2020-02-03',
+            'Doc_id' => 'doc1',
+            'bedno' => '01'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '02',
+            'Pat_id' => 'pat2',
+            'disease' => 'Vericose',
+            'ad_date' => '2020-02-10',
+            'disch_date' => '2020-03-03',
+            'Doc_id' => 'doc1',
+            'bedno' => '02'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '03',
+            'Pat_id' => 'pat3',
+            'disease' => 'Diabetic',
+            'ad_date' => '2020-01-10',
+            'disch_date' => '2020-02-02',
+            'Doc_id' => 'doc2',
+            'bedno' => '03'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '04',
+            'Pat_id' => 'pat4',
+            'disease' => 'Diabetic',
+            'ad_date' => '2020-02-01',
+            'disch_date' => '2020-02-03',
+            'Doc_id' => 'doc4',
+            'bedno' => '04'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '05',
+            'Pat_id' => 'pat5',
+            'disease' => 'Migraine',
+            'ad_date' => '2020-03-20',
+            'disch_date' => '2020-03-25',
+            'Doc_id' => 'doc1',
+            'bedno' => '05'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '06',
+            'Pat_id' => 'pat6',
+            'disease' => 'Backbone pain',
+            'ad_date' => '2020-04-10',
+            'disch_date' => '2020-04-15',
+            'Doc_id' => 'doc1',
+            'bedno' => '06'
+        ]);
 		
 		//Pharmacist sample data
         DB::table('all_users')->insert([
@@ -449,8 +522,78 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Triphalachurna',
             'description'=>'Triphala has been used in traditional Ayurvedic medicine since ancient times as a multi-purpose treatment for symptoms ranging from stomach ailments to dental cavities. It is also believed to promote longevity and overall health'
         ]);
-   
+
+        //addmitted patients
+        
+        DB::table('add_pat_ups')->insert([
+            'id' => '01',
+            'Pat_id' => 'pat1',
+            'Doc_id' => 'doc1',
+            'medicines' => 'Aralu',
+            'date' => '2020-01-05',
+            'condition' => 'Need further treatment'
+        ]);
+        DB::table('add_pat_ups')->insert([
+            'id' => '02',
+            'Pat_id' => 'pat2',
+            'Doc_id' => 'doc1',
+            'medicines' => 'Ashwagandha',
+            'date' => '2020-02-05',
+            'condition' => 'Need further treatment'
+        ]);
+        DB::table('add_pat_ups')->insert([
+            'id' => '03',
+            'Pat_id' => 'pat7',
+            'Doc_id' => 'doc1',
+            'medicines' => 'Cumin',
+            'date' => '2020-03-01',
+            'condition' => 'fully recovered'
+        ]);
+        DB::table('add_pat_ups')->insert([
+            'id' => '04',
+            'Pat_id' => 'pat3',
+            'Doc_id' => 'doc2',
+            'medicines' => 'Ashwagandha',
+            'date' => '2020-02-01',
+            'condition' => 'Need further treatment'
+        ]);
+        DB::table('add_pat_ups')->insert([
+            'id' => '05',
+            'Pat_id' => 'pat8',
+            'Doc_id' => 'doc1',
+            'medicines' => 'Turmeric',
+            'date' => '2020-04-01',
+            'condition' => 'fully recovered'
+        ]);
        
+
+        //prescription
+
+        DB::table('medical_histories')->insert([
+            'Meeting_id' => '001',
+            'Pat_id' => 'pat1',
+            'Doc_id' => 'doc1',
+            'diagnosis' => 'rash',
+            'disease' => 'Skin rash',
+            'medicine' => 'Aralu'
+        ]);
+        DB::table('medical_histories')->insert([
+            'Meeting_id' => '002',
+            'Pat_id' => 'pat2',
+            'Doc_id' => 'doc1',
+            'diagnosis' => 'leg pain',
+            'disease' => 'Vericose',
+            'medicine' => 'Ashwagandha'
+        ]);
+        DB::table('medical_histories')->insert([
+            'Meeting_id' => '003',
+            'Pat_id' => 'pat3',
+            'Doc_id' => 'doc2',
+            'diagnosis' => 'High blood suger',
+            'disease' => 'Diabetic',
+            'medicine' => 'Ashwagandha'
+        ]);
+
         //maintain medicine stock
         DB::table('medicine_stocks')->insert([
             'Med_id' => 'med1',
@@ -534,8 +677,7 @@ class DatabaseSeeder extends Seeder
             'expireDate' => '2022-04-08'
         ]);
 
-
-
+        
        //Online booking
         DB::table('online_bookings')->insert([
             'App_id'=> 'ob1',
@@ -545,8 +687,6 @@ class DatabaseSeeder extends Seeder
             'availableTime' => '08:00:00'
         ]);
         DB::table('online_bookings')->insert([
-
-            
             'App_id'=> 'ob2',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat2',
@@ -695,6 +835,147 @@ class DatabaseSeeder extends Seeder
             'password' => 'sup5@'
         ]);
 
+        //ingredients
+
+        DB::table('ingredients')->insert([
+            'Ing_id' => '001',
+            'Ing_name' => 'Aralu',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '002',
+            'Ing_name' => 'Iguru',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '003',
+            'Ing_name' => 'Katuwal Batu',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '004',
+            'Ing_name' => 'Beli',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '005',
+            'Ing_name' => 'Walmi',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '006',
+            'Ing_name' => 'Siviya',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '007',
+            'Ing_name' => 'Ehala',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '008',
+            'Ing_name' => 'Rasakida',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '009',
+            'Ing_name' => 'Sudu Hadun',
+            'description' => ''
+        ]);
+        DB::table('ingredients')->insert([
+            'Ing_id' => '10',
+            'Ing_name' => 'Babila',
+            'description' => ''
+        ]);
+
+        //ingredient orderings
+        DB::table('ingredient_orderings')->insert([
+            'id' => '001',
+            'Ingredients' => 'Aralu',
+            'Pro_id' => 'prod1',
+            'Sup_id' => 'sup1',
+            'IngOrder_date' => '2020-04-06',
+            'status' => 'Unrecieved'
+        ]);
+        DB::table('ingredient_orderings')->insert([
+            'id' => '002',
+            'Ingredients' => 'Thippili',
+            'Pro_id' => 'prod1',
+            'Sup_id' => 'sup1',
+            'IngOrder_date' => '2020-05-20',
+            'status' => 'Unrecieved'
+        ]);
+        DB::table('ingredient_orderings')->insert([
+            'id' => '003',
+            'Ingredients' => 'Rasakida',
+            'Pro_id' => 'prod2',
+            'Sup_id' => 'sup1',
+            'IngOrder_date' => '2020-06-21',
+            'status' => 'Unrecieved'
+        ]);
+        DB::table('ingredient_orderings')->insert([
+            'id' => '004',
+            'Ingredients' => 'Walmi',
+            'Pro_id' => 'prod2',
+            'Sup_id' => 'sup2',
+            'IngOrder_date' => '2020-05-01',
+            'status' => 'Unrecieved'
+        ]);
+        DB::table('ingredient_orderings')->insert([
+            'id' => '005',
+            'Ingredients' => 'Lunuvila',
+            'Pro_id' => 'prod1',
+            'Sup_id' => 'sup2',
+            'IngOrder_date' => '2020-04-30',
+            'status' => 'Unrecieved'
+        ]);
+        DB::table('ingredient_orderings')->insert([
+            'id' => '006',
+            'Ingredients' => 'Daththa',
+            'Pro_id' => 'prod1',
+            'Sup_id' => 'sup1',
+            'IngOrder_date' => '2020-07-06',
+            'status' => 'Unrecieved'
+        ]);
+
+        //ingriedient stock
+
+        DB::table('ingredient_stocks')->insert([
+            'id' => '01',
+            'Pro_id' => 'prod1',
+            'Ing_id' => '001',
+            'Ing_name' => 'Aralu',
+            'Ing_qty' => '200'
+        ]);
+        DB::table('ingredient_stocks')->insert([
+            'id' => '02',
+            'Pro_id' => 'prod1',
+            'Ing_id' => '002',
+            'Ing_name' => 'Iguru',
+            'Ing_qty' => '500'
+        ]);
+        DB::table('ingredient_stocks')->insert([
+            'id' => '03',
+            'Pro_id' => 'prod1',
+            'Ing_id' => '003',
+            'Ing_name' => 'Katuwal Batu',
+            'Ing_qty' => '300'
+        ]);
+        DB::table('ingredient_stocks')->insert([
+            'id' => '04',
+            'Pro_id' => 'prod1',
+            'Ing_id' => '004',
+            'Ing_name' => 'Beli',
+            'Ing_qty' => '200'
+        ]);
+        DB::table('ingredient_stocks')->insert([
+            'id' => '05',
+            'Pro_id' => 'prod1',
+            'Ing_id' => '005',
+            'Ing_name' => 'Walmi',
+            'Ing_qty' => '200'
+        ]);
+
         ///admin
 
         DB::table('all_users')->insert([
@@ -703,7 +984,6 @@ class DatabaseSeeder extends Seeder
             'roll'=>'admin'
         ]);
         
-
 
     }
 }
