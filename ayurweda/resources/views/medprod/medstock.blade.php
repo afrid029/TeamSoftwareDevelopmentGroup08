@@ -265,10 +265,6 @@
                                    </div>
                               </div>
                               <br>
-                              <div class="row">
-                                   <label> Description </label><br>
-                                   <textarea style="width:80%; height:220px;" class="form-control" name="descr" ></textarea>
-                              </div><br>
                               <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
                               @else
                                    <h3>Adding is unavailable</h3>

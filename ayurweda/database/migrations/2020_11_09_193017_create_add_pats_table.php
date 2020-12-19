@@ -18,9 +18,10 @@ class CreateAddPatsTable extends Migration
             $table->string('Pat_id');
             $table->string('disease');
             $table->date('ad_date');
-            $table->date('disch_date');
+            $table->date('disch_date')->nullable();
             $table->string('Doc_id');
             $table->string('bedno');
+            $table->string('status');
             $table->foreign('Pat_id')->references('Pat_id')->on('patients');
             $table->foreign('Doc_id')->references('Doc_id')->on('doctors');
             $table->timestamps();

@@ -106,7 +106,7 @@
                         <div class="modal-content">
                                 <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">View Symptomp</h5>
-                                
+                                <h5 class="modal-title">Patient ID: {{$e->Pat_id}}</h5>
                                 </div>
                                 
                             <div class ="modal-body">
@@ -134,7 +134,7 @@
                                         <input class="form-control" type="hidden" name="id" value="{{$e->id}}">
                                         <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}"><br>
                                         <div class ="modal-body">
-                                        <textarea class="form-control" rows="4" cols="3"name="reply">{{$e->reply}}</textarea>
+                                        <textarea class="form-control" rows="4" cols="3"name="reply" placeholder="Reply....">{{$e->reply}}</textarea><br>
                                         <button type="submit" class="btn btn-danger bt-sm"   aria-label="Close">Reply</button><br><br>
                                         </div>
                                         

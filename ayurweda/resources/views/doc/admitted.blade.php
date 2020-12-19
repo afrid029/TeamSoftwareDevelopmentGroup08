@@ -24,17 +24,44 @@
 
      <style>
       .tableFixHead {
-          width:100%;
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
-      th {
-        background: gray;
-      }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
 
 </head>
@@ -142,7 +169,46 @@
           <div class="modal-body">
           <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
           <input class="form-control" type="text" name="patientid" placeholder="Patient ID"><br>
-          <textarea class="form-control" rows="4" cols="3"name="medicine" placeholder="Medicine"></textarea><br>
+          <h4>Ingredient Name</h4>
+          @if(count($medicines))
+          <input type="text" name = "ingname" id="ingname" class="form-control" list="ingredients">
+          <datalist id="ingredients">
+          @foreach($medicines as $med)
+               <option value="{{$med->Med_name}}">
+          @endforeach
+          </datalist>                            
+          
+          
+          <h5>Quantity</h5>
+          <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
+          <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
+          @else
+               <h3>Adding is unavailable</h3>
+          @endif
+          <textarea class="form-control" name="medicine" placeholder="Medicines" id="order" cols="5" rows="5"></textarea>
+                         
+                                   <script>
+                                        function addtext(){
+                                             var  old = document.getElementById('order').value;
+                                        
+                                             var med = document.getElementById('ingname').value;
+                                             
+                                             if(med){
+                                                  var qty = document.getElementById('qty').value;
+                                                  if(qty){
+                                                       document.getElementById('order').value = old+"\n"+med+ "   " + qty;
+                                                  }
+                                            
+                                             }
+                                             document.getElementById('ingname').value = "";
+                                             document.getElementById('qty').value = "";
+                                            
+                                        }
+
+                                        function prepareDiv(){
+                                             document.getElement('')
+                                        }
+                              </script><br>
           <textarea class="form-control" name="condition" rows="4" cols="3" placeholder="Condition"></textarea>
           <br></br>
           <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -165,22 +231,26 @@
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
-                                        <br></br>
+                                        <br>
                                    
-                                        <div class="col-md-8 col-sm-12">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                             Update records
-                                        </button><br><br><br><br>
-                                             
+                                        <div class="">
+                                        
+                                             <div style="float:left;">
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="date" placeholder="Date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <div style="float:left;margin-right:10px;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
+                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
+                                             </div>
+                                             <div style="float:right;">
+                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                             Update records
+                                             </button>
+                                             </div>
                                              <br></br>
 
                                              <div class="tableFixHead">
@@ -202,14 +272,19 @@
                                              @endif
                                              <tbody>
                                                   @if(count($adp)>0)
+                                                  <?php $no = 1;?>
                                                   @foreach($adp as $a)
                                                   <tr>
                                                        <td>{{$a->Pat_id}}</td>
                                                        <td>{{$a->Doc_id}}</td>
                                                        <td>{{$a->created_at}}</td>
-                                                       <td>{{$a->medicines}}</td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$a->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                       </td>
                                                        <td>{{$a->condition}}</td>
                                                   </tr>
+                                                  <?php $no++; ?>
                                                   @endforeach
                                                   @else
                                                   <tr>
@@ -231,6 +306,23 @@
 
           </div>
      </section>
+
+     <script>
+     function viewing(id){
+          var a = document.getElementById('medi'+id).value;
+          Swal.fire({
+               position: 'top',
+               width:400,
+               text:"Order details",
+               icon: 'info',
+               title: a,
+               
+               showConfirmButton: true,
+               
+          
+          });
+     }
+</script>
 
 
      <!-- SCRIPTS -->

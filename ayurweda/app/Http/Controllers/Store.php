@@ -197,13 +197,11 @@ class Store extends Controller
         $request->validate([
             'patid'=>['required'],
             'disease'=>['required'],
-            'ddate'=>['required'],
             'bedno'=>['required'],
         ],
         [
             'patid.required' => 'Patient ID is empty',
             'disease.required' => 'Disease is empty',
-            'ddate.required' => 'Discharge date is empty',
             'bedno.required' => 'Bed no. is empty',
         ]);
 
@@ -213,7 +211,7 @@ class Store extends Controller
             $a->Doc_id=$request->docid;
             $a->disease=$request->disease;
             $a->ad_date=date("Y-m-d");
-            $a->disch_date=$request->ddate;
+            $a->status="Admitted";
             $a->bedno=$request->bedno;
             $a->save();
         }
@@ -235,7 +233,6 @@ class Store extends Controller
             'qty' => 'required',
             'mfd' => 'required|date',
             'exp' => 'required|date|after:mfd',
-            'descr' => 'required'
 
         ],[
             'medname.required' => 'Medicine Name is missing',
@@ -243,10 +240,10 @@ class Store extends Controller
             'qty.required' => 'Set a Quantity',
             'mfd.required'=> 'MFD required',
             'exp.required' => 'EXP required',
-            'descr.required' => 'Decription required',
             'exp.after' => 'Logically date combination is wrong'
         ]);
         $id=DB::table('medicines')->where('Med_name',$req->medname)->value('Med_id');
+        $d=DB::table('medicines')->where('Med_name',$req->medname)->value('description');
         $medi = new new_med_stock;
         
         $medi->Pro_id = $req->id;
@@ -256,7 +253,7 @@ class Store extends Controller
         $medi->stock_qty = $req->qty;
         $medi->manufactureDate = $req->mfd;
         $medi->expireDate = $req->exp;
-        $medi->description = $req->descr;
+        $medi->description = $d;
 
         $medi->save();
 
