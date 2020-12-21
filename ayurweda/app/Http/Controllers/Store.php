@@ -96,7 +96,7 @@ class Store extends Controller
         $p=DB::table('medical_histories')->get();
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         
-        return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+        return redirect()->back()->with('c',$c)->with('msg',$s)->with('pres',$p);
         
         
         

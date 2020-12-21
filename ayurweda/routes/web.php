@@ -22,9 +22,7 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('test');
-});
+
 Route::get('/login', 'PageController@login');
 Route::get('/register', 'PageController@register');
 
@@ -37,8 +35,8 @@ Route::get('admitted/{c}/', 'redirect@admitted')->name('admitted');
 Route::get('available/{c}/', 'redirect@available')->name('available');
 Route::get('addpatdetails/{c}/', 'redirect@addpatdetails')->name('addpatdetails');
 Route::post('/savepres', 'Store@prescript');
-Route::post('/pressearch', 'search@pressearch');
 Route::post('/saveadmit', 'Store@admit');
+Route::post('/pressearch', 'search@pressearch');
 Route::post('/adsearch', 'search@adsearch');
 Route::post('/saveavailable', 'Store@available');
 Route::get('/avedit/{id}/{docid}', 'update@avedit')->name('avedit');

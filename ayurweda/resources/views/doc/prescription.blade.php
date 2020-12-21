@@ -35,6 +35,30 @@
         background: gray;
       }
     </style>
+    <script>
+    function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+     </script>
+    
      
 </head>
 <body>
@@ -48,6 +72,7 @@
           </div>
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+
 
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -84,6 +109,7 @@
 
           </div>
      </section>
+@if($msg = session()->get('msg'))
 @if($msg=="Prescription added successfully")
 <script>
 Swal.fire({
@@ -105,6 +131,8 @@ Swal.fire({
 });
 </script>
 @endif
+@endif
+
 
      <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,6 +190,8 @@ Swal.fire({
                                              
                                              <br><br>
                                              <div class="tableFixHead">
+                                             
+                                             
                                         <table class="table">
                                         
                                              <thead>
@@ -197,6 +227,7 @@ Swal.fire({
                                         
                                         </table>
                                         </div>
+                                        
                                         </div><br>
                                         
                                    </div>
@@ -218,6 +249,8 @@ Swal.fire({
      <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
      <script src="{{ asset('js/smoothscroll.js')}}"></script>
      <script src="{{ asset('js/custom.js')}}"></script>
+     
+     
 
 </body>
 </html>

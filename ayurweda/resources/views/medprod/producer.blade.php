@@ -85,7 +85,7 @@
           </button>
           </div>
           <form method="post" action="/proedit">
-          
+          {{csrf_field()}}
           <div class="modal-body">
                <input type="text" name="name" class="form-control" placeholder="Name" value=""><br>             
                <input type="text" name="address" class="form-control" placeholder="Address" value=""><br>
@@ -153,7 +153,7 @@ Swal.fire({
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-first">
                          <div class="caption">
                                    <div class="container">
