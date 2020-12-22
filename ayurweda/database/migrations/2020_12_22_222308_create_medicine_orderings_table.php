@@ -15,12 +15,10 @@ class CreateMedicineOrderingsTable extends Migration
     {
         Schema::create('medicine_orderings', function (Blueprint $table) {
             $table->string('MedOrder_id');
-            $table->string('Med_id');
-            $table->integer('Med_qty');
+            $table->string('medicines');
             $table->string('Pro_id');
             $table->string('Phar_id');
             $table->date('MedOrder_date');
-            $table->foreign('Med_id')->references('Med_id')->on('medicine_stocks');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
             $table->foreign('Phar_id')->references('Phar_id')->on('pharmacists');
             $table->primary('MedOrder_id');

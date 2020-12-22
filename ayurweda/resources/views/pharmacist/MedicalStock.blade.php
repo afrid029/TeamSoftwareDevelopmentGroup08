@@ -71,16 +71,17 @@
   
 }
 .table-scroll td,.table-scroll th{
-  flex-basis:100%;
+ 
+  width:10%;
   flex-grow:2;
   display: block;
-  padding: 1rem;
+  
   text-align:center;
 }
 /* Other options */
 .table-scroll.small-first-col td:first-child,
 .table-scroll.small-first-col th:first-child{
-  flex-basis:20%;
+  flex-basis:100%;
   flex-grow:1;
 }
 .table-scroll tbody tr:nth-child(2n){
@@ -184,12 +185,12 @@
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:70%; width:88%; margin: -12% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:70%; width:94%; margin: -12% 3% 0 3%; background-color:white; border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
                                              <div  class="table-wrapper">
-                                                  <div style="width:50%; margin-right: -20%; float:left; margin-left:2%;"><h2>Medical Stock Table</h2></div>
+                                                  <div style="width:60%; margin-right: -20%; float:left; margin-left:2%;"><h2>Medical Stock Table</h2></div>
                                                        <div class="table-title">
                                                             <div style="margin-top:2%; margin-right:2%;color:gray; width:20%; float:left;">
                                                                  <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Medicine By ID" title="Type ID">   
@@ -199,7 +200,7 @@
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
                                                             </div>
                                                        </div>
-                                                       <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
+                                                       <table id="myTable" style="color:black; width:100%;" class="table table-bordered table-scroll">
                                                             <thead>
                                                                  <tr>
                                                                       <th>Medicine ID </th>
@@ -262,7 +263,7 @@
                                </div>
                                
                          </div>
-                         <div style="background-color:white;border-radius:1%; width:86.2%;  max-height: 170px; margin:-12% 7.8% 0 7.9%;padding-bottom:1%; padding-left:1%;">
+                         <div style="background-color:white;border-radius:1%; width:92%;  max-height: 170px; margin:-12% 4% 0 5%;padding-bottom:1%; padding-left:1%;">
                               <h3 style="color:red;">Warnings:</h3>
                               
                               <div style="overflow-y:scroll; position:relative; display:block;  max-height:130px;">

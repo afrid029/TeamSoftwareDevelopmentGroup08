@@ -362,7 +362,7 @@
                                                        @endforeach
                                                        @else
                                                             <tr>
-                                                                 <td><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Not Issued Orders From Doctor</h3></td>
+                                                                 <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Not Issued Orders From Doctor</h3></td>
                                                             </tr>
                                                        @endif  
                                                                             
