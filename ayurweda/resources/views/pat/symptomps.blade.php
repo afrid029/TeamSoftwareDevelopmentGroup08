@@ -121,14 +121,14 @@
                                              @if(count($d) > 0)
                                                   @foreach($d as $info)
                                                   <tr>
-                                                       <td><p >{{$info->date}}</p></td>
-                                                       <td><p >{{$info->time}}</p></td>
+                                                       <td><p style=" text-align:center" >{{$info->date}}</p></td>
+                                                       <td><p style=" text-align:center">{{$info->time}}</p></td>
                                                        <input type="hidden" id = "dbtext" data-text = "{{$info->text}}"/>
                                                        <input type="hidden" id = "dbid" value = "{{$info->id}}"/>
 
                                                        <form action="{{ route ('viewSymp',['i'=> $info->id, 'j'=>$c->Pat_id]) }}" method = "get">
                                                       
-                                                            <td><button type="submit" id = "button" class="btn btn-primary btn-sm" >View</button></td>
+                                                            <td style=" text-align:center"><button type="submit" id = "button" class="btn btn-primary btn-sm" >View</button></td>
 
                                                        </form>
                                                        

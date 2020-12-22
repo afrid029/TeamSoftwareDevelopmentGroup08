@@ -73,6 +73,20 @@ class Store extends Controller
 
     public function prescript(Request $request){
 
+        $name;
+
+        $a = implode($request->medic);
+        $b = explode(',',$a);
+        
+        for($i = 0 ; $i < count($b) ; $i++){
+            if($i%2 == 0){
+                $name = $b[$i];
+            }else{
+                $cnt = $b[$i];
+                DB::table('medicine_stocks')->where('Med_name',$name)->increment('orders',$cnt);
+            }
+        }
+
         $p=DB::table('medical_histories')->get();
         $np=count($p)+1;
         try{
@@ -82,21 +96,27 @@ class Store extends Controller
             $pr->Doc_id=$request->docid;
             $pr->diagnosis=$request->diagnosis;
             $pr->disease=$request->disease;
-            $pr->medicine=$request->medicine;
+            $pr->medicine=json_encode($request->medic);
             $pr->save();
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
             $p=DB::table('medical_histories')->get();
             $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+            $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
+                                              ->orderBy('Med_name','asc') 
+                                            ->get();
         
-            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);;
         }
         $s="Prescription added successfully";
         $p=DB::table('medical_histories')->get();
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        $stocks = DB::table('medicine_stocks')->where('stock_qty','>' ,50)
+                                              ->orderBy('Med_name','asc') 
+                                            ->get();
         
-        return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+        return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);
         
         
         

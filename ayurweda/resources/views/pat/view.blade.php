@@ -119,6 +119,13 @@
 
                                 @endforeach
                             @endif
+
+                            <br><br><label style="color:blue;">Reply from doctor:  </label><br>
+                            @if($e->reply)
+                                <p style = "color:Teal; font-weight:bold;">{{$e->reply}}</p>
+                            @else
+                                <p>Doctor doesn't send any reply</p>
+                            @endif
                             </div>
 
                             <div class="modal-footer">

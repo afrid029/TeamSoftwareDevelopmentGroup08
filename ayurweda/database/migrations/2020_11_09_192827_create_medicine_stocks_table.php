@@ -18,6 +18,8 @@ class CreateMedicineStocksTable extends Migration
             $table->string('Med_name');
             $table->float('unitprice',8,2);
             $table->integer('stock_qty');
+            $table->integer('orders')->default(0);
+            $table->integer('Wlimit');
             $table->text('description');
             $table->date('manufactureDate');
             $table->date('expireDate');

@@ -94,7 +94,7 @@ class pharmacistController extends Controller
         $date = date('Y-m-d',strtotime("$d+7 days"));
         
         $warn = DB::table('medicine_stocks')->where('expireDate', '<=', $date)->select('Med_name','expireDate')->get();
-        $warn1 = DB::table('medicine_stocks')->where('stock_qty', '<', 50)->select('Med_name','stock_qty')->get();
+        $warn1 = DB::table('medicine_stocks')->whereRaw('stock_qty - orders < Wlimit')->select('Med_name','stock_qty')->get();
         return view('pharmacist/MedicalStock',compact('c','med','warn','warn1'))->with('msg', "");
     }
 
@@ -103,21 +103,25 @@ class pharmacistController extends Controller
        $valid =  $req->validate([
             'medid'=>'required',
             'medname'=>'required',
-            'uprice' => 'required',
-            'qty' => 'required',
+            'uprice' => 'required|gt:0',
+            'qty' => 'required|gt:0',
             'mfd' => 'required|date',
             'exp' => 'required|date|after:mfd',
-            'descr' => 'required'
+            'descr' => 'required',
+            'warn'=> 'required'
 
         ],[
             'medid.required' => 'Medicine ID missing',
             'medname.required' => 'Medicine Name is missing',
             'uprice.required' => 'Set a unit price',
+            'uprice.gt'=> 'Price should be in positive',
+            'qty.gt'=> 'Quantity should be in positive',
             'qty.required' => 'Set a Quantity',
             'mfd.required'=> 'MFD required',
             'exp.required' => 'EXP required',
             'descr.required' => 'Decription required',
-            'exp.after' => 'Logically date combination is wrong'
+            'exp.after' => 'Logically date combination is wrong',
+            'warn.required'=>'Set Warning Limit'
         ]);
         
         $medi = new Medicine_stock;
@@ -129,6 +133,7 @@ class pharmacistController extends Controller
         $medi->manufactureDate = $req->mfd;
         $medi->expireDate = $req->exp;
         $medi->description = $req->descr;
+        $medi->Wlimit = $req->warn;
 
         $medi->save();
 
@@ -139,11 +144,34 @@ class pharmacistController extends Controller
 
     public function Updatemedicine(Request $req,$id)
     {
+        $valid =  $req->validate([
+            
+            
+            'uprice' => 'required|gt:0',
+            'qty' => 'required|gt:0',
+            'mfd' => 'required|date',
+            'exp' => 'required|date|after:mfd',
+            'warn'=> 'required'
+            
+
+        ],[
+            
+           
+            'uprice.required' => 'Set a unit price',
+            'uprice.gt'=> 'Price should be in positive',
+            'qty.gt'=> 'Quantity should be in positive',
+            'qty.required' => 'Set a Quantity',
+            'mfd.required'=> 'MFD required',
+            'exp.required' => 'EXP required',
+            'warn.required'=>'Set Warning Limit',
+            'exp.after' => 'Logically date combination is wrong'
+        ]);
         DB::table('medicine_stocks')->where('Med_id',$req->medid)->update([
             'unitprice' => $req->uprice,
             'stock_qty'=> $req->qty,
             'manufactureDate' => $req->mfd,
-            'expireDate' => $req->exp
+            'expireDate' => $req->exp,
+            'Wlimit'=>$req->warn
         ]);
         return redirect()->back()->with('msg',"Medicine details updated");
 
@@ -159,8 +187,49 @@ class pharmacistController extends Controller
     public function issueMedicine($id)
     {
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
-        return view('pharmacist/IssueMedicine',compact('c'))->with('msg', "");
+        $pat = DB::table('pat_med_orderings')->where('status','Unrecieved')->orderBy('created_at','asc')->get();
+        $doc = DB::table('medical_histories')->where('issued','Not Issued')->orderBy('created_at','asc')->get();
+        return view('pharmacist/IssueMedicine',compact('c','pat','doc'))->with('msg', "");
     }
+
+    public function issuepatorder(Request $req)
+    {
+        $count = $req->count;
+        $name;
+        
+        for($i = 0 ; $i < $count ; $i++){
+            if($i%2 == 0){
+                $name = $req->get('medi'.$i);
+            }else{
+                $cnt = $req->get('qt'.$i);
+                DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
+                DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
+            }
+        }
+
+        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Recieved']);
+        return redirect()->back()->with('msg','Order Issued');
+    }
+
+    public function issuedocorder(Request $req)
+    {
+        $count = $req->countdr;
+        $name;
+        
+        for($i = 0 ; $i < $count ; $i++){
+            if($i%2 == 0){
+                $name = $req->get('drmedic'.$i);
+            }else{
+                $cnt = $req->get('drqt'.$i);
+                DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
+                DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
+            }
+        }
+
+        DB::table('medical_histories')->where('Meeting_id', $req->drmid)->update([ 'issued'=>'Issued']);
+        return redirect()->back()->with('msg','Order Issued');
+    }
+    
 
     /*---------------------Order Medicine-------------------*/
     public function ordermedicine($id)

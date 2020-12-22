@@ -161,7 +161,7 @@ Swal.fire({
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
                                                        @if($c->Doc_im)
-                                                       <img class="img" src="{{ asset($c->Doc_im)}}" style="  border-radius:30px; height:200px; width:auto;">
+                                                       <img class="img" src="{{ asset('images/$c->Doc_im')}}" style="  border-radius:30px; height:200px; width:auto;">
                                                        
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">

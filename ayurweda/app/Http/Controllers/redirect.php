@@ -15,7 +15,10 @@ class redirect extends Controller
     public function prescription($t){
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
         $p=DB::table('medical_histories')->get();
-        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p);
+        $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
+                                            ->orderBy('Med_name','asc') 
+                                            ->get();
+        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p)->with('stocks',$stocks);
         
     }
     public function admitted($t){
