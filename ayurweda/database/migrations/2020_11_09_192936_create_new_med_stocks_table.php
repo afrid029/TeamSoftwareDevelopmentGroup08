@@ -18,7 +18,11 @@ class CreateNewMedStocksTable extends Migration
             $table->string('Pro_id');
             $table->string('Med_id');
             $table->string('Med_name');
+            $table->float('unitprice',8,2);
             $table->integer('stock_qty');
+            $table->text('description');
+            $table->date('manufactureDate');
+            $table->date('expireDate');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
             $table->foreign('Med_id')->references('Med_id')->on('medicine_stocks');
             $table->timestamps();

@@ -14,6 +14,7 @@ class CreateMedicineStocksTable extends Migration
     public function up()
     {
         Schema::create('medicine_stocks', function (Blueprint $table) {
+            $table->id();
             $table->string('Med_id');
             $table->string('Med_name');
             $table->float('unitprice',8,2);
@@ -23,7 +24,7 @@ class CreateMedicineStocksTable extends Migration
             $table->text('description');
             $table->date('manufactureDate');
             $table->date('expireDate');
-            $table->primary('Med_id');
+            $table->foreign('Med_id')->references('Med_id')->on('medicines');
             $table->timestamps();
         });
     }

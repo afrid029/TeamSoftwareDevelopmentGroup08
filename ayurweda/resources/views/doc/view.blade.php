@@ -90,6 +90,17 @@
                                 
                             <div class ="modal-body">
                                 <p  style = "overflow:'visible';">{!! $e->text !!}</p>
+                                @if($e->audio)
+                                    <label >Audio:  </label>
+                                <div>
+                                <audio id="audio"  controls>
+                                    <source style="height:10%" src="{{asset('upload/voicerecordings')}}/{{$e->audio}}">
+                                    Browser doesn't support this audio file
+                                </audio>
+                                <br><br>
+                                </div>
+                                
+                                @endif
                             @if($e->img)
                                 @foreach(json_decode($e->img,true) as $image)
                                     <img src = "{{asset('upload/images')}}/{{$image}}" style="width:100px; height:200px"/>

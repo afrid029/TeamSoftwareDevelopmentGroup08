@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +21,7 @@ class login extends Controller
             }
             elseif($roll=="pharmacist"){
                 return redirect()->route('phahome',['c'=>$request->id]);
+                
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
@@ -32,7 +33,7 @@ class login extends Controller
             }
         }
         else{
-            return view('login')->with('msg','Wrong password or username');
+            return redirect()->back()->with('msg','Wrong password or username');
         }
     }
 }

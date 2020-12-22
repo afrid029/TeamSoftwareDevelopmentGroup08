@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class update extends Controller
 {
+    //doctor
     public function doc(Request $request){
 
         $request->validate([
@@ -20,7 +21,6 @@ class update extends Controller
             'email'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
-            'image'=>['required'],
         ],
         [
             'name.required' => 'Name is empty',
@@ -29,27 +29,16 @@ class update extends Controller
             'email.required' => 'Email is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
-            'image.required' => 'Image is empty'
         ]);
 
         $p=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
         if($request->opassword==$p){
             
-            if ($request->hasFile('image')) {
-                    $image=$request->file('image');
-                    $extension = $image->getClientOriginalExtension();
-                    $image->storeAs('/public/docprof', $request->id.".".$extension);
-                    $url = '/storage/docprof/'.$request->id.".".$extension;
-            }
-            else{
-                $url="";
-            }       
 
             DB::table('doctors')->where('Doc_id',$request->id)->update(['Doc_name'=>$request->name,
                                                                         'Doc_addr'=>$request->address,
                                                                         'Doc_email'=>$request->email,
                                                                         'Doc_pNum'=>$request->phone,
-                                                                        'Doc_im'=>$url,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -81,6 +70,36 @@ class update extends Controller
         
     }
 
+    
+    public function docreply(Request $request)
+    {
+        DB::table('add_symptomps')->where('id',$request->id)->update(['reply'=>$request->reply]);
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        $d = DB::table('add_symptomps')->where('Doc_id',$request->docid)->orderBy('created_at','desc')->get();
+        $pa = DB::table('patients')->get();
+        return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
+    }
+    public function docpic(Request $request)
+    {
+        $request->validate([
+            'image'=>'required|image'
+        ],[
+            'image.required' => 'You have not choose any file',
+            'image.image'=>'Only Image is allowed'
+        ]);
+
+            $name = time().rand(1,100).'.'.$request->image->extension();
+            $request->image->move(public_path().'/upload/docprof', $name); 
+
+            DB::table('doctors')->where('Doc_id',$request->id)->update([
+                'Doc_im' => $name
+            ]);
+            $s="Profile picture changed";
+            $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
+        return view('doc/doctor')->with('c',$c)->with('msg',$s);
+    }
+
+    //producer
     public function pro(Request $request){
 
         $request->validate([
@@ -89,7 +108,6 @@ class update extends Controller
             'phone'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
-            'image'=>['required'],
         ],
         [
             'name.required' => 'Name is empty',
@@ -97,27 +115,16 @@ class update extends Controller
             'phone.required' => 'Phone is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
-            'image.required' => 'Image is empty'
         ]);
 
-        $p=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
+        $p=DB::table('medicine_producers')->where('Pro_id',$request->id)->value('password');
         if($request->opassword==$p){
             
-            if ($request->hasFile('image')) {
-                    $image=$request->file('image');
-                    $extension = $image->getClientOriginalExtension();
-                    $image->storeAs('/public/docprof', $request->id.".".$extension);
-                    $url = '/storage/docprof/'.$request->id.".".$extension;
-            }
-            else{
-                $url="";
-            }       
+           
 
-            DB::table('doctors')->where('Doc_id',$request->id)->update(['Doc_name'=>$request->name,
-                                                                        'Doc_addr'=>$request->address,
-                                                                        'Doc_email'=>$request->email,
-                                                                        'Doc_pNum'=>$request->phone,
-                                                                        'Doc_im'=>$url,
+            DB::table('medicine_producers')->where('Pro_id',$request->id)->update(['Pro_name'=>$request->name,
+                                                                        'Pro_addr'=>$request->address,
+                                                                        'Pro_pNum'=>$request->phone,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -126,16 +133,41 @@ class update extends Controller
         else{
             $s="Old password is wrong.";
         }
-        $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
-        return view('doc/doctor')->with('c',$c)->with('msg',$s);
+        $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
+        return view('medprod/producer')->with('c',$c)->with('msg',$s);
         
     }
-    public function docreply(Request $request)
+
+    public function proupdatemedicine(Request $req)
     {
-        DB::table('add_symptomps')->where('id',$request->id)->update(['reply'=>$request->reply]);
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $d = DB::table('add_symptomps')->where('Doc_id',$request->docid)->orderBy('created_at','desc')->get();
-        $pa = DB::table('patients')->get();
-        return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
+        DB::table('new_med_stocks')->where('id',$req->id)->update([
+            'unitprice' => $req->uprice,
+            'stock_qty'=> $req->qty,
+            'manufactureDate' => $req->mfd,
+            'expireDate' => $req->exp
+        ]);
+        return redirect()->back()->with('msg',"Medicine details updated");
+
+    }
+
+    public function promeddelete($id)
+    {
+        DB::table('new_med_stocks')->where('id',$id)->delete();
+        return redirect()->back()->with('msg',"Medicine deleted");
+    }
+
+    public function proupdateing(Request $req)
+    {
+        DB::table('ingredient_stocks')->where('id',$req->id)->update([
+            'Ing_qty'=> $req->qty,
+        ]);
+        return redirect()->back()->with('msg',"Ingredient details updated");
+
+    }
+
+    public function proingdelete($id)
+    {
+        DB::table('ingredient_stocks')->where('id',$id)->delete();
+        return redirect()->back()->with('msg',"Ingredient deleted");
     }
 }

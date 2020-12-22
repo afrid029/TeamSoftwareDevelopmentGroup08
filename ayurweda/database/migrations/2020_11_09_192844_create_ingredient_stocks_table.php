@@ -14,10 +14,12 @@ class CreateIngredientStocksTable extends Migration
     public function up()
     {
         Schema::create('ingredient_stocks', function (Blueprint $table) {
+            $table->id();
+            $table->string('Pro_id');
             $table->string('Ing_id');
             $table->string('Ing_name');
             $table->integer('Ing_qty');
-            $table->primary('Ing_id');
+            $table->foreign('Ing_id')->references('Ing_id')->on('ingredients');
             $table->timestamps();
         });
     }
