@@ -51,7 +51,7 @@
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
+               <div style="background-color:#154360;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
@@ -104,94 +104,72 @@
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-first">
                               <div class="caption">
+                                  
                                    <div class="container">
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
 
                                         <div class="col-md-8 col-sm-12">
-                                             
-                                             <form action="/saveadmit" method="post" class="wow fadeInUp">
-                                                  
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Order ID</h3>
-                                                       <input class="form-control" type="text" name="orderid" ><br>
-                                                       <h3>Ingredient ID</h3>
-                                                       <input class="form-control" type="text" name="medicine " ><br>
-                                                       <h3>Quantity</h3>
-                                                       <input class="form-control" type="number" name="qty" ><br>
-                                                       
-                                                  </div>
-                                                  <div class="col-md-6 col-sm-6">
-                                                       <h3>Supplier ID</h3>
-                                                       <input class="form-control" type="text" name="pharmacistid" ><br>
-                                                       <h3>Order Date</h3>
-                                                       <input class="form-control" type="date" name="orderdate" ><br>
-                                                       <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        
+                                         
+                                             <button style="width:60%; margin-left:42%; margin-right:30%; margin-top:-5%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
 
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                             </form>
+                                             <h2 style="color:#ffffff; text-align:center; width:96%; margin-left:22%;">Your Orders</h2>
+                                   
+
+                                        <div style="width:90%; margin-left:26%; margin-right:22%;" class="col-lg-3">
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                                   <input style="color:black" type="text" placeholder="ID" name="search">
                                                   <input style="color:black" type="date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
-                                             <br></br>
-
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
-                                        <table class="table table-bordered" >
+                                             <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
-                                                  <tr>
+                                            
+                                                  <tr style="background-color:#800000; ">
                                                        <th>Order ID</th>
-                                                       <th>Ingredient ID</th>
-                                                       <th>Quantity</th>
-                                                       <th>Supplier ID</th>
                                                        <th>Order Date</th>
-                                                      
+                                                       <th></th>
+                                                       
                                                   </tr>
-                                             </thead>
+                                             </thead> 
                                              <tbody>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                                   <tr>
                                                        <td></td>
                                                        <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
+                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
+                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
                                                   </tr>
                                              </tbody>
-                                        
-                                        </table>
+                                             </table>
+                                             <br></br>
+                                             
+                                             <br></br>
                                         </div>
+                                        
                                         </div>
                                         
                                    </div>
@@ -202,7 +180,6 @@
 
           </div>
      </section>
-
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

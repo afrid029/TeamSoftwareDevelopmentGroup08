@@ -28,6 +28,9 @@ Route::get('/register', 'PageController@register');
 
 Route::post('/saveuser', 'Store@register');
 Route::post('/log', 'login@log');
+
+//doctor routings
+
 Route::post('/docedit', 'update@doc');
 Route::get('dochome/{c}/', 'redirect@dochome')->name('dochome');
 Route::get('prescription/{c}/', 'redirect@prescription')->name('prescription');
@@ -43,7 +46,7 @@ Route::get('/avedit/{id}/{docid}', 'update@avedit')->name('avedit');
 Route::get('/avdelete/{id}/{docid}', 'update@avdelete')->name('avdelete');
 Route::post('/patadmit', 'Store@patadmit');
 Route::post('/admitsearch', 'search@admitsearch');
-Route::post('/proedit', 'update@pro');
+
 Route::get('docsymp/{c}/', 'redirect@docsymp')->name('docsymp');
 Route::get('docviewSymp/{i}/{j}/','redirect@show')->name('docviewSymp');
 Route::post('/docreply', 'update@docreply');
@@ -78,11 +81,18 @@ Route::get('/history/{c}',[patientsController::class, 'history'])->name('history
 
 
 //Medicine Producer Routings
-Route::get('mphome/{c}/', 'medproducer@mphome')->name('mphome');
-Route::get('issuemedicine/{c}/', 'medproducer@issuemedicine')->name('issuemedicine');
-Route::get('Ingstock/{c}/', 'medproducer@Ingstock')->name('Ingstock');
-Route::get('medstock/{c}/', 'medproducer@medstock')->name('medstock');
-Route::get('ordering/{c}/', 'medproducer@ordering')->name('ordering');
+Route::get('mphome/{c}/', 'redirect@mphome')->name('mphome');
+Route::get('issuemedicine/{c}/', 'redirect@issuemedicine')->name('issuemedicine');
+Route::get('Ingstock/{c}/', 'redirect@Ingstock')->name('Ingstock');
+Route::get('medstock/{c}/', 'redirect@medstock')->name('medstock');
+Route::get('ordering/{c}/', 'redirect@ordering')->name('ordering');
+Route::post('/proedit', 'update@pro');
+Route::post('/proaddmedicine', 'store@proaddmedicine');
+Route::post('/proupdatemedicine', 'update@proupdatemedicine');
+Route::get('promeddelete/{c}/', 'update@promeddelete')->name('promeddelete');
+Route::post('/proadding', 'store@proadding');
+Route::get('proingdelete/{c}/', 'update@proingdelete')->name('proingdelete');
+Route::post('/proupdateing', 'update@proupdateing');
 
 //Pharmacist Routings
 Route::get('phahome/{c}/',[pharmacistController::class, 'phaHome'])->name('phahome');

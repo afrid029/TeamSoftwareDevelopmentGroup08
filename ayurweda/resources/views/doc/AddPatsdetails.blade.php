@@ -164,6 +164,7 @@ Swal.fire({
                                             </form>
                                             <br></br>
                                             <div class="tableFixHead">
+
                                         <table class="table table-bordered" >
                                         
                                              <thead>

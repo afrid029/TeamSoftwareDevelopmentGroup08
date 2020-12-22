@@ -51,7 +51,7 @@
                </div>
 
                <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse">
+               <div style="background-color:#154360 " class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
@@ -92,7 +92,6 @@
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value=""><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <input type="file" name="image" class="form-control-file"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Pro_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>

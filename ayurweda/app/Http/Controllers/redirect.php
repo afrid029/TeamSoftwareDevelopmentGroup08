@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class redirect extends Controller
 {
+    //doctor
+
     public function dochome($t){
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
         return view('doc/doctor')->with('c',$c)->with('msg',"");
@@ -59,6 +61,45 @@ class redirect extends Controller
         
         return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p)->with('na',$na);
         
+    }
+
+    //producer
+
+    public function mphome($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        return view('medprod/producer',compact('c'))->with('msg',"");
+    }
+    public function issuemedicine($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $p=DB::table('medicine_orderings')->get();
+        if($p==null){
+            return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('pres',"");
+        }
+        else{
+            return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('pres',$p);
+        }     
+    }
+    public function Ingstock($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $ing=DB::table('ingredient_stocks')->where('Pro_id',$t)->get();
+        return view('medprod/ingstock')->with('c',$c)->with('msg',"")->with('ing',$ing);
+        
+    }
+    public function medstock($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $med = DB::table('new_med_stocks')->where('Pro_id',$t)->get();
+        return view('medprod/medstock')->with('c',$c)->with('msg',"")->with('med',$med);
+        
+    }
+    public function ordering($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $p=DB::table('ingredient_orderings')->get();
+        if($p==null){
+            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',"");
+        }
+        else{
+            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',$p);
+        }
     }
    
 }
