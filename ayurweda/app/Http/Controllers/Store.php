@@ -9,6 +9,7 @@ use App\Models\Add_pat;
 use App\Models\Doc_available_time;
 use App\Models\new_med_stock;
 use App\Models\Ingredient_stock;
+use App\Models\Ingredient_ordering;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -219,26 +220,47 @@ class Store extends Controller
     public function proadding(Request $req)
     {
        $valid =  $req->validate([
-            'ingid'=>'required',
             'ingname'=>'required',
             'qty' => 'required',
 
         ],[
-            'ingid.required' => 'Ingredient ID missing',
             'ingname.required' => 'Ingredient Name is missing',
             'qty.required' => 'Set a Quantity',
         ]);
-        
+        $id=DB::table('ingredients')->where('Ing_name',$req->ingname)->value('Ing_id');
         $ing = new Ingredient_stock;
         
         $ing->Pro_id = $req->id;
-        $ing->Ing_id = $req->ingid;
+        $ing->Ing_id = $id;
         $ing->Ing_name = $req->ingname;
         $ing->Ing_qty = $req->qty;
 
         $ing->save();
 
         return redirect()->back()->with('msg',"New Ingredient Added");
+       
+
+    }
+
+    public function proingorder(Request $req)
+    {
+       $valid =  $req->validate([
+            'order'=>'required',
+
+        ],[
+            'order.required' => 'Order is empty',
+        ]);
+        $ord = new Ingredient_ordering;
+        
+        $ord->Ingredients = $req->order;
+        $ord->Pro_id = $req->id;
+        $ord->Sup_id = $req->supid;
+        $ord->MedOrder_date=date('Y-m-d');
+        $ord->save();
+
+    
+
+        return redirect()->back()->with('msg',"Your Order is placed");
        
 
     }

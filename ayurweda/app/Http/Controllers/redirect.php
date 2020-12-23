@@ -81,8 +81,9 @@ class redirect extends Controller
     }
     public function Ingstock($t){
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $ingredients = DB::table('ingredients')->get();
         $ing=DB::table('ingredient_stocks')->where('Pro_id',$t)->get();
-        return view('medprod/ingstock')->with('c',$c)->with('msg',"")->with('ing',$ing);
+        return view('medprod/ingstock')->with('c',$c)->with('msg',"")->with('ing',$ing)->with('ingredients',$ingredients);
         
     }
     public function medstock($t){
@@ -92,14 +93,11 @@ class redirect extends Controller
         
     }
     public function ordering($t){
+        $ingredients = DB::table('ingredients')->get();
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
         $p=DB::table('ingredient_orderings')->get();
-        if($p==null){
-            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',"");
-        }
-        else{
-            return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('pres',$p);
-        }
+        return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('orders',$p)->with('ingredients',$ingredients);
+        
     }
    
 }

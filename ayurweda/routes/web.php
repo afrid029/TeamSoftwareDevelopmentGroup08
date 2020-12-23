@@ -93,6 +93,7 @@ Route::get('promeddelete/{c}/', 'update@promeddelete')->name('promeddelete');
 Route::post('/proadding', 'store@proadding');
 Route::get('proingdelete/{c}/', 'update@proingdelete')->name('proingdelete');
 Route::post('/proupdateing', 'update@proupdateing');
+Route::post('/proingorder', 'store@proingorder');
 
 //Pharmacist Routings
 Route::get('phahome/{c}/',[pharmacistController::class, 'phaHome'])->name('phahome');

@@ -34,7 +34,20 @@
           </div>
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-
+@if($errors->any())
+@foreach($errors->all() as $err)
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'error',
+               title: '{{$err}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endforeach
+@endif
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
           <div class="container">
@@ -132,37 +145,35 @@
                                              <thead>
                                             
                                                   <tr style="background-color:#800000; ">
-                                                       <th>Order ID</th>
+                                                       <th>Supplier ID</th>
                                                        <th>Order Date</th>
                                                        <th></th>
                                                        
                                                   </tr>
                                              </thead> 
+                                             @if(count($orders) > 0)
                                              <tbody>
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
-                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
+                                                       <td><p >{{$order->Sup_id}}</p></td>
+                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->Ingredients}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                       </td>
+                                                       
+                                                      
+                                                       
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
-                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
-                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input style="background-color:black" class="btn btn-primary" type="submit" value="Receive">
-                                                       <input style="background-color:black" class="btn btn-primary" type="submit" value="View"></td>
-                                                  </tr>
+                                                  <?php $no++; ?>
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
                                              </tbody>
                                              </table>
                                              <br></br>
@@ -180,6 +191,94 @@
 
           </div>
      </section>
+
+<!--Modal-->
+<div class="modal fade" id="ordermedicine" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order Ingredients Here</h5>
+                    <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
+               </div>
+               <div style="margin-top:-2%;" class="modal-body">
+                    <h4>Medicine Name</h4>
+                    @if(count($ingredients))
+                    <input type="text" name = "ingname" id="ingname" class="form-control" list="ingredients">
+                    <datalist id="ingredients">
+                    @foreach($ingredients as $in)
+                         <option value="{{$in->Ing_name}}">
+                    @endforeach
+                    </datalist>                            
+                    
+                    
+                     <h5>Quantity</h5>
+                    <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
+                     <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
+                    @else
+                         <h3>Adding is unavailable</h3>
+                    @endif
+
+                     <form action="/proingorder" method = "post">
+                     @csrf
+                         <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
+                         <textarea class="form-control" name="order" id="order" cols="10" rows="10"></textarea>
+                         
+                                   <script>
+                                        function addtext(){
+                                             var  old = document.getElementById('order').value;
+                                        
+                                             var med = document.getElementById('ingname').value;
+                                             
+                                             if(med){
+                                                  var qty = document.getElementById('qty').value;
+                                                  if(qty){
+                                                       document.getElementById('order').value = old+"\n"+med+ "   " + qty;
+                                                  }
+                                            
+                                             }
+                                             document.getElementById('ingname').value = "";
+                                             document.getElementById('qty').value = "";
+                                            
+                                        }
+
+                                        function prepareDiv(){
+                                             document.getElement('')
+                                        }
+                              </script>
+                              <h5>Supplier ID</h5>
+                              <input style="width:50%; " class="form-control" type="text" name="supid" style="color:black;"/>
+                              <button style="margin-top:1.5%;" class="btn btn-success" type ="submit">Send Order</button>
+                    </form>
+                    
+                                       
+               </div>
+               <div class="modal-footer">
+               
+               </div>
+          </div>
+     </div>
+</div>
+<script>
+     function viewing(id){
+          var a = document.getElementById('medi'+id).value;
+          Swal.fire({
+               position: 'top',
+               width:400,
+               text:"Order details",
+               icon: 'info',
+               title: a,
+               
+               showConfirmButton: true,
+               
+          
+          });
+     }
+     
+     
+     
+
+          
+</script>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

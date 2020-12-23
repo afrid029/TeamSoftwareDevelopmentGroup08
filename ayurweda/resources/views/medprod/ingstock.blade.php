@@ -199,28 +199,32 @@
                               @csrf 
                               <div class="row">
                                    <input type="hidden" name = "id" value="{{$c->Pro_id}}" class="form-control">
+                                   @if(count($ingredients))
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
-                                        <label>Ingredient Id</label>
-                                        <input type="text" name = "ingid" placeholder="Ing###" class="form-control">
-                                   </div>
-                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Ingredient Name</label>
+                                        
                                         <input type="text" name = "ingname" class="form-control" list="ingredients">
                                         <datalist id="ingredients">
-                                             <option value="nelli">
-                                             <option value="bulu">
-                                             <option value="thotola">
-                                             <option value="pepper">
-                                             <option value="ginger">
-                                        </datalist>
+                                        @foreach($ingredients as $in)
+                                             <option value="{{$in->Ing_name}}">
+                                        @endforeach
+                                        </datalist></div>
                                    </div>
-                              </div>
-                              <br>
-                              <div class="row">
-                              <label>Quantity</label>
-                                        <input type="text" name = "qty" class="form-control">
-                              </div><br>
-                              <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
+                                   <br>
+                                   <div class="row">
+                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
+                                   <label>Quantity</label>
+                                             <input type="text" name = "qty" class="form-control">
+                                   </div>
+                                   <br>
+                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
+                                   <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
+                                   </div>
+                                   </div>
+                                   @else
+                                        <h3>Adding is unavailable</h3>
+                                   @endif
+                               
                          </form>
                     
                     </div>
@@ -286,6 +290,7 @@
           document.getElementById('idr').value = id;
          
      }
+     
 </script>
 
 
