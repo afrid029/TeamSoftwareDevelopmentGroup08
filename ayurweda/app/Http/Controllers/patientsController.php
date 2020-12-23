@@ -186,7 +186,7 @@ class patientsController extends Controller
     public function appoint(Request $request)
     {
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
-        $dr = DB::table('doctors')->get(); 
+        $dr = DB::table('doctors')->orderBy('Doc_name','asc')->get(); 
         $date = date('Y-m-d');
         $t = DB::table('doc_available_times')
                                              ->where('availableDate','>=' , $date)
@@ -224,7 +224,7 @@ class patientsController extends Controller
     public function order($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $stocks = DB::table('medicine_stocks')
+        $stocks = DB::table('medicine_stocks')->whereRaw("stock_qty - orders > 100")
                                             ->orderBy('Med_name','asc') 
                                             ->get();
         $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
@@ -233,26 +233,34 @@ class patientsController extends Controller
                                                 ->paginate(5);
         return view('pat/ordermedicine',compact('c','stocks','orders'))->with('msg',"");
     }
-    public function ordermedicine(Request $req){
-        $req->validate([
-            'order'=> 'required'
-        ],[
-            'order.required'=>'Add medicines and their quantities to order'
+    public function ordermedicine(Request $req,$id){
+
         
-        ]);
+        $name;
+
+        $a = implode($req->orders);
+        $b = explode(',',$a);
+        
+        for($i = 0 ; $i < count($b) ; $i++){
+            if($i%2 == 0){
+                $name = $b[$i];
+            }else{
+                $cnt = $b[$i];
+                DB::table('medicine_stocks')->where('Med_name',$name)->increment('orders',$cnt);
+            }
+        }
+
 
         $ordering = new Pat_med_ordering();
         $ordering->PatMedOrder_id = "Ord".rand(1,100).time();
-        $ordering->Pat_id = $req->get('pid');
-        $ordering->medicines = $req->get('order');
-        
+        $ordering->Pat_id = $id;
         $date = date('Y-m-d');
         $ordering->PatMedOrder_date = $date;
-        
-
+        $ordering->medicines = json_encode($req->orders);
         $ordering->save();
 
         return redirect()->back()->with('msg',"Your Order is placed");
+      
     }
 
 

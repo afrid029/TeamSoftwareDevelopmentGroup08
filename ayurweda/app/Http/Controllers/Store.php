@@ -7,12 +7,15 @@ use App\Models\Medical_history;
 use App\Models\Add_pat_up;
 use App\Models\Add_pat;
 use App\Models\Doc_available_time;
+use App\Models\new_med_stock;
+use App\Models\Ingredient_stock;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
 class Store extends Controller
 {
+    //doctor
     public function register(Request $request){
 
         //dd($request->all);
@@ -73,6 +76,20 @@ class Store extends Controller
 
     public function prescript(Request $request){
 
+        $name;
+
+        $a = implode($request->medic);
+        $b = explode(',',$a);
+        
+        for($i = 0 ; $i < count($b) ; $i++){
+            if($i%2 == 0){
+                $name = $b[$i];
+            }else{
+                $cnt = $b[$i];
+                DB::table('medicine_stocks')->where('Med_name',$name)->increment('orders',$cnt);
+            }
+        }
+
         $p=DB::table('medical_histories')->get();
         $np=count($p)+1;
         try{
@@ -82,22 +99,31 @@ class Store extends Controller
             $pr->Doc_id=$request->docid;
             $pr->diagnosis=$request->diagnosis;
             $pr->disease=$request->disease;
-            $pr->medicine=$request->medicine;
+            $pr->medicine=json_encode($request->medic);
             $pr->save();
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
             $p=DB::table('medical_histories')->get();
             $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+            $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
+                                              ->orderBy('Med_name','asc') 
+                                            ->get();
         
-            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
+            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);;
         }
         $s="Prescription added successfully";
         $p=DB::table('medical_histories')->get();
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
+                                              ->orderBy('Med_name','asc') 
+                                            ->get();
         
-        return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p);
-        
+
+        return redirect()->back()->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);
+
+       
+
         
         
     }
@@ -172,5 +198,71 @@ class Store extends Controller
         
     }
 
-    
+    //producer
+    public function proaddmedicine(Request $req)
+    {
+       $valid =  $req->validate([
+            'medid'=>'required',
+            'medname'=>'required',
+            'uprice' => 'required',
+            'qty' => 'required',
+            'mfd' => 'required|date',
+            'exp' => 'required|date|after:mfd',
+            'descr' => 'required'
+
+        ],[
+            'medid.required' => 'Medicine ID missing',
+            'medname.required' => 'Medicine Name is missing',
+            'uprice.required' => 'Set a unit price',
+            'qty.required' => 'Set a Quantity',
+            'mfd.required'=> 'MFD required',
+            'exp.required' => 'EXP required',
+            'descr.required' => 'Decription required',
+            'exp.after' => 'Logically date combination is wrong'
+        ]);
+        
+        $medi = new new_med_stock;
+        
+        $medi->Pro_id = $req->id;
+        $medi->Med_id = $req->medid;
+        $medi->Med_name = $req->medname;
+        $medi->unitprice = $req->uprice;
+        $medi->stock_qty = $req->qty;
+        $medi->manufactureDate = $req->mfd;
+        $medi->expireDate = $req->exp;
+        $medi->description = $req->descr;
+
+        $medi->save();
+
+        return redirect()->back()->with('msg',"New Medicine Added");
+       
+
+    }
+
+    public function proadding(Request $req)
+    {
+       $valid =  $req->validate([
+            'ingid'=>'required',
+            'ingname'=>'required',
+            'qty' => 'required',
+
+        ],[
+            'ingid.required' => 'Ingredient ID missing',
+            'ingname.required' => 'Ingredient Name is missing',
+            'qty.required' => 'Set a Quantity',
+        ]);
+        
+        $ing = new Ingredient_stock;
+        
+        $ing->Pro_id = $req->id;
+        $ing->Ing_id = $req->ingid;
+        $ing->Ing_name = $req->ingname;
+        $ing->Ing_qty = $req->qty;
+
+        $ing->save();
+
+        return redirect()->back()->with('msg',"New Ingredient Added");
+       
+
+    }
 }

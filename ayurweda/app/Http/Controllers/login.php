@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +33,7 @@ class login extends Controller
             }
         }
         else{
-            return view('login')->with('msg','Wrong password or username');
+            return redirect()->back()->with('msg','Wrong password or username');
         }
     }
 }

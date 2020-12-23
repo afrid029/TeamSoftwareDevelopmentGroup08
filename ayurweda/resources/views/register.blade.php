@@ -111,7 +111,7 @@ Swal.fire({
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
                <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-third">
                               <div class="caption">
                                    <div class="container">

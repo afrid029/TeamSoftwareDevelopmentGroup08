@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewMedStocksTable extends Migration
+class CreateMedicineOrderingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateNewMedStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('new_med_stocks', function (Blueprint $table) {
-            $table->id();
+        Schema::create('medicine_orderings', function (Blueprint $table) {
+            $table->string('MedOrder_id');
+            $table->string('medicines');
             $table->string('Pro_id');
-            $table->string('Med_id');
-            $table->string('Med_name');
-            $table->integer('stock_qty');
+            $table->string('Phar_id');
+            $table->date('MedOrder_date');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
-            $table->foreign('Med_id')->references('Med_id')->on('medicine_stocks');
+            $table->foreign('Phar_id')->references('Phar_id')->on('pharmacists');
+            $table->primary('MedOrder_id');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateNewMedStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('new_med_stocks');
+        Schema::dropIfExists('medicine_orderings');
     }
 }

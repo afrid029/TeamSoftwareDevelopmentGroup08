@@ -136,6 +136,7 @@
                                                        <td>
                                                             <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                       
                                                        </td>
                                                        <td><p>{{$order->status}}</p></td>
                                                       
@@ -166,23 +167,31 @@
                                         <script>
                                              function viewing(id){
                                                   var a = document.getElementById('medi'+id).value;
+                                                  var k = a.substring(2, a.length-2)
+                                                  var d = k.split(",");
+                                                  var result = "";
+                                                  for(var i = 0; i < d.length ; i++){
+                                                       if(i%2 == 0){
+                                                            result = result + d[i]; 
+                                                       }else{
+                                                            result = result + " "+d[i]+"\n";
+                                                       }
+                                                  }
+                                                
+                                                  console.log(d.length);
                                                   Swal.fire({
                                                        position: 'top',
                                                        width:400,
                                                        text:"Order details",
                                                        icon: 'info',
-                                                       title: a,
+                                                       title: result,
                                                       
                                                        showConfirmButton: true,
                                                       
                                                   
                                                   });
                                              }
-                                             
-                                             
-                                            
-
-                                                  
+                                                 
                                         </script>
                               
                                    </div>
@@ -204,50 +213,171 @@
                </div>
                <div style="margin-top:-2%;" class="modal-body">
                     <h4>Medicine Name</h4>
-                                                
-                    <select size="5" class="form-control" id="mname" aria-label="multiple select example">
-                         <option   disabled hidden> 
-                              Select Medicine
-                         </option> 
+                    @if(count($stocks) > 0)                          
+                    
+                    <?php $k = 0; ?>
+                    <div class = "form-control"style="height:120px; border:1px solid; overflow-y:scroll;">
                     
                     @foreach($stocks as $stock)
-                         <option >{{$stock->Med_name}}</option>
-                    @endforeach
-                    </select>
-                    
-                     <h5>Quantity</h5>
-                    <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
-                     <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
-
-                     <form action="{{ route('ordermedicine') }}" method = "post">
-                     @csrf
-                         <input type="hidden" name="pid" value = "{{$c->Pat_id}}"/>
-                         <textarea class="form-control" name="order" id="order" cols="10" rows="10"></textarea>
                          
-                                   <script>
-                                        function addtext(){
-                                             var  old = document.getElementById('order').value;
-                                        
-                                             var med = document.getElementById('mname').value;
-                                             
-                                             if(med){
-                                                  var qty = document.getElementById('qty').value;
-                                                  if(qty){
-                                                       document.getElementById('order').value = old+"\n"+med+ "   " + qty;
-                                                  }
-                                            
-                                             }
-                                             document.getElementById('mname').value = " ";
-                                             document.getElementById('qty').value = "  ";
-                                            
-                                        }
+                         <input type="checkbox"  id = "med<?php echo $k; ?>" name = "med<?php echo $k; ?>" value = "{{$stock->Med_name}}" onclick="qtybox(<?php echo $k; ?>)"/>
+                         <label>{{$stock->Med_name}}</label>
+                         <button class="btn btn-info btn-sm fa fa-plus-circle " onclick="add(<?php echo $k; ?>)" id="btn<?php echo $k; ?>" style="display:none; float:right; padding:0.7%;"></button>
+                         <input type="number" id="qnt<?php echo $k; ?>" name="qnt<?php echo $k; ?>" class="form-control" style="display:none; width : 20%; height:18px; float:right; margin-right:2%; margin-top:0.5%;">
+                         <label style="display:none; margin-top:0.5%; float:right; font-size:10px; margin-right:12px; color:gray;"  id="qnty<?php echo $k; ?>">Quantity: </label>
 
-                                        function prepareDiv(){
-                                             document.getElement('')
-                                        }
-                              </script>
-                              <button style="margin-top:1.5%;" class="btn btn-success" type ="submit">Send Order</button>
+                        
+                         <br>
+                         <?php $k++; ?>
+                         
+                    @endforeach
+                    </div>
+                    @else
+                         <p><i>No Medicines in Stock</i></p>
+                    @endif
+                    
+                    
+                    <h3 id="head" style="display:none;">Medicine Order Details</h3>
+                    <div id = "div" style="max-height:300px; overflow-y:scroll;">
+                    
+                    <form id="form" action="{{ route ('ordermedicine',$c->Pat_id) }}" method = "post" onsubmit="submitting()">
+                    @csrf
+                    
+                         <input type="hidden" name = "orders[]" id = "ord" >
+                         <div id = "myDiv" style="max-height:150px; overflow-y :scroll;">
+                    
+                         </div>
+                         
+                    
+                    
+                         <button id="sub" type = "submit" class="btn btn-primary btn-sm" style="display:none; overflow-y:fixed;">Send</button>
                     </form>
+                    </div>
+                   
+                    <script>
+                         function qtybox(id){
+                              var chk = document.getElementById("med"+id);
+                              var qty = document.getElementById("qnt"+id);
+                              var qtyL = document.getElementById("qnty"+id);
+                              var btn = document.getElementById("btn"+id);
+
+                              if(chk.checked == true){
+                                   qty.style.display = "block";
+                                   qtyL.style.display = "block";
+                                   btn.style.display = "block";
+                              }else{
+                                   qty.style.display = "none";
+                                   qtyL.style.display = "none";
+                                   btn.style.display = "none";
+                              }
+                         }
+                         var form = document.getElementById("form");
+                         var div = document.getElementById("myDiv");
+
+                         window.setInterval( function(){
+                              var c = div.getElementsByTagName("input").length;
+                              var z = document.getElementById("sub");
+                              var head = document.getElementById("head");
+                              var div1 = document.getElementById("div");
+
+                              if (c > 0){
+                                   div1.style.display = "block";
+                                   z.style.display = "block";
+                                   head.style.display = "block";
+                                   
+
+                              }else{
+                                   div1.style.display = "none";
+                                   z.style.display = "none";
+                                   head.style.display = "none";
+                                   
+                              }
+                              },10)
+                         
+                         function add(id){
+
+                              var med = document.getElementById("med"+id).value;
+                              var qty = document.getElementById("qnt"+id).value;
+                             
+                             
+
+                              if(qty>0){
+                                   
+
+                                   var input1 = document.createElement("input");
+                                   input1.setAttribute("type","text");
+                                   input1.setAttribute("name","medi"+id);
+                                   input1.setAttribute("id","medic"+id);
+                                   input1.setAttribute("value",med);
+                                   input1.setAttribute("readonly",true);
+                                   input1.setAttribute("class","form-control");
+                                   input1.setAttribute("style","margin-right:5px; width:20%; float:left;");
+                                   
+                                   var input2 = document.createElement("input");
+                                   input2.setAttribute("type","number");
+                                   input2.setAttribute("name","qt"+id);
+                                   input2.setAttribute("id","qt"+id);
+                                   input2.setAttribute("value",qty);
+                                   input2.setAttribute("readonly",true);
+                                   input2.setAttribute("class","form-control");
+                                   input2.setAttribute("style","margin-right:5px; width:20%;");
+
+                                 
+                                    var br = document.createElement("br");
+
+                                   div.appendChild(input1);
+                                   
+                                   div.appendChild(input2);
+
+                                   var rem = document.createElement("button");
+                                   rem.setAttribute("class", "btn btn-danger fa fa-minus-circle ");
+                                   rem.setAttribute("type", "button");
+                                   rem.setAttribute("style","margin-right:5px; float:right; margin-top:-6%; margin-right:45%;");
+                                   rem.setAttribute("id", "del"+id);
+                                   rem.setAttribute("onclick", "remove("+id+")");
+                                   div.appendChild(rem);
+                                   div.appendChild(br);
+                                   form.appendChild(div);
+                                   
+                                   
+
+                                   form.appendChild(document.getElementById("sub"));
+                                  
+                                  
+
+                                   document.getElementById("btn"+id).style.display="none";
+                                   document.getElementById("qnt"+id).style.display="none";
+                                   document.getElementById("qnty"+id).style.display="none";
+                                   
+                              }
+                              
+                         }
+
+                         function remove(id){
+                              var a = document.getElementById("medic"+id);
+                              var b = document.getElementById("qt"+id);
+                              var c = document.getElementById("del"+id);
+
+                              a.remove();
+                              b.remove();
+                              c.remove();
+                         }
+
+                         function submitting(){
+                              var x = div.getElementsByTagName("input").length;
+                              var arr = Array();
+                              for(var i = 0 ; i < x ; i++){
+                                   console.log(div.getElementsByTagName("input")[i].value);
+                                   arr[i] = div.getElementsByTagName("input")[i].value;
+                              }
+                              document.getElementById('ord').value = arr;
+                             
+                              console.log(arr);
+                         }
+                    
+                    </script>
+
+                   
                     
                                        
                </div>

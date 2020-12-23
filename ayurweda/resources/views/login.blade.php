@@ -20,6 +20,7 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
+     
 
 </head>
 <body>
@@ -60,6 +61,7 @@
 
           </div>
      </section>
+@if($msg = session()->get('msg'))
 @if($msg=="Wrong password or username")
 <script>
 Swal.fire({
@@ -71,12 +73,14 @@ Swal.fire({
 });
 </script>
 @endif
+@endif
+
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="">
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
@@ -102,6 +106,7 @@ Swal.fire({
 
 
      <!-- SCRIPTS -->
+     
      <script src="{{ asset('js/jquery.js')}}"></script>
      <script src="{{ asset('js/bootstrap.min.js')}}"></script>
      <script src="{{ asset('js/jquery.stellar.min.js')}}"></script>
@@ -110,6 +115,5 @@ Swal.fire({
      <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
      <script src="{{ asset('js/smoothscroll.js')}}"></script>
      <script src="{{ asset('js/custom.js')}}"></script>
-
 </body>
 </html>
