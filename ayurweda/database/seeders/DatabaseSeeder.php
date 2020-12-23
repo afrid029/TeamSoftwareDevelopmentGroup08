@@ -191,7 +191,7 @@ class DatabaseSeeder extends Seeder
             'Pat_id' => 'pat1',
             'Pat_name' => 'Nishantha Silva',
             'Pat_email' => 'nsilva@gmail.com',
-            'Pat_addr' => 'No.12, J5 road, Dabulla',
+            'Pat_addr' => 'No.12, J5 road, Dambulla',
             'Pat_pNum' => '0718926789',
             'Pimage' => '',
             'age' => '56',
@@ -462,6 +462,8 @@ class DatabaseSeeder extends Seeder
             'availableTime' => '08:00:00'
         ]);
         DB::table('online_bookings')->insert([
+
+            
             'App_id'=> 'ob2',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat2',
@@ -496,31 +498,47 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
             'text' => 'Skin rash',
-            'img' => 'skin_rash.jpg'
+            'img' => 'skin_rash.jpg',
+            'date' => '2020-05-04',
+            'time' => '08:00:00',
+            'created_at' => '2020-05-04 08:00:00'
+
         ]);
         DB::table('add_symptomps')->insert([
 
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'text' => 'Feeling sick'
+            'text' => 'Feeling sick',
+            'date' => '2020-09-04',
+            'time' => '08:30:00',
+            'created_at' => '2020-09-04 08:30:00'
         ]);
         DB::table('add_symptomps')->insert([
 
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'text' => 'Feeling sick'
+            'text' => 'Feeling sick',
+            'date' => '2020-05-04',
+            'time' => '08:00:00',
+            'created_at' => '2020-05-04 08:00:00'
         ]);
         DB::table('add_symptomps')->insert([
 
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'text' => 'Feeling sick'
+            'text' => 'Feeling sick',
+            'date' => '2020-11-04',
+            'time' => '12:00:00',
+            'created_at' => '2020-11-04 12:00:00'
         ]);
         DB::table('add_symptomps')->insert([
 
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'text' => 'Continousely Vomiting'
+            'text' => 'Continousely Vomiting',
+            'date' => '2020-12-04',
+            'time' => '04:00:00',
+            'created_at' => '2020-12-04 04:00:00'
         ]);
 
 
