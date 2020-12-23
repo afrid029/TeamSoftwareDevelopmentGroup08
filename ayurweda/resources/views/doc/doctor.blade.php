@@ -218,8 +218,13 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                              <div style=" padding:1% 1% 1% 1%; border-radius:30px; height:200px; width:50%">
                                                        @if($c->Doc_im)
+<<<<<<< HEAD
+                                                       <img class="img" src="{{ asset('images/$c->Doc_im')}}" style="  border-radius:30px; height:200px; width:auto;">
+                                                       
+=======
                                                        <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:auto;">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+>>>>>>> 26b24165133d52243a65493f10870c7c8e7bf771
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>

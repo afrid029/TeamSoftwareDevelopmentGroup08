@@ -75,7 +75,7 @@ Route::get('appoint',[patientsController::class, 'appoint']);
 Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
 Route::get('/deleteAppoint',[patientsController::class, 'deleteAppointment']);
 Route::patch('changeprofile/{c}/',[patientsController::class, 'changeprofile'])->name('changeprofile');
-Route::post('/ordermedicine', [patientsController::class , 'ordermedicine'])->name('ordermedicine');
+Route::post('ordermedicine/{id}/', [patientsController::class , 'ordermedicine'])->name('ordermedicine');
 Route::get('/history/{c}',[patientsController::class, 'history'])->name('history');
 
 
@@ -106,5 +106,7 @@ Route::post('updatemedicine/{c}',[pharmacistController::class, 'Updatemedicine']
 Route::post('DelMedicine/{c}',[pharmacistController::class, 'DeleteMedicine']);
 
 Route::get('issueMedicine/{c}/',[pharmacistController::class, 'issueMedicine'])->name('issueMedicine');
+Route::post('issuepatorder',[pharmacistController::class, 'issuepatorder'])->name('issuepatorder');
+Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->name('issuedocorder');
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');

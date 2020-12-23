@@ -22,8 +22,11 @@ class search extends Controller
         else{
             $p=DB::table('medical_histories')->get();
         }
+        $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
+        ->orderBy('Med_name','asc') 
+      ->get();
         
-        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p);
+        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p)->with('stocks',$stocks);;
         
     }
 
@@ -41,6 +44,7 @@ class search extends Controller
         else{
             $p=DB::table('add_pat_ups')->get();
         }
+       
         return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',$p);
         
         

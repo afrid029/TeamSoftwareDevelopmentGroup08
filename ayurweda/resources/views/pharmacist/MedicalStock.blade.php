@@ -71,16 +71,17 @@
   
 }
 .table-scroll td,.table-scroll th{
-  flex-basis:100%;
+ 
+  width:10%;
   flex-grow:2;
   display: block;
-  padding: 1rem;
+  
   text-align:center;
 }
 /* Other options */
 .table-scroll.small-first-col td:first-child,
 .table-scroll.small-first-col th:first-child{
-  flex-basis:20%;
+  flex-basis:100%;
   flex-grow:1;
 }
 .table-scroll tbody tr:nth-child(2n){
@@ -98,11 +99,12 @@
 
      <!-- PRE LOADER -->
      <section class="preloader">
-          <div class="spinner">
+        
 
-               <span class="spinner-rotate"></span>
+          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
                
-          </div>
+     
      </section>
      <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
@@ -137,9 +139,6 @@
      </div>
 </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-
-
-
 @if($msg = session()->get('msg'))
 <script>
      Swal.fire({
@@ -186,12 +185,12 @@
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:70%; width:88%; margin: -12% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:70%; width:94%; margin: -12% 3% 0 3%; background-color:white; border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
                                              <div  class="table-wrapper">
-                                                  <div style="width:50%; margin-right: -20%; float:left; margin-left:2%;"><h2>Medical Stock Table</h2></div>
+                                                  <div style="width:60%; margin-right: -20%; float:left; margin-left:2%;"><h2>Medical Stock Table</h2></div>
                                                        <div class="table-title">
                                                             <div style="margin-top:2%; margin-right:2%;color:gray; width:20%; float:left;">
                                                                  <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Medicine By ID" title="Type ID">   
@@ -201,7 +200,7 @@
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
                                                             </div>
                                                        </div>
-                                                       <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
+                                                       <table id="myTable" style="color:black; width:100%;" class="table table-bordered table-scroll">
                                                             <thead>
                                                                  <tr>
                                                                       <th>Medicine ID </th>
@@ -211,6 +210,8 @@
                                                                       <th>Expiration Date</th>
                                                                       <th>Unit Price</th>
                                                                       <th>Stock Qty</th>
+                                                                      <th>Orders</th>
+                                                                      <th>Warning limit</th>
                                                                       <th>Actions</th>
                                                                  </tr>
                                                             </thead>
@@ -227,18 +228,21 @@
                                                                            <input type="hidden" id = "id<?php echo $n; ?>" value="{{$medi->Med_id }}">
                                                                            <input type="hidden" id = "name<?php echo $n; ?>" value = "{{$medi->Med_name}}">
                                                                            <input type="hidden" id = "desc<?php echo $n; ?>" value = "{{$medi->description}}">
-                                                                           <button class = "btn btn-success btn-sm" data-toggle = "modal" onclick = "viewdesc(<?php echo $n; ?>)" data-target="#viewdesc">View</button>
+                                                                           <button class = "btn btn-success btn-sm " data-toggle = "modal" onclick = "viewdesc(<?php echo $n; ?>)" data-target="#viewdesc">View</button>
                                                                       </td>
                                                                       <td>{{$medi->manufactureDate}}</td>
                                                                       <td>{{$medi->expireDate}}</td>
                                                                       <td>{{$medi->unitprice}}</td>
                                                                       <td>{{$medi->stock_qty}}</td>
+                                                                      <td>{{$medi->orders}}</td>
+                                                                      <td>{{$medi->Wlimit}}</td>
                                                                       <td>
                                                                            <input type="hidden" id = "mdate<?php echo $n; ?>" value="{{$medi->manufactureDate}}">
                                                                            <input type="hidden" id = "edate<?php echo $n; ?>" value = "{{$medi->expireDate}}">
                                                                            <input type="hidden" id = "prc<?php echo $n; ?>" value = "{{$medi->unitprice}}">
                                                                            <input type="hidden" id = "stk<?php echo $n; ?>" value = "{{$medi->stock_qty}}">
-                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<button data-toggle="modal" data-target="#delete" onclick = "del(<?php echo $n; ?>)" class = "btn btn-danger btn-sm">Delete</button>
+                                                                           <input type="hidden" id = "war<?php echo $n; ?>" value = "{{$medi->Wlimit}}">
+                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm fa fa-pencil"></button>&nbsp;<button data-toggle="modal" data-target="#delete" onclick = "del(<?php echo $n; ?>)" class = "btn btn-danger btn-sm fa fa-trash-o"></button>
                                                                       </td>
                                                                  </tr>
                                                             <?php $n++; ?>
@@ -259,10 +263,10 @@
                                </div>
                                
                          </div>
-                         <div style="background-color:white;border-radius:8%; width:86.4%; margin:-12% 7% 0 7.8%; padding-left:1%;">
+                         <div style="background-color:white;border-radius:1%; width:92%;  max-height: 170px; margin:-12% 4% 0 5%;padding-bottom:1%; padding-left:1%;">
                               <h3 style="color:red;">Warnings:</h3>
                               
-                              <div style="overflow-y:scroll; position:relative; display:block; height:150px;">
+                              <div style="overflow-y:scroll; position:relative; display:block;  max-height:130px;">
                                    @if(count($warn)>0)
                                         <ul>
                                         @foreach($warn as $warning)
@@ -318,7 +322,7 @@
                               <div class="row">
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
                                         <label>Medicine Id</label>
-                                        <input type="text" name = "medid" placeholder="Med###" class="form-control">
+                                        <input type="text" name = "medid" placeholder="Med" class="form-control">
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Medicine Name</label>
@@ -327,14 +331,19 @@
                               </div>
                               <br>
                               <div class="row">
-                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
+                                   <div style="width:20%; margin-right:15%; float:left;" class="column">
                                         <label>Unit price</label>
                                         <input type="number" name = "uprice"  class="form-control">
                                    </div>
-                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
+                                   <div style="width:20%; margin-right:15%; float:left;" class="column">
                                         <label>Quantity</label>
                                         <input type="number" name = "qty" class="form-control">
                                    </div>
+                                   <div style="width:20%; float:left;" class="column">
+                                        <label>Warning Limit</label>
+                                        <input type="number" name = "warn" class="form-control">
+                                   </div>
+                                  
                               </div>
                               <br>
                               <div class="row">
@@ -405,7 +414,7 @@
 <!-- Modal 3-->
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
-          <div style = "height: 140px;; width:200%; margin-left:-50%; margin-right:-50%; margin-top:35%;" class="modal-content">
+          <div style = "height: 170px;; width:200%; margin-left:-50%; margin-right:-50%; margin-top:35%;" class="modal-content">
 
                <div style="margin-top:-2%;" class="modal-body">
                     <form action="/updatemedicine/{{$c->Phar_id}}" method="post">
@@ -413,35 +422,39 @@
                          <div style="margin-bottom:3%;">
                               <div style= "float:left; margin-right:2%; width:10%:">
                                    <label  >Medicine ID: </label>
-                                   <input style = "font-weight:bold; color:SaddleBrown; opacity: 0.6;" name = "medid" id="mediid" readonly/>
+                                   <input class="form-control" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6;" name = "medid" id="mediid" readonly/>
                               </div>
                               
                               <div style= "float:left;margin-right:2%; width:10%:">
                                    <label >Medicine Name: </label>
-                                   <input style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " id="mediname" readonly/>
+                                   <input class="form-control" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " id="mediname" readonly/>
                               </div>
 
                               <div style= " float:left;margin-right:2%; width:10%:">
                                    <label >Manufacture Date: </label>
-                                   <input type="date" style = "font-weight:bold; ; color:SaddleBrown; opacity: 0.6; " name = "mfd" id="medate" />
+                                   <input class="form-control" type="date" style = "font-weight:bold; ; color:SaddleBrown; opacity: 0.6; " name = "mfd" id="medate" />
                               </div>
-                         </div><br><br>
+                         </div>
                          <div>
                               <div style= "float:left; margin-right:2%; width:10%:">
                                    <label>Expiration Date: </label>
-                                   <input type="date" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name="exp"id="exdate" />
+                                   <input class="form-control" type="date" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name="exp"id="exdate" />
+                              </div>
+                              <div style= "float:left; margin-right:2%; width:10%:">
+                                   <label>Warning Limit: </label>
+                                   <input class="form-control" type="number" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name="warn"id="wa" />
                               </div>
 
                               <div style= "float:left;margin-right:2%; width:10%:">
                                    <label >Unit Price: </label>
-                                   <input type="number" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name ="uprice" id="price" />
+                                   <input class="form-control" type="number" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name ="uprice" id="price" />
                               </div>
 
                               <div style= "float:left;margin-right:2%; width:10%:">
                                    <label >Stock QTY: </label>
-                                   <input type="number" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name = "qty"id="quan" /> &nbsp;&nbsp;
-                                   <button  class="btn btn-primary">Update</button>
-                              </div>
+                                   <input class="form-control" type="number" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name = "qty"id="quan" /> &nbsp;&nbsp;
+                                   
+                              </div><button style="margin-top:2%;"  class="btn btn-primary">Update</button>
                          </div>
                     </form>
                                        
@@ -459,6 +472,7 @@
           var exdate =document.getElementById('edate'+id).value;
           var price =document.getElementById('prc'+id).value;
           var quan =document.getElementById('stk'+id).value;
+          var war =document.getElementById('war'+id).value;
           
           
 
@@ -466,8 +480,10 @@
           document.getElementById('mediname').value = name;
           document.getElementById('medate').value = medate;
           document.getElementById('exdate').value = exdate;
+          document.getElementById('wa').value = war;
           document.getElementById('price').value = price;
           document.getElementById('quan').value = quan;
+         
          
      }
 </script>
@@ -557,7 +573,12 @@
                     }
                }       
           }
+
+
      }
+
+     
+     
      </script>
 </body>
 </html>

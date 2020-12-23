@@ -17,6 +17,7 @@ class CreateMedicinesTable extends Migration
             $table->string('Med_id');
             $table->string('Med_name');
             $table->primary('Med_id');
+           
             $table->timestamps();
         });
     }

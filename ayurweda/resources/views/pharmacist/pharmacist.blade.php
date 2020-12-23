@@ -112,6 +112,14 @@
                <!-- lOGO TEXT HERE -->
                <a style= "color:black;" href="/welcome" class="navbar-brand">Hospital</a>
           </div>
+          <section class="preloader">
+        
+
+          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+               
+     
+     </section>
 
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
