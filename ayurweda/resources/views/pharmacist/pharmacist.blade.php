@@ -209,7 +209,7 @@
                          <div class="caption">
                               <div class="container">
                                    <div class="col-md-8 col-sm-12">
-                                        
+                                   <br><br><br><br>
                                         <div class="col-md-6 col-sm-6">
                                         <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:235px; width:50%">
                                              
