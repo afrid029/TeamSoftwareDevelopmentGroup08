@@ -21,7 +21,7 @@ class CreateMedicineStocksTable extends Migration
             $table->integer('stock_qty');
             $table->integer('orders')->default(0);
             $table->integer('Wlimit');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->date('manufactureDate');
             $table->date('expireDate');
             $table->foreign('Med_id')->references('Med_id')->on('medicines');

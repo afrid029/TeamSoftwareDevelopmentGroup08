@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\AllUsers;
 use App\Models\Pharmacist;
 use App\Models\Medicine_stock;
+use App\Models\Medicine_ordering;
 
 class pharmacistController extends Controller
 {
@@ -95,7 +96,9 @@ class pharmacistController extends Controller
         
         $warn = DB::table('medicine_stocks')->where('expireDate', '<=', $date)->select('Med_name','expireDate')->get();
         $warn1 = DB::table('medicine_stocks')->whereRaw('stock_qty - orders < Wlimit')->select('Med_name','stock_qty')->get();
-        return view('pharmacist/MedicalStock',compact('c','med','warn','warn1'))->with('msg', "");
+
+        $allmedi = DB::table('medicines')->orderBy('Med_name','asc')->get();
+        return view('pharmacist/MedicalStock',compact('c','med','warn','warn1','allmedi'))->with('msg', "");
     }
 
     public function AddMedicine(Request $req)
@@ -189,6 +192,7 @@ class pharmacistController extends Controller
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
         $pat = DB::table('pat_med_orderings')->where('status','Unrecieved')->orderBy('created_at','asc')->get();
         $doc = DB::table('medical_histories')->where('issued','Not Issued')->orderBy('created_at','asc')->get();
+       
         return view('pharmacist/IssueMedicine',compact('c','pat','doc'))->with('msg', "");
     }
 
@@ -235,6 +239,31 @@ class pharmacistController extends Controller
     public function ordermedicine($id)
     {
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
-        return view('pharmacist/OrderMed',compact('c'))->with('msg', "");
+        $stocks = DB::table('medicines')
+                                              ->orderBy('Med_name','asc') 
+                                              ->get();
+        $orders = DB::table('medicine_orderings')->where('Phar_id',$id)
+                                                ->orderBy('status','desc')
+                                                ->orderBy('created_at','desc')
+                                                ->get();
+
+        $prod = DB::table('medicine_producers')->get();
+        return view('pharmacist/OrderMed',compact('c','orders','stocks','prod'))->with('msg', "");
+    }
+
+    public function oredertopro(Request $req, $id)
+    {
+       $ord = new Medicine_ordering;
+       $cnt = count(DB::table('medicine_orderings')->get());
+
+       $ord->MedOrder_id ="M_Ord".($cnt+1).rand(1,50);
+       $ord->medicines = json_encode($req->orders);
+       $ord->Pro_id = $req->ptid;
+       $ord->Phar_id = $id;
+       $ord->MedOrder_date = date('Y-m-d');
+
+       $ord->save();
+
+       return redirect()->back()->with('msg','Your Order Is sent To '.$req->ptnm);
     }
 }

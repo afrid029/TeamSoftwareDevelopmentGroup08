@@ -382,51 +382,72 @@ class DatabaseSeeder extends Seeder
 
         DB::table('medicines')->insert([
             'Med_id'=>'med1',
-            'Med_name' => 'Ashwagandha'
+            'Med_name' => 'Ashwagandha',
+            'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med2',
-            'Med_name' => 'Boswellia'
+            'Med_name' => 'Boswellia',
+            'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med3',
-            'Med_name' => 'Brahmi'
+            'Med_name' => 'Brahmi',
+            'description' => 'Brahmi is an Ayurvedic herb believed to lower inflammation, improve brain function, and reduce symptoms of ADHD. It may also increase your body’s ability to deal with stress, though more research is needed.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med4',
-            'Med_name' => 'Cumin'
+            'Med_name' => 'Cumin',
+            'description' => 'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med5',
-            'Med_name' => 'Turmeric'
+            'Med_name' => 'Turmeric',
+            'description' => 'Turmeric is the Ayurvedic spice that gives curry its yellow color. Curcumin, its main compound, may help reduce inflammation and improve heart and brain health. However, large amounts are likely needed to attain these benefits.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med6',
-            'Med_name' => 'Licorice'
+            'Med_name' => 'Licorice',
+            'description' => 'Licorice root is an Ayurvedic spice that may help reduce inflammation and protect against various infections. It may also treat digestive problems and relieve skin irritations.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med7',
-            'Med_name' => 'Bitter melon'
+            'Med_name' => 'Bitter melon',
+            'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med8',
-            'Med_name' => 'Cardamom'
+            'Med_name' => 'Cardamom',
+            'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med9',
-            'Med_name' => 'Triphala'
+            'Med_name' => 'Triphala',
+            'description' => 'Triphala is an ancient herbal remedy with antioxidant, anti-inflammatory, and antibacterial effects. Triphala may have various health benefits, such as improving oral and digestive health and supporting skin healing.',
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med10',
-            'Med_name' => 'Licorice root'
+            'Med_name' => 'Licorice root',
+            'description' => 'Licorice root, which is considered one of the worlds oldest herbal remedies, comes from the root of the licorice plant (Glycyrrhiza glabra) ( 1 ). Native to Western Asia and Southern Europe, licorice has long been used to treat various ailments and flavor candies, drinks, and medicines'
+            
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med11',
-            'Med_name' => 'Gotu kola'
+            'Med_name' => 'Gotu kola',
+            'description'=>'Centella asiatica, commonly known as Indian pennywort or Asiatic pennywort, is a herbaceous, perennial plant in the flowering plant family Apiaceae. It is native to the wetlands in Asia. It is used as a culinary vegetable and as a medicinal herb'
         ]);
         DB::table('medicines')->insert([
             'Med_id'=>'med12',
-            'Med_name' => 'Triphalachurna'
+            'Med_name' => 'Triphalachurna',
+            'description'=>'Triphala has been used in traditional Ayurvedic medicine since ancient times as a multi-purpose treatment for symptoms ranging from stomach ailments to dental cavities. It is also believed to promote longevity and overall health'
         ]);
    
        
@@ -438,7 +459,7 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '200',
             'orders'=>'15',
             'Wlimit'=>'50',
-            'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
+            
             'manufactureDate' => '2020-02-02',
             'expireDate' => '2022-02-02'
         ]);
@@ -449,7 +470,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '250',
             'orders'=>'45',
             'Wlimit'=>'75',
-            'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
             'manufactureDate' => '2020-04-02',
             'expireDate' => '2023-04-02'
         ]);
@@ -460,7 +480,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '150',
             'orders'=>'55',
             'Wlimit'=>'100',
-            'description' => 'Brahmi is an Ayurvedic herb believed to lower inflammation, improve brain function, and reduce symptoms of ADHD. It may also increase your body’s ability to deal with stress, though more research is needed.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
         ]);
@@ -471,7 +490,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '70',
             'orders'=>'0',
             'Wlimit'=>'50',
-            'description' => 'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2021-04-08'
         ]);
@@ -482,7 +500,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '450',
             'orders'=>'100',
             'Wlimit'=>'100',
-            'description' => 'Turmeric is the Ayurvedic spice that gives curry its yellow color. Curcumin, its main compound, may help reduce inflammation and improve heart and brain health. However, large amounts are likely needed to attain these benefits.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
         ]);
@@ -493,7 +510,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '90',
             'orders'=>'7',
             'Wlimit'=>'50',
-            'description' => 'Licorice root is an Ayurvedic spice that may help reduce inflammation and protect against various infections. It may also treat digestive problems and relieve skin irritations.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-12-08'
         ]);
@@ -504,7 +520,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '100',
             'orders'=>'14',
             'Wlimit'=>'40',
-            'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
         ]);
@@ -515,7 +530,6 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '210',
             'orders'=>'25',
             'Wlimit'=>'80',
-            'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-04-08'
         ]);

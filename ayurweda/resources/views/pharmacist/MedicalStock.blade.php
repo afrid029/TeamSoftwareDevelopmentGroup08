@@ -185,7 +185,7 @@
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:70%; width:94%; margin: -12% 3% 0 3%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:70%; width:95%; margin: -12% 5% 0 2%; background-color:white; border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
@@ -263,7 +263,7 @@
                                </div>
                                
                          </div>
-                         <div style="background-color:white;border-radius:1%; width:92%;  max-height: 170px; margin:-12% 4% 0 5%;padding-bottom:1%; padding-left:1%;">
+                         <div style="background-color:white;border-radius:1%; width:93.2%;  max-height: 170px; margin:-12% 6% 0 3.9%;padding-bottom:1%; padding-left:1%;">
                               <h3 style="color:red;">Warnings:</h3>
                               
                               <div style="overflow-y:scroll; position:relative; display:block;  max-height:130px;">
@@ -320,13 +320,46 @@
                          <form action="/addmedicine" method = "post">
                               @csrf 
                               <div class="row">
+                                   
+                                   <div style="margin-top:2%; margin-right:2%;color:gray; width:60%; ">
+                                        <input autocomplete="off" class="form-control" type="text" id="search" onkeyup="medicine()" onclick="showlist()" placeholder="Search Medicine By Name" title="Type ID">   
+                                   </div>
+
+                                   <div id="list" style="z-index:10; position:absolute; width:90%; background-color:white; display:none;">
+                                        <table class="table table-bordered table-scroll">
+                                             <thead>
+                                                  <tr>
+                                                       <th>Id</th>
+                                                       <th>Name</th>
+                                                       <th>Add</th>
+                                                  </tr>
+                                             </thead>
+                                             <tbody class="body-half-screen">
+                                             <?php $a = 0; ?>
+                                             @foreach($allmedi as $All)
+                                                  <tr>
+                                                       <input type="hidden" id="tid<?php echo $a; ?>" value="{{$All->Med_id}}">
+                                                       <input type="hidden" id="dscr<?php echo $a; ?>" value="{{$All->description}}">
+                                                       <input type="hidden" id="tname<?php echo $a; ?>" value="{{$All->Med_name}}">
+                                                       <td>{{$All->Med_id}}</td>
+                                                       <td>{{$All->Med_name}}</td>
+                                                       <td><button type = "button" class = "btn btn-secondary fa fa-plus" onclick = "select(<?php echo $a; ?>)"></button></td>
+
+                                                  </tr>
+                                                  <?php $a++; ?>
+                                             @endforeach
+                                             </tbody>
+                                        </table>
+                                   
+                                   </div>
+                                                  
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
                                         <label>Medicine Id</label>
-                                        <input type="text" name = "medid" placeholder="Med" class="form-control">
+                                        <input type="text" id = "tbid" name = "medid" placeholder="Med" readonly class="form-control">
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Medicine Name</label>
-                                        <input type="text" name = "medname" class="form-control">
+                                        <input type="text" id = "tbnm" name = "medname" readonly class="form-control">
                                    </div>
                               </div>
                               <br>
@@ -359,7 +392,7 @@
                               <br>
                               <div class="row">
                                    <label> Description </label><br>
-                                   <textarea style="width:80%; height:220px;" class="form-control" name="descr" ></textarea>
+                                   <textarea style="width:80%; height:220px;" id="descrip" class="form-control" name="descr" readonly></textarea>
                               </div><br>
                               <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
                          </form>
@@ -564,6 +597,28 @@
           tr = table.getElementsByTagName("tr");
           for (i = 0; i < tr.length; i++) {
                td = tr[i].getElementsByTagName("td")[1];
+              
+               if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+               }  
+          }
+          
+
+
+     }
+     function medicine() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("search");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("list");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+               td = tr[i].getElementsByTagName("td")[1];
                if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -577,7 +632,29 @@
 
      }
 
-     
+    
+
+     function select(id){
+          var ids = document.getElementById('tid'+id).value;
+          var nms = document.getElementById('tname'+id).value;
+          var dsc = document.getElementById('dscr'+id).value;
+
+          document.getElementById('tbid').value = ids;
+          document.getElementById('tbnm').value = nms;
+          document.getElementById('descrip').value = dsc;
+
+          showlist();
+          
+     }
+
+     function showlist(){
+          var x = document.getElementById('list');
+          if(x.style.display=="none"){
+               x.style.display = "block";
+          }else{
+               x.style.display = "none";
+          }
+     }
      
      </script>
 </body>

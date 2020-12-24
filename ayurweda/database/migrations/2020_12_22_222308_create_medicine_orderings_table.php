@@ -19,6 +19,7 @@ class CreateMedicineOrderingsTable extends Migration
             $table->string('Pro_id');
             $table->string('Phar_id');
             $table->date('MedOrder_date');
+            $table->string('status')->default('Unrecieved');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
             $table->foreign('Phar_id')->references('Phar_id')->on('pharmacists');
             $table->primary('MedOrder_id');

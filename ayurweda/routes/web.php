@@ -69,7 +69,6 @@ Route::get('symp/{c}/',[patientsController::class,'symp'])->name('symp');
 Route::get('order/{c}/',[patientsController::class,'order'])->name('order');
 Route::get('book/{c}/',[patientsController::class,'book'])->name('book');
 Route::post('addsymptomps/{c}',[patientsController::class, 'Add_Symptomps'])->name('addsymptomps');
-Route::get('viewSymp/{i}/{j}/',[patientsController::class, 'show'])->name('viewSymp');
 Route::get('showAvail/',[patientsController::class , 'showAvailable']);
 Route::get('appoint',[patientsController::class, 'appoint']);
 Route::post('/confirmAppoinment',[patientsController::class, 'confirmAppoinment']);
@@ -109,3 +108,4 @@ Route::post('issuepatorder',[pharmacistController::class, 'issuepatorder'])->nam
 Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->name('issuedocorder');
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');
+Route::post('oredertopro/{c}/',[pharmacistController::class, 'oredertopro'])->name('oredertopro');
