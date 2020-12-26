@@ -22,6 +22,17 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/producer.CSS')}}">
 
+     <style>
+      .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -47,6 +58,18 @@
           });
      </script>
 @endforeach
+@endif
+@if($msg = session()->get('msg'))
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
 @endif
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -135,11 +158,14 @@
                                    
 
                                         <div style="width:90%; margin-left:26%; margin-right:22%;" class="col-lg-3">
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="ID" name="search">
+                                             <form action="/ordersearch" method="post" style="margin:auto;width:700px">
+                                             @csrf
+                                                  <input style="color:black" type="text" placeholder="Supplier ID" name="supid">
                                                   <input style="color:black" type="date" name="date">
+                                                  <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
                                                   <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
+                                             <div class="tableFixHead">
                                              <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
@@ -151,8 +177,16 @@
                                                        
                                                   </tr>
                                              </thead> 
-                                             @if(count($orders) > 0)
                                              <tbody>
+                                             
+                                             @if($p1=session()->get('p1'))
+                                             <?php $orders=$p1; ?>
+                                             @else
+                                             <?php $orders=$p; ?>
+                                             @endif
+                                             
+                                             @if(count($orders) > 0)
+                                             
                                                   <?php $no = 1;?>
                                                   @foreach($orders as $order)
                                                   <tr>
@@ -174,8 +208,10 @@
                                                        </tr>
                                                        
                                                   @endif
+                                                  
                                              </tbody>
                                              </table>
+                                             </div>
                                              <br></br>
                                              
                                              <br></br>

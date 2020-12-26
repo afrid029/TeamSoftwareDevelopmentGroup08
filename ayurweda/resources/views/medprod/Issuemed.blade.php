@@ -111,9 +111,11 @@
                                         <div class="col-md-8 col-sm-12">
                                              <h1 style="color:#ffffff">Pharmacist's Medicine Orders</h1>
                                              
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="search">
+                                             <form action="/issusearch" method="post" style="margin:auto;width:700px">
+                                             @csrf
+                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="pharid">
                                                   <input style="color:black" type="date" name="date">
+                                                  <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
                                                   <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
                                              <br></br>
@@ -127,47 +129,39 @@
                                              <thead>
                                                   <tr style="background-color:#800000; ">
                                                        <th>Order ID</th>
-                                                       <th>Medicine ID</th>
-                                                       <th>Quantity</th>
+                                                       <th>Medicines</th>
                                                        <th>Pharmacist ID</th>
                                                        <th>Order Date</th>
-                                                       <th></th>
                                                       
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                             @if($p1=session()->get('p1'))
+                                             <?php $orders=$p1; ?>
+                                             @else
+                                             <?php $orders=$p; ?>
+                                             @endif
+                                             
+                                             @if(count($orders) > 0)
+                                             
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
+                                                       <td><p >{{$order->MedOrder_id}}</p></td>
+                                                       <td><p >{{$order->medicines}}</p></td>
+                                                       <td><p >{{$order->Phar_id}}</p></td>
+                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
+                                                  
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
+                                                  
                                                   
                                              </tbody>
                                         

@@ -124,7 +124,7 @@ Swal.fire({
                <input type="text" name="patid" class="form-control" placeholder="Patient ID" value=""><br>
                <input type="text" name="disease" class="form-control" placeholder="Disease" value=""><br>
                <input type="text" name="bedno" class="form-control" placeholder="Bed No" value=""><br>
-               <input type="text" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
+               <input type="date" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
                <input type="hidden" name="docid" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Insert</button>
           </div>
@@ -159,7 +159,7 @@ Swal.fire({
                                             {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Admitted Date" name="date">
+                                                  <input style="color:black" type="date" placeholder="Admitted Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                             </form>
                                             <br></br>

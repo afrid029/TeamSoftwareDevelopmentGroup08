@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class search extends Controller
 {
+    //doctor
     public function pressearch(Request $request){
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->patid!=""&&$request->date!=""){
@@ -80,6 +81,45 @@ class search extends Controller
             $p=DB::table('online_bookings')->get();
         }
         return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p)->with('na',$na);
+        
+        
+    }
+
+    //producer
+    public function ordersearch(Request $request){
+        if($request->supid!=""&&$request->date!=""){
+            $p1=DB::table('ingredient_orderings')->where('Pro_id',$request->id)->where('Sup_id',$request->patid)->whereDate('created_at',$request->date)->get();
+        }
+        elseif($request->supid==""&&$request->date!=""){
+            $p1=DB::table('ingredient_orderings')->where('Pro_id',$request->id)->whereDate('created_at',$request->date)->get();
+        }
+        elseif($request->supid!=""&&$request->date==""){
+            $p1=DB::table('ingredient_orderings')->where('Pro_id',$request->id)->where('Sup_id',$request->supid)->get();
+        }
+        else{
+            $p1=DB::table('ingredient_orderings')->where('Pro_id',$request->id)->get();
+        }
+        
+        return redirect()->back()->with('p1',$p1);
+        
+        
+    }
+
+    public function issusearch(Request $request){
+        if($request->pharid!=""&&$request->date!=""){
+            $p1=DB::table('medicine_orderings')->where('Pro_id',$request->id)->where('Phar_id',$request->pharid)->whereDate('MedOrder_date',$request->date)->get();
+        }
+        elseif($request->pharid==""&&$request->date!=""){
+            $p1=DB::table('medicine_orderings')->where('Pro_id',$request->id)->whereDate('MedOrder_date',$request->date)->get();
+        }
+        elseif($request->pharid!=""&&$request->date==""){
+            $p1=DB::table('medicine_orderings')->where('Pro_id',$request->id)->where('Phar_id',$request->pharid)->get();
+        }
+        else{
+            $p1=DB::table('medicine_orderings')->where('Pro_id',$request->id)->get();
+        }
+        
+        return redirect()->back()->with('p1',$p1);
         
         
     }

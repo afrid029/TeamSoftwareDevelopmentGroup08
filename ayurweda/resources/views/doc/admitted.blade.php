@@ -85,6 +85,7 @@
 
           </div>
      </section>
+     @if($msg=session()->get('msg'))
      @if($msg=="Inserted successfully.")
      <script>
      Swal.fire({
@@ -105,6 +106,7 @@
      timer: 1500
      });
      </script>
+     @endif
      @endif
 
      <!-- Modal -->

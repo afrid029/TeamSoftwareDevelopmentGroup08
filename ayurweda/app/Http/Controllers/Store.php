@@ -105,23 +105,15 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $p=DB::table('medical_histories')->get();
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
-                                              ->orderBy('Med_name','asc') 
-                                            ->get();
+            
         
-            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);;
+            return view('doc/prescription')->with('msg',$s);
         }
         $s="Prescription added successfully";
-        $p=DB::table('medical_histories')->get();
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
-                                              ->orderBy('Med_name','asc') 
-                                            ->get();
+        
         
 
-        return redirect()->back()->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);
+        return redirect()->back()->with('msg',$s);
 
        
 
@@ -141,14 +133,11 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $p=DB::table('add_pat_ups')->get();
-            return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+            return redirect()->back()>with('msg',$s);
         }
         $s="Inserted successfully.";
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('add_pat_ups')->get();
-        return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        
+        return redirect()->back()->with('msg',$s);
         
     }
         
@@ -166,11 +155,9 @@ class Store extends Controller
             $a->save();
             $s="Inserted successfully.";
         }
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
         
         
-        return view('doc/available')->with('c',$c)->with('msg',$s)->with('av',$p)->with('ro',"");
+        return redirect()->back()->with('msg',$s);
         
     }
 
@@ -188,14 +175,10 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $p=DB::table('add_pats')->get();
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+            return redirect()->back()->with('msg',$s);
         }
         $s="Patient admitted successfully.";
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('add_pats')->get();
-        return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        return redirect()->back()->with('msg',$s);
         
     }
 
@@ -203,7 +186,6 @@ class Store extends Controller
     public function proaddmedicine(Request $req)
     {
        $valid =  $req->validate([
-            'medid'=>'required',
             'medname'=>'required',
             'uprice' => 'required',
             'qty' => 'required',
@@ -212,7 +194,6 @@ class Store extends Controller
             'descr' => 'required'
 
         ],[
-            'medid.required' => 'Medicine ID missing',
             'medname.required' => 'Medicine Name is missing',
             'uprice.required' => 'Set a unit price',
             'qty.required' => 'Set a Quantity',
@@ -221,11 +202,11 @@ class Store extends Controller
             'descr.required' => 'Decription required',
             'exp.after' => 'Logically date combination is wrong'
         ]);
-        
+        $id=DB::table('medicines')->where('Med_name',$req->medname)->value('Med_id');
         $medi = new new_med_stock;
         
         $medi->Pro_id = $req->id;
-        $medi->Med_id = $req->medid;
+        $medi->Med_id = $id;
         $medi->Med_name = $req->medname;
         $medi->unitprice = $req->uprice;
         $medi->stock_qty = $req->qty;

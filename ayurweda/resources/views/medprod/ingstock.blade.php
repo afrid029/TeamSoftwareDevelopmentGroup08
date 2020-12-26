@@ -22,6 +22,21 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/producer.CSS')}}">
 
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 300px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -132,6 +147,7 @@
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
                                                             </div>
                                                        </div>
+                                                       <div class="tableFixHead">
                                                        <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
                                                             <thead>
                                                                  <tr>
@@ -168,6 +184,7 @@
                                                             @endif        
                                                             </tbody>
                                                        </table>
+                                                       </div>
 
                                                       
                                                   </div>
