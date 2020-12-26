@@ -457,7 +457,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Ashwagandha',
             'unitprice' => '30',
             'stock_qty' => '200',
-            'orders'=>'15',
+            
             'Wlimit'=>'50',
             
             'manufactureDate' => '2020-02-02',
@@ -468,7 +468,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Boswellia',
             'unitprice' => '50',
             'stock_qty' => '250',
-            'orders'=>'45',
+          
             'Wlimit'=>'75',
             'manufactureDate' => '2020-04-02',
             'expireDate' => '2023-04-02'
@@ -478,7 +478,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Brahmi',
             'unitprice' => '90',
             'stock_qty' => '150',
-            'orders'=>'55',
+           
             'Wlimit'=>'100',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
@@ -488,7 +488,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Cumin',
             'unitprice' => '45',
             'stock_qty' => '70',
-            'orders'=>'0',
+            
             'Wlimit'=>'50',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2021-04-08'
@@ -498,7 +498,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Turmeric',
             'unitprice' => '100',
             'stock_qty' => '450',
-            'orders'=>'100',
+           
             'Wlimit'=>'100',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
@@ -508,7 +508,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Licorice',
             'unitprice' => '80',
             'stock_qty' => '90',
-            'orders'=>'7',
+       
             'Wlimit'=>'50',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-12-08'
@@ -518,7 +518,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Bitter melon',
             'unitprice' => '40',
             'stock_qty' => '100',
-            'orders'=>'14',
+            
             'Wlimit'=>'40',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
@@ -528,7 +528,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Cardamom',
             'unitprice' => '40',
             'stock_qty' => '210',
-            'orders'=>'25',
+          
             'Wlimit'=>'80',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-04-08'
@@ -622,6 +622,15 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-12-04',
             'time' => '04:00:00',
             'created_at' => '2020-12-04 04:00:00'
+        ]);
+
+
+        ///admin
+
+        DB::table('all_users')->insert([
+            'id'=>'admin',
+            'password'=>'admin',
+            'roll'=>'admin'
         ]);
         
 

@@ -210,7 +210,7 @@
                                                                       <th>Expiration Date</th>
                                                                       <th>Unit Price</th>
                                                                       <th>Stock Qty</th>
-                                                                      <th>Orders</th>
+                                                                      <th>Ordered Qty</th>
                                                                       <th>Warning limit</th>
                                                                       <th>Actions</th>
                                                                  </tr>

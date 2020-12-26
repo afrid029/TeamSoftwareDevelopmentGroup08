@@ -26,6 +26,9 @@ class login extends Controller
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
                 return view('medprod/producer')->with('c',$c)->with('msg',"");
+            }elseif($roll=="admin"){
+
+                return("Route to admin page in Login.php conroller");
             }
             else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();

@@ -45,6 +45,7 @@ return array(
     'App\\Models\\Pharmacist' => $baseDir . '/app/Models/Pharmacist.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\add_symptomps' => $baseDir . '/app/Models/add_symptomps.php',
+    'App\\Models\\admin' => $baseDir . '/app/Models/admin.php',
     'App\\Models\\ingredients' => $baseDir . '/app/Models/ingredients.php',
     'App\\Models\\medicines' => $baseDir . '/app/Models/medicines.php',
     'App\\Models\\new_med_stock' => $baseDir . '/app/Models/new_med_stock.php',
