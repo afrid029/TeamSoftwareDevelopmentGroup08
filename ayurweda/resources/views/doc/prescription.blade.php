@@ -132,6 +132,27 @@ Swal.fire({
 </script>
 @endif
 @endif
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
 
 
      <!-- Modal -->
@@ -344,7 +365,7 @@ Swal.fire({
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Date" name="date">
+                                                  <input style="color:black" type="date" placeholder="Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                              </form>
                                              
@@ -365,10 +386,15 @@ Swal.fire({
                                                        <th>Medicine</th>
                                                   </tr>
                                              </thead>
+                                             @if($pres1=session()->get('pres1'))
+                                             <?php $press=$pres1; ?>
+                                             @else
+                                             <?php $press=$pres; ?>
+                                             @endif
                                              <tbody>
-                                                  @if(count($pres) > 0)
+                                                  @if(count($press) > 0)
                                                   <?php $no = 0; ?>
-                                                  @foreach($pres as $pr)
+                                                  @foreach($press as $pr)
                                                   <tr>
                                                        <td>{{$pr->Meeting_id}}</td>
                                                        <td>{{$pr->Pat_id}}</td>

@@ -128,12 +128,6 @@ class patientsController extends Controller
          $symp->save();
         return redirect()->back()->with('msg',"Symptomp note has sent");
     }
-    public function show($id,$id2)
-    {
-        $c = DB::table('patients')->where('Pat_id',$id2)->first();
-        $e = DB::table('add_symptomps')->where('id',$id)->first();
-        return view('pat/view',compact('c','e'));
-    }
 
     /*--------Online Booking----------------*/
 

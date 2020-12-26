@@ -108,6 +108,27 @@
      </script>
      @endif
      @endif
+     @if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
 
      <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -157,7 +178,7 @@
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Date" name="date">
+                                                  <input style="color:black" type="date" placeholder="Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                              </form>
                                              <br></br>
@@ -174,9 +195,14 @@
                                                        <th>Condition</th>
                                                   </tr>
                                              </thead>
+                                             @if($ad1=session()->get('ad1'))
+                                             <?php $adp=$ad1; ?>
+                                             @else
+                                             <?php $adp=$ad; ?>
+                                             @endif
                                              <tbody>
-                                                  @if(count($ad)>0)
-                                                  @foreach($ad as $a)
+                                                  @if(count($adp)>0)
+                                                  @foreach($adp as $a)
                                                   <tr>
                                                        <td>{{$a->Pat_id}}</td>
                                                        <td>{{$a->Doc_id}}</td>

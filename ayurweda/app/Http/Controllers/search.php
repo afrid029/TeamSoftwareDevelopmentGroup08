@@ -27,7 +27,7 @@ class search extends Controller
         ->orderBy('Med_name','asc') 
       ->get();
         
-        return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p)->with('stocks',$stocks);;
+        return redirect()->back()->with('pres1',$p);
         
     }
 
@@ -46,7 +46,7 @@ class search extends Controller
             $p=DB::table('add_pat_ups')->get();
         }
        
-        return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',$p);
+        return redirect()->back()->with('ad1',$p);
         
         
     }
@@ -66,7 +66,7 @@ class search extends Controller
             $p=DB::table('add_pats')->get();
         }
         
-        return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);
+        return redirect()->back()->with('ad1',$p);
        
         
     }
@@ -75,12 +75,12 @@ class search extends Controller
         $na=count($td);
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->date!=""){
-            $p=DB::table('online_bookings')->whereDate('availableDate',$request->date)->get();
+            $p=DB::table('online_bookings')->where('Doc_id',$request->docid)->whereDate('availableDate',$request->date)->get();
         }
         else{
-            $p=DB::table('online_bookings')->get();
+            $p=DB::table('online_bookings')->where('Doc_id',$request->docid)->get();
         }
-        return view('doc/appointments')->with('c',$c)->with('msg',"")->with('ad',$p)->with('na',$na);
+        return redirect()->back()->with('ad1',$p);
         
         
     }

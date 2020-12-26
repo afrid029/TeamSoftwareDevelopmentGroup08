@@ -132,6 +132,8 @@
                                                        <th>Medicines</th>
                                                        <th>Pharmacist ID</th>
                                                        <th>Order Date</th>
+                                                       <th>Order status</th>
+
                                                       
                                                   </tr>
                                              </thead>
@@ -148,12 +150,21 @@
                                                   @foreach($orders as $order)
                                                   <tr>
                                                        <td><p >{{$order->MedOrder_id}}</p></td>
-                                                       <td><p >{{$order->medicines}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                       
+                                                       </td>
                                                        <td><p >{{$order->Phar_id}}</p></td>
                                                        <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       @if($order->status=="Unrecieved")
+                                                       <td><a href="{{route('reorder',$order->MedOrder_id)}}" class="btn btn-primary btn-sm">Recieve</a></td>
+                                                       @else
+                                                       <td><p >{{$order->status}}</p></td>
+                                                       @endif
                                                        
                                                   </tr>
-                                                  
+                                                  <?php $no++; ?>
                                                   @endforeach 
                                                   @else
                                                        <tr>
@@ -166,6 +177,37 @@
                                              </tbody>
                                         
                                         </table>
+                                        <script>
+                                             function viewing(id){
+                                                  var a = document.getElementById('medi'+id).value;
+                                                  var k = a.substring(2, a.length-2)
+                                                  var d = k.split(",");
+                                                  console.log(k);
+                                                  console.log(d);
+                                                  var result = "";
+                                                  for(var i = 0; i < d.length ; i++){
+                                                       if(i%2 == 0){
+                                                            result = result + d[i]; 
+                                                       }else{
+                                                            result = result + " "+d[i]+"\n";
+                                                       }
+                                                  }
+                                                
+                                                  console.log(d.length);
+                                                  Swal.fire({
+                                                       position: 'top',
+                                                       width:400,
+                                                       text:"Order details",
+                                                       icon: 'info',
+                                                       title: result,
+                                                      
+                                                       showConfirmButton: true,
+                                                      
+                                                  
+                                                  });
+                                             }
+                                                 
+                                        </script>
                                         </div>
                                         </div>
                                         

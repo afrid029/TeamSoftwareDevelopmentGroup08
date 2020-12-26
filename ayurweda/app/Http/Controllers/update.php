@@ -71,8 +71,9 @@ class update extends Controller
     
     public function docreply(Request $request)
     {
+    
         DB::table('add_symptomps')->where('id',$request->id)->update(['reply'=>$request->reply]);
-        return redirect()->back();
+        return redirect()->route('docsymp',['c'=>$request->docid]);
     }
     public function docpic(Request $request)
     {
@@ -133,6 +134,18 @@ class update extends Controller
 
     public function proupdatemedicine(Request $req)
     {
+        $req->validate([
+            'uprice'=>['required'],
+            'qty'=>['required'],
+            'mfd'=>['required'],
+            'exp'=>['required'],
+        ],
+        [
+            'uprice.required' => 'Unit price is empty',
+            'qty.required' => 'Quantity is empty',
+            'mfd.required' => 'Manufacture date is empty',
+            'exp.required' => 'Expire date is empty',
+        ]);
         DB::table('new_med_stocks')->where('id',$req->id)->update([
             'unitprice' => $req->uprice,
             'stock_qty'=> $req->qty,
@@ -181,5 +194,13 @@ class update extends Controller
             ]);
             
             return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+    }
+    public function reorder($id)
+    {
+            DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
+                'status' =>"Recieved",
+            ]);
+            
+            return redirect()->back();
     }
 }

@@ -23,91 +23,64 @@
      <link rel="stylesheet" href="{{ asset('css/pharmacist.CSS')}}">
      <style>
     
-     .table-wrapper {
-     width: 700px;
-     margin: 30px auto;
-     background: #fff;
-     padding: 20px;	
-     box-shadow: 0 1px 1px rgba(0,0,0,.05);
-     }
-     .table-title {
-     padding-bottom: 10px;
-     margin: 0 0 10px;
-     }
-     .table-title h2 {
-     margin: 6px 0 0;
-     font-size: 22px;
-     }
-     .table-title .add-new {
-     float: right;
-     height: 30px;
-     font-weight: bold;
-     font-size: 12px;
-     text-shadow: none;
-     min-width: 100px;
-     border-radius: 50px;
-     line-height: 13px;
-     }
-     .table-title .add-new i {
-     margin-right: 4px;
-     }
-     table.table {
-     table-layout: fixed;
-     }
-     table.table tr th, table.table tr td {
-     border-color: #e9e9e9;
-     }
-     table.table th i {
-     font-size: 13px;
-     margin: 0 5px;
-     cursor: pointer;
-     }
-     table.table th:last-child {
-     width: 100px;
-     }
-     table.table td a {
-     cursor: pointer;
-     display: inline-block;
-     margin: 0 5px;
-     min-width: 24px;
-     }    
-     table.table td a.add {
-     color: #27C46B;
-     }
-     table.table td a.edit {
-     color: #FFC107;
-     }
-     table.table td a.delete {
-     color: #E34724;
-     }
-     table.table td i {
-     font-size: 19px;
-     }
-     table.table td a.add i {
-     font-size: 24px;
-     margin-right: -1px;
-     position: relative;
-     top: 3px;
-     }    
-     table.table .form-control {
-     height: 32px;
-     line-height: 32px;
-     box-shadow: none;
-     border-radius: 2px;
-     }
-     table.table .form-control.error {
-     border-color: #f50000;
-     }
-     table.table td .add {
-     display: none;
-     }
+    .table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #191970;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
      
-     /* for search box */
-     #myInput {
-     background-repeat: no-repeat;
-     background-image: url(../images/searchicon.jpg);
-     }
-     </style>
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 55vh;
+  
+}
+.small-col{flex-basis:10%;}
+ </style>
 </head>
 <body>
 
@@ -115,7 +88,7 @@
      <section class="preloader">
         
 
-        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         <span class="sr-only">Loading...</span>
              
    
@@ -156,115 +129,448 @@
 
     
 
-     <!-- HOME -->
-     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+    <!-- HOME -->
+<section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
-
-                    <div class="owl-carousel owl-theme">
+                    <div class="owl-theme">
                          <div class="item item-first">
-                         <!--<div class="caption">-->
-                         <br><br>
-                         <br><br>
-                         <br><br>
+                         <div class="caption">
                                    <div class="container">
-                                   
-                                   
-                                        <div class="col-md-8 col-sm-12">
-                                             
-                                             
-                                             <!--          Table   -->
-                                             <div class="container-lg">
-                                                  <div class="table-responsive">
-                                                       <div class="table-wrapper">
-                                                       <form>
-                                                       <div class="col-sm-6"><h2>Order Medicine</h2></div>
-                                                            <div class="table-title">
-                                                            
-                                                                 <!--<div class="row">-->
-                                                                    <div class="col-sm-3">
-                                                                    <input class="form-control" type="text" name="" placeholder="Producer ID"><br>
-                                                                    </div>
-                                                                      <div class="col-sm-3">
-                                                                      <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add Medicine</button>
-                                                                      </div>
-                                                                 
-                                                            </div>
-                                                            <table class="table table-bordered">
-                                                                 <thead>
-                                                                      <tr>
-                                                                      <th>Medicine Id</th>
-                                                                      <th>Quantity</th>
-                                                                      <th>Actions</th>
-                                                                      </tr>
-                                                                 </thead>
-                                                                 <tbody>
-                                                                      <tr>
-                                                                      <td></td>
-                                                                      <td></td>
-                                                                      <td>
-                                                                           <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                                                           <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                                                           <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                      <td></td>
-                                                                      <td></td>
-                                                                      <td>
-                                                                           <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                                                           <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                                                           <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                      <td></td>
-                                                                      <td></td>
-                                                                      <td>
-                                                                           <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                                                           <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                                                           <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                                      </td>
-                                                                      </tr>      
-                                                                 </tbody>
-                                                            </table>
-                                                            <input class="section-btn btn btn-default smoothScroll" type="submit" value="Send" color="black">
-                                                       </div>
-
-                                                       </form>
-                                                  </div>
-                                                <div style="position:relative;height:200px;overflow:auto;display:block;">
-                                                <table class="table table-bordered" >
-                                                  <thead>
-                                                        <tr>
-                                                            <th>Producer ID</th>
-                                                            <th>Date</th>
-                                                            <th><link>Action</link></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>id1</td>
-                                                            <td></td>
-                                                            <td>view</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>id2</td>
-                                                            <td></td>
-                                                            <td>view</td>
-                                                        </tr>
-                                                    </tbody>
-                                                  </table>
-                                                  </div>
-                                             </div>                                
-                                             <!--      -->
+                                   <div style="width:80%; margin-left:10%; margin-right:10%;" class="col-lg-3">
+                                         <div style="width:60%;  float:left; margin-left:6%; margin-top:2%;"><h2>Medicine Orders</h2></div>
+                                        <div class="table-title">
+                                             <div style="margin-top:5%; float:right; margin-right:14%;" class="col-sm-1">
+                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addord"><i class="fa fa-plus"></i> Place A New Order</button>
+                                             </div>
                                         </div>
-                                   
+                              
+                                        <table style="background-color:white;border:5px; " class="table table-bordered table-scroll" >
+                                        
+                                             <thead>
+                                            
+                                                  <tr>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Date</b></th>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Producer ID</b></th>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>View</b></th>
+                                                       <th style=" color:#FFFFFF;text-align:center"><b>Order Status</b></th> 
+                                                       
+                                                  </tr>
+                                             </thead> 
+                                             @if(count($orders) > 0)
+                                             <tbody class="body-half-screen">
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
+                                                  <tr>
+                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       <td><p >{{$order->Pro_id}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                       
+                                                       </td>
+                                                       <td><p>{{$order->status}}</p></td>
+                                                      
+                                                       
+                                                  </tr>
+                                                  <?php $no++; ?>
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
+                                             </tbody>
+                                        
+                                        </table>
+                                       
+                                       
+                                        <script>
+                                             function viewing(id){
+                                                  var a = document.getElementById('medi'+id).value;
+                                                  var k = a.substring(2, a.length-2)
+                                                  var d = k.split(",");
+                                                  console.log(k);
+                                                  console.log(d);
+                                                  var result = "";
+                                                  for(var i = 0; i < d.length ; i++){
+                                                       if(i%2 == 0){
+                                                            result = result + d[i]; 
+                                                       }else{
+                                                            result = result + " "+d[i]+"\n";
+                                                       }
+                                                  }
+                                                
+                                                  console.log(d.length);
+                                                  Swal.fire({
+                                                       position: 'top',
+                                                       width:400,
+                                                       text:"Order details",
+                                                       icon: 'info',
+                                                       title: result,
+                                                      
+                                                       showConfirmButton: true,
+                                                      
+                                                  
+                                                  });
+                                             }
+                                                 
+                                        </script>
+                              
                                    </div>
-                         </div>    
-                         <!--</div>-->
+                                        
+                                   </div>
+                              </div>
+                         </div>
                     </div>
           </div>
-     </section>
+</section>
+
+<!--Modal-->
+<div class="modal fade" id="addord" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order Medicine Here</h5>
+                    <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
+               </div>
+               <div style="margin-top:-2%;" class="modal-body">
+                    <!------------------- Selecting Producer------------------->
+                    <div style="margin-top:2%; margin-right:2%;color:gray; width:60%; ">
+                         <input autocomplete="off" class="form-control" type="text" id="prsearch"  onkeyup="producer()"  placeholder="Select A Producer" title="Type ID" style="float:left;"> 
+                    </div>&nbsp; <i style="margin-top:-1%;" id="show" onclick="showlist()" class="btn btn-outline fa fa-plus-circle fa-2x" aria-hidden="true"></i> 
+
+                    <div id="prlist" style="z-index:10; position:absolute; width:90%; background-color:white; display:none;">
+                         <table class="table table-bordered table-scroll">
+                              <thead>
+                                   <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Add</th>
+                                   </tr>
+                              </thead>
+                              <tbody class="body-half-screen">
+                              <?php $b = 0; ?>
+                                   @foreach($prod as $pr)
+                                        <tr>
+                                             <input type="hidden" id="tid<?php echo $b; ?>" value="{{$pr->Pro_id}}"/>
+                                            
+                                             <input type="hidden" id="tnam<?php echo $b; ?>" value="{{$pr->Pro_name}}"/>
+                                             <td>{{$pr->Pro_id}}</td>
+                                             <td>{{$pr->Pro_name}}</td>
+                                             <td><button type = "button" class = "btn btn-secondary fa fa-plus" onclick = "select(<?php echo $b; ?>)"></button></td>
+
+                                        </tr>
+                                   <?php $b++; ?>
+                                   @endforeach
+                              </tbody>
+                         </table>
+                    </div>
+
+
+
+          <!-----------------------Selecting medicine----------------------->
+
+                    <div style="margin-top:2%; margin-right:2%;color:gray; width:60%; ">
+                         <input autocomplete="off" class="form-control" type="text" id="medsearch"  onkeyup="medicine()"  placeholder="Select Medicines" title="Type ID" style="float:left;"> 
+                    </div>&nbsp; <i style="margin-top:-1%;" id="medshow" onclick="medshowlist()" class="btn btn-outline fa fa-plus-circle fa-2x" aria-hidden="true"></i> 
+
+                    <div id="medlist" style="z-index:10; position:absolute; width:80%; background-color:white; display:none;">
+
+                         <table class="table table-bordered table-scroll">
+                                   <thead style="width:100%;">
+                                        <tr>
+                                             <th style="width:15%;"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></th>
+                                             <th style="width:45%;">Name</th>
+                                             <th style="width:40%;">Quantity</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody style="width:100%;" class = "body-half-screen">
+                                   @if(count($stocks) > 0)                          
+
+                                   <?php $a = 0; ?>
+                                        @foreach($stocks as $st)
+                                             <tr>
+                                                  
+                                                  <td style="width:15%;"><input type="checkbox"  class="fa fa-check-circle-o"  id = "med<?php echo $a; ?>" name = "med<?php echo $a; ?>" value = "{{$st->Med_name}}" onclick="qtybox(<?php echo $a; ?>)" /></td>
+                                                 
+                                                  <td style="width:45%;">{{$st->Med_name}}</td>
+                                                  <td style="width:40%;">
+                                                       <div id = "qti<?php echo $a; ?>" style="display:none;">
+                                                            <input type="number" class="form-control" style="width:50%; float:left; height: 30px;" id="qnt<?php echo $a; ?>">
+                                                            <button type = "button" class = "btn btn-primary fa fa-plus" onclick = "add(<?php echo $a; ?>)"></button>
+                                                       </div>
+                                                       
+
+                                                  </td>
+
+                                             </tr>
+                                        <?php $a++; ?>
+                                        @endforeach
+                                   </tbody>
+                                   @else
+                                        <p><i>No Medicines in Stock</i></p>
+                                   @endif
+                         
+                         </table>
+   
+                    </div>
+                    <script>
+                        
+                    </script>
+                    
+
+                    
+                    <h3 id="head" style="display:block;">Medicine Order Details</h3>
+                    <div id = "div" style="max-height:300px; overflow-y:scroll;">
+                    
+                    <form id="form" action="{{ route ('oredertopro',$c->Phar_id) }}" method = "post" onsubmit="submitting()">
+                    @csrf
+                         <div id = "prdet">
+                              
+                         </div>
+                    
+                         <input type="hidden" name = "orders[]" id = "ord" >
+                         <div id = "myDiv" style="max-height:150px; overflow-y :scroll;">
+                    
+                         </div>
+                         
+                    
+                         <button id="sub" type = "submit" class="btn btn-primary btn-sm" style="display:none; overflow-y:fixed;">Send</button>
+                    </form>
+                    </div>
+                   
+                    <script>
+                              
+                             
+                         function showlist(){
+                             var cls = document.getElementById('show').className;
+                             console.log(cls);
+                             if(cls == "btn btn-outline fa fa-plus-circle fa-2x"){
+                                  document.getElementById('show').className = "btn btn-outline fa fa-times-circle fa-2x";
+
+                                  document.getElementById('prlist').style.display = "block";
+                             }else{
+                                   document.getElementById('show').className = "btn btn-outline fa fa-plus-circle fa-2x";
+                                   document.getElementById('prlist').style.display = "none";
+                             }
+                              
+                         }
+                         function medshowlist(){
+                             var cls = document.getElementById('medshow').className;
+                             console.log(cls);
+                             if(cls == "btn btn-outline fa fa-plus-circle fa-2x"){
+                                  document.getElementById('medshow').className = "btn btn-outline fa fa-times-circle fa-2x";
+
+                                  document.getElementById('medlist').style.display = "block";
+                             }else{
+                                   document.getElementById('medshow').className = "btn btn-outline fa fa-plus-circle fa-2x";
+                                   document.getElementById('medlist').style.display = "none";
+                             }
+                              
+                         }
+                         var form = document.getElementById("form");
+                         function select(id){
+
+                              var m = document.getElementById('prdet');
+                              m.remove();
+                              m = document.createElement('div');
+                              m.setAttribute('id','prdet');
+                              var nm =  document.getElementById('tnam'+id).value;
+                              var id =  document.getElementById('tid'+id).value;
+                              
+                              
+
+                              var input1 = document.createElement("input");
+                                   input1.setAttribute("type","text");
+                                   input1.setAttribute("name","ptid");
+                                   
+                                   input1.setAttribute("value",id);
+                                   input1.setAttribute("readonly",true);
+                                   input1.setAttribute("class","form-control");
+                                   input1.setAttribute("style","margin-right:5px; width:20%; float:left;");
+
+                              var input2 = document.createElement("input");
+                                   input2.setAttribute("type","text");
+                                   input2.setAttribute("name","ptnm");
+                                   
+                                   input2.setAttribute("value",nm);
+                                   input2.setAttribute("readonly",true);
+                                   input2.setAttribute("class","form-control");
+                                   input2.setAttribute("style","margin-right:5px; width:60%;");
+                                   brk = document.createElement('br');
+
+                              m.appendChild(input1);
+                              m.appendChild(input2);
+                              m.appendChild(brk);
+                              form.prepend(m);
+                              
+                              showlist();
+                         }
+                         function producer() {
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("prsearch");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("prlist");
+                              tr = table.getElementsByTagName("tr");
+                              for (i = 0; i < tr.length; i++) {
+                                   td = tr[i].getElementsByTagName("td")[1];
+                                   if (td) {
+                                        txtValue = td.textContent || td.innerText;
+                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                        } else {
+                                        tr[i].style.display = "none";
+                                        }
+                                   }       
+                              }
+                         }
+                         function medicine() {
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("medsearch");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("medlist");
+                              tr = table.getElementsByTagName("tr");
+                              for (i = 0; i < tr.length; i++) {
+                                   td = tr[i].getElementsByTagName("td")[1];
+                                   if (td) {
+                                        txtValue = td.textContent || td.innerText;
+                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                        } else {
+                                        tr[i].style.display = "none";
+                                        }
+                                   }       
+                              }
+                         }
+                         
+                         function qtybox(id){
+                              var chk = document.getElementById("med"+id);
+                              var qty = document.getElementById("qti"+id);
+                             
+                             
+
+                              if(chk.checked == true){
+                                   qty.style.display = "block";
+                                   chk.className = "fa fa-check-circle"
+                                  
+                              }else{
+                                   qty.style.display = "none";
+                                   chk.className = "fa fa-check-circle-o"
+                                  
+                              }
+                         }
+                         
+                         var div = document.getElementById("myDiv");
+                         window.setInterval( function(){
+                                   var c = div.getElementsByTagName("input").length;
+                                   var z = document.getElementById("sub");
+                                   var y = document.getElementById('prdet').getElementsByTagName("input").length;
+                                  
+                              
+                                   if (c > 0 && y > 0){
+                                        
+                                        z.style.display = "block";
+                                       
+                                        
+
+                                   }else{
+                                        
+                                        z.style.display = "none";
+                                        
+                                        
+                                   }
+                              },10)
+                         
+                         
+                         function add(id){
+
+                              var med = document.getElementById("med"+id).value;
+                              var qty = document.getElementById("qnt"+id).value;
+                              var sub = document.getElementById('sub');
+                             
+                             
+
+                              if(qty>0){
+                                   
+
+                                   var input1 = document.createElement("input");
+                                   input1.setAttribute("type","text");
+                                   input1.setAttribute("name","medi"+id);
+                                   input1.setAttribute("id","medic"+id);
+                                   input1.setAttribute("value",med);
+                                   input1.setAttribute("readonly",true);
+                                   input1.setAttribute("class","form-control");
+                                   input1.setAttribute("style","margin-right:5px; width:40%; float:left;");
+                                   
+                                   var input2 = document.createElement("input");
+                                   input2.setAttribute("type","number");
+                                   input2.setAttribute("name","qt"+id);
+                                   input2.setAttribute("id","qt"+id);
+                                   input2.setAttribute("value",qty);
+                                   input2.setAttribute("readonly",true);
+                                   input2.setAttribute("class","form-control");
+                                   input2.setAttribute("style","margin-right:5px; width:20%;");
+
+                                 
+                                    var br = document.createElement("br");
+
+                                   div.appendChild(input1);
+                                   
+                                   div.appendChild(input2);
+
+                                   var rem = document.createElement("button");
+                                   rem.setAttribute("class", "btn btn-danger fa fa-minus-circle ");
+                                   rem.setAttribute("type", "button");
+                                   rem.setAttribute("style"," float:right; margin-top:-6%; margin-right:25%;");
+                                   rem.setAttribute("id", "del"+id);
+                                   rem.setAttribute("onclick", "remove("+id+")");
+                                   div.appendChild(rem);
+                                   div.appendChild(br);
+                                   form.appendChild(div);
+                                   form.appendChild(sub);
+                                   
+                              
+                                   
+                              }
+                              document.getElementById('qti'+id).style.display = "none"
+                              
+                         }
+
+                         function remove(id){
+                              var a = document.getElementById("medic"+id);
+                              var b = document.getElementById("qt"+id);
+                              var c = document.getElementById("del"+id);
+
+                              a.remove();
+                              b.remove();
+                              c.remove();
+                         }
+
+                         function submitting(){
+                              var x = div.getElementsByTagName("input").length;
+                              var arr = Array();
+                              for(var i = 0 ; i < x ; i++){
+                                   console.log(div.getElementsByTagName("input")[i].value);
+                                   arr[i] = div.getElementsByTagName("input")[i].value;
+                              }
+                              document.getElementById('ord').value = arr;
+                             
+                              console.log(arr);
+                         }
+                    
+                    </script>
+
+                   
+                    
+                                       
+               </div>
+               <div class="modal-footer">
+               
+               </div>
+          </div>
+     </div>
+</div>
 
 
      <!-- SCRIPTS -->
@@ -277,60 +583,23 @@
      <script src="{{ asset('js/smoothscroll.js')}}"></script>
      <script src="{{ asset('js/custom.js')}}"></script>
 
-     <!-- For Medicine order list -->
-     <script>
-     $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();
-          var actions = $("table td:last-child").html();
-          // Append table with add row form on add new button click
-     $(".add-new").click(function(){
-               $(this).attr("disabled", "disabled");
-               var index = $("table tbody tr:last-child").index();
-          var row = '<tr>' +
-               '<td><input type="string" class="form-control" name="Medicine ID" id="Med_id"></td>' +
-               '<td><input type="string" class="form-control" name="Quantity" id="Med_qty"></td>' +
-                    '<td>' + actions + '</td>' +
-          '</tr>';
-          $("table").append(row);		
-               $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-          $('[data-toggle="tooltip"]').tooltip();
-     });
-          // Add row on add button click
-          $(document).on("click", ".add", function(){
-               var empty = false;
-               var input = $(this).parents("tr").find('input[type="text"]');
-          input.each(function(){
-                    if(!$(this).val()){
-                         $(this).addClass("error");
-                         empty = true;
-                    } else{
-                    $(this).removeClass("error");
-               }
-               });
-               $(this).parents("tr").find(".error").first().focus();
-               if(!empty){
-                    input.each(function(){
-                         $(this).parent("td").html($(this).val());
-                    });			
-                    $(this).parents("tr").find(".add, .edit").toggle();
-                    $(".add-new").removeAttr("disabled");
-               }		
-     });
-          // Edit row on edit button click
-          $(document).on("click", ".edit", function(){		
-          $(this).parents("tr").find("td:not(:last-child)").each(function(){
-                    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-               });		
-               $(this).parents("tr").find(".add, .edit").toggle();
-               $(".add-new").attr("disabled", "disabled");
-     });
-          // Delete row on delete button click
-          $(document).on("click", ".delete", function(){
-          $(this).parents("tr").remove();
-               $(".add-new").removeAttr("disabled");
-     });
-     });
+     
+
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+     
+@if($msg = session()->get('msg'))
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
      </script>
+@endif
+
 
 
 </body>

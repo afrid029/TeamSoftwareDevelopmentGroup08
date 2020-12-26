@@ -71,11 +71,23 @@ class Store extends Controller
         $p=DB::table('patients')->get();
         $np1=count($p)+1;
         $id="Pat".$np1;
-        return view('register')->with('msg',$s)->with('id',$id);
+        return redirect()->back()->with('msg',$s)->with('id',$id);
         
     }
 
     public function prescript(Request $request){
+        $request->validate([
+            'patientid'=>['required'],
+            'diagnosis'=>['required'],
+            'disease'=>['required'],
+            'medic'=>['required'],
+        ],
+        [
+            'patientid.required' => 'Patient ID is empty',
+            'diagnosis.required' => 'Diagnosis is empty',
+            'disease.required' => 'Disease is empty',
+            'medic.required' => 'Medicine is empty',
+        ]);
 
         $name;
 
@@ -122,6 +134,16 @@ class Store extends Controller
     }
     public function admit(Request $request){
 
+        $request->validate([
+            'patientid'=>['required'],
+            'medicine'=>['required'],
+            'condition'=>['required'],
+        ],
+        [
+            'patientid.required' => 'Patient ID is empty',
+            'medicine.required' => 'Medicine is empty',
+            'condition.required' => 'Condition is empty',
+        ]);
         try{
             $a=new Add_pat_up;
             $a->Pat_id=$request->patientid;
@@ -143,6 +165,14 @@ class Store extends Controller
         
     public function available(Request $request){
 
+        $request->validate([
+            'date'=>['required'],
+            'time'=>['required'],
+        ],
+        [
+            'date.required' => 'Date is empty',
+            'time.required' => 'Time is empty',
+        ]);
         $x=DB::table('doc_available_times')->where('Doc_id',$request->docid)->where('availableDate',$request->date)->where('availableTime',$request->time)->get();
         if(count($x)>0){
             $s="The perticular time is already exist.";
@@ -162,6 +192,18 @@ class Store extends Controller
     }
 
     public function patadmit(Request $request){
+        $request->validate([
+            'patid'=>['required'],
+            'disease'=>['required'],
+            'ddate'=>['required'],
+            'bedno'=>['required'],
+        ],
+        [
+            'patid.required' => 'Patient ID is empty',
+            'disease.required' => 'Disease is empty',
+            'ddate.required' => 'Discharge date is empty',
+            'bedno.required' => 'Bed no. is empty',
+        ]);
 
         try{
             $a=new Add_pat;

@@ -24,6 +24,9 @@ class login extends Controller
             }
             elseif($roll=="producer"){
                 return redirect()->route('mphome',['c'=>$request->id]);
+            }elseif($roll=="admin"){
+
+                return("Route to admin page in Login.php conroller");
             }
             else{
                 return redirect()->route('suphome',['c'=>$request->id]);
