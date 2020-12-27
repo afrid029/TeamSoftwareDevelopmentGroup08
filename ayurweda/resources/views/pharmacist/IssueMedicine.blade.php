@@ -197,7 +197,30 @@
                                                                  <td colspan="3"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Unsent Orders From Patient</h3></td>
                                                             </tr>
                                                        @endif  
-                                                                            
+                                                       <tr>
+                                                            <input type="hidden" id="bl" value ="{{session()->get('orbill')}}">
+                                                       
+                                                       
+                                                       
+                                                            <td><h3 id="res" style="color:gray;"></h3></td>
+                                                       
+                                                       
+                                                       </tr>  
+
+                                                       <script>
+                                                           
+                                             
+                                                            var w = document.getElementById('bl').value;
+                                                            
+                                                           if(w){
+                                                                localStorage['cach'+'{{$c->Phar_id}}'] = w;
+                                                                 document.getElementById('res').innerHTML = "Last Bill Amount Is: "+w;
+                                                            }else{
+                                                                  document.getElementById('res').innerHTML = "Last Bill Amount Is: "+localStorage['cach'+'{{$c->Phar_id}}'];
+                                                            }
+
+                                                       </script>
+                                                       
                                                        </tbody>
                                                   </table>
                                              </div>
@@ -365,9 +388,27 @@
                                                                  <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Not Issued Orders From Doctor</h3></td>
                                                             </tr>
                                                        @endif  
+                                                       <tr>
+                                                             <input type="hidden" id="drbl" value ="{{session()->get('drbill')}}">
+                                                             <td><h3 id="drres" style="color:gray;"></h3></td>
+                                                       </tr>
                                                                             
                                                        </tbody>
                                                   </table>
+
+                                                  <script>
+                                                           
+                                             
+                                                            var w = document.getElementById('drbl').value;
+                                                            
+                                                           if(w){
+                                                                localStorage['drcach'+'{{$c->Phar_id}}'] = w;
+                                                                 document.getElementById('drres').innerHTML = "Last Bill Amount Is: "+w;
+                                                            }else{
+                                                                  document.getElementById('drres').innerHTML = "Last Bill Amount Is: "+localStorage['drcach'+'{{$c->Phar_id}}'];
+                                                            }
+
+                                                       </script>
                                              </div>
                                         </div>
                                    </div>                                

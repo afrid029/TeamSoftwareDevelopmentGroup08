@@ -19,6 +19,7 @@ class CreatePatMedOrderingsTable extends Migration
             $table->text('medicines');
             $table->date('PatMedOrder_date');
             $table->string('status')->default('Unrecieved');
+            $table->double('bill')->nullable();
             $table->foreign('Pat_id')->references('Pat_id')->on('patients');
             $table->primary('PatMedOrder_id');
             $table->timestamps();
