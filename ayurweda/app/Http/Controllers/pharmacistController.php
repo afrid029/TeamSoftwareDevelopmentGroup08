@@ -126,6 +126,13 @@ class pharmacistController extends Controller
             'exp.after' => 'Logically date combination is wrong',
             'warn.required'=>'Set Warning Limit'
         ]);
+
+        $check = DB::table('medicine-stocks')->where('Med_id',$req->medid);
+        if($check){
+             return redirect()->back()->with('msg1',$req->medname." Is Already In Your Stock. You May Update It Or Delete It Before Add");
+        }else{
+
+        
         
         $medi = new Medicine_stock;
 
@@ -141,6 +148,7 @@ class pharmacistController extends Controller
         $medi->save();
 
         return redirect()->back()->with('msg',"New Medicine Added");
+        }
        
 
     }
@@ -192,46 +200,57 @@ class pharmacistController extends Controller
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
         $pat = DB::table('pat_med_orderings')->where('status','Unrecieved')->orderBy('created_at','asc')->get();
         $doc = DB::table('medical_histories')->where('issued','Not Issued')->orderBy('created_at','asc')->get();
+
+      
        
-        return view('pharmacist/IssueMedicine',compact('c','pat','doc'))->with('msg', "");
+       
+        return view('pharmacist/IssueMedicine',compact('c','pat','doc'))->with('orbill','ok')->with('msg', "");
     }
 
     public function issuepatorder(Request $req)
     {
         $count = $req->count;
         $name;
+        $bill = 0;
         
         for($i = 0 ; $i < $count ; $i++){
             if($i%2 == 0){
                 $name = $req->get('medi'.$i);
             }else{
                 $cnt = $req->get('qt'.$i);
+                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
+
+                $bill = $bill + ($cnt*$unit);
+
             }
         }
 
-        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Recieved']);
-        return redirect()->back()->with('msg','Order Issued');
+        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Recieved','bill'=>$bill]);
+        return redirect()->back()->with('msg','Order Issued')->with('orbill',$bill);
     }
 
     public function issuedocorder(Request $req)
     {
         $count = $req->countdr;
         $name;
-        
+        $bill =0;
         for($i = 0 ; $i < $count ; $i++){
             if($i%2 == 0){
                 $name = $req->get('drmedic'.$i);
             }else{
                 $cnt = $req->get('drqt'.$i);
+                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
+
+                $bill = $bill + ($cnt*$unit);
             }
         }
 
-        DB::table('medical_histories')->where('Meeting_id', $req->drmid)->update([ 'issued'=>'Issued']);
-        return redirect()->back()->with('msg','Order Issued');
+        DB::table('medical_histories')->where('Meeting_id', $req->drmid)->update([ 'issued'=>'Issued','bill'=>$bill]);
+        return redirect()->back()->with('msg','Order Issued')->with('drbill',$bill);
     }
     
 

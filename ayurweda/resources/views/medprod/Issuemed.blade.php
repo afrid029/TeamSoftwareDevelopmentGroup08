@@ -21,6 +21,20 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/producer.CSS')}}">
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
 
 </head>
 <body>
@@ -55,10 +69,11 @@
                
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue Medicines</font></a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine Stock</a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue <br>Medicines</font></a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order <br>Ingredients</a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -70,34 +85,7 @@
 
      
 
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-     <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <form method="post" action="/docedit">
-          
-          <div class="modal-body">
-               <input type="text" name="name" class="form-control" placeholder="Name" value=""><br>             
-               <input type="text" name="address" class="form-control" placeholder="Address" value=""><br>
-               <input type="text" name="phone" class="form-control" placeholder="Phone Number" value=""><br>
-               <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <button type="submit" class="btn btn-primary">Update</button>
-          </div>
-          
-          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-          </form>
-     </div>
-     </div>
-     </div>
+     
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -106,74 +94,110 @@
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
 
-                                        <div class="col-md-8 col-sm-12">
-                                             <h1 style="color:#ffffff">Pharmacist's Medicine Orders</h1>
-                                             
-                                             <form action="/adsearch" method="post" style="margin:auto;width:700px">
-                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="search">
-                                                  <input style="color:black" type="date" name="date">
-                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
+                                        
+                                             <h2 style="color:#333333">Pharmacist's Medicine Orders</h2>
+                                             <div style="float:left;">
+                                             <form action="/issusearch" method="post" style="margin:auto;width:700px">
+                                             @csrf
+                                                  <div style="float:left;"><input class="form-control" style="color:black" type="text" placeholder="Pharmacist ID" name="pharid"></div>
+                                                  <div style="float:left;"><input class="form-control" style="color:black" type="date" name="date"></div>
+                                                  <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i style="color:black" class="fa fa-search"></i></button></div>
                                              </form>
-                                             <br></br>
-                                             <br></br>
-
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
-
+                                             </div>
                                              
+
+                                             <div class="tableFixHead">
+
+                                             <br>
                                         <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
                                                   <tr style="background-color:#800000; ">
                                                        <th>Order ID</th>
-                                                       <th>Medicine ID</th>
-                                                       <th>Quantity</th>
+                                                       <th>Medicines</th>
                                                        <th>Pharmacist ID</th>
                                                        <th>Order Date</th>
-                                                       <th></th>
+                                                       <th>Order status</th>
+
                                                       
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                             @if($p1=session()->get('p1'))
+                                             <?php $orders=$p1; ?>
+                                             @else
+                                             <?php $orders=$p; ?>
+                                             @endif
+                                             
+                                             @if(count($orders) > 0)
+                                             
+                                                  <?php $no = 1;?>
+                                                  @foreach($orders as $order)
                                                   <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
+                                                       <td><p >{{$order->MedOrder_id}}</p></td>
+                                                       <td>
+                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                       
+                                                       </td>
+                                                       <td><p >{{$order->Phar_id}}</p></td>
+                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       @if($order->status=="Unrecieved")
+                                                       <td><a href="{{route('reorder',$order->MedOrder_id)}}" class="btn btn-primary btn-sm">Recieve</a></td>
+                                                       @else
+                                                       <td><p >{{$order->status}}</p></td>
+                                                       @endif
+                                                       
                                                   </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td><input class="btn btn-primary" type="submit" value="Issue"></td>
-                                                  </tr>
+                                                  <?php $no++; ?>
+                                                  @endforeach 
+                                                  @else
+                                                       <tr>
+                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                       </tr>
+                                                       
+                                                  @endif
+                                                  
                                                   
                                              </tbody>
                                         
                                         </table>
+                                        <script>
+                                             function viewing(id){
+                                                  var a = document.getElementById('medi'+id).value;
+                                                  var k = a.substring(2, a.length-2)
+                                                  var d = k.split(",");
+                                                  console.log(k);
+                                                  console.log(d);
+                                                  var result = "";
+                                                  for(var i = 0; i < d.length ; i++){
+                                                       if(i%2 == 0){
+                                                            result = result + d[i]; 
+                                                       }else{
+                                                            result = result + " "+d[i]+"\n";
+                                                       }
+                                                  }
+                                                
+                                                  console.log(d.length);
+                                                  Swal.fire({
+                                                       position: 'top',
+                                                       width:400,
+                                                       text:"Order details",
+                                                       icon: 'info',
+                                                       title: result,
+                                                      
+                                                       showConfirmButton: true,
+                                                      
+                                                  
+                                                  });
+                                             }
+                                                 
+                                        </script>
                                         </div>
-                                        </div>
+                                        
                                         
                                    </div>
                               </div>

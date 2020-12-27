@@ -9,6 +9,9 @@ use App\Models\Add_pat;
 use App\Models\Doc_available_time;
 use App\Models\new_med_stock;
 use App\Models\Ingredient_stock;
+use App\Models\Ingredient_ordering;
+use App\Models\medicines;
+use App\Models\ingredients;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -70,11 +73,23 @@ class Store extends Controller
         $p=DB::table('patients')->get();
         $np1=count($p)+1;
         $id="Pat".$np1;
-        return view('register')->with('msg',$s)->with('id',$id);
+        return redirect()->back()->with('msg',$s)->with('id',$id);
         
     }
 
     public function prescript(Request $request){
+        $request->validate([
+            'patientid'=>['required'],
+            'diagnosis'=>['required'],
+            'disease'=>['required'],
+            'medic'=>['required'],
+        ],
+        [
+            'patientid.required' => 'Patient ID is empty',
+            'diagnosis.required' => 'Diagnosis is empty',
+            'disease.required' => 'Disease is empty',
+            'medic.required' => 'Medicine is empty',
+        ]);
 
         $name;
 
@@ -104,23 +119,15 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $p=DB::table('medical_histories')->get();
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
-                                              ->orderBy('Med_name','asc') 
-                                            ->get();
+            
         
-            return view('doc/prescription')->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);;
+            return view('doc/prescription')->with('msg',$s);
         }
         $s="Prescription added successfully";
-        $p=DB::table('medical_histories')->get();
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
-                                              ->orderBy('Med_name','asc') 
-                                            ->get();
+        
         
 
-        return redirect()->back()->with('c',$c)->with('msg',$s)->with('pres',$p)->with('stocks',$stocks);
+        return redirect()->back()->with('msg',$s);
 
        
 
@@ -129,6 +136,16 @@ class Store extends Controller
     }
     public function admit(Request $request){
 
+        $request->validate([
+            'patientid'=>['required'],
+            'medicine'=>['required'],
+            'condition'=>['required'],
+        ],
+        [
+            'patientid.required' => 'Patient ID is empty',
+            'medicine.required' => 'Medicine is empty',
+            'condition.required' => 'Condition is empty',
+        ]);
         try{
             $a=new Add_pat_up;
             $a->Pat_id=$request->patientid;
@@ -140,19 +157,24 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $p=DB::table('add_pat_ups')->get();
-            return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+            return redirect()->back()>with('msg',$s);
         }
         $s="Inserted successfully.";
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('add_pat_ups')->get();
-        return view('doc/admitted')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        
+        return redirect()->back()->with('msg',$s);
         
     }
         
     public function available(Request $request){
 
+        $request->validate([
+            'date'=>['required'],
+            'time'=>['required'],
+        ],
+        [
+            'date.required' => 'Date is empty',
+            'time.required' => 'Time is empty',
+        ]);
         $x=DB::table('doc_available_times')->where('Doc_id',$request->docid)->where('availableDate',$request->date)->where('availableTime',$request->time)->get();
         if(count($x)>0){
             $s="The perticular time is already exist.";
@@ -165,15 +187,25 @@ class Store extends Controller
             $a->save();
             $s="Inserted successfully.";
         }
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('doc_available_times')->where('Doc_id',$request->docid)->get();
         
         
-        return view('doc/available')->with('c',$c)->with('msg',$s)->with('av',$p)->with('ro',"");
+        return redirect()->back()->with('msg',$s);
         
     }
 
     public function patadmit(Request $request){
+        $request->validate([
+            'patid'=>['required'],
+            'disease'=>['required'],
+            'ddate'=>['required'],
+            'bedno'=>['required'],
+        ],
+        [
+            'patid.required' => 'Patient ID is empty',
+            'disease.required' => 'Disease is empty',
+            'ddate.required' => 'Discharge date is empty',
+            'bedno.required' => 'Bed no. is empty',
+        ]);
 
         try{
             $a=new Add_pat;
@@ -187,14 +219,10 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-            $p=DB::table('add_pats')->get();
-            return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+            return redirect()->back()->with('msg',$s);
         }
         $s="Patient admitted successfully.";
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $p=DB::table('add_pats')->get();
-        return view('doc/AddPatsdetails')->with('c',$c)->with('msg',$s)->with('ad',$p);
+        return redirect()->back()->with('msg',$s);
         
     }
 
@@ -202,7 +230,6 @@ class Store extends Controller
     public function proaddmedicine(Request $req)
     {
        $valid =  $req->validate([
-            'medid'=>'required',
             'medname'=>'required',
             'uprice' => 'required',
             'qty' => 'required',
@@ -211,7 +238,6 @@ class Store extends Controller
             'descr' => 'required'
 
         ],[
-            'medid.required' => 'Medicine ID missing',
             'medname.required' => 'Medicine Name is missing',
             'uprice.required' => 'Set a unit price',
             'qty.required' => 'Set a Quantity',
@@ -220,11 +246,11 @@ class Store extends Controller
             'descr.required' => 'Decription required',
             'exp.after' => 'Logically date combination is wrong'
         ]);
-        
+        $id=DB::table('medicines')->where('Med_name',$req->medname)->value('Med_id');
         $medi = new new_med_stock;
         
         $medi->Pro_id = $req->id;
-        $medi->Med_id = $req->medid;
+        $medi->Med_id = $id;
         $medi->Med_name = $req->medname;
         $medi->unitprice = $req->uprice;
         $medi->stock_qty = $req->qty;
@@ -242,20 +268,18 @@ class Store extends Controller
     public function proadding(Request $req)
     {
        $valid =  $req->validate([
-            'ingid'=>'required',
             'ingname'=>'required',
             'qty' => 'required',
 
         ],[
-            'ingid.required' => 'Ingredient ID missing',
             'ingname.required' => 'Ingredient Name is missing',
             'qty.required' => 'Set a Quantity',
         ]);
-        
+        $id=DB::table('ingredients')->where('Ing_name',$req->ingname)->value('Ing_id');
         $ing = new Ingredient_stock;
         
         $ing->Pro_id = $req->id;
-        $ing->Ing_id = $req->ingid;
+        $ing->Ing_id = $id;
         $ing->Ing_name = $req->ingname;
         $ing->Ing_qty = $req->qty;
 
@@ -264,5 +288,71 @@ class Store extends Controller
         return redirect()->back()->with('msg',"New Ingredient Added");
        
 
+    }
+
+    public function proingorder(Request $req)
+    {
+       $valid =  $req->validate([
+            'order'=>'required',
+
+        ],[
+            'order.required' => 'Order is empty',
+        ]);
+        $ord = new Ingredient_ordering;
+        
+        $ord->Ingredients = $req->order;
+        $ord->Pro_id = $req->id;
+        $ord->Sup_id = $req->supid;
+        $ord->IngOrder_date=date('Y-m-d');
+        $ord->status = "Unrecieved";
+        $ord->save();
+
+    
+
+        return redirect()->back()->with('msg',"Your Order is placed");
+       
+
+    }
+    public function newmedicine(Request $req)
+    {
+       $valid =  $req->validate([
+            'medname'=>'required',
+            'descr'=>'required',
+
+        ],[
+            'medname.required' => 'Name is empty',
+            'descr.required' => 'Description is empty',
+        ]);
+        $n=DB::table('medicines')->get();
+        $no=count($n)+1;
+        $med = new medicines;
+        
+        $med->Med_id = "med".$no;
+        $med->Med_name = $req->medname;
+        $med->description = $req->descr;
+        $med->save();
+        return redirect()->back()->with('msg',"New medicine added successfully");
+    }
+
+    //supplier
+    public function newingredient(Request $req)
+    {
+       $valid =  $req->validate([
+            'ingname'=>'required',
+            'descr'=>'required',
+
+        ],[
+            'ingname.required' => 'Name is empty',
+            'descr.required' => 'Description is empty',
+        ]);
+        $n=DB::table('ingredients')->get();
+        $no=count($n)+1;
+        $ing = new ingredients;
+        
+        $ing->Ing_id = "ing".$no;
+        $ing->Ing_name = $req->ingname;
+        $ing->description = $req->descr;
+        $ing->save();
+        return redirect()->back()->with('msg',"New ingredient added successfully");
     }
 }

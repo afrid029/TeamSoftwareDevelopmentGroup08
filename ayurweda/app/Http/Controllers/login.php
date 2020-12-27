@@ -16,14 +16,14 @@ class login extends Controller
                 return redirect()->route('pathome',['c'=>$request->id]);
             }
             elseif($roll=="doctor"){
-                $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
-                return view('doc/doctor')->with('c',$c)->with('msg',"");
+                return redirect()->route('dochome',['c'=>$request->id]);
             }
             elseif($roll=="pharmacist"){
                 return redirect()->route('phahome',['c'=>$request->id]);
                 
             }
             elseif($roll=="producer"){
+<<<<<<< HEAD
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
                 return view('producer/producer')->with('c',$c)->with('msg',"");
 
@@ -34,6 +34,21 @@ class login extends Controller
             }else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
                 return view('supllier/supllier')->with('c',$c)->with('msg',"");
+=======
+                return redirect()->route('mphome',['c'=>$request->id]);
+
+            }
+            elseif($roll=="supplier"){
+                return redirect()->route('suphome',['c'=>$request->id]);
+
+            }
+            elseif($roll=="admin"){
+
+                return("Route to admin page in Login.php conroller");
+            }
+            else{
+                return redirect()->route('suphome',['c'=>$request->id]);
+>>>>>>> dcbd058e97bf58e400b1d06087d09babcd88888b
             }
         }
         else{

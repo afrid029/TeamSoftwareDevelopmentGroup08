@@ -147,39 +147,41 @@
           </div>
      </div>
 </div>
-
-@if($msg=="Updated successfully.")
+@if($msg=session()->get('msg'))
+ @if($msg == "Profile Successfully Updated")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
+     
+     
+@elseif($msg == "Old password is wrong")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'error',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
+@else
 <script>
-Swal.fire({
-  position: 'middle',
-  icon: 'success',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@elseif($msg=="Old password is wrong.")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'error',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@elseif($msg=="Profile picture changed")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'success',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
 @endif
-
+@endif
 @if($errors->any())
      <script> var a=""; </script>
      @foreach($errors->all() as $err)
@@ -218,13 +220,8 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                              <div style=" padding:1% 1% 1% 1%; border-radius:30px; height:200px; width:50%">
                                                        @if($c->Doc_im)
-<<<<<<< HEAD
-                                                       <img class="img" src="{{ asset('images/$c->Doc_im')}}" style="  border-radius:30px; height:200px; width:auto;">
-                                                       
-=======
                                                        <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:auto;">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
->>>>>>> 26b24165133d52243a65493f10870c7c8e7bf771
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
