@@ -99,5 +99,22 @@ class redirect extends Controller
         return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('p',$p)->with('ingredients',$ingredients);
         
     }
-   
+    public function medicines($t){
+        $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
+        $p=DB::table('medicines')->get();
+        return view('medprod/medicine')->with('c',$c)->with('msg',"")->with('p',$p);
+            
+    }
+
+    //supplier
+    public function suphome($t){
+        $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
+        return view('sup/sup',compact('c'))->with('msg',"");
+    }
+    public function issueing($t){
+        $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
+        $p=DB::table('ingredient_orderings')->where('Sup_id',$t)->get();
+        return view('sup/supord')->with('c',$c)->with('msg',"")->with('p',$p);
+            
+    }
 }

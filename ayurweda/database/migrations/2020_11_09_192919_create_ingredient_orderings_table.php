@@ -18,7 +18,8 @@ class CreateIngredientOrderingsTable extends Migration
             $table->longtext('Ingredients');
             $table->string('Pro_id');
             $table->string('Sup_id');
-            $table->date('MedOrder_date');
+            $table->date('IngOrder_date');
+            $table->string('status');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
             $table->foreign('Sup_id')->references('Sup_id')->on('ingredient_suppliers');
             $table->timestamps();

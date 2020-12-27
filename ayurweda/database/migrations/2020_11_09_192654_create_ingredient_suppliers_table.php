@@ -19,6 +19,7 @@ class CreateIngredientSuppliersTable extends Migration
             $table->string('Sup_addr');
             $table->string('Sup_pNum');
             $table->string('password');
+            $table->string('Sup_im');
             $table->primary('Sup_id');
             $table->timestamps();
         });

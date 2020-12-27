@@ -90,10 +90,11 @@
                <div style="background-color:#154360;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine Stock</a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll"><font color="red">Order Ingredients</font></a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll"><font color="red">Order <br>Ingredients</font></a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
                     </ul>
 
                      
@@ -173,7 +174,8 @@
                                                   <tr style="background-color:#800000; ">
                                                        <th>Supplier ID</th>
                                                        <th>Order Date</th>
-                                                       <th></th>
+                                                       <th>Ingredients</th>
+                                                       <th>Status</th>
                                                        
                                                   </tr>
                                              </thead> 
@@ -191,12 +193,12 @@
                                                   @foreach($orders as $order)
                                                   <tr>
                                                        <td><p >{{$order->Sup_id}}</p></td>
-                                                       <td><p >{{$order->MedOrder_date}}</p></td>
+                                                       <td><p >{{$order->IngOrder_date}}</p></td>
                                                        <td>
                                                             <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->Ingredients}}">
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                        </td>
-                                                       
+                                                       <td><p >{{$order->status}}</p></td>
                                                       
                                                        
                                                   </tr>
@@ -237,7 +239,7 @@
                     <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
                </div>
                <div style="margin-top:-2%;" class="modal-body">
-                    <h4>Medicine Name</h4>
+                    <h4>Ingredient Name</h4>
                     @if(count($ingredients))
                     <input type="text" name = "ingname" id="ingname" class="form-control" list="ingredients">
                     <datalist id="ingredients">

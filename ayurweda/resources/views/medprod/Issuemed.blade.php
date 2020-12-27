@@ -21,6 +21,20 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/producer.CSS')}}">
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 200px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
 
 </head>
 <body>
@@ -55,10 +69,11 @@
                
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue Medicines</font></a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine Stock</a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue <br>Medicines</font></a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order <br>Ingredients</a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -70,34 +85,7 @@
 
      
 
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-     <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <form method="post" action="/docedit">
-          
-          <div class="modal-body">
-               <input type="text" name="name" class="form-control" placeholder="Name" value=""><br>             
-               <input type="text" name="address" class="form-control" placeholder="Address" value=""><br>
-               <input type="text" name="phone" class="form-control" placeholder="Phone Number" value=""><br>
-               <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <button type="submit" class="btn btn-primary">Update</button>
-          </div>
-          
-          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-          </form>
-     </div>
-     </div>
-     </div>
+     
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -106,24 +94,24 @@
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
 
-                                        <div class="col-md-8 col-sm-12">
-                                             <h1 style="color:#ffffff">Pharmacist's Medicine Orders</h1>
-                                             
+                                        
+                                             <h2 style="color:#333333">Pharmacist's Medicine Orders</h2>
+                                             <div style="float:left;">
                                              <form action="/issusearch" method="post" style="margin:auto;width:700px">
                                              @csrf
-                                                  <input style="color:black" type="text" placeholder="Pharmacist ID" name="pharid">
-                                                  <input style="color:black" type="date" name="date">
+                                                  <div style="float:left;"><input class="form-control" style="color:black" type="text" placeholder="Pharmacist ID" name="pharid"></div>
+                                                  <div style="float:left;"><input class="form-control" style="color:black" type="date" name="date"></div>
                                                   <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
-                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i style="color:black" class="fa fa-search"></i></button></div>
                                              </form>
-                                             <br></br>
-                                             <br></br>
-
-                                             <div style="position:relative;height:200px;overflow:auto;display:block;">
-
+                                             </div>
                                              
+
+                                             <div class="tableFixHead">
+
+                                             <br>
                                         <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
@@ -209,7 +197,7 @@
                                                  
                                         </script>
                                         </div>
-                                        </div>
+                                        
                                         
                                    </div>
                               </div>

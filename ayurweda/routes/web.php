@@ -97,6 +97,8 @@ Route::post('/propic', 'update@propic');
 Route::post('/ordersearch', 'search@ordersearch');
 Route::post('/issusearch', 'search@issusearch');
 Route::get('reorder/{c}/', 'update@reorder')->name('reorder');
+Route::get('medicines/{c}/', 'redirect@medicines')->name('medicines');
+Route::post('/newmedicine', 'store@newmedicine');
 
 //Pharmacist Routings
 Route::get('phahome/{c}/',[pharmacistController::class, 'phaHome'])->name('phahome');
@@ -114,3 +116,11 @@ Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->nam
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');
 Route::post('oredertopro/{c}/',[pharmacistController::class, 'oredertopro'])->name('oredertopro');
+
+//supplier routings
+Route::get('suphome/{c}/', 'redirect@suphome')->name('suphome');
+Route::post('/supedit', 'update@sup');
+Route::post('/suppic', 'update@suppic');
+Route::get('issueing/{c}/', 'redirect@issueing')->name('issueing');
+Route::get('newing/{c}/', 'redirect@newing')->name('newing');
+Route::get('supreorder/{c}/', 'update@supreorder')->name('supreorder');

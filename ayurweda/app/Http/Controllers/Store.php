@@ -10,6 +10,7 @@ use App\Models\Doc_available_time;
 use App\Models\new_med_stock;
 use App\Models\Ingredient_stock;
 use App\Models\Ingredient_ordering;
+use App\Models\medicines;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -301,7 +302,8 @@ class Store extends Controller
         $ord->Ingredients = $req->order;
         $ord->Pro_id = $req->id;
         $ord->Sup_id = $req->supid;
-        $ord->MedOrder_date=date('Y-m-d');
+        $ord->IngOrder_date=date('Y-m-d');
+        $ord->status = "Unrecieved";
         $ord->save();
 
     
@@ -309,5 +311,25 @@ class Store extends Controller
         return redirect()->back()->with('msg',"Your Order is placed");
        
 
+    }
+    public function newmedicine(Request $req)
+    {
+       $valid =  $req->validate([
+            'medname'=>'required',
+            'descr'=>'required',
+
+        ],[
+            'medname.required' => 'Name is empty',
+            'descr.required' => 'Description is empty',
+        ]);
+        $n=DB::table('medicines')->get();
+        $no=count($n)+1;
+        $med = new medicines;
+        
+        $med->Med_id = "med".$no;
+        $med->Med_name = $req->medname;
+        $med->description = $req->descr;
+        $med->save();
+        return redirect()->back()->with('msg',"New medicine added successfully");
     }
 }

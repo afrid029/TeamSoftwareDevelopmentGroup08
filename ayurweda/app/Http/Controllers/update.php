@@ -203,4 +203,67 @@ class update extends Controller
             
             return redirect()->back();
     }
+
+    //supplier
+    public function sup(Request $request){
+
+        $request->validate([
+            'name'=>['required'],
+            'address'=>['required'],
+            'phone'=>['required'],
+            'opassword'=>['required'],
+            'npassword'=>['required'],
+        ],
+        [
+            'name.required' => 'Name is empty',
+            'address.required' => 'Address is empty',
+            'phone.required' => 'Phone is empty',
+            'opassword.required' => 'New password is empty',
+            'npassword.required' => 'Old Password is empty',
+        ]);
+
+        $p=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('password');
+        if($request->opassword==$p){
+            
+
+            DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update(['Sup_name'=>$request->name,
+                                                                        'Sup_addr'=>$request->address,
+                                                                        'Sup_pNum'=>$request->phone,
+                                                                        'password'=>$request->npassword]);
+            DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
+            
+            $s="Profile Successfully Updated";
+        }
+        else{
+            $s="Old password is wrong";
+        }
+        return redirect()->back()->with('msg',$s);
+        
+    }
+    public function suppic(Request $request)
+    {
+        $request->validate([
+            'image'=>'required|image'
+        ],[
+            'image.required' => 'You have not choose any file',
+            'image.image'=>'Only Image is allowed'
+        ]);
+
+            $name = time().rand(1,100).'.'.$request->image->extension();
+            $request->image->move(public_path().'/upload/supprof', $name); 
+
+            DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([
+                'Sup_im' => $name
+            ]);
+            
+            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+    }
+    public function supreorder($id)
+    {
+            DB::table('ingredient_orderings')->where('id',$id)->update([
+                'status' =>"Recieved",
+            ]);
+            
+            return redirect()->back();
+    }
 }
