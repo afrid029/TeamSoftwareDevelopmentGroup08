@@ -151,6 +151,18 @@
           });
      </script>
 @endif
+@if($msg = session()->get('msg1'))
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: '{{$msg}}',
+               showConfirmButton: true,
+               timer: 4000
+            
+          });
+     </script>
+@endif
 
 @if($errors->any())
 
@@ -186,6 +198,7 @@
                     <div class="caption">
                          <br><br>
                          <div style="height:70%; width:95%; margin: -12% 5% 0 2%; background-color:white; border-radius:0.5%;" class="container">
+                         
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
@@ -321,9 +334,11 @@
                               @csrf 
                               <div class="row">
                                    
+                                   
                                    <div style="margin-top:2%; margin-right:2%;color:gray; width:60%; ">
-                                        <input autocomplete="off" class="form-control" type="text" id="search" onkeyup="medicine()" onclick="showlist()" placeholder="Search Medicine By Name" title="Type ID">   
-                                   </div>
+                                        <input autocomplete="off" class="form-control" type="text" id="search"  onkeyup="medicine()"  placeholder="Search Medicine By Name" title="Type ID" style="float:left;"> 
+                                   </div>&nbsp; <i style="margin-top:-0.2%;" id="show" onclick="showlist()" class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+
 
                                    <div id="list" style="z-index:10; position:absolute; width:90%; background-color:white; display:none;">
                                         <table class="table table-bordered table-scroll">
@@ -352,10 +367,11 @@
                                         </table>
                                    
                                    </div>
-                                                  
+                                   <br><br>
+                                            
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
                                         <label>Medicine Id</label>
-                                        <input type="text" id = "tbid" name = "medid" placeholder="Med" readonly class="form-control">
+                                        <input type="text" id = "tbid" name = "medid"  readonly class="form-control">
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Medicine Name</label>
@@ -647,14 +663,21 @@
           
      }
 
-     function showlist(){
-          var x = document.getElementById('list');
-          if(x.style.display=="none"){
-               x.style.display = "block";
+     function showlist()
+     {
+          var cls = document.getElementById('show').className;
+          console.log(cls);
+          if(cls == "fa fa-plus-circle fa-2x"){
+               document.getElementById('show').className = "fa fa-times-circle fa-2x";
+
+               document.getElementById('list').style.display = "block";
           }else{
-               x.style.display = "none";
+               document.getElementById('show').className = "fa fa-plus-circle fa-2x";
+               document.getElementById('list').style.display = "none";
           }
      }
+
+   
      
      </script>
 </body>

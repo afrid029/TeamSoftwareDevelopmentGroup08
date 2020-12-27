@@ -28,8 +28,8 @@
         font-weight: bold;
    }
    .link a:link{
-     background-color: #00BFFF;
-     
+     background-color: #8B0000;
+     color:white;
      text-align: center;
      text-decoration: none;
      display: inline-block;

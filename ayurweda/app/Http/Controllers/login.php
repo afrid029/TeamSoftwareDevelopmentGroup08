@@ -23,6 +23,18 @@ class login extends Controller
                 
             }
             elseif($roll=="producer"){
+<<<<<<< HEAD
+                $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
+                return view('producer/producer')->with('c',$c)->with('msg',"");
+
+            }elseif($roll=="admin"){
+                $c=DB::table('admins')->where('id',$request->id)->first();
+                return view('admin/admin')->with('c',$c)->with('msg',"");
+
+            }else{
+                $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
+                return view('supllier/supllier')->with('c',$c)->with('msg',"");
+=======
                 return redirect()->route('mphome',['c'=>$request->id]);
 
             }
@@ -36,6 +48,7 @@ class login extends Controller
             }
             else{
                 return redirect()->route('suphome',['c'=>$request->id]);
+>>>>>>> dcbd058e97bf58e400b1d06087d09babcd88888b
             }
         }
         else{
