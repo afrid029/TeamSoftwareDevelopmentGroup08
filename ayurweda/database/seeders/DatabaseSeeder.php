@@ -16,6 +16,24 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
+        
+
+        ///admin
+
+        DB::table('all_users')->insert([
+            'id'=>'12',
+            'password'=>'admin',
+            'roll'=>'admin'
+        ]);
+        
+        DB::table('admins')->insert([
+            'id'=>'12',
+            'username' =>'Shahir Shampath',
+            'password'=>'admin',
+            'phone' =>'0781345627',
+            'email' =>'admin@gmail.com'
+        ]);
+
         //doctor sample data
         DB::table('all_users')->insert([
             'id'=> 'doc1',
@@ -623,17 +641,6 @@ class DatabaseSeeder extends Seeder
             'time' => '04:00:00',
             'created_at' => '2020-12-04 04:00:00'
         ]);
-
-
-        ///admin
-
-        DB::table('all_users')->insert([
-            'id'=>'admin',
-            'password'=>'admin',
-            'roll'=>'admin'
-        ]);
-        
-
 
     }
 }

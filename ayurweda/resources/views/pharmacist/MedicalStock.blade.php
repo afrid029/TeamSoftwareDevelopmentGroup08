@@ -186,6 +186,7 @@
                     <div class="caption">
                          <br><br>
                          <div style="height:70%; width:95%; margin: -12% 5% 0 2%; background-color:white; border-radius:0.5%;" class="container">
+                         
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">

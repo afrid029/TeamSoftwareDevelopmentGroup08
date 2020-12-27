@@ -25,12 +25,13 @@ class login extends Controller
             }
             elseif($roll=="producer"){
                 $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
-                return view('medprod/producer')->with('c',$c)->with('msg',"");
-            }elseif($roll=="admin"){
+                return view('producer/producer')->with('c',$c)->with('msg',"");
 
-                return("Route to admin page in Login.php conroller");
-            }
-            else{
+            }elseif($roll=="admin"){
+                $c=DB::table('admins')->where('id',$request->id)->first();
+                return view('admin/admin')->with('c',$c)->with('msg',"");
+
+            }else{
                 $c=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->first();
                 return view('supllier/supllier')->with('c',$c)->with('msg',"");
             }
