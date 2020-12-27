@@ -42,13 +42,12 @@ class update extends Controller
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
-            $s="Updated successfully.";
+            $s="Profile Successfully Updated";
         }
         else{
-            $s="Old password is wrong.";
+            $s="Old password is wrong";
         }
-        $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
-        return view('doc/doctor')->with('c',$c)->with('msg',$s);
+        return redirect()->back()->with('msg',$s);
         
     }
 
@@ -62,22 +61,19 @@ class update extends Controller
         
     }
     public function avdelete($id,$docid){
-        $c=DB::table('doctors')->where('Doc_id',$docid)->first();
-        DB::table('doc_available_times')->where('id',$id)->delete();
-        $p=DB::table('doc_available_times')->where('Doc_id',$docid)->get();
         
-        return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',"");
+        DB::table('doc_available_times')->where('id',$id)->delete();
+        
+        return redirect()->back()->with('msg',"");
         
     }
 
     
     public function docreply(Request $request)
     {
+    
         DB::table('add_symptomps')->where('id',$request->id)->update(['reply'=>$request->reply]);
-        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
-        $d = DB::table('add_symptomps')->where('Doc_id',$request->docid)->orderBy('created_at','desc')->get();
-        $pa = DB::table('patients')->get();
-        return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
+        return redirect()->route('docsymp',['c'=>$request->docid]);
     }
     public function docpic(Request $request)
     {
@@ -88,15 +84,14 @@ class update extends Controller
             'image.image'=>'Only Image is allowed'
         ]);
 
-            $name = time().rand(1,100).'.'.$request->image->extension();
+            $name = $request->id.'.'.$request->image->extension();
             $request->image->move(public_path().'/upload/docprof', $name); 
 
             DB::table('doctors')->where('Doc_id',$request->id)->update([
                 'Doc_im' => $name
             ]);
             $s="Profile picture changed";
-            $c=DB::table('doctors')->where('Doc_id',$request->id)->first();
-        return view('doc/doctor')->with('c',$c)->with('msg',$s);
+        return redirect()->back()->with('msg',$s);
     }
 
     //producer
@@ -128,18 +123,29 @@ class update extends Controller
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
-            $s="Updated successfully.";
+            $s="Profile Successfully Updated";
         }
         else{
-            $s="Old password is wrong.";
+            $s="Old password is wrong";
         }
-        $c=DB::table('medicine_producers')->where('Pro_id',$request->id)->first();
-        return view('medprod/producer')->with('c',$c)->with('msg',$s);
+        return redirect()->back()->with('msg',$s);
         
     }
 
     public function proupdatemedicine(Request $req)
     {
+        $req->validate([
+            'uprice'=>['required'],
+            'qty'=>['required'],
+            'mfd'=>['required'],
+            'exp'=>['required'],
+        ],
+        [
+            'uprice.required' => 'Unit price is empty',
+            'qty.required' => 'Quantity is empty',
+            'mfd.required' => 'Manufacture date is empty',
+            'exp.required' => 'Expire date is empty',
+        ]);
         DB::table('new_med_stocks')->where('id',$req->id)->update([
             'unitprice' => $req->uprice,
             'stock_qty'=> $req->qty,
@@ -169,5 +175,95 @@ class update extends Controller
     {
         DB::table('ingredient_stocks')->where('id',$id)->delete();
         return redirect()->back()->with('msg',"Ingredient deleted");
+    }
+
+    public function propic(Request $request)
+    {
+        $request->validate([
+            'image'=>'required|image'
+        ],[
+            'image.required' => 'You have not choose any file',
+            'image.image'=>'Only Image is allowed'
+        ]);
+
+            $name = $request->id.'.'.$request->image->extension();
+            $request->image->move(public_path().'/upload/proprof', $name); 
+
+            DB::table('medicine_producers')->where('Pro_id',$request->id)->update([
+                'Pro_im' => $name
+            ]);
+            
+            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+    }
+    public function reorder($id)
+    {
+            DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
+                'status' =>"Recieved",
+            ]);
+            
+            return redirect()->back();
+    }
+
+    //supplier
+    public function sup(Request $request){
+
+        $request->validate([
+            'name'=>['required'],
+            'address'=>['required'],
+            'phone'=>['required'],
+            'opassword'=>['required'],
+            'npassword'=>['required'],
+        ],
+        [
+            'name.required' => 'Name is empty',
+            'address.required' => 'Address is empty',
+            'phone.required' => 'Phone is empty',
+            'opassword.required' => 'New password is empty',
+            'npassword.required' => 'Old Password is empty',
+        ]);
+
+        $p=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('password');
+        if($request->opassword==$p){
+            
+
+            DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update(['Sup_name'=>$request->name,
+                                                                        'Sup_addr'=>$request->address,
+                                                                        'Sup_pNum'=>$request->phone,
+                                                                        'password'=>$request->npassword]);
+            DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
+            
+            $s="Profile Successfully Updated";
+        }
+        else{
+            $s="Old password is wrong";
+        }
+        return redirect()->back()->with('msg',$s);
+        
+    }
+    public function suppic(Request $request)
+    {
+        $request->validate([
+            'image'=>'required|image'
+        ],[
+            'image.required' => 'You have not choose any file',
+            'image.image'=>'Only Image is allowed'
+        ]);
+
+            $name = $request->id.'.'.$request->image->extension();
+            $request->image->move(public_path().'/upload/supprof', $name); 
+
+            DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([
+                'Sup_im' => $name
+            ]);
+            
+            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+    }
+    public function supreorder($id)
+    {
+            DB::table('ingredient_orderings')->where('id',$id)->update([
+                'status' =>"Recieved",
+            ]);
+            
+            return redirect()->back();
     }
 }

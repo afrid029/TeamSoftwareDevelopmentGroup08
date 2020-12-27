@@ -85,7 +85,7 @@
 
           </div>
      </section>
-
+@if($msg=session()->get('msg'))
 @if($msg=="Patient admitted successfully.")
 <script>
 Swal.fire({
@@ -107,7 +107,28 @@ Swal.fire({
 });
 </script>
 @endif
+@endif
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
 
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+@endif
      <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
@@ -124,7 +145,7 @@ Swal.fire({
                <input type="text" name="patid" class="form-control" placeholder="Patient ID" value=""><br>
                <input type="text" name="disease" class="form-control" placeholder="Disease" value=""><br>
                <input type="text" name="bedno" class="form-control" placeholder="Bed No" value=""><br>
-               <input type="text" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
+               <input type="date" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
                <input type="hidden" name="docid" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Insert</button>
           </div>
@@ -159,13 +180,13 @@ Swal.fire({
                                             {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="text" placeholder="Admitted Date" name="date">
+                                                  <input style="color:black" type="date" placeholder="Admitted Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                             </form>
                                             <br></br>
                                             <div class="tableFixHead">
 
-                                        <table class="table table-bordered" >
+                                        <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" >
                                         
                                              <thead>
                                                   <tr>
@@ -178,9 +199,14 @@ Swal.fire({
                                                        
                                                   </tr>
                                              </thead>
+                                             @if($ad1=session()->get('ad1'))
+                                             <?php $adp=$ad1; ?>
+                                             @else
+                                             <?php $adp=$ad; ?>
+                                             @endif
                                              <tbody>
-                                                  @if(count($ad) > 0)
-                                                  @foreach($ad as $a)
+                                                  @if(count($adp) > 0)
+                                                  @foreach($adp as $a)
                                                   <tr>
                                                        <td>{{$a->Pat_id}}</td>
                                                        <td>{{$a->Doc_id}}</td>

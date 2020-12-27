@@ -85,6 +85,7 @@
 
           </div>
      </section>
+     @if($msg=session()->get('msg'))
      @if($msg=="Inserted successfully.")
      <script>
      Swal.fire({
@@ -95,6 +96,7 @@
      timer: 1500
      });
      </script>
+     @endif
      @endif
 
      <!-- HOME -->
@@ -116,7 +118,7 @@
                                              <form action="/appsearch" method="post" style="margin:auto;width:700px">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <input style="color:black" type="text" placeholder="Date" name="date">
+                                                  <input style="color:black" type="date" placeholder="Date" name="date">
                                                   <button type="submit"><i class="fa fa-search"></i></button>
                                              </form>
                                              <br></br>
@@ -132,9 +134,14 @@
                                                        <th>Time</th>
                                                   </tr>
                                              </thead>
+                                             @if($ad1=session()->get('ad1'))
+                                             <?php $adp=$ad1; ?>
+                                             @else
+                                             <?php $adp=$ad; ?>
+                                             @endif
                                              <tbody>
-                                                  @if(count($ad)>0)
-                                                  @foreach($ad as $a)
+                                                  @if(count($adp)>0)
+                                                  @foreach($adp as $a)
                                                   <tr>
                                                        <td>{{$a->App_id}}</td>
                                                        <td>{{$a->Pat_id}}</td>

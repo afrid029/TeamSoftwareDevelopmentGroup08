@@ -22,6 +22,21 @@
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
      <link rel="stylesheet" href="{{ asset('css/producer.CSS')}}">
 
+     <style>
+      .tableFixHead {
+          width:100%;
+        overflow-y: auto;
+        height: 300px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        background: gray;
+      }
+    </style>
+
 </head>
 <body>
 
@@ -54,10 +69,11 @@
                <div style="background-color:#154360 " class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue Medicines</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine Stock</font></a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order Ingredients</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine <br>Stock</font></a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order <br>Ingredients</a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -116,7 +132,7 @@
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:70%; width:88%; margin: -12% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
@@ -131,6 +147,7 @@
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
                                                             </div>
                                                        </div>
+                                                       <div class="tableFixHead">
                                                        <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
                                                             <thead>
                                                                  <tr>
@@ -181,6 +198,7 @@
                                                             @endif        
                                                             </tbody>
                                                        </table>
+                                                       </div>
 
                                                       
                                                   </div>
@@ -209,35 +227,39 @@
                     <div style="margin-left:5%;" class="form-group">
                          <form action="/proaddmedicine" method = "post">
                               @csrf 
+                              @if(count($medicines))
                               <div class="row">
                                    <input type="hidden" name = "id" value="{{$c->Pro_id}}" class="form-control">
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
-                                        <label>Medicine Id</label>
-                                        <input type="text" name = "medid" placeholder="Med###" class="form-control">
+                                        <label>Medicine Name</label>
+                                        <input type="text" name = "medname" class="form-control" list="medicines">
+                                        <datalist id="medicines">
+                                        @foreach($medicines as $me)
+                                             <option value="{{$me->Med_name}}">
+                                        @endforeach
+                                        </datalist>
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
-                                        <label>Medicine Name</label>
-                                        <input type="text" name = "medname" class="form-control">
-                                   </div>
-                              </div>
-                              <br>
-                              <div class="row">
-                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
                                         <label>Unit price</label>
                                         <input type="number" name = "uprice"  class="form-control">
                                    </div>
-                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
+                              </div>
+                              <br>
+                              <div class="row">
+                                   
+                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
                                         <label>Quantity</label>
                                         <input type="number" name = "qty" class="form-control">
+                                   </div>
+                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
+                                        <label>Manufacture Date</label>
+                                        <input type="date" name = "mfd" placeholder="Manufacture Date" class="form-control">
                                    </div>
                               </div>
                               <br>
                               <div class="row">
+                                   
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
-                                        <label>Manufacture Date</label>
-                                        <input type="date" name = "mfd" placeholder="Manufacture Date" class="form-control">
-                                   </div>
-                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Expiration date</label>
                                         <input type="date" name = "exp" placeholder="Expiration Date" class="form-control">
                                    </div>
@@ -248,6 +270,9 @@
                                    <textarea style="width:80%; height:220px;" class="form-control" name="descr" ></textarea>
                               </div><br>
                               <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
+                              @else
+                                   <h3>Adding is unavailable</h3>
+                              @endif
                          </form>
                     
                     </div>
