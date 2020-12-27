@@ -109,12 +109,18 @@ class redirect extends Controller
     //supplier
     public function suphome($t){
         $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
-        return view('sup/sup',compact('c'))->with('msg',"");
+        return view('sup/supplier',compact('c'))->with('msg',"");
     }
     public function issueing($t){
         $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
         $p=DB::table('ingredient_orderings')->where('Sup_id',$t)->get();
-        return view('sup/supord')->with('c',$c)->with('msg',"")->with('p',$p);
+        return view('sup/ingorderings')->with('c',$c)->with('msg',"")->with('p',$p);
+            
+    }
+    public function newing($t){
+        $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
+        $p=DB::table('ingredients')->get();
+        return view('sup/ingredients')->with('c',$c)->with('msg',"")->with('p',$p);
             
     }
 }

@@ -176,7 +176,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines in Pharmacy</h3></td>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>
@@ -223,7 +223,7 @@
                                    </div>
                                <div style=" margin-right:10%;" class="column">
                                <br>
-                              <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
+                              <button style="float:right;" class="btn btn-success">Add to list</button><br>
                               </div>
                               
                          </form>

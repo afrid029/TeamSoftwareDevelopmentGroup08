@@ -11,6 +11,7 @@ use App\Models\new_med_stock;
 use App\Models\Ingredient_stock;
 use App\Models\Ingredient_ordering;
 use App\Models\medicines;
+use App\Models\ingredients;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -331,5 +332,27 @@ class Store extends Controller
         $med->description = $req->descr;
         $med->save();
         return redirect()->back()->with('msg',"New medicine added successfully");
+    }
+
+    //supplier
+    public function newingredient(Request $req)
+    {
+       $valid =  $req->validate([
+            'ingname'=>'required',
+            'descr'=>'required',
+
+        ],[
+            'ingname.required' => 'Name is empty',
+            'descr.required' => 'Description is empty',
+        ]);
+        $n=DB::table('ingredients')->get();
+        $no=count($n)+1;
+        $ing = new ingredients;
+        
+        $ing->Ing_id = "ing".$no;
+        $ing->Ing_name = $req->ingname;
+        $ing->description = $req->descr;
+        $ing->save();
+        return redirect()->back()->with('msg',"New ingredient added successfully");
     }
 }

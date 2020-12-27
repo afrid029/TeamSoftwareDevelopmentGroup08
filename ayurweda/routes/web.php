@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\patientsController;
 use App\Http\Controllers\medproducer;
 use App\Http\Controllers\pharmacistController;
+use App\Http\Controllers\ingsupplier;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,3 +125,5 @@ Route::post('/suppic', 'update@suppic');
 Route::get('issueing/{c}/', 'redirect@issueing')->name('issueing');
 Route::get('newing/{c}/', 'redirect@newing')->name('newing');
 Route::get('supreorder/{c}/', 'update@supreorder')->name('supreorder');
+Route::post('/newingredient', 'store@newingredient');
+Route::post('/issuingsearch', 'search@issuingsearch');

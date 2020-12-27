@@ -84,7 +84,7 @@ class update extends Controller
             'image.image'=>'Only Image is allowed'
         ]);
 
-            $name = time().rand(1,100).'.'.$request->image->extension();
+            $name = $request->id.'.'.$request->image->extension();
             $request->image->move(public_path().'/upload/docprof', $name); 
 
             DB::table('doctors')->where('Doc_id',$request->id)->update([
@@ -186,7 +186,7 @@ class update extends Controller
             'image.image'=>'Only Image is allowed'
         ]);
 
-            $name = time().rand(1,100).'.'.$request->image->extension();
+            $name = $request->id.'.'.$request->image->extension();
             $request->image->move(public_path().'/upload/proprof', $name); 
 
             DB::table('medicine_producers')->where('Pro_id',$request->id)->update([
@@ -249,7 +249,7 @@ class update extends Controller
             'image.image'=>'Only Image is allowed'
         ]);
 
-            $name = time().rand(1,100).'.'.$request->image->extension();
+            $name = $request->id.'.'.$request->image->extension();
             $request->image->move(public_path().'/upload/supprof', $name); 
 
             DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([

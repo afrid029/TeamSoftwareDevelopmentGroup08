@@ -123,4 +123,24 @@ class search extends Controller
         
         
     }
+
+    //supplier
+    public function issuingsearch(Request $request){
+        if($request->proid!=""&&$request->date!=""){
+            $p1=DB::table('ingredient_orderings')->where('Sup_id',$request->id)->where('Pro_id',$request->proid)->whereDate('IngOrder_date',$request->date)->get();
+        }
+        elseif($request->proid==""&&$request->date!=""){
+            $p1=DB::table('ingredient_orderings')->where('Sup_id',$request->id)->whereDate('IngOrder_date',$request->date)->get();
+        }
+        elseif($request->proid!=""&&$request->date==""){
+            $p1=DB::table('ingredient_orderings')->where('Sup_id',$request->id)->where('Pro_id',$request->proid)->get();
+        }
+        else{
+            $p1=DB::table('ingredient_orderings')->where('Sup_id',$request->id)->get();
+        }
+        
+        return redirect()->back()->with('p1',$p1);
+        
+        
+    }
 }
