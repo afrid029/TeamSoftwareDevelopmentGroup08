@@ -43,7 +43,7 @@ Route::post('/saveadmit', 'Store@admit');
 Route::post('/pressearch', 'search@pressearch');
 Route::post('/adsearch', 'search@adsearch');
 Route::post('/saveavailable', 'Store@available');
-Route::get('/avedit/{id}/{docid}', 'update@avedit')->name('avedit');
+Route::post('/avedit', 'update@avedit');
 Route::get('/avdelete/{id}/{docid}', 'update@avdelete')->name('avdelete');
 Route::post('/patadmit', 'Store@patadmit');
 Route::post('/admitsearch', 'search@admitsearch');
@@ -54,6 +54,7 @@ Route::post('/docreply', 'update@docreply');
 Route::get('appointment/{c}/', 'redirect@appointment')->name('appointment');
 Route::post('/appsearch', 'search@appsearch');
 Route::post('/docpic', 'update@docpic');
+Route::get('discharge/{c}/', 'update@discharge')->name('discharge');
 
 
 //Patients Routings

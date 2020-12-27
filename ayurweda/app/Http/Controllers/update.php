@@ -51,13 +51,12 @@ class update extends Controller
         
     }
 
-    public function avedit($id,$docid){
-        $c=DB::table('doctors')->where('Doc_id',$docid)->first();
-        $ro=DB::table('doc_available_times')->where('id',$id)->first();
-        DB::table('doc_available_times')->where('id',$id)->delete();
-        $p=DB::table('doc_available_times')->where('Doc_id',$docid)->get();
+    public function avedit(Request $request){
+        $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
+        DB::table('doc_available_times')->where('id',$request->id)->update(['availableDate'=>$request->date,
+                                                                        'availableTime'=>$request->time,]);
         
-        return view('doc/available')->with('c',$c)->with('msg',"")->with('av',$p)->with('ro',$ro);
+        return redirect()->back()->with('msg',"Updated Successfully");
         
     }
     public function avdelete($id,$docid){
@@ -92,6 +91,16 @@ class update extends Controller
             ]);
             $s="Profile picture changed";
         return redirect()->back()->with('msg',$s);
+    }
+
+    public function discharge($id){
+        DB::table('add_pats')->where('id',$id)->update([
+            'status' => "Discharged",
+            'disch_date'=>date("Y-m-d"),
+        ]);
+        
+        return redirect()->back()->with('msg',"Patient was discharged");
+        
     }
 
     //producer

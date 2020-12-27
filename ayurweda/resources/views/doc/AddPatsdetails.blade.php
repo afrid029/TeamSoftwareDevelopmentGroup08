@@ -24,17 +24,44 @@
 
      <style>
       .tableFixHead {
-          width:100%;
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
-      th {
-        background: gray;
-      }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
 
 </head>
@@ -86,7 +113,7 @@
           </div>
      </section>
 @if($msg=session()->get('msg'))
-@if($msg=="Patient admitted successfully.")
+@if($msg=="Patient admitted successfully." || $msg=="Patient was discharged")
 <script>
 Swal.fire({
   position: 'middle',
@@ -145,7 +172,6 @@ Swal.fire({
                <input type="text" name="patid" class="form-control" placeholder="Patient ID" value=""><br>
                <input type="text" name="disease" class="form-control" placeholder="Disease" value=""><br>
                <input type="text" name="bedno" class="form-control" placeholder="Bed No" value=""><br>
-               <input type="date" name="ddate" class="form-control" placeholder="Discharge Date" value=""><br>
                <input type="hidden" name="docid" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Insert</button>
           </div>
@@ -165,28 +191,27 @@ Swal.fire({
                     <div class="">
                     <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
-                                        
-                                        <br></br>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                       Admit a patient
-                                        </button>
-                                        <br></br>
-                                        <br></br>
-                                        
-                                   
-                                        <div class="col-md-8 col-sm-12">
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                   <br>
+                                        <div class="">
+                                             <div style="float:left;">
                                             <form action="/admitsearch" method="post" style="margin:auto;width:700px">
                                             {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <input style="color:black" type="text" placeholder="Patient ID" name="patid">
-                                                  <input style="color:black" type="date" placeholder="Admitted Date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <div style="float:left;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
+                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                             </form>
+                                            </div>
+                                            <div style="float:right;">
+                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                            Admit a patient
+                                             </button>
+                                             </div>
                                             <br></br>
                                             <div class="tableFixHead">
 
-                                        <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" >
+                                        <table class="table">
                                         
                                              <thead>
                                                   <tr>
@@ -195,6 +220,7 @@ Swal.fire({
                                                        <th>Admitted Date</th>
                                                        <th>Disease</th>
                                                        <th>Bed Number</th>
+                                                       <th>Status</th>
                                                        <th>Discharge Date</th>
                                                        
                                                   </tr>
@@ -213,6 +239,11 @@ Swal.fire({
                                                        <td>{{$a->ad_date}}</td>
                                                        <td>{{$a->disease}}</td>
                                                        <td>{{$a->bedno}}</td>
+                                                       @if($a->status=="Admitted")
+                                                       <td><a href="{{route('discharge',$a->id)}}" class = "btn btn-danger btn-sm">Discharge</a></td>
+                                                       @else
+                                                       <td>{{$a->status}}</td>
+                                                       @endif
                                                        <td>{{$a->disch_date}}</td>
                                                   </tr>
                                                   @endforeach
