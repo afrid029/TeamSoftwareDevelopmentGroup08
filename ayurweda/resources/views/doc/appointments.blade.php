@@ -24,17 +24,44 @@
 
      <style>
       .tableFixHead {
-          width:100%;
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
-      th {
-        background: gray;
-      }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
 
 </head>
@@ -106,25 +133,23 @@
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
-                                        <h4>No. of appointments today:<span class="label label-default">{{$na}}</span><h4>
+                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
-                                        
-                                        <br></br>
-                                   
-                                        <div class="col-md-8 col-sm-12">
-                                             
-                                             
-                                             <form action="/appsearch" method="post" style="margin:auto;width:700px">
-                                             {{csrf_field()}}
+                                        <br>
+                                        <div class="">
+                                        <div style="float:left;"><p style="font-size:20px;color:white;">No. of appointments today:<span class="label label-default">{{$na}}</span><p></div>
+                                             <div style="float:right;">
+                                             <form action="/appsearch" method="post">
+                                                  {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <input style="color:black" type="date" placeholder="Date" name="date">
-                                                  <button type="submit"><i class="fa fa-search"></i></button>
+                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
+                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
+                                             </div>
                                              <br></br>
-
+                                             
                                              <div class="tableFixHead">
-                                        <table class="table table-bordered" >
+                                        <table class="table" >
                                         
                                              <thead style="position: sticky;top: 0;">
                                                   <tr>

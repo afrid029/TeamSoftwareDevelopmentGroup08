@@ -24,9 +24,10 @@ class redirect extends Controller
         
     }
     public function admitted($t){
+        $medicines = DB::table('medicines')->get();
         $p=DB::table('add_pat_ups')->get();
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
-        return view('doc/admitted')->with('c',$c)->with('msg',"")->with('ad',$p);
+        return view('doc/admitted')->with('c',$c)->with('msg',"")->with('medicines',$medicines)->with('ad',$p);
         
     }
     public function available($t){

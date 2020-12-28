@@ -56,12 +56,43 @@
     <style>
       .tableFixHead {
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
 
 
@@ -113,9 +144,9 @@
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div class="container">
+                                   <div style="height:70%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5); class="container">
                                    <div style="width:50%; margin-left:25%; margin-right:25%;" class="col-lg-3">
-                                   <h2 style="color:#ffffff; width:96%; margin: 0 2%;">Patients' Medical Symptomps History</h2>
+                                   <h2 style="color:#222222; width:96%; margin: 0 2%;">Patients' Medical Symptomps History</h2>
                                    <div class="tableFixHead">
                                    <table style="background-color:white;border:5px; " class="table table-bordered" >
                                         

@@ -52,7 +52,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -209,8 +209,8 @@
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
                                                        @if($c->Sup_im)
-                                                       <img class="img" src="{{asset('upload/supprof')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:200px; width:auto;">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <img class="img" src="{{asset('upload/supprof')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:auto; width:280px;">
+                                                       <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/supplier.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>

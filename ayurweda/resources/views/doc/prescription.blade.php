@@ -25,7 +25,7 @@
      <style>
       .tableFixHead {
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
         
       }
       .tableFixHead thead th {
@@ -381,10 +381,7 @@ Swal.fire({
                               <div class="caption">
                                    <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
-                                        <br></br>
-                                   
-                                        
-                                             
+                                        <br>
                                              <div style="float:left;">
                                              <form action="/pressearch" method="post">
                                              {{csrf_field()}}

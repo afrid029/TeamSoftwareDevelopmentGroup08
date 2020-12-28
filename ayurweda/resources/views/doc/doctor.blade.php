@@ -220,13 +220,13 @@
                                              <div class="col-md-6 col-sm-6">
                                              <div style=" padding:1% 1% 1% 1%; border-radius:30px; height:200px; width:50%">
                                                        @if($c->Doc_im)
-                                                       <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:auto;">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:auto; width:280px;">
+                                                       <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @endif
-                                                       </div>
+                                             </div>
                                                        <br><br>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>

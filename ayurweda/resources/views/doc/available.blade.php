@@ -24,17 +24,44 @@
 
      <style>
       .tableFixHead {
-          width:100%;
         overflow-y: auto;
-        height: 200px;
+        height: 340px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
       }
-      th {
-        background: gray;
-      }
+      table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+	td {
+		color: gray;
+		line-height: 1;
+	}
+th {
+    background-color: #31bc86;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
     </style>
 
 </head>
@@ -106,6 +133,16 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@elseif($msg=="Updated Successfully")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
 @endif
 @endif
 @if($errors->any())
@@ -149,37 +186,17 @@ $time="";
             <div class="">
                             <div class="item item-first">
                                 <div class="caption">
-                                    <div class="container">
-                                        
-                                        <div class="col-md-8 col-sm-12">
+                                    <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                        <br>
+                                        <div class="">
                                              
+                                             <div style="float:right;">
+                                             <div style="margin-top:2%; float:left; margin-left:4%;" class="col-sm-1">
+                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add new available time</button>
+                                             </div>
+                                             
+                                             </div>
                                              <br><br>
-                                             <br><br>
-                                             <form action="/saveavailable" method="post" class="wow fadeInUp">
-                                             {{csrf_field()}} 
-                                             <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <div class="col-xs-3">
-
-                                                       <label for="ex1">Date</label>
-                                                       
-                                                       <input class="form-control" type="date" name="date" value="{{$date}}"><br>
-                                                       
-                                                  </div>
-                                                  <div class="col-xs-2">
-                                                       <label for="ex1">Time</label>
-                                                       <input class="form-control" type="time" name="time" value="{{$time}}"><br>
-                                                  </div>
-                                                  <div class="col-xs-2">
-                                                       <br></br>     
-                                                       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Insert
-                                                       </button>
-                                                       <br></br>
-                                                       <br></br>
-                                                  </div>
-                                                  
-                                             </form>
-                                             <br><br><br><br><br>
                                              
                                              <div class="tableFixHead">
                                         <table class="table table-hover" >
@@ -193,13 +210,20 @@ $time="";
                                              </thead>
                                              <tbody>
                                                   @if(count($av)>0)
+                                                  <?php $n = 0;?>
                                                   @foreach($av as $a)
                                                   <tr>
                                                        <td>{{$a->availableDate}}</td>
                                                        <td>{{$a->availableTime}}</td>
-                                                       <td><a href="{{route('avedit',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Edit</a></td>
-                                                       <td><a href="{{route('avdelete',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class="smoothScroll">Delete</a></td>
+                                                       <td>
+                                                       <input type="hidden" id = "id<?php echo $n; ?>" value="{{$a->id}}">
+                                                       <input type="hidden" id = "date<?php echo $n; ?>" value="{{$a->availableDate}}">
+                                                       <input type="hidden" id = "time<?php echo $n; ?>" value = "{{$a->availableTime}}">
+                                                       <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>
+                                                       </td>
+                                                       <td><a href="{{route('avdelete',['id'=>$a->id,'docid'=>$c->Doc_id])}}" class = "btn btn-danger btn-sm">Delete</a></td>
                                                   </tr>
+                                                  <?php $n++; ?>
                                                   @endforeach
                                                   @else
                                                   <tr>
@@ -222,6 +246,86 @@ $time="";
         </div>
     </section>
 
+<!-- Modal 1-->
+<div class="modal fade" id="addmedi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div style = "margin-top:35%;" class="modal-content">
+               <div class="modal-header">
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Add new available time</h3>
+                    <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+               </div>
+               <div class="modal-body">
+                    <div style="margin-left:5%;" class="form-group">
+                         <form action="/saveavailable" method = "post">
+                              @csrf
+                              <div class="row">
+                                   <input type="hidden" name = "docid" value="{{$c->Doc_id}}">
+                                   <div style="width:40%; margin-right:10%; float:left;" class="column">
+                                   <label for="ex1">Date</label>
+                                   <input class="form-control" type="date" name="date" value="{{$date}}">
+                                   </div>
+                                   <div style="width:40%; margin-right:10%; float:right;" class="column">
+                                   <label for="ex1">Time</label>
+                               <input class="form-control" type="time" name="time" value="{{$time}}">
+                                   </div>
+                              </div>
+                              <br>
+                              <button style="float:right;" class="btn btn-success">Add</button><br>
+                         </form>
+                    
+                    </div>
+               </div>
+              
+          </div>
+     </div>
+</div>
+
+<!-- Modal 3-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div style = "height:100px;width:110%; margin-top:35%;" class="modal-content">
+
+               <div style="margin-top:-2%;" class="modal-body">
+                    <form action="/avedit" method="post">
+                    @csrf
+                         <div style="margin-bottom:3%;">
+                         
+                              <div style= "float:left; margin-right:2%; width:10%:">
+                              <input type="hidden" name = "docid" value="{{$c->Doc_id}}">
+                              <input type="hidden" name = "id" id="aid">
+                                   <label  >Date: </label>
+                                   <input type="date" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6;" name = "date" id="adate"/>
+                              </div>
+                              
+                              <div style= "float:left;margin-right:2%; width:10%:">
+                                   <label >Time: </label>
+                                   <input type="time" style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; " name="time" id="atime">
+                              </div>
+                         </div>
+                         <button style="float:right;" class="btn btn-success">Update</button><br>
+                    </form>
+                                       
+               </div>
+              
+          </div>
+     </div>
+</div>
+
+<script>
+     function edit(id)
+     {
+          
+          var aid = document.getElementById('id'+id).value;
+          var adate =document.getElementById('date'+id).value;
+          var atime =document.getElementById('time'+id).value;
+          
+          
+          
+          document.getElementById('aid').value = aid;
+          document.getElementById('adate').value = adate;
+          document.getElementById('atime').value = atime;
+     }
+</script>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>
