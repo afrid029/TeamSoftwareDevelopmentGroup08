@@ -275,4 +275,14 @@ class update extends Controller
             
             return redirect()->back();
     }
+
+    //forget password
+    public function forgotpass(Request $request)
+    {
+            DB::table('ingredient_orderings')->where('id',$id)->update([
+                'status' =>"Recieved",
+            ]);
+            
+            return redirect()->back();
+    }
 }

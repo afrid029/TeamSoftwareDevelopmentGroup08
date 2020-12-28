@@ -128,3 +128,10 @@ Route::get('newing/{c}/', 'redirect@newing')->name('newing');
 Route::get('supreorder/{c}/', 'update@supreorder')->name('supreorder');
 Route::post('/newingredient', 'store@newingredient');
 Route::post('/issuingsearch', 'search@issuingsearch');
+
+//admin routings
+Route::get('adminhome/{c}/', 'redirect@adminhome')->name('adminhome');
+
+//forget password
+Route::get('forgot','redirect@forgot');
+Route::post('/forgotpass', 'update@forgotpass');

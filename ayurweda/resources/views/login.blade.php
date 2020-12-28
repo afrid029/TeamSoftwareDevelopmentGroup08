@@ -91,7 +91,8 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                              <input class="form-control" type="text" name="id" placeholder="User ID"><br>
                                              <input class="form-control" type="password" name="password" placeholder="Password"><br><br>
-                                             <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black">
+                                             <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black"><br>
+                                             <a href="/forgot">Forgot Password</a>
                                              </div>
                                              </form>
                                         </div>
