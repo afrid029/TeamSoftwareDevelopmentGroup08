@@ -24,7 +24,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'PageController@login');
+Route::get('/login', 'PageController@login')->name('login');
 Route::get('/register', 'PageController@register');
 
 Route::post('/saveuser', 'Store@register');
@@ -133,5 +133,5 @@ Route::post('/issuingsearch', 'search@issuingsearch');
 Route::get('adminhome/{c}/', 'redirect@adminhome')->name('adminhome');
 
 //forget password
-Route::get('forgot','redirect@forgot');
+Route::get('/forgotp','redirect@forgotp')->name('forgotp');
 Route::post('/forgotpass', 'update@forgotpass');

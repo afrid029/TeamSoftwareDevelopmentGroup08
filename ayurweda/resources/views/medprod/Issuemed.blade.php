@@ -156,7 +156,7 @@
                                                   @endforeach 
                                                   @else
                                                        <tr>
-                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
+                                                            <td colspan="5"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
                                                        </tr>
                                                        
                                                   @endif

@@ -212,7 +212,7 @@
                                                        <img class="img" src="{{asset('upload/supprof')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:auto; width:280px;">
                                                        <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
-                                                       <img class="img" src="{{ asset('images/supimg.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
+                                                       <img class="img" src="{{ asset('images/supplier.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
                                                        <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @endif
                                                        <br><br>

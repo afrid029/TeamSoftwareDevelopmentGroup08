@@ -72,6 +72,16 @@ Swal.fire({
   timer: 1500
 });
 </script>
+@elseif($msg=="Password reset successful")
+<script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
 @endif
 @endif
 
@@ -91,8 +101,8 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                              <input class="form-control" type="text" name="id" placeholder="User ID"><br>
                                              <input class="form-control" type="password" name="password" placeholder="Password"><br><br>
-                                             <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black"><br>
-                                             <a href="/forgot">Forgot Password</a>
+                                             <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black"><br><br>
+                                             <a href="/forgotp" class="text-danger"><b>Forgot Password</b></a>
                                              </div>
                                              </form>
                                         </div>

@@ -130,7 +130,7 @@ class redirect extends Controller
     }
 
     //forget password
-    public function forgot(){
-        return view('forgot');
+    public function forgotp(){
+        return view('forgot')->with('msg',"");
     }
 }

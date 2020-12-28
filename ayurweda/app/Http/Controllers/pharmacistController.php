@@ -198,7 +198,7 @@ class pharmacistController extends Controller
     public function issueMedicine($id)
     {
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
-        $pat = DB::table('pat_med_orderings')->where('status','Unrecieved')->orderBy('created_at','asc')->get();
+        $pat = DB::table('pat_med_orderings')->where('status','Not Issued')->orderBy('created_at','asc')->get();
         $doc = DB::table('medical_histories')->where('issued','Not Issued')->orderBy('created_at','asc')->get();
 
       
@@ -227,7 +227,7 @@ class pharmacistController extends Controller
             }
         }
 
-        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Recieved','bill'=>$bill]);
+        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Issued','bill'=>$bill]);
         return redirect()->back()->with('msg','Order Issued')->with('orbill',$bill);
     }
 

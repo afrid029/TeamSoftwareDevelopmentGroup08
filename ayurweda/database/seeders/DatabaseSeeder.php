@@ -167,6 +167,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Nishantha Herath',
             'Pro_addr' => 'No.34, stage 7, Negombo',
             'Pro_pNum' => '0716894567',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod1@'
         ]);
@@ -180,6 +181,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Krishanthi Samarakoon',
             'Pro_addr' => 'No.67, stage 5, Katunayake',
             'Pro_pNum' => '0714567890',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod2@'
         ]);
@@ -193,6 +195,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Ganesh Darmapala',
             'Pro_addr' => 'No.9, stage 2, Anuradhapura',
             'Pro_pNum' => '0789564786',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod3@'
         ]);
@@ -454,6 +457,7 @@ class DatabaseSeeder extends Seeder
             'Phar_name' => 'Karan Saran',
             'Phar_addr' => 'No.1, AML road, Ampara',
             'Phar_pNum' => '0776789023',
+            'Phar_email'=>'anuavantha@gmail.com',
             'password' => 'pha1@'
         ]);
         
@@ -781,6 +785,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Sanath Geegana',
             'Sup_addr' => 'No. 123, ABC road, Rabukkana',
             'Sup_pNum' => '0716720783',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup1@'
         ]);
@@ -795,6 +800,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Yogarajan Danesh',
             'Sup_addr' => 'No. 13, QOP road, Jaffna',
             'Sup_pNum' => '0782349345',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup2@'
         ]);
@@ -809,6 +815,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'K Nadarasa',
             'Sup_addr' => 'No. 45, daffny road, Ampara',
             'Sup_pNum' => '0785678134',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup3@'
         ]);
@@ -823,6 +830,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Naduni Rodrigo',
             'Sup_addr' => 'No. 23, Kandy road, Kandy',
             'Sup_pNum' => '0728934567',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup4@'
         ]);
@@ -837,6 +845,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Ruvini Nethmi',
             'Sup_addr' => 'No. 67, KN road, Trincomalee',
             'Sup_pNum' => '0762345678',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup5@'
         ]);
@@ -989,7 +998,15 @@ class DatabaseSeeder extends Seeder
             'password'=>'admin',
             'roll'=>'admin'
         ]);
+        DB::table('admins')->insert([
+            'id'=>'admin',
+            'username'=>'Vishva',
+            'password'=>'admin',
+            'phone'=>'0771234567',
+            'email'=>'anuavantha@gmail.com',
+            
+        ]);
         
 
-    }
+}
 }

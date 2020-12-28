@@ -62,7 +62,7 @@
           </div>
      </section>
 @if($msg = session()->get('msg'))
-@if($msg=="Wrong password or username")
+@if($msg=="Wrong password or username" || "User ID is wrong" || "Email is wrong")
 <script>
 Swal.fire({
   position: 'middle',

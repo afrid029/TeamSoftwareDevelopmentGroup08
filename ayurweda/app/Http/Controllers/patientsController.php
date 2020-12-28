@@ -11,6 +11,8 @@ use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use App\Models\OnlineBooking;
 use App\Models\Pat_med_ordering;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendMail;
 
 
 class patientsController extends Controller
@@ -72,7 +74,8 @@ class patientsController extends Controller
             'profile.image'=>'Only Image is allowed'
         ]);
 
-            $name = time().rand(1,100).'.'.$request->profile->extension();
+      
+         $name = time().rand(1,100).'.'.$request->profile->extension();
             $request->profile->move(public_path().'/upload/profile', $name); 
 
             DB::table('patients')->where('Pat_id',$id)->update([

@@ -8,6 +8,8 @@ use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 class update extends Controller
 {
@@ -279,10 +281,119 @@ class update extends Controller
     //forget password
     public function forgotpass(Request $request)
     {
-            DB::table('ingredient_orderings')->where('id',$id)->update([
-                'status' =>"Recieved",
-            ]);
+        $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
+        if($roll=="patient"){
+            $email=DB::table('patients')->where('Pat_id',$request->id)->value('Pat_email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('patients')->where('Pat_id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
+        }
+        elseif($roll=="doctor"){
+            $email=DB::table('doctors')->where('Doc_id',$request->id)->value('Doc_email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('doctors')->where('Doc_id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
+        }
+        elseif($roll=="pharmacist"){
+            $email=DB::table('pharmacists')->where('Phar_id',$request->id)->value('Phar_email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('pharmacists')->where('Phar_id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
             
-            return redirect()->back();
+        }
+        elseif($roll=="producer"){
+            $email=DB::table('medicine_producers')->where('Pro_id',$request->id)->value('Pro_email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('medicine_producers')->where('Pro_id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
+
+        }
+        elseif($roll=="supplier"){
+            $email=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('Sup_email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
+
+        }
+        elseif($roll=="admin"){
+            $email=DB::table('admins')->where('id',$request->id)->value('email');
+            if($email==$request->email){
+                $password=rand(100000,1000000);
+                DB::table('admins')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                DB::table('all_users')->where('id',$request->id)->update([
+                    'password' =>$password,
+                ]);
+                $s="Password reset successful";
+            }
+            else{
+                $s="Email is wrong";
+            }
+        }
+        else{
+            $s="User ID is wrong";
+        }
+        if($s=="Password reset successful"){
+            $details=['title'=>'Your password has reset.',
+                   'body'=>'Your new password : '.$password];
+            Mail::to($email)->send(new TestMail($details));
+            return redirect()->route('login')->with('msg',$s);
+        }
+        else{
+            return redirect()->route('forgotp')->with('msg',$s);
+        }
+            
+        
     }
 }
