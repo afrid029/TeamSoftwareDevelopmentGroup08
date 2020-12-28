@@ -121,7 +121,7 @@ class Store extends Controller
             $s="The patient doesn't exist.";
             
         
-            return view('doc/prescription')->with('msg',$s);
+            return redirect()->back()->with('msg',$s);
         }
         $s="Prescription added successfully";
         

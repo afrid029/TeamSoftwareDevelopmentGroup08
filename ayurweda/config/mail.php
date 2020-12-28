@@ -84,9 +84,13 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'contact.helaweda@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Ayurvedic Hospital'),
     ],
+
+    'reply_to' => [
+        'address' => 'contact.helaweda@gmail.com', 
+        'name' => 'Ayurwedic Hospital'],
 
     /*
     |--------------------------------------------------------------------------

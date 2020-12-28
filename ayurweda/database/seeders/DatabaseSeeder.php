@@ -633,7 +633,7 @@ class DatabaseSeeder extends Seeder
             'roll'=>'admin'
         ]);
         
-
+      
 
     }
 }
