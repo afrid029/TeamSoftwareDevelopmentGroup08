@@ -41,9 +41,7 @@
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($msg=session()->get('msg'))
-<script>
-console.log("ok");
-</script>
+
 @if($msg=="Profile Successfully Updated")
 <script>
 
@@ -88,8 +86,8 @@ Swal.fire({
                <div class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('adminpage',$c->username)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li><a href="{{route('regist',$c->username)}}" class="smoothScroll">Registration</a></li>
+                         <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -117,12 +115,12 @@ Swal.fire({
           <form method="post" action="/admedit">
          {{csrf_field()}}  
           <div class="modal-body">
-               <input type="text" name="id" class="form-control"  value="{{$c->username}}" readonly><br>             
+               <input type="text" name="id" class="form-control"  value="{{$c->id}}" readonly><br>             
                <input type="text" name="name" class="form-control" placeholder="Name"  value="{{$c->name}}"><br>
                <input type="text" name="phone" class="form-control"  placeholder="Phone Number" value="{{$c->phone}}"><br>
                <input type="email" name="email" class="form-control"  placeholder="Email"  value="{{$c->email}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="password" name="npassword" class="form-control" placeholder="New Password / Repeat Old Password"><br>
               
                <button type="submit" class="btn btn-primary">Update</button>
           </div>

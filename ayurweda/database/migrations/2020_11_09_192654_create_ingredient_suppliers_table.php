@@ -16,8 +16,8 @@ class CreateIngredientSuppliersTable extends Migration
         Schema::create('ingredient_suppliers', function (Blueprint $table) {
             $table->string('Sup_id');
             $table->string('Sup_name');
-            $table->string('Sup_addr');
-            $table->string('Sup_pNum');
+            $table->string('Sup_addr')->nullable();
+            $table->string('Sup_pNum')->nullable();
             $table->string('Sup_email');
             $table->string('password');
             $table->string('Sup_im')->nullable();

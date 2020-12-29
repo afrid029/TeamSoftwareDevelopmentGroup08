@@ -301,7 +301,7 @@ class Store extends Controller
         $ord->Pro_id = $req->id;
         $ord->Sup_id = $req->supid;
         $ord->IngOrder_date=date('Y-m-d');
-        $ord->status = "Unrecieved";
+        
         $ord->save();
 
     

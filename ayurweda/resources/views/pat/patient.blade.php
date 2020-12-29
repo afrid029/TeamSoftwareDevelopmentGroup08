@@ -56,7 +56,14 @@
                     <!-- lOGO TEXT HERE -->
                     <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
+<section class="preloader">
+        
 
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+               
+     
+     </section>
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
@@ -97,7 +104,7 @@
                <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Pat_addr}}"><br>
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Pat_pNum}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="password" name="npassword" class="form-control" placeholder="New Password / Repeat Old Password"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Pat_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>

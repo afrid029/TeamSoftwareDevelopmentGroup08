@@ -25,6 +25,7 @@ class pharmacistController extends Controller
         $request->validate([
             'name'=>'required',
             'address' => 'required',
+            'email' => 'required',
             'phone' => 'required|digits:10',
             'opassword'=> 'required',
             'npassword' => 'required'
@@ -44,6 +45,7 @@ class pharmacistController extends Controller
                 'Phar_name' => $request->name,
                 'Phar_addr' => $request->address,
                 'Phar_pNum' => $request->phone,
+                'Phar_email' => $request->email,
            ]);
 
            if($pw !== $request->npassword){

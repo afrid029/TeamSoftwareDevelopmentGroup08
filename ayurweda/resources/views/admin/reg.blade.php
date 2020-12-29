@@ -118,8 +118,8 @@
                <div class="collapse navbar-collapse">
 
                    <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('adminpage',$c->username)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('regist',$c->username)}}" class="smoothScroll"><font color="red">Registration</font></a></li>
+                         <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('regist',$c->id)}}" class="smoothScroll"><font color="red">Registration</font></a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -135,7 +135,21 @@
      </section>
 
      <br><br>
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($msg=session()->get('msg'))
 
+
+<script>
+
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+@endif
      
      <!-- for registration part -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">

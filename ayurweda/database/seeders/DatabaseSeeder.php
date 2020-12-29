@@ -910,7 +910,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
             'IngOrder_date' => '2020-04-06',
-            'status' => 'Unrecieved'
+           
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '002',
@@ -918,7 +918,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
             'IngOrder_date' => '2020-05-20',
-            'status' => 'Unrecieved'
+      
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '003',
@@ -926,7 +926,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod2',
             'Sup_id' => 'sup1',
             'IngOrder_date' => '2020-06-21',
-            'status' => 'Unrecieved'
+            
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '004',
@@ -934,7 +934,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod2',
             'Sup_id' => 'sup2',
             'IngOrder_date' => '2020-05-01',
-            'status' => 'Unrecieved'
+          
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '005',
@@ -942,7 +942,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup2',
             'IngOrder_date' => '2020-04-30',
-            'status' => 'Unrecieved'
+           
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '006',
@@ -950,7 +950,7 @@ class DatabaseSeeder extends Seeder
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
             'IngOrder_date' => '2020-07-06',
-            'status' => 'Unrecieved'
+            
         ]);
 
         //ingriedient stock

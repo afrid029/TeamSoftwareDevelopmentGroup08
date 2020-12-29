@@ -16,11 +16,11 @@ class CreateMedicineProducersTable extends Migration
         Schema::create('medicine_producers', function (Blueprint $table) {
             $table->string('Pro_id');
             $table->string('Pro_name');
-            $table->string('Pro_addr');
-            $table->string('Pro_pNum');
+            $table->string('Pro_addr')->nullable();
+            $table->string('Pro_pNum')->nullable();
             $table->string('Pro_email');
             $table->string('password');
-            $table->string('Pro_im');
+            $table->string('Pro_im')->nullable();
             $table->primary('Pro_id');
             $table->timestamps();
         });

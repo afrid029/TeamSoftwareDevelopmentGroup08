@@ -31,7 +31,7 @@ class sendMail extends Mailable
      */
     public function build()
     {
-       return $this->view('email')
+       return $this->view('userdetails')
                     ->with([
                         'ID'=> $this->ord->ID,
                         'password'=> $this->ord->password,

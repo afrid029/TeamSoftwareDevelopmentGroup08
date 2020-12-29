@@ -17,10 +17,10 @@ class CreateDoctorsTable extends Migration
             $table->string('Doc_id');
             $table->string('Doc_name');
             $table->string('Doc_email');
-            $table->string('Doc_addr');
-            $table->string('Doc_pNum');
+            $table->string('Doc_addr')->nullable();
+            $table->string('Doc_pNum')->nullable();
             $table->string('password');
-            $table->string('Doc_im');
+            $table->string('Doc_im')->nullable();
             $table->primary('Doc_id');
             $table->timestamps();
         });

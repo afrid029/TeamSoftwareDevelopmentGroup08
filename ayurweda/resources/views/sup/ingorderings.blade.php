@@ -161,8 +161,8 @@
                                                        </td>
                                                        <td><p >{{$order->Pro_id}}</p></td>
                                                        <td><p >{{$order->IngOrder_date}}</p></td>
-                                                       @if($order->status=="Unrecieved")
-                                                       <td><a href="{{route('supreorder',$order->id)}}" class="btn btn-primary btn-sm">Recieve</a></td>
+                                                       @if($order->status=="Not Issued")
+                                                       <td><a href="{{route('supreorder',$order->id)}}" class="btn btn-primary btn-sm">Issue</a></td>
                                                        @else
                                                        <td><p >{{$order->status}}</p></td>
                                                        @endif

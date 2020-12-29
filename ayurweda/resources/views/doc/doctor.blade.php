@@ -102,7 +102,7 @@
                <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Doc_addr}}"><br>
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Doc_pNum}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="password" name="npassword" class="form-control" placeholder="New Password / Repeat Old Password"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Doc_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>

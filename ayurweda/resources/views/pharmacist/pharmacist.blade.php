@@ -153,6 +153,7 @@
                          <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Phar_name}}"><br>
                          <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Phar_addr}}"><br>
                          <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Phar_pNum}}"><br>
+                         <input type="email" name="email" class="form-control" placeholder="Email Address" value="{{$c->Phar_email}}"><br>
                          <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                          <input type="password" name="npassword" class="form-control" placeholder="New Password / Repeat Old Password"><br>
                          <input type="hidden" name="id" class="form-control" value="{{$c->Phar_id}}"><br>
@@ -240,6 +241,11 @@
                                              <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
                                         </div>
                                         <h3>{{$c->Phar_pNum}}</h3>
+                                        <br><br>
+                                        <div style="float:left; margin-right:40px">
+                                             <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
+                                        </div>
+                                        <h3>{{$c->Phar_email}}</h3>
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">

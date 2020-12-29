@@ -16,8 +16,8 @@ class CreatePharmacistsTable extends Migration
         Schema::create('pharmacists', function (Blueprint $table) {
             $table->string('Phar_id');
             $table->string('Phar_name');
-            $table->string('Phar_addr');
-            $table->string('Phar_pNum');
+            $table->string('Phar_addr')->nullable();
+            $table->string('Phar_pNum')->nullable();
             $table->string('Phar_email');
             $table->string('PImage')->nullable();
             $table->string('password');

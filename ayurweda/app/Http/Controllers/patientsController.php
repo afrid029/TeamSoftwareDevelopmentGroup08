@@ -30,7 +30,7 @@ class patientsController extends Controller
             'name'=>'required',
             'address'=>'required',
             'phone'=>'required|max:10',
-            'npassword'=>'required|min:6',
+            'npassword'=>'required',
             'opassword'=>'required'
         ],
         [
@@ -248,7 +248,7 @@ class patientsController extends Controller
 
 
         $ordering = new Pat_med_ordering();
-        $ordering->PatMedOrder_id = "Ord".rand(1,50).ord(1,50);
+        $ordering->PatMedOrder_id = "Ord".rand(1,50).rand(1,50);
         $ordering->Pat_id = $id;
         $date = date('Y-m-d');
         $ordering->PatMedOrder_date = $date;

@@ -71,7 +71,14 @@
                     <!-- lOGO TEXT HERE -->
                     <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
+<section class="preloader">
+        
 
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+               
+     
+     </section>
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
@@ -189,13 +196,24 @@
         var medi = document.getElementById('med'+id).value;
         var meet = document.getElementById('mid'+id).value;
         var date = document.getElementById('dt'+id).value;
+        
+        medi = medi.substring(2,medi.length-2).split(',');
+        var result="";
 
+        for(var i = 0; i < medi.length ; i++){
+            if(i%2 == 0){
+                result = result + medi[i];
+            }else{
+                result = result + " - " + medi[i] + ", ";
+            }
+        }
+        console.log(medi[0]);
         document.getElementById('dr').innerHTML = dr;
         document.getElementById('meet').innerHTML = meet;
         document.getElementById('date').innerHTML = date;
         document.getElementById('dis').innerHTML = dis;
         document.getElementById('diag').innerHTML = diag;
-        document.getElementById('medi').innerHTML = medi;
+        document.getElementById('medi').innerHTML = result;
     }
 </script>
 

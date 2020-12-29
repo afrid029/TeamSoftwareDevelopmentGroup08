@@ -112,6 +112,7 @@ class update extends Controller
             'name'=>['required'],
             'address'=>['required'],
             'phone'=>['required'],
+            'email'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
         ],
@@ -119,6 +120,7 @@ class update extends Controller
             'name.required' => 'Name is empty',
             'address.required' => 'Address is empty',
             'phone.required' => 'Phone is empty',
+            'email.required' => 'Email is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
         ]);
@@ -131,6 +133,7 @@ class update extends Controller
             DB::table('medicine_producers')->where('Pro_id',$request->id)->update(['Pro_name'=>$request->name,
                                                                         'Pro_addr'=>$request->address,
                                                                         'Pro_pNum'=>$request->phone,
+                                                                        'Pro_email'=>$request->email,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -209,7 +212,7 @@ class update extends Controller
     public function reorder($id)
     {
             DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
-                'status' =>"Recieved",
+                'status' =>"Issued",
             ]);
             
             return redirect()->back();
@@ -222,6 +225,7 @@ class update extends Controller
             'name'=>['required'],
             'address'=>['required'],
             'phone'=>['required'],
+            'email'=>['required'],
             'opassword'=>['required'],
             'npassword'=>['required'],
         ],
@@ -229,6 +233,7 @@ class update extends Controller
             'name.required' => 'Name is empty',
             'address.required' => 'Address is empty',
             'phone.required' => 'Phone is empty',
+            'email.required' => 'Email is empty',
             'opassword.required' => 'New password is empty',
             'npassword.required' => 'Old Password is empty',
         ]);
@@ -240,6 +245,7 @@ class update extends Controller
             DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update(['Sup_name'=>$request->name,
                                                                         'Sup_addr'=>$request->address,
                                                                         'Sup_pNum'=>$request->phone,
+                                                                        'Sup_email'=>$request->email,
                                                                         'password'=>$request->npassword]);
             DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
             
@@ -272,7 +278,7 @@ class update extends Controller
     public function supreorder($id)
     {
             DB::table('ingredient_orderings')->where('id',$id)->update([
-                'status' =>"Recieved",
+                'status' =>"Issued",
             ]);
             
             return redirect()->back();

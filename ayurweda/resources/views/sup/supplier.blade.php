@@ -88,8 +88,9 @@
                <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Sup_name}}"><br>             
                <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Sup_addr}}"><br>
                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Sup_pNum}}"><br>
+               <input type="email" name="email" class="form-control" placeholder="Email" value="{{$c->Sup_email}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
-               <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
+               <input type="password" name="npassword" class="form-control" placeholder="New Password / Repeat Old Password"><br>
                <input type="hidden" name="id" class="form-control" value="{{$c->Sup_id}}"><br>
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
@@ -235,6 +236,12 @@
                                                   </div>
                                                   <h3>{{$c->Sup_pNum}}</h3>
 
+                                                  <br><br>
+
+                                                   <div style="float:left; margin-right:40px">
+                                                       <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
+                                                  </div>
+                                                  <h3>{{$c->Sup_email}}</h3>
                                                   <br><br>
                                                   
                                                   <div style="float:left; margin-right:40px">

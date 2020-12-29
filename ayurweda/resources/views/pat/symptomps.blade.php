@@ -73,6 +73,14 @@
                     <!-- lOGO TEXT HERE -->
                     <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
                </div>
+               <section class="preloader">
+        
+
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+               
+     
+     </section>
 
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">

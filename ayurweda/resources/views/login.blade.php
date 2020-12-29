@@ -102,7 +102,7 @@ Swal.fire({
                                              <input class="form-control" type="text" name="id" placeholder="User ID"><br>
                                              <input class="form-control" type="password" name="password" placeholder="Password"><br><br>
                                              <input class="section-btn btn btn-default smoothScroll" type="submit" value="Login" color="black"><br><br>
-                                             <a href="/forgotp" class="text-danger"><b>Forgot Password</b></a>
+                                             <a href="/forgotp" style = "color:white; padding:4px 17px 4px 17px; border-radius:5px; background-color:black;"><b>Forgot Password</b></a>
                                              </div>
                                              </form>
                                         </div>

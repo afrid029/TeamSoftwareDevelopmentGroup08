@@ -19,7 +19,7 @@ class AdminController extends Controller
 {
     //
     public function adminhome($id){
-        $c =  DB::table('admins')->where('username', $id)->first();
+        $c =  DB::table('admins')->where('id', $id)->first();
         
         return view('admin/admin',compact('c',))->with('msg',"");
     }
@@ -41,17 +41,17 @@ class AdminController extends Controller
             'opassword.required'=>'Old password is must',
             'npassword.required' => 'New Password or Re-type Old Password is must'
         ]);
-        $pw = DB::table('admins')->where('username',$request->id)->value('password');
+        $pw = DB::table('admins')->where('id',$request->id)->value('password');
         $msg;
         if($pw == $request->opassword){
-           DB::table('admins')->where('username',$request->id)->update([
+           DB::table('admins')->where('id',$request->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
            ]);
 
            if($pw !== $request->npassword){
-                DB::table('admins')->where('username',$request->id)->update([
+                DB::table('admins')->where('id',$request->id)->update([
                     'password' => $request->npassword,
                     
                 ]);
@@ -71,10 +71,10 @@ class AdminController extends Controller
     }
 
 
-////////////////////////////////////////////////////////////
+///////////////////Registering a user/////////////////////////////////////////
 
     public function register($id){
-        $c =  DB::table('admins')->where('username', $id)->first();
+        $c =  DB::table('admins')->where('id', $id)->first();
         $users = DB::table('all_users')->orderBy('id','asc')->get();
 
         $doct = count(DB::table('doctors')->get())+1;
@@ -100,16 +100,17 @@ class AdminController extends Controller
             'email.required'=>'Email required'
         ]);
         if($req->email == $req->reemail){
-             $to_name = 'Afrid';
+             
+        try{
+        $to_name = 'Afrid';
         $to_email = $req->email;
         $data = array('ID'=>$req->id, "password"=>$req->password);
-        try{
         new sendMail($data);
   
-        Mail::send('email', $data, function($message) use ($to_name, $to_email) {
+        Mail::send('userdetails', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
             ->subject('User Name Password');
-            $message->from('contact.helaweda@gmail.com','Hospital');
+            $message->from('contact.helaweda@gmail.com','HelaWedaPiyasa registration details');
 
 
            
@@ -122,7 +123,7 @@ class AdminController extends Controller
 
             $user->Doc_id = $req->id;
             $user->Doc_name = $req->name;
-            $user->Doc_password = $req->password;
+            $user->password = $req->password;
             $user->Doc_email = $req->email;
 
             $user->save();
@@ -134,9 +135,60 @@ class AdminController extends Controller
 
             $user->save();  
            
+        }else if($req->roll=="Pharmacist"){
+            $user = new Pharmacist;
+
+            $user->Phar_id = $req->id;
+            $user->Phar_name = $req->name;
+            $user->password = $req->password;
+            $user->Phar_email = $req->email;
+
+            $user->save();
+
+            $user = new AllUsers;
+            $user->id = $req->id;
+            $user->password = $req->password;
+            $user->roll = "pharmacist" ;
+
+            $user->save();  
+           
+        }else if($req->roll=="Medicine Producer"){
+            $user = new Medicine_producer;
+
+            $user->Pro_id = $req->id;
+            $user->Pro_name = $req->name;
+            $user->password = $req->password;
+            $user->Pro_email = $req->email;
+
+            $user->save();
+
+            $user = new AllUsers;
+            $user->id = $req->id;
+            $user->password = $req->password;
+            $user->roll = "producer" ;
+
+            $user->save();  
+           
+        }else if($req->roll=="Supplier"){
+            $user = new Ingredient_supplier;
+
+            $user->Sup_id = $req->id;
+            $user->Sup_name = $req->name;
+            $user->password = $req->password;
+            $user->Sup_email = $req->email;
+
+            $user->save();
+
+            $user = new AllUsers;
+            $user->id = $req->id;
+            $user->password = $req->password;
+            $user->roll = "supplier" ;
+
+            $user->save();  
+           
         }
 
-        return redirect()->back()->with('msg','User added and send user details to '.$req->email);
+        return redirect()->back()->with('msg','User added and send user details to '.$req->email.'for '.$req->roll);
 
 
         }
