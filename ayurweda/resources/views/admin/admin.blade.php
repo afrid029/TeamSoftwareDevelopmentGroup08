@@ -40,6 +40,34 @@
           </div>
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($msg=session()->get('msg'))
+<script>
+console.log("ok");
+</script>
+@if($msg=="Profile Successfully Updated")
+<script>
+
+Swal.fire({
+  position: 'middle',
+  icon: 'success',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+@elseif($msg=="Old password is wrong")
+<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+@endif
+@endif
+
 
       
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -53,15 +81,15 @@
                     </button>
 
                     
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
               
                <div class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('dochome',$c->id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li><a href="{{route('dochome',$c->id)}}" class="smoothScroll">Registration</a></li>
+                         <li><a href="{{route('adminpage',$c->username)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li><a href="{{route('regist',$c->username)}}" class="smoothScroll">Registration</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -83,52 +111,30 @@
      <div class="modal-dialog" role="document">
      <div class="modal-content">
           <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-          </button>
+          <h3 class="modal-title" id="exampleModalLabel">Edit Profile</h3>
+          
           </div>
-          <form method="post" action="/proedit">
+          <form method="post" action="/admedit">
          {{csrf_field()}}  
           <div class="modal-body">
-               <input type="text" name="name" class="form-control" placeholder="Name" value=""><br>             
-               <input type="text" name="email" class="form-control" placeholder="email" value=""><br>
-               <input type="text" name="phone" class="form-control" placeholder="Phone Number" value=""><br>
+               <input type="text" name="id" class="form-control"  value="{{$c->username}}" readonly><br>             
+               <input type="text" name="name" class="form-control" placeholder="Name"  value="{{$c->name}}"><br>
+               <input type="text" name="phone" class="form-control"  placeholder="Phone Number" value="{{$c->phone}}"><br>
+               <input type="email" name="email" class="form-control"  placeholder="Email"  value="{{$c->email}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
                <input type="password" name="npassword" class="form-control" placeholder="New Password"><br>
-               <input type="hidden" name="id" class="form-control" value="{{$c->id}}"><br>
+              
                <button type="submit" class="btn btn-primary">Update</button>
           </div>
           
           <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
           </form>
      </div>
      </div>
      </div>
 
-     @if($msg=="Updated successfully.")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'success',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@elseif($msg=="Old password is wrong.")
-<script>
-Swal.fire({
-  position: 'middle',
-  icon: 'error',
-  title: '{{$msg}}',
-  showConfirmButton: false,
-  timer: 1500
-});
-</script>
-@endif
 
 @if($errors->any())
      <script> var a=""; </script>
@@ -159,17 +165,18 @@ Swal.fire({
                     <div class="">
                          <div class="item item-first">
                          <div class="caption">
-                                   <div class="container">
+                                   <div  class="container">
                                    
                                         <div class="col-md-8 col-sm-12">
                                              
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                                       <img src="{{ asset('images/adminprof.jpg')}}" style="width:300px ;">
+                                                       <img src="{{ asset('images/adminprof.jpg')}}" style="width:70% ; height:230px;">
                                                        <br><br>
                                                        <h3>{{$c->username}}</h3>
-                                                       <h3>{{$c->id}}</h3>
+                                                       <h3>{{$c->name}}</h3>
+                                                       
                                                        
                                                        <br><br>
                                                                                   

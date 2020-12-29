@@ -11,8 +11,7 @@ use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use App\Models\OnlineBooking;
 use App\Models\Pat_med_ordering;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\sendMail;
+
 
 
 class patientsController extends Controller
@@ -249,7 +248,7 @@ class patientsController extends Controller
 
 
         $ordering = new Pat_med_ordering();
-        $ordering->PatMedOrder_id = "Ord".rand(1,100).time();
+        $ordering->PatMedOrder_id = "Ord".rand(1,50).ord(1,50);
         $ordering->Pat_id = $id;
         $date = date('Y-m-d');
         $ordering->PatMedOrder_date = $date;

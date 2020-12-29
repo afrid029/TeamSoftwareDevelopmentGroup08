@@ -5,6 +5,7 @@ use App\Http\Controllers\patientsController;
 use App\Http\Controllers\medproducer;
 use App\Http\Controllers\pharmacistController;
 use App\Http\Controllers\ingsupplier;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,3 +129,11 @@ Route::get('newing/{c}/', 'redirect@newing')->name('newing');
 Route::get('supreorder/{c}/', 'update@supreorder')->name('supreorder');
 Route::post('/newingredient', 'store@newingredient');
 Route::post('/issuingsearch', 'search@issuingsearch');
+
+
+//admin routings
+Route::get('adminpage/{c}',[AdminController::class, 'adminhome'])->name('adminpage');
+Route::post('admedit',[AdminController::class, 'adminedit']);
+
+Route::get('regist/{c}',[AdminController::class, 'register'])->name('regist');
+Route::post('/addnew',[AdminController::class, 'addnew']);

@@ -983,6 +983,12 @@ class DatabaseSeeder extends Seeder
             'password'=>'admin',
             'roll'=>'admin'
         ]);
+        DB::table('admins')->insert([
+            'username' => 'admin',
+            'password' => 'admin',
+            'phone' => '0774525874',
+            'email' => 'admin@gmail.com'
+        ]);
         
 
 }

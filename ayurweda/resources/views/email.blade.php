@@ -1,3 +1,3 @@
 
-    <p> Name : {{$name}}</p>
-    <p> body : {{$body}}</p>
+    <p> User ID : {{ $ID }}</p>
+    <p> Password : {{ $password }}</p>

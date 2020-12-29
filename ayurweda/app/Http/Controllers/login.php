@@ -32,7 +32,7 @@ class login extends Controller
             }
             elseif($roll=="admin"){
 
-                return("Route to admin page in Login.php conroller");
+                return redirect()->route('adminpage',['c'=>$request->id]);
             }
             else{
                 return redirect()->route('suphome',['c'=>$request->id]);

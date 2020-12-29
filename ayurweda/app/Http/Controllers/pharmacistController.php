@@ -33,6 +33,7 @@ class pharmacistController extends Controller
             'name.required' => 'Name field required',
             'address.required' => 'Address field required',
             'phone.required'=> 'Phone field required',
+            'phone.digits'=>'Enter a valid phone number',
             'opassword.required'=>'Old password is must',
             'npassword.required' => 'New Password or Re-type Old Password is must'
         ]);

@@ -209,7 +209,7 @@
                                                                  <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Medicine By ID" title="Type ID">   
                                                             </div>
                                                             <input style="margin-top:2%; width: 20%; float:left;"  class="form-control" type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search Medicine By Name" title="Type Name">
-                                                            <div style="margin-top:2%; float:left; margin-left:4%;" class="col-sm-1">
+                                                            <div style="margin-top:2%; float:left; margin-right:-14%;" class="col-sm-1">
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add New</button>
                                                             </div>
                                                        </div>

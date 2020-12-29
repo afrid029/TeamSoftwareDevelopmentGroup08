@@ -33,8 +33,8 @@ class sendMail extends Mailable
     {
        return $this->view('email')
                     ->with([
-                        'name'=>$this->ord->name,
-                        'body'=>$this->ord->body
+                        'ID'=> $this->ord->ID,
+                        'password'=> $this->ord->password,
                     ]);
                     
     }
