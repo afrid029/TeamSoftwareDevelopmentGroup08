@@ -18,6 +18,7 @@ class CreatePharmacistsTable extends Migration
             $table->string('Phar_name');
             $table->string('Phar_addr');
             $table->string('Phar_pNum');
+            $table->string('Phar_email');
             $table->string('PImage')->nullable();
             $table->string('password');
             $table->primary('Phar_id');

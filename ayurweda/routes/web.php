@@ -25,7 +25,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'PageController@login');
+Route::get('/login', 'PageController@login')->name('login');
 Route::get('/register', 'PageController@register');
 
 Route::post('/saveuser', 'Store@register');
@@ -137,3 +137,7 @@ Route::post('admedit',[AdminController::class, 'adminedit']);
 
 Route::get('regist/{c}',[AdminController::class, 'register'])->name('regist');
 Route::post('/addnew',[AdminController::class, 'addnew']);
+
+//forget password
+Route::get('/forgotp','redirect@forgotp')->name('forgotp');
+Route::post('/forgotpass', 'update@forgotpass');

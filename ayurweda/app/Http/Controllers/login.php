@@ -36,6 +36,7 @@ class login extends Controller
             }
             else{
                 return redirect()->route('suphome',['c'=>$request->id]);
+
             }
         }
         else{

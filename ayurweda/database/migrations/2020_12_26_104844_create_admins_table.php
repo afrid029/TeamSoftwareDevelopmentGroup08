@@ -14,13 +14,13 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
             $table->string('username')->default('admin');
             $table->string('name')->default('kumaran');
             $table->string('password')->default('admin');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            
+            $table->primary('id');
             $table->timestamps();
         });
     }

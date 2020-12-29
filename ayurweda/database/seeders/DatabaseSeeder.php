@@ -167,6 +167,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Nishantha Herath',
             'Pro_addr' => 'No.34, stage 7, Negombo',
             'Pro_pNum' => '0716894567',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod1@'
         ]);
@@ -180,6 +181,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Krishanthi Samarakoon',
             'Pro_addr' => 'No.67, stage 5, Katunayake',
             'Pro_pNum' => '0714567890',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod2@'
         ]);
@@ -193,6 +195,7 @@ class DatabaseSeeder extends Seeder
             'Pro_name' => 'Ganesh Darmapala',
             'Pro_addr' => 'No.9, stage 2, Anuradhapura',
             'Pro_pNum' => '0789564786',
+            'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
             'password' => 'prod3@'
         ]);
@@ -389,7 +392,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-01-10',
             'disch_date' => '2020-02-03',
             'Doc_id' => 'doc1',
-            'bedno' => '01'
+            'bedno' => '01',
+            'status'=>'Admitted'
         ]);
         DB::table('add_pats')->insert([
             'id' => '02',
@@ -398,7 +402,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-02-10',
             'disch_date' => '2020-03-03',
             'Doc_id' => 'doc1',
-            'bedno' => '02'
+            'bedno' => '02',
+            'status'=>'Admitted'
         ]);
         DB::table('add_pats')->insert([
             'id' => '03',
@@ -407,7 +412,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-01-10',
             'disch_date' => '2020-02-02',
             'Doc_id' => 'doc2',
-            'bedno' => '03'
+            'bedno' => '03',
+            'status'=>'Admitted'
         ]);
         DB::table('add_pats')->insert([
             'id' => '04',
@@ -416,7 +422,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-02-01',
             'disch_date' => '2020-02-03',
             'Doc_id' => 'doc4',
-            'bedno' => '04'
+            'bedno' => '04',
+            'status'=>'Admitted'
         ]);
         DB::table('add_pats')->insert([
             'id' => '05',
@@ -425,7 +432,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-03-20',
             'disch_date' => '2020-03-25',
             'Doc_id' => 'doc1',
-            'bedno' => '05'
+            'bedno' => '05',
+            'status'=>'Admitted'
         ]);
         DB::table('add_pats')->insert([
             'id' => '06',
@@ -434,7 +442,8 @@ class DatabaseSeeder extends Seeder
             'ad_date' => '2020-04-10',
             'disch_date' => '2020-04-15',
             'Doc_id' => 'doc1',
-            'bedno' => '06'
+            'bedno' => '06',
+            'status'=>'Admitted'
         ]);
 		
 		//Pharmacist sample data
@@ -448,6 +457,7 @@ class DatabaseSeeder extends Seeder
             'Phar_name' => 'Karan Saran',
             'Phar_addr' => 'No.1, AML road, Ampara',
             'Phar_pNum' => '0776789023',
+            'Phar_email'=>'anuavantha@gmail.com',
             'password' => 'pha1@'
         ]);
         
@@ -775,6 +785,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Sanath Geegana',
             'Sup_addr' => 'No. 123, ABC road, Rabukkana',
             'Sup_pNum' => '0716720783',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup1@'
         ]);
@@ -789,6 +800,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Yogarajan Danesh',
             'Sup_addr' => 'No. 13, QOP road, Jaffna',
             'Sup_pNum' => '0782349345',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup2@'
         ]);
@@ -803,6 +815,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'K Nadarasa',
             'Sup_addr' => 'No. 45, daffny road, Ampara',
             'Sup_pNum' => '0785678134',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup3@'
         ]);
@@ -817,6 +830,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Naduni Rodrigo',
             'Sup_addr' => 'No. 23, Kandy road, Kandy',
             'Sup_pNum' => '0728934567',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup4@'
         ]);
@@ -831,6 +845,7 @@ class DatabaseSeeder extends Seeder
             'Sup_name' => 'Ruvini Nethmi',
             'Sup_addr' => 'No. 67, KN road, Trincomalee',
             'Sup_pNum' => '0762345678',
+            'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
             'password' => 'sup5@'
         ]);
@@ -984,10 +999,12 @@ class DatabaseSeeder extends Seeder
             'roll'=>'admin'
         ]);
         DB::table('admins')->insert([
-            'username' => 'admin',
-            'password' => 'admin',
-            'phone' => '0774525874',
-            'email' => 'admin@gmail.com'
+            'id'=>'admin',
+            'username'=>'Vishva',
+            'password'=>'admin',
+            'phone'=>'0771234567',
+            'email'=>'anuavantha@gmail.com',
+            
         ]);
         
 

@@ -124,4 +124,13 @@ class redirect extends Controller
         return view('sup/ingredients')->with('c',$c)->with('msg',"")->with('p',$p);
             
     }
+
+    public function adminhome($t){
+        return view('admin/admin')->with('msg',"");
+    }
+
+    //forget password
+    public function forgotp(){
+        return view('forgot')->with('msg',"");
+    }
 }

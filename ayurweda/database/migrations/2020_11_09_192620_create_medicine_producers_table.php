@@ -18,6 +18,7 @@ class CreateMedicineProducersTable extends Migration
             $table->string('Pro_name');
             $table->string('Pro_addr');
             $table->string('Pro_pNum');
+            $table->string('Pro_email');
             $table->string('password');
             $table->string('Pro_im');
             $table->primary('Pro_id');
