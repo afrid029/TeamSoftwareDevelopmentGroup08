@@ -13,6 +13,7 @@ use App\Models\Ingredient_ordering;
 use App\Models\medicines;
 use App\Models\ingredients;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class Store extends Controller
         //dd($request->all);
         $request->validate([
             'name'=>['required'],
-            'age'=>['required'],
+            'dob'=>['required'],
             'gender'=>['required'],
             'address'=>['required'],
             'phone'=>['required'],
@@ -35,7 +36,7 @@ class Store extends Controller
         ],
         [
             'name.required' => 'Name is empty',
-            'age.required' => 'Age is empty',
+            'dob.required' => 'Date Of Birth is empty',
             'gender.required' => 'Gender is empty',
             'address.required' => 'Address is empty',
             'phone.required' => 'Phone is empty',
@@ -55,10 +56,10 @@ class Store extends Controller
             $patient->Pat_email=$request->email;
             $patient->Pat_addr=$request->address;
             $patient->Pat_pNum=$request->phone;
-            $patient->age=$request->age;
+            $patient->dob=$request->dob;
             $patient->gender=$request->gender;
             $patient->guardian=$request->guardian;
-            $patient->password=$request->password;
+            $patient->password=Hash::make($request->password);
             $patient->save();
 
             $user->id="Pat".$np;
@@ -73,7 +74,7 @@ class Store extends Controller
         $p=DB::table('patients')->get();
         $np1=count($p)+1;
         $id="Pat".$np1;
-        return redirect()->back()->with('msg',$s)->with('id',$id);
+        return redirect()->route('login')->with('msg',$s);
         
     }
 
@@ -92,6 +93,7 @@ class Store extends Controller
         ]);
 
         $name;
+        $bill = 0;
 
         $a = implode($request->medic);
         $b = explode(',',$a);
@@ -101,8 +103,11 @@ class Store extends Controller
                 $name = $b[$i];
             }else{
                 $cnt = $b[$i];
+                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
                 DB::table('medicine_stocks')->where('Med_name',$name)->increment('orders',$cnt);
+                $bill = $bill + ($cnt*$unit);
             }
+
         }
 
         $p=DB::table('medical_histories')->get();
@@ -112,7 +117,9 @@ class Store extends Controller
             $pr->Meeting_id="Pres".$np;
             $pr->Pat_id=$request->patientid;
             $pr->Doc_id=$request->docid;
+            $pr->date=date('Y-m-d');
             $pr->diagnosis=$request->diagnosis;
+            $pr->bill=$bill;
             $pr->disease=$request->disease;
             $pr->medicine=json_encode($request->medic);
             $pr->save();

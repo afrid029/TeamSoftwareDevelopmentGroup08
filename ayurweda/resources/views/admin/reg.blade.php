@@ -120,6 +120,7 @@
                    <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('regist',$c->id)}}" class="smoothScroll"><font color="red">Registration</font></a></li>
+                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Profit</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -185,9 +186,8 @@ Swal.fire({
                                                                  <tr>
                                                                      
                                                                       <th>User Name</th>
-                                                                      <th>Password</th>
                                                                       <th>Roll</th>
-                                                                      
+                                                                      <th>View Profile</th>
                                                                  </tr>
                                                             </thead>
 
@@ -197,9 +197,8 @@ Swal.fire({
                                                             @foreach($users as $user)
                                                                  <tr>
                                                                       <td>{{$user->id}}</td>
-                                                                      <td>{{$user->password}}</td>
                                                                       <td>{{$user->roll}}</td>
-                                                                 
+                                                                      <td> <a href = "{{route('profview',['c'=>$user->id,'d'=>$c->id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                             @endforeach

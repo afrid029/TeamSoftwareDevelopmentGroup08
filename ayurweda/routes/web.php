@@ -7,6 +7,8 @@ use App\Http\Controllers\pharmacistController;
 use App\Http\Controllers\ingsupplier;
 use App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -137,6 +139,38 @@ Route::post('admedit',[AdminController::class, 'adminedit']);
 
 Route::get('regist/{c}',[AdminController::class, 'register'])->name('regist');
 Route::post('/addnew',[AdminController::class, 'addnew']);
+
+Route::get('/profit/{c}',[AdminController::class, 'profit'])->name('profit');
+Route::post('/patbill',[AdminController::class, 'patbill'])->name('patbill');
+Route::get('patbill',function(){
+     $c =  DB::table('admins')->first();
+        $access = DB::table('pat_med_orderings')->where('status', 'Issued')->orderBy('created_at','desc');
+       $access2 = DB::table('medical_histories')->where('issued','Issued');
+        
+        $patbill = $access->get();
+        $patsum = $access->sum('bill');
+
+        $drbill = $access2->get();
+        $drsum = $access2->sum('bill');
+        return view('admin/profit',compact('c','patbill','drbill','patsum','drsum'))->with( 'msg',"");
+   
+});
+Route::post('/docbill',[AdminController::class, 'docbill']);
+Route::get('docbill',function(){
+     $c =  DB::table('admins')->first();
+        $access = DB::table('pat_med_orderings')->where('status', 'Issued')->orderBy('created_at','desc');
+       $access2 = DB::table('medical_histories')->where('issued','Issued');
+        
+        $patbill = $access->get();
+        $patsum = $access->sum('bill');
+
+        $drbill = $access2->get();
+        $drsum = $access2->sum('bill');
+        return view('admin/profit',compact('c','patbill','drbill','patsum','drsum'))->with( 'msg',"");
+   
+});
+
+Route::get('profview/{c}/{d}',[AdminController::class, 'profview'])->name('profview');
 
 //forget password
 Route::get('/forgotp','redirect@forgotp')->name('forgotp');

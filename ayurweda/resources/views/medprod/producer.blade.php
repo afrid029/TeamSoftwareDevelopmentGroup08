@@ -62,11 +62,11 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="/welcome" class="navbar-brand">Hospital </a>
                </div>
 
                <!-- MENU LINKS -->
-               <div style="background-color:#154360 " class="collapse navbar-collapse">
+               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
@@ -225,14 +225,19 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
+                                              <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                                        @if($c->Pro_im)
-                                                       <img class="img" src="{{asset('upload/proprof')}}/{{$c->Pro_im}}" style="  border-radius:30px; height:auto; width:280px;">
-                                                       <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <img class="img" src="{{asset('upload/proprof')}}/{{$c->Pro_im}}" style="  border-radius:30px; height:200px;width:200px;">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
-                                                       <img class="img" src="{{ asset('images/medprodimg.jpg')}}" style="  border-radius:30px;  height:200px;width:auto; ">
-                                                       <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <img class="img" src="{{ asset('images/medprodimg.jpg')}}" style="  border-radius:30px;  height:200px;width:200px; ">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @endif
+                                                       </div>
                                                        <br><br>
+                                                       <div style="float:left; margin-right:15px">
+                                                            <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
+                                                       </div>
                                                        <h3>{{$c->Pro_name}}</h3>
                                                        <h3>{{$c->Pro_id}}</h3>
                                                        

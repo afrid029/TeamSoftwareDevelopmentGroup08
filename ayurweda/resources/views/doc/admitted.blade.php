@@ -67,7 +67,7 @@ tbody tr:hover {
 </head>
 <body>
 
-     <!-- PRE LOADER -->
+    <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
 
@@ -75,6 +75,7 @@ tbody tr:hover {
                
           </div>
      </section>
+     
      <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
      <!-- MENU -->
@@ -89,7 +90,7 @@ tbody tr:hover {
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->

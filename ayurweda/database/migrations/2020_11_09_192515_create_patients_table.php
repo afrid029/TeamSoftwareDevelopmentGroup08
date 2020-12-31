@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration
             $table->string('Pat_addr');
             $table->string('Pat_pNum');
             $table->string('Pimage')->nullable();
-            $table->string('age');
+            $table->date('dob');
             $table->string('gender');
             $table->string('guardian');
             $table->string('password');

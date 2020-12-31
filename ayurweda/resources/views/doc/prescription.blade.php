@@ -91,7 +91,7 @@ tbody tr:hover {
 </head>
 <body>
 
-     <!-- PRE LOADER -->
+    <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
 
@@ -114,7 +114,7 @@ tbody tr:hover {
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital </a>
+                    <a href="/welcome" class="navbar-brand">Hospital </a>
                </div>
 
                <!-- MENU LINKS -->
@@ -431,6 +431,7 @@ Swal.fire({
                                                        <td>{{$pr->diagnosis}}</td>
                                                        <td>
                                                             <input type="hidden" id="m<?php echo $no; ?>" value="{{$pr->medicine}}">
+                                                            <input type="hidden" id="bil<?php echo $no; ?>" value="{{$pr->bill}}">
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                        
                                                        </td>
@@ -460,6 +461,7 @@ Swal.fire({
      <script>
                                              function viewing(id){
                                                   var a = document.getElementById('m'+id).value;
+                                                  var z = "Bill : Rs " +document.getElementById('bil'+id).value;
                                                   var k = a.substring(2, a.length-2)
                                                   var d = k.split(",");
                                                   var result = "";
@@ -475,7 +477,7 @@ Swal.fire({
                                                   Swal.fire({
                                                        position: 'top',
                                                        width:400,
-                                                       text:"Order details",
+                                                       text:z,
                                                        icon: 'info',
                                                        title: result,
                                                       

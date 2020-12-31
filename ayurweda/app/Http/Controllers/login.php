@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class login extends Controller
 {
@@ -11,7 +12,9 @@ class login extends Controller
 
         $password=DB::table('all_users')->where('id',$request->id)->value('password');
         $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
-        if($password==$request->password){
+   
+        
+        if(Hash::check($request->password, $password)){
             if($roll=="patient"){
                 return redirect()->route('pathome',['c'=>$request->id]);
             }

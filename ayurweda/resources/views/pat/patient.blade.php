@@ -40,7 +40,14 @@
 </head>
 <body>
     
+ <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
 
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
 
 <!-- MENU -->
 <section style="padding-left: 5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
@@ -54,16 +61,9 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
-<section class="preloader">
-        
 
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-               
-     
-     </section>
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
@@ -110,7 +110,7 @@
           </div>
           </form>
           <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
           
      </div>
@@ -246,7 +246,8 @@
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->age}}</h3>
+                                        <h3>{{$diff}} [ {{$c->dob}} ]</h3>
+                                       
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px;">

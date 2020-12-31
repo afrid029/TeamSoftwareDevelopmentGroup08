@@ -113,6 +113,14 @@
 
 </head>
 <body>
+ <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($errors->any())
 @foreach($errors->all() as $err)
@@ -141,16 +149,9 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
-<section class="preloader">
-        
 
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-               
-     
-     </section>
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
@@ -201,6 +202,7 @@
                                                        <td><p >{{$order->PatMedOrder_date}}</p></td>
                                                        <td>
                                                             <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                            <input type="hidden" id="bil<?php echo $no; ?>" value="{{$order->bill}}">
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                                                                                        
                                                        </td>
@@ -233,6 +235,7 @@
                                         <script>
                                              function viewing(id){
                                                   var a = document.getElementById('medi'+id).value;
+                                                  var z = document.getElementById('bil'+id).value;
                                                   var k = a.substring(2, a.length-2)
                                                   var d = k.split(",");
                                                   var result = "";
@@ -243,12 +246,14 @@
                                                             result = result + " "+d[i]+"\n";
                                                        }
                                                   }
+                                                 var bill = "Bill : Rs "+z;
                                                 
-                                                  console.log(d.length);
+                                                 
                                                   Swal.fire({
                                                        position: 'top',
                                                        width:400,
-                                                       text:"Order details",
+                                                     
+                                                       text:bill,
                                                        icon: 'info',
                                                        title: result,
                                                       

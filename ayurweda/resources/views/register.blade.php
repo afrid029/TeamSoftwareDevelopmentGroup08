@@ -47,7 +47,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -123,11 +123,20 @@ Swal.fire({
                                              <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><h4>{{"your id is $id"}}</h4><br>
-                                                       <input class="form-control" type="text" name="age" placeholder="Age"><br>
-                                                       <input class="form-control" type="text" name="gender" placeholder="Gender"><br>
+                                                       <input class="form-control" type="date" name="dob" placeholder="Date Of Birth"><br>
+
+                                                       <select name="gender" class="form-control" placeholder="Select a gender">
+                                                            <option value="none" selected disabled hidden> 
+                                                                      Select a gender
+                                                            </option> 
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                       </select><br>
+                                                       
                                                        <input class="form-control" type="text" name="address" placeholder="Address"><br>
                                                        <input class="form-control" type="text" name="phone" placeholder="Phone Number"><br>
                                                   </div>
+                                                  
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="guardian" placeholder="Guardian"><br>
                                                        <input class="form-control" type="email" name="email" placeholder="Email"><br>

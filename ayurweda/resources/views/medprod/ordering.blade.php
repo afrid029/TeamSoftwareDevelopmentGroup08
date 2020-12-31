@@ -83,11 +83,11 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital <span>.</span> Pharmacy</a>
+                    <a href="/welcome" class="navbar-brand">Hospital </a>
                </div>
 
                <!-- MENU LINKS -->
-               <div style="background-color:#154360;" class="collapse navbar-collapse">
+               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>

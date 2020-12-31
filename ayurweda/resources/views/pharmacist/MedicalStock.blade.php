@@ -97,14 +97,13 @@
 </head>
 <body>
 
-     <!-- PRE LOADER -->
+      <!-- PRE LOADER -->
      <section class="preloader">
-        
+          <div class="spinner">
 
-          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
+               <span class="spinner-rotate"></span>
                
-     
+          </div>
      </section>
      <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 

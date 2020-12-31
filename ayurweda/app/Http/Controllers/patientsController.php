@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Patient;
 use App\Models\AllUsers;
@@ -22,7 +23,14 @@ class patientsController extends Controller
     public function pathome($id)
     {
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        return view('pat/patient',compact('c'))->with('msg',"");
+        $today = date('Y-m-d');
+        $dob = DB::table('patients')->where('Pat_id',$id)->value('dob');
+
+        $diff = abs(strtotime($today)-strtotime($dob));
+        $diff = floor($diff/(365*60*60*24));
+
+       return view('pat/patient',compact('c','diff'))->with('msg','');
+        
     }
     public function edit(Request $request)
     {
@@ -42,16 +50,16 @@ class patientsController extends Controller
         ]);
         
             $pw = DB::table('all_users')->where('id', $request->id)->value('password');
-            if($request->opassword==$pw){
+            if(Hash::check($request->opassword,$pw)){
                 $details = DB::table('patients')->where('Pat_id',$request->id)->update([
                     'Pat_name' => $request->name,
                     'Pat_email' => $request->email,
                     'Pat_addr' => $request->address,
                     'Pat_pNum' => $request->phone,
-                    'password' => $request->npassword,
+                    'password' => Hash::make($request->npassword),
                  ]); 
                 $allUser = DB::table('all_users')->where('id', $request->id)->update([
-                    'password' => $request->npassword
+                    'password' => Hash::make($request->npassword)
                 ]);
                 $m="Profile Successfully Updated";
             }
@@ -236,22 +244,27 @@ class patientsController extends Controller
 
         $a = implode($req->orders);
         $b = explode(',',$a);
+
+        $bill = 0;
         
         for($i = 0 ; $i < count($b) ; $i++){
             if($i%2 == 0){
                 $name = $b[$i];
             }else{
                 $cnt = $b[$i];
+                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
                 DB::table('medicine_stocks')->where('Med_name',$name)->increment('orders',$cnt);
+                $bill = $bill + ($cnt*$unit);
             }
         }
-
+        $cnt = count(DB::table('pat_med_orderings')->get())+1;
 
         $ordering = new Pat_med_ordering();
-        $ordering->PatMedOrder_id = "Ord".rand(1,50).rand(1,50);
+        $ordering->PatMedOrder_id = "Ord".($cnt).rand(1,50);
         $ordering->Pat_id = $id;
         $date = date('Y-m-d');
         $ordering->PatMedOrder_date = $date;
+        $ordering->bill = $bill;
         $ordering->medicines = json_encode($req->orders);
         $ordering->save();
 
