@@ -88,6 +88,7 @@ Swal.fire({
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                          <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
+                         <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Profit</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
@@ -116,7 +117,7 @@ Swal.fire({
          {{csrf_field()}}  
           <div class="modal-body">
                <input type="text" name="id" class="form-control"  value="{{$c->id}}" readonly><br>             
-               <input type="text" name="name" class="form-control" placeholder="Name"  value="{{$c->name}}"><br>
+               <input type="text" name="name" class="form-control" placeholder="Name"  value="{{$c->username}}"><br>
                <input type="text" name="phone" class="form-control"  placeholder="Phone Number" value="{{$c->phone}}"><br>
                <input type="email" name="email" class="form-control"  placeholder="Email"  value="{{$c->email}}"><br>
                <input type="password" name="opassword" class="form-control" placeholder="Old Password"><br>
@@ -172,8 +173,12 @@ Swal.fire({
                                              <div class="col-md-6 col-sm-6">
                                                        <img src="{{ asset('images/adminprof.jpg')}}" style="width:70% ; height:230px;">
                                                        <br><br>
+                                                       <div style="float:left; margin-right:15px">
+                                                            <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
+                                                       </div>
                                                        <h3>{{$c->username}}</h3>
-                                                       <h3>{{$c->name}}</h3>
+                                                       <h4 style="opacity:0.6;">{{$c->id}}</h4>
+                                                       
                                                        
                                                        
                                                        <br><br>

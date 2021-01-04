@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\AllUsers;
 use App\Models\Pharmacist;
@@ -40,7 +41,7 @@ class pharmacistController extends Controller
         ]);
         $pw = DB::table('pharmacists')->where('Phar_id',$request->id)->value('password');
         $msg;
-        if($pw == $request->opassword){
+        if(Hash::check($request->opassword,$pw)){
            DB::table('pharmacists')->where('Phar_id',$request->id)->update([
                 'Phar_name' => $request->name,
                 'Phar_addr' => $request->address,
@@ -48,14 +49,14 @@ class pharmacistController extends Controller
                 'Phar_email' => $request->email,
            ]);
 
-           if($pw !== $request->npassword){
+           if(!Hash::check($request->npassword,$pw)){
                 DB::table('pharmacists')->where('Phar_id',$request->id)->update([
-                    'password' => $request->npassword,
+                    'password' => Hash::make($request->npassword)
                     
                 ]);
 
                 DB::table('all_users')->where('id' , $request->id)->update([
-                    'password' => $request->npassword,
+                    'password' =>Hash::make( $request->npassword)
                 ]);
            }
 
@@ -92,7 +93,7 @@ class pharmacistController extends Controller
     {
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
         $med = DB::table('medicine_stocks')
-                                            ->orderBy('Med_id','asc')
+                                            ->orderBy('Med_name','asc')
                                             ->get();
         $d = date('Y-m-d');
         $date = date('Y-m-d',strtotime("$d+7 days"));
@@ -201,8 +202,8 @@ class pharmacistController extends Controller
     public function issueMedicine($id)
     {
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
-        $pat = DB::table('pat_med_orderings')->where('status','Not Issued')->orderBy('created_at','asc')->get();
-        $doc = DB::table('medical_histories')->where('issued','Not Issued')->orderBy('created_at','asc')->get();
+        $pat = DB::table('pat_med_orderings')->orderBy('status','desc')->orderBy('created_at','desc')->get();
+        $doc = DB::table('medical_histories')->orderBy('issued','desc')->orderBy('created_at','desc')->get();
 
       
        
@@ -214,46 +215,46 @@ class pharmacistController extends Controller
     {
         $count = $req->count;
         $name;
-        $bill = 0;
+        
         
         for($i = 0 ; $i < $count ; $i++){
             if($i%2 == 0){
                 $name = $req->get('medi'.$i);
             }else{
                 $cnt = $req->get('qt'.$i);
-                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
+                
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
 
-                $bill = $bill + ($cnt*$unit);
+                
 
             }
         }
 
-        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Issued','bill'=>$bill]);
-        return redirect()->back()->with('msg','Order Issued')->with('orbill',$bill);
+        DB::table('pat_med_orderings')->where('PatMedOrder_id', $req->orid)->update([ 'status'=>'Issued']);
+        return redirect()->back()->with('msg','Order Issued');
     }
 
     public function issuedocorder(Request $req)
     {
         $count = $req->countdr;
         $name;
-        $bill =0;
+        
         for($i = 0 ; $i < $count ; $i++){
             if($i%2 == 0){
                 $name = $req->get('drmedic'.$i);
             }else{
                 $cnt = $req->get('drqt'.$i);
-                $unit = DB::table('medicine_stocks')->where('Med_name',$name)->value('unitprice');
+             
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('stock_qty',$cnt);
                 DB::table('medicine_stocks')->where('Med_name',$name)->decrement('orders',$cnt);
 
-                $bill = $bill + ($cnt*$unit);
+                
             }
         }
 
-        DB::table('medical_histories')->where('Meeting_id', $req->drmid)->update([ 'issued'=>'Issued','bill'=>$bill]);
-        return redirect()->back()->with('msg','Order Issued')->with('drbill',$bill);
+        DB::table('medical_histories')->where('Meeting_id', $req->drmid)->update([ 'issued'=>'Issued']);
+        return redirect()->back()->with('msg','Order Issued');
     }
     
 

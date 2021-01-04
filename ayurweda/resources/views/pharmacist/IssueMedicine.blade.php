@@ -105,14 +105,13 @@
      </script>
 @endif
 
-     <!-- PRE LOADER -->
+      <!-- PRE LOADER -->
      <section class="preloader">
-        
+          <div class="spinner">
 
-          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
+               <span class="spinner-rotate"></span>
                
-     
+          </div>
      </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
@@ -187,8 +186,17 @@
                                                                       <input type="hidden" id = "oid<?php echo $q; ?>" value="{{$patient->PatMedOrder_id}}">
                                                                       <input type="hidden" id = "pdt<?php echo $q; ?>" value="{{$patient->PatMedOrder_date}}">
                                                                       <input type="hidden" id = "medicine<?php echo $q; ?>" value="{{$patient->medicines}}">
-                                                                      <button type="button" class ="btn btn-primary btn-sm" data-toggle="modal" onclick = "issuepat(<?php echo $q; ?>)" data-target="#issueorder">View</button>
+                                                                      <input type="hidden" id = "status<?php echo $q; ?>" value="{{$patient->status}}">
+                                                                      <input type="hidden" id = "pbill<?php echo $q; ?>" value="{{$patient->bill}}">
+
+                                                                      @if($patient->status == "Not Issued")
+                                                                           <button type="button" class ="btn btn-primary btn-sm" data-toggle="modal" onclick = "issuepat(<?php echo $q; ?>)" data-target="#issueorder">View</button>
+                                                                      @else
+                                                                           <button type="button" class ="btn btn-primary btn-sm" data-toggle="modal" onclick = "issuepat(<?php echo $q; ?>)" data-target="#issueorder">View</button><span>&nbsp;<b style = "color:red;">Issued</b></span>
+                                                                     
+                                                                      @endif
                                                                  </td>
+
                                                             </tr>
                                                             <?php $q++; ?>
                                                        @endforeach
@@ -197,32 +205,18 @@
                                                                  <td colspan="3"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Unsent Orders From Patient</h3></td>
                                                             </tr>
                                                        @endif  
-                                                       <tr>
-                                                            <input type="hidden" id="bl" value ="{{session()->get('orbill')}}">
-                                                       
-                                                       
-                                                       
-                                                            <td><h3 id="res" style="color:gray;"></h3></td>
-                                                       
-                                                       
-                                                       </tr>  
-
-                                                       <script>
-                                                           
-                                             
-                                                            var w = document.getElementById('bl').value;
+                                                      
                                                             
-                                                           if(w){
-                                                                localStorage['cach'+'{{$c->Phar_id}}'] = w;
-                                                                 document.getElementById('res').innerHTML = "Last Bill Amount Is: "+w;
-                                                            }else{
-                                                                  document.getElementById('res').innerHTML = "Last Bill Amount Is: "+localStorage['cach'+'{{$c->Phar_id}}'];
-                                                            }
+                                                       
+                                                       
+                                                        
 
-                                                       </script>
+                                                       
                                                        
                                                        </tbody>
+                                                    
                                                   </table>
+                                                            
                                              </div>
                                         </div>
                                    </div>                                
@@ -250,7 +244,7 @@
                    <input class = "form-control" style="font-size:10px;font-weight:bold; color:navy;  width:15%; height: 10%; margin-left:2%; float:left; margin-right:2%;" type="text" name = "patid" id = "patid" readonly/>
 
                    <label style=" font-size:10px;  float:left; margin-right:1%; margin-top:1%;" for="">Order Date: </label>
-                   <input class = "form-control" style="font-size:10px; font-weight:bold; color:navy; width: 22.5%; margin-left: 12%; height:30px;" type="date" name = "odate" id = "odate" readonly/>
+                   <input class = "form-control" style="font-size:10px; font-weight:bold; color:navy; width: 22.5%; margin-left: 12%; height:25px;" type="date" name = "odate" id = "odate" readonly/>
                    <br><h3 style="float:left; color:gray;  font-size: 20">Medicine List</h3><br><br>
 
                    <div id = "myIn">
@@ -259,7 +253,8 @@
 
                     
                    <button id="sub" type = "submit" class="btn btn-primary btn-sm">Issue Order</button>                   
-                   </form>
+                   </form><br>
+                    <h3 id="pbill" style = "color:Darkred;"></h3>
                </div>
               
           </div>
@@ -268,7 +263,15 @@
                                   
 <script>
      function issuepat(id){
+         var pay =  document.getElementById('pbill'+id).value;
           var div = document.getElementById('myIn');
+          var status = document.getElementById('status'+id).value;
+          if(status == "Issued"){
+               
+               document.getElementById('sub').disabled = true;
+          }else{
+               document.getElementById('sub').disabled = false;
+          }
 
           div.remove();
 
@@ -330,6 +333,8 @@
                     in3.setAttribute("value", i);
                     form.appendChild(in3);
                     form.appendChild(sub);
+
+                   document.getElementById('pbill').innerHTML = "Bill : Rs "+pay;
           console.log(i);
           
      }
@@ -372,13 +377,20 @@
                                                             <tr>
                                                                  <td>{{$doctor->Doc_id}}</td>
                                                                  <td>{{$doctor->Pat_id}}</td>
-                                                                 <td>{{$doctor->created_at}}</td>
+                                                                 <td>{{$doctor->date}}</td>
                                                                  <td>
                                                                       <input type="hidden" id = "paid<?php echo $q; ?>" value="{{$doctor->Pat_id}}">
                                                                       <input type="hidden" id = "meid<?php echo $q; ?>" value="{{$doctor->Meeting_id}}">
                                                                       <input type="hidden" id = "dcrid<?php echo $q; ?>" value="{{$doctor->Doc_id}}">
                                                                       <input type="hidden" id = "drmedi<?php echo $q; ?>" value="{{$doctor->medicine}}">
+                                                                      <input type="hidden" id = "issued<?php echo $q; ?>" value="{{$doctor->issued}}">
+                                                                      <input type="hidden" id = "drbill<?php echo $q; ?>" value="{{$doctor->bill}}">
+                                                                      @if($doctor->issued == "Not Issued")
                                                                       <button type="button" class ="btn btn-primary btn-sm" data-toggle="modal" onclick = "issuedoc(<?php echo $q; ?>)" data-target="#issuedocorder">View</button>
+                                                                      @else
+                                                                           <button type="button" class ="btn btn-primary btn-sm" data-toggle="modal" onclick = "issuedoc(<?php echo $q; ?>)" data-target="#issuedocorder">View</button><span>&nbsp;<b style = "color:red;">Issued</b></span>
+                                                                      
+                                                                      @endif
                                                                  </td>
                                                             </tr>
                                                             <?php $q++; ?>
@@ -388,27 +400,11 @@
                                                                  <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Not Issued Orders From Doctor</h3></td>
                                                             </tr>
                                                        @endif  
-                                                       <tr>
-                                                             <input type="hidden" id="drbl" value ="{{session()->get('drbill')}}">
-                                                             <td><h3 id="drres" style="color:gray;"></h3></td>
-                                                       </tr>
+                                                                                                                                                              
                                                                             
                                                        </tbody>
                                                   </table>
-
-                                                  <script>
-                                                           
-                                             
-                                                            var w = document.getElementById('drbl').value;
                                                             
-                                                           if(w){
-                                                                localStorage['drcach'+'{{$c->Phar_id}}'] = w;
-                                                                 document.getElementById('drres').innerHTML = "Last Bill Amount Is: "+w;
-                                                            }else{
-                                                                  document.getElementById('drres').innerHTML = "Last Bill Amount Is: "+localStorage['drcach'+'{{$c->Phar_id}}'];
-                                                            }
-
-                                                       </script>
                                              </div>
                                         </div>
                                    </div>                                
@@ -443,9 +439,11 @@
                    
                    </div>
 
-                    
-                   <button id="subdr" type = "submit" class="btn btn-primary btn-sm">Issue Order</button>                   
-                   </form>
+                   
+                   <button id="subdr" type = "submit" class="btn btn-primary btn-sm">Issue Order</button>   
+                                 
+                   </form><br>
+                   <h3 id = "drbill" style = "color:Darkred;"></h3>    
                </div>
               
           </div>
@@ -454,7 +452,16 @@
                                   
 <script>
      function issuedoc(id){
+          var pay = document.getElementById('drbill'+id).value;
           var div = document.getElementById('myIndr');
+
+          var issued = document.getElementById('issued'+id).value;
+          if(issued == "Issued"){
+               
+               document.getElementById('subdr').disabled = true;
+          }else{
+               document.getElementById('subdr').disabled = false;
+          }
 
           div.remove();
 
@@ -516,7 +523,7 @@
                     inp3.setAttribute("value", j);
                     formdr.appendChild(inp3);
                     formdr.appendChild(subdr);
-                    console.log(j);
+                    document.getElementById('drbill').innerHTML = "Bill : Rs "+pay;
           
      }
 </script>

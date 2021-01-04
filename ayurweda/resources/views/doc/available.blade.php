@@ -67,7 +67,7 @@ tbody tr:hover {
 </head>
 <body>
 
-     <!-- PRE LOADER -->
+    <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
 
@@ -89,7 +89,7 @@ tbody tr:hover {
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->

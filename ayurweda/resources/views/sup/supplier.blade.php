@@ -41,6 +41,14 @@
 <body>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
      <!-- MENU -->
+       <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
           <div class="container">
 
@@ -52,11 +60,11 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div style="background-color:#154360 " class="collapse navbar-collapse">
+               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                          <li><a href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
@@ -110,7 +118,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2000
           });
      </script>
      
@@ -122,7 +130,7 @@
                icon: 'error',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2000
           });
      </script>
 @else
@@ -209,14 +217,27 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
+                                             <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                                        @if($c->Sup_im)
+<<<<<<< HEAD
                                                        <img class="img" src="{{asset('upload/supprof')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:auto;max-height:220px; width:280px;">
                                                        <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/supplier.jpg')}}" style="  border-radius:30px;  height:auto;max-height:220px; width:280px; ">
                                                        <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+=======
+                                                       <img class="img" src="{{asset('upload/supprof')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:200px; width:200px;">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       @else
+                                                       <img class="img" src="{{ asset('images/supplier.jpg')}}" style="  border-radius:30px;  height:200px;width:200px; ">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+>>>>>>> 78825fa1c1acc84933fca5ca696f54f05c86e92e
                                                        @endif
+                                                       </div>
                                                        <br><br>
+                                                       <div style="float:left; margin-right:15px">
+                                                            <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
+                                                       </div>
                                                        <h3>{{$c->Sup_name}}</h3>
                                                        <h3>{{$c->Sup_id}}</h3>
                                                        

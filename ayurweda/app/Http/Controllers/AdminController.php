@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\sendMail;
@@ -43,21 +44,22 @@ class AdminController extends Controller
         ]);
         $pw = DB::table('admins')->where('id',$request->id)->value('password');
         $msg;
-        if($pw == $request->opassword){
+        
+        if(Hash::check($request->opassword,$pw)){
            DB::table('admins')->where('id',$request->id)->update([
-                'name' => $request->name,
+                'username' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
            ]);
 
-           if($pw !== $request->npassword){
+           if(!Hash::check($request->npassword,$pw)){
                 DB::table('admins')->where('id',$request->id)->update([
-                    'password' => $request->npassword,
+                    'password' =>Hash::make($request->npassword),
                     
                 ]);
 
                 DB::table('all_users')->where('id' , $request->id)->update([
-                    'password' => $request->npassword,
+                    'password' => Hash::make($request->npassword),
                 ]);
            }
 
@@ -123,14 +125,14 @@ class AdminController extends Controller
 
             $user->Doc_id = $req->id;
             $user->Doc_name = $req->name;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->Doc_email = $req->email;
 
             $user->save();
 
             $user = new AllUsers;
             $user->id = $req->id;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->roll = "doctor" ;
 
             $user->save();  
@@ -140,14 +142,14 @@ class AdminController extends Controller
 
             $user->Phar_id = $req->id;
             $user->Phar_name = $req->name;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->Phar_email = $req->email;
 
             $user->save();
 
             $user = new AllUsers;
             $user->id = $req->id;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->roll = "pharmacist" ;
 
             $user->save();  
@@ -157,14 +159,14 @@ class AdminController extends Controller
 
             $user->Pro_id = $req->id;
             $user->Pro_name = $req->name;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->Pro_email = $req->email;
 
             $user->save();
 
             $user = new AllUsers;
             $user->id = $req->id;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->roll = "producer" ;
 
             $user->save();  
@@ -174,14 +176,14 @@ class AdminController extends Controller
 
             $user->Sup_id = $req->id;
             $user->Sup_name = $req->name;
-            $user->password = $req->password;
+            $user->password =Hash::make($req->password);
             $user->Sup_email = $req->email;
 
             $user->save();
 
             $user = new AllUsers;
             $user->id = $req->id;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->roll = "supplier" ;
 
             $user->save();  
@@ -196,9 +198,147 @@ class AdminController extends Controller
             return redirect()->back()->with('msg','Double check your email');
         }
     
+    }
+
+    public function profit($id){
+        $c =  DB::table('admins')->where('id', $id)->first();
+        $access = DB::table('pat_med_orderings')->where('status', 'Issued')->orderBy('created_at','desc');
+       $access2 = DB::table('medical_histories')->where('issued','Issued');
+        
+        $patbill = $access->get();
+        $patsum = $access->sum('bill');
+
+        $drbill = $access2->get();
+        $drsum = $access2->sum('bill');
+        return view('admin/profit',compact('c','patbill','drbill','patsum','drsum'))->with( 'msg',"");
        
+    }
+
+    public function patbill(Request $req)
+    {
+      
+        $from = $req->from;
+        $to = $req->to;
+
+        $access;
+        $patbil;
+        $patsum;
     
+        if($from && $to){
+           $req->validate([
+               'from'=>'required|date',
+                'to' => 'required|date|after:from'
+           ],[
+               'to.after'=>'FROM and TO date combination is logically wrong'
+           ]);
+            $access = DB::table('pat_med_orderings')->where('status', 'Issued')->whereBetween('PatMedOrder_date',[$from, $to])->orderBy('created_at','desc');
+            $patbill = $access->get();
+            $patsum = $access->sum('bill');
+
+        }else if($from){
+            
+            $access = DB::table('pat_med_orderings')->where('status', 'Issued')->where('PatMedOrder_date','>',$from)->orderBy('created_at','desc');
+            $patbill = $access->get();
+            $patsum = $access->sum('bill');
+        }else if($to){
+            $access = DB::table('pat_med_orderings')->where('status', 'Issued')->where('PatMedOrder_date','<',$to)->orderBy('created_at','desc');
+            $patbill = $access->get();
+            $patsum = $access->sum('bill');
+        }else{
+            
+            return redirect()->back();
+        }
+        $c =  DB::table('admins')->where('id',$req->aid)->first();
+        
+       $access2 = DB::table('medical_histories')->where('issued','Issued');
+            
+        $drbill = $access2->get();
+        $drsum = $access2->sum('bill');
+        return view('admin/profit',compact('c','patbill','drbill','patsum','drsum'))->with( 'msg',"");
+
+       
+    }
+
+    public function docbill(Request $req){
+        $from = ($req->from);
+        $to = $req->to;
+
+        $access2;
+        $drbil;
+        $drsum;
+
+        if($from && $to){
+           $req->validate([
+               'from'=>'required|date',
+                'to' => 'required|date|after:from'
+                ],[
+               'to.after'=>'FROM and TO date combination is logically wrong'
+           ]);
+            $access2 = DB::table('medical_histories')->where('issued', 'Issued')->whereBetween('date',[$from, $to])->orderBy('created_at','desc');
+            $drbill = $access2->get();
+            $drsum = $access2->sum('bill');
+          
+
+        }else if($from){
+            
+            $access2 = DB::table('medical_histories')->where('issued', 'Issued')->where('date','>',$from)->orderBy('created_at','desc');
+            $drbill = $access2->get();
+            $drsum = $access2->sum('bill');
+            
+            
+        }else if($to){
+            $access2 = DB::table('medical_histories')->where('issued', 'Issued')->where('date','<',$to)->orderBy('created_at','desc');
+            $drbill = $access2->get();
+            $drsum = $access2->sum('bill');
+        }else{
+           
+
+            return redirect()->back();
+            
+        }
+        $c =  DB::table('admins')->where('id', $req->aid)->first();
+        $access = DB::table('pat_med_orderings')->where('status', 'Issued')->orderBy('created_at','desc');
+      
+        
+        $patbill = $access->get();
+        $patsum = $access->sum('bill');
+
+       
+        return view('admin/profit',compact('c','patbill','drbill','patsum','drsum'))->with( 'msg',"");
 
         
+    }
+
+    public function profview($id,$id2)
+    {
+          $c =  DB::table('admins')->where('id', $id2)->first();
+        $role  = DB::table('all_users')->where('id',$id)->value('roll');
+        $d;
+        $rl ;
+        if($role == "doctor"){
+            $d = DB::table('doctors')->where('Doc_id',$id)
+                                    ->select('Doc_id as id','Doc_name as name','Doc_email as email','Doc_addr as address','Doc_pNum as phone','Doc_im as image')->first();
+               $rl = "Doctor";
+        }else if($role == "producer"){
+            $d = DB::table('medicine_producers')->where('Pro_id',$id)
+                                    ->select('Pro_id as id','Pro_name as name','Pro_email as email','Pro_addr as address','Pro_pNum as phone','Pro_im as image')->first();
+            $rl = "Medicine Producer";
+        }else if($role == "patient"){
+             $d = DB::table('patients')->where('Pat_id',$id)
+                                    ->select('Pat_id as id','Pat_name as name','Pat_email as email','Pat_addr as address','Pat_pNum as phone','Pimage as image')->first();
+            $rl = "Patient";
+        }else if($role == "pharmacist"){
+             $d = DB::table('pharmacists')->where('Phar_id',$id)
+                                    ->select('Phar_id as id','Phar_name as name','Phar_email as email','Phar_addr as address','Phar_pNum as phone','PImage as image')->first();
+            $rl = "Pharmacist";
+        }
+        else if($role == "admin"){
+            return redirect()->route('adminpage',$id2);
+        }else{
+            $d = DB::table('ingredient_suppliers')->where('Sup_id',$id)
+                                    ->select('Sup_id as id','Sup_name as name','Sup_email as email','Sup_addr as address','Sup_pNum as phone','Sup_im as image')->first();   
+            $rl = "Ingredient Supplier";
+        }
+        return view('admin/viewprofile',compact('c','d','rl'));
     }
 }

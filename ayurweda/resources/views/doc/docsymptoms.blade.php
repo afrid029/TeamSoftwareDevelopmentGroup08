@@ -100,7 +100,14 @@ tbody tr:hover {
 <body>
     
 
+ <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
 
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
 <!-- MENU -->
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
           <div class="container">
@@ -113,7 +120,7 @@ tbody tr:hover {
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->

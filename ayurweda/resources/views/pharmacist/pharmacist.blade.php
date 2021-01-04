@@ -39,6 +39,14 @@
 
 </head>
 <body>
+ <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($errors->any())
      <script> var a=""; </script>
@@ -112,14 +120,7 @@
                <!-- lOGO TEXT HERE -->
                <a style= "color:black;" href="/welcome" class="navbar-brand">Hospital</a>
           </div>
-          <section class="preloader">
-        
-
-          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-               
-     
-     </section>
+          
 
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">

@@ -42,6 +42,14 @@
 <body>
 
      <!-- MENU -->
+      <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
           <div class="container">
 
@@ -53,11 +61,11 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div style="background-color:#154360 " class="collapse navbar-collapse">
+               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingredients Orderings</font></a></li>

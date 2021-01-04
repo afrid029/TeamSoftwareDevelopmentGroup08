@@ -54,7 +54,14 @@
 </head>
 <body>
 
+ <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
 
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
 <!-- MENU -->
 <section style="padding-left:5%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
      <div style="width:100" class="container">
@@ -65,16 +72,9 @@
                     <span class="icon icon-bar"></span>
                </button>
                <!-- lOGO TEXT HERE -->
-               <a href="{{url('welcome')}}" class="navbar-brand">Hospital</a>
+               <a href="/welcome" class="navbar-brand">Hospital</a>
           </div>
-           <section class="preloader">
-        
-
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-               
-     
-     </section>
+           
           <!-- MENU LINKS -->
           <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">

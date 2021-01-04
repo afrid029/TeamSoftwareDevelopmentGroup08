@@ -61,7 +61,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">Hospital</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -218,16 +218,27 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                             <div style=" padding:1% 1% 1% 1%; border-radius:30px; height:200px; width:50%">
+                                              <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                                        @if($c->Doc_im)
+<<<<<<< HEAD
                                                        <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:auto;max-height:220px; width:280px;">
                                                        <button style="border-radius:30px;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:auto;max-height:220px; width:280px; ">
                                                        <button style="border-radius:30px;;width:280px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+=======
+                                                       <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:200px;">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       @else
+                                                       <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:200px; ">
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+>>>>>>> 78825fa1c1acc84933fca5ca696f54f05c86e92e
                                                        @endif
                                              </div>
                                                        <br><br>
+                                                       <div style="float:left; margin-right:15px">
+                                                            <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
+                                                       </div>
                                                        <h3>{{$c->Doc_name}}</h3>
                                                        <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>
                                                        <br><br>

@@ -20,6 +20,7 @@ class CreateMedicalHistoriesTable extends Migration
             $table->text('diagnosis');
             $table->string('disease');
             $table->text('medicine');
+            $table->date('date');
             $table->double('bill')->nullable();
             $table->text('issued')->default("Not Issued");
             $table->foreign('Pat_id')->references('Pat_id')->on('patients');

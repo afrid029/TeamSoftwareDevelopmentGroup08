@@ -8,6 +8,7 @@ use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
 
@@ -33,16 +34,16 @@ class update extends Controller
             'npassword.required' => 'Old Password is empty',
         ]);
 
-        $p=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
-        if($request->opassword==$p){
+        $pw=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
+        if(Hash::check($request->opassword,$pw)){
             
 
             DB::table('doctors')->where('Doc_id',$request->id)->update(['Doc_name'=>$request->name,
                                                                         'Doc_addr'=>$request->address,
                                                                         'Doc_email'=>$request->email,
                                                                         'Doc_pNum'=>$request->phone,
-                                                                        'password'=>$request->npassword]);
-            DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
+                                                                        'password'=>Hash::make($request->npassword)]);
+            DB::table('all_users')->where('id',$request->id)->update(['password'=>Hash::make($request->npassword)]);
             
             $s="Profile Successfully Updated";
         }
@@ -125,8 +126,8 @@ class update extends Controller
             'npassword.required' => 'Old Password is empty',
         ]);
 
-        $p=DB::table('medicine_producers')->where('Pro_id',$request->id)->value('password');
-        if($request->opassword==$p){
+        $pw=DB::table('medicine_producers')->where('Pro_id',$request->id)->value('password');
+        if(Hash::check($request->opassword,$pw)){
             
            
 
@@ -134,8 +135,8 @@ class update extends Controller
                                                                         'Pro_addr'=>$request->address,
                                                                         'Pro_pNum'=>$request->phone,
                                                                         'Pro_email'=>$request->email,
-                                                                        'password'=>$request->npassword]);
-            DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
+                                                                        'password'=>Hash::make($request->npassword)]);
+            DB::table('all_users')->where('id',$request->id)->update(['password'=>Hash::make($request->npassword)]);
             
             $s="Profile Successfully Updated";
         }
@@ -238,16 +239,16 @@ class update extends Controller
             'npassword.required' => 'Old Password is empty',
         ]);
 
-        $p=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('password');
-        if($request->opassword==$p){
+        $pw=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('password');
+        if(Hash::check($request->opassword,$pw)){
             
 
             DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update(['Sup_name'=>$request->name,
                                                                         'Sup_addr'=>$request->address,
                                                                         'Sup_pNum'=>$request->phone,
                                                                         'Sup_email'=>$request->email,
-                                                                        'password'=>$request->npassword]);
-            DB::table('all_users')->where('id',$request->id)->update(['password'=>$request->npassword]);
+                                                                        'password'=>Hash::make($request->npassword)]);
+            DB::table('all_users')->where('id',$request->id)->update(['password'=>Hash::make($request->npassword)]);
             
             $s="Profile Successfully Updated";
         }

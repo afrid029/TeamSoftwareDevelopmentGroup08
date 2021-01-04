@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Database\Seeder;
 
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
         //doctor sample data
         DB::table('all_users')->insert([
             'id'=> 'doc1',
-            'password' => 'doc1@',
+            'password' => Hash::make('doc1@'),
             'roll' => 'doctor'
         ]);
         DB::table('doctors')->insert([
@@ -29,13 +30,13 @@ class DatabaseSeeder extends Seeder
             'Doc_addr' => '98,KKp, Road Kalmunai 03',
             'Doc_pNum' => '0771234567',
             'Doc_im' => '',
-            'password' => 'doc1@'
+            'password' => Hash::make('doc1@')
         ]);
 
 
         DB::table('all_users')->insert([
             'id'=> 'doc2',
-            'password' => 'doc2@',
+            'password' => Hash::make('doc2@'),
             'roll' => 'doctor'
         ]);
         DB::table('doctors')->insert([
@@ -45,12 +46,12 @@ class DatabaseSeeder extends Seeder
             'Doc_addr' => 'No.2,vegas road,Anuradhapura',
             'Doc_pNum' => '0771242678',
             'Doc_im' => '',
-            'password' => 'doc2@'
+            'password' => Hash::make('doc2@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'doc3',
-            'password' => 'doc3@',
+            'password' => Hash::make('doc3@'),
             'roll' => 'doctor'
         ]);
         DB::table('doctors')->insert([
@@ -60,12 +61,12 @@ class DatabaseSeeder extends Seeder
             'Doc_addr' => 'No.618/80 E, Buddhagaya mawatha, Anuradhapura',
             'Doc_pNum' => '0715397001',
             'Doc_im' => '',
-            'password' => 'doc3@'
+            'password' => Hash::make('doc3@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'doc4',
-            'password' => 'doc4@',
+            'password' => Hash::make('doc4@'),
             'roll' => 'doctor'
         ]);
         DB::table('doctors')->insert([
@@ -75,12 +76,12 @@ class DatabaseSeeder extends Seeder
             'Doc_addr' => 'No.723, Jeland road, Colombo',
             'Doc_pNum' => '0762937515',
             'Doc_im' => '',
-            'password' => 'doc4@'
+            'password' => Hash::make('doc4@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'doc5',
-            'password' => 'doc5@',
+            'password' => Hash::make('doc5@'),
             'roll' => 'doctor'
         ]);
         DB::table('doctors')->insert([
@@ -90,7 +91,7 @@ class DatabaseSeeder extends Seeder
             'Doc_addr' => 'No.567, Dehiowita, Kegalle',
             'Doc_pNum' => '0710890067',
             'Doc_im' => '',
-            'password' => 'doc5@'
+            'password' => Hash::make('doc5@')
         ]);
 
         //Available Time
@@ -159,7 +160,7 @@ class DatabaseSeeder extends Seeder
         // producer sample data
         DB::table('all_users')->insert([
             'id'=> 'prod1',
-            'password' => 'prod1@',
+            'password' => Hash::make('prod1@'),
             'roll' => 'producer'
         ]);
         DB::table('medicine_producers')->insert([
@@ -169,11 +170,11 @@ class DatabaseSeeder extends Seeder
             'Pro_pNum' => '0716894567',
             'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
-            'password' => 'prod1@'
+            'password' => Hash::make('prod1@')
         ]);
         DB::table('all_users')->insert([
             'id'=> 'prod2',
-            'password' => 'prod2@',
+            'password' => Hash::make('prod2@'),
             'roll' => 'producer'
         ]);
         DB::table('medicine_producers')->insert([
@@ -183,11 +184,11 @@ class DatabaseSeeder extends Seeder
             'Pro_pNum' => '0714567890',
             'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
-            'password' => 'prod2@'
+            'password' => Hash::make('prod2@')
         ]);
         DB::table('all_users')->insert([
             'id'=> 'prod3',
-            'password' => 'prod3@',
+            'password' => Hash::make('prod3@'),
             'roll' => 'producer'
         ]);
         DB::table('medicine_producers')->insert([
@@ -197,7 +198,7 @@ class DatabaseSeeder extends Seeder
             'Pro_pNum' => '0789564786',
             'Pro_email'=>'anuavantha@gmail.com',
             'Pro_im' => '',
-            'password' => 'prod3@'
+            'password' => Hash::make('prod3@')
         ]);
 
 
@@ -205,7 +206,7 @@ class DatabaseSeeder extends Seeder
         //patient sample data
         DB::table('all_users')->insert([
             'id'=> 'pat1',
-            'password' => 'pat1@',
+            'password' => Hash::make('pat1@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -215,15 +216,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.12, J5 road, Dambulla',
             'Pat_pNum' => '0718926789',
             'Pimage' => '',
-            'age' => '56',
+            'dob' => '1965-12-20',
             'gender' => 'male',
             'guardian' => 'Damayanthi Silva',
-            'password' => 'pat1@'
+            'password' => Hash::make('pat1@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'pat2',
-            'password' => 'pat2@',
+            'password' => Hash::make('pat2@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -233,15 +234,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.40, S5 road, Kurunegala',
             'Pat_pNum' => '0778923456',
             'Pimage' => '',
-            'age' => '33',
+            'dob' => '1995-05-20',
             'gender' => 'male',
             'guardian' => 'Nelka Hewage',
-            'password' => 'pat2@'
+            'password' => Hash::make('pat2@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'pat3',
-            'password' => 'pat3@',
+            'password' => Hash::make('pat3@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -251,15 +252,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.13, N5 road, Ampara',
             'Pat_pNum' => '0716789023',
             'Pimage' => '',
-            'age' => '40',
+            'dob' => '1987-01-12',
             'gender' => 'female',
             'guardian' => 'Danushka Dias',
-            'password' => 'pat3@'
+            'password' => Hash::make('pat3@')
         ]);
         //pat4
         DB::table('all_users')->insert([
             'id'=> 'pat4',
-            'password' => 'pat4@',
+            'password' => Hash::make('pat4@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -269,15 +270,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.3, ABC road, Batticaloa',
             'Pat_pNum' => '0711212023',
             'Pimage' => '',
-            'age' => '20',
+            'dob' => '1999-05-31',
             'gender' => 'female',
             'guardian' => 'kamala Sritharan',
-            'password' => 'pat4@'
+            'password' => Hash::make('pat4@')
         ]);
         //pat5
         DB::table('all_users')->insert([
             'id'=> 'pat5',
-            'password' => 'pat5@',
+            'password' => Hash::make('pat5@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -287,15 +288,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.13, BB road, Ampara',
             'Pat_pNum' => '0716789023',
             'Pimage' => '',
-            'age' => '55',
+            'dob' => '1992-02-01',
             'gender' => 'female',
             'guardian' => 'Priya Jackshan',
-            'password' => 'pat5@'
+            'password' => Hash::make('pat5@')
         ]);
         //pat6
         DB::table('all_users')->insert([
             'id'=> 'pat6',
-            'password' => 'pat6@',
+            'password' => Hash::make('pat6@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -305,15 +306,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.2, Valluvan road, Ampara',
             'Pat_pNum' => '0716789023',
             'Pimage' => '',
-            'age' => '23',
+             'dob' => '1989-11-20',
             'gender' => 'male',
             'guardian' => 'Ramesh Suresh',
-            'password' => 'pat6@'
+            'password' => Hash::make('pat6@')
         ]);
         //pat7
         DB::table('all_users')->insert([
             'id'=> 'pat7',
-            'password' => 'pat7@',
+            'password' => Hash::make('pat7@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -323,15 +324,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.13, Pannikar road, Ampara',
             'Pat_pNum' => '0776789122',
             'Pimage' => '',
-            'age' => '32',
+             'dob' => '1998-12-22',
             'gender' => 'male',
             'guardian' => 'Bala Kirisanth',
-            'password' => 'pat7@'
+            'password' => Hash::make('pat7@')
         ]);
         //pat8
         DB::table('all_users')->insert([
             'id'=> 'pat8',
-            'password' => 'pat8@',
+            'password' => Hash::make('pat8@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -341,15 +342,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.13, VSS road, Ampara',
             'Pat_pNum' => '0716712323',
             'Pimage' => '',
-            'age' => '80',
+             'dob' => '1955-04-14',
             'gender' => 'male',
             'guardian' => 'Vishva Helan',
-            'password' => 'pat8@'
+            'password' => Hash::make('pat8@')
         ]);
         //pat9
         DB::table('all_users')->insert([
             'id'=> 'pat9',
-            'password' => 'pat9@',
+            'password' => Hash::make('pat9@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -359,15 +360,15 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.13, N5 road, Ampara',
             'Pat_pNum' => '0776781223',
             'Pimage' => '',
-            'age' => '48',
+             'dob' => '1997-09-21',
             'gender' => 'male',
             'guardian' => 'Danush Devid',
-            'password' => 'pat9@'
+            'password' => Hash::make('pat9@')
         ]);
         //pat10
         DB::table('all_users')->insert([
             'id'=> 'pat10',
-            'password' => 'pat10@',
+            'password' => Hash::make('pat10@'),
             'roll' => 'patient'
         ]);
         DB::table('patients')->insert([
@@ -377,10 +378,10 @@ class DatabaseSeeder extends Seeder
             'Pat_addr' => 'No.1, KS road, Ampara',
             'Pat_pNum' => '0776789023',
             'Pimage' => '',
-            'age' => '30',
+             'dob' => '2001-10-27',
             'gender' => 'male',
             'guardian' => 'Kamal Varan',
-            'password' => 'pat10@'
+            'password' => Hash::make('pat10@')
         ]);
 		
         //admitted patients details
@@ -449,7 +450,7 @@ class DatabaseSeeder extends Seeder
 		//Pharmacist sample data
         DB::table('all_users')->insert([
             'id'=> 'pha1',
-            'password' => 'pha1@',
+            'password' => Hash::make('pha1@'),
             'roll' => 'pharmacist'
         ]);
         DB::table('pharmacists')->insert([
@@ -458,7 +459,7 @@ class DatabaseSeeder extends Seeder
             'Phar_addr' => 'No.1, AML road, Ampara',
             'Phar_pNum' => '0776789023',
             'Phar_email'=>'anuavantha@gmail.com',
-            'password' => 'pha1@'
+            'password' => Hash::make('pha1@')
         ]);
         
         //medicines
@@ -585,7 +586,8 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'diagnosis' => 'rash',
             'disease' => 'Skin rash',
-            'medicine' => 'Aralu',
+            'date' => '2020-05-15',
+            'medicine' => "['Ashwagandha,2,Boswellia,5']",
             'bill' => '2000',
             'issued' => 'issued'
         ]);
@@ -595,8 +597,9 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'diagnosis' => 'leg pain',
             'disease' => 'Vericose',
-            'medicine' => 'Ashwagandha',
-            'bill' => '1000',
+            'date' => '2020-08-15',
+            'bill'=>'725',
+            'medicine' => "['Ashwagandha,8,Cardamom,17']",
             'issued' => 'issued'
         ]);
         DB::table('medical_histories')->insert([
@@ -605,9 +608,40 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc2',
             'diagnosis' => 'High blood suger',
             'disease' => 'Diabetic',
-            'medicine' => 'Ashwagandha',
-            'bill' => '500',
-            'issued' => 'issued'
+            'date' => '2020-10-15',
+            'bill'=>'850',
+            'medicine' => "['Licorice,10,Bitter melon,14']"
+        ]);
+
+        //Patient Order
+
+        DB::table('pat_med_orderings')->insert([
+            'PatMedOrder_id'=>'order1',
+            'Pat_id'=>'pat1',
+            'bill'=>'1250',
+            'medicines' =>"['Ashwagandha,10,Bitter melon,14']",
+            'PatMedOrder_date' => '2020-04-15'
+        ]);
+        DB::table('pat_med_orderings')->insert([
+            'PatMedOrder_id'=>'order2',
+            'Pat_id'=>'pat2',
+            'bill'=>'900',
+            'medicines' =>"['Licorice,10,Bitter melon,14']",
+            'PatMedOrder_date' => '2020-07-25'
+        ]);
+        DB::table('pat_med_orderings')->insert([
+            'PatMedOrder_id'=>'order3',
+            'Pat_id'=>'pat1',
+            'bill'=>'760',
+            'medicines' =>"['Ashwagandha,10,Cardamom,14']",
+            'PatMedOrder_date' => '2020-10-15'
+        ]);
+        DB::table('pat_med_orderings')->insert([
+            'PatMedOrder_id'=>'order4',
+            'Pat_id'=>'pat5',
+            'bill'=>'450',
+            'medicines' =>"['Ashwagandha,10,Bitter melon,14,Cardamom,14']",
+            'PatMedOrder_date' => '2020-12-15'
         ]);
 
         //maintain medicine stock
@@ -783,7 +817,7 @@ class DatabaseSeeder extends Seeder
         //supplier
         DB::table('all_users')->insert([
             'id'=> 'sup1',
-            'password' => 'sup1@',
+            'password' => Hash::make('sup1@'),
             'roll' => 'supplier'
         ]);
         DB::table('ingredient_suppliers')->insert([
@@ -793,12 +827,12 @@ class DatabaseSeeder extends Seeder
             'Sup_pNum' => '0716720783',
             'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
-            'password' => 'sup1@'
+            'password' => Hash::make('sup1@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'sup2',
-            'password' => 'sup2@',
+            'password' => Hash::make('sup2@'),
             'roll' => 'supplier'
         ]);
         DB::table('ingredient_suppliers')->insert([
@@ -808,12 +842,12 @@ class DatabaseSeeder extends Seeder
             'Sup_pNum' => '0782349345',
             'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
-            'password' => 'sup2@'
+            'password' => Hash::make('sup2@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'sup3',
-            'password' => 'sup3@',
+            'password' => Hash::make('sup3@'),
             'roll' => 'supplier'
         ]);
         DB::table('ingredient_suppliers')->insert([
@@ -823,12 +857,12 @@ class DatabaseSeeder extends Seeder
             'Sup_pNum' => '0785678134',
             'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
-            'password' => 'sup3@'
+            'password' => Hash::make('sup3@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'sup4',
-            'password' => 'sup4@',
+            'password' => Hash::make('sup4@'),
             'roll' => 'supplier'
         ]);
         DB::table('ingredient_suppliers')->insert([
@@ -838,22 +872,22 @@ class DatabaseSeeder extends Seeder
             'Sup_pNum' => '0728934567',
             'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
-            'password' => 'sup4@'
+            'password' => Hash::make('sup4@')
         ]);
 
         DB::table('all_users')->insert([
             'id'=> 'sup5',
-            'password' => 'sup5@',
+            'password' => Hash::make('sup5@'),
             'roll' => 'supplier'
         ]);
         DB::table('ingredient_suppliers')->insert([
-            'Sup_id' => 'doc5',
+            'Sup_id' => 'sup5',
             'Sup_name' => 'Ruvini Nethmi',
             'Sup_addr' => 'No. 67, KN road, Trincomalee',
             'Sup_pNum' => '0762345678',
             'Sup_email'=>'anuavantha@gmail.com',
             'Sup_im' => '',
-            'password' => 'sup5@'
+            'password' => Hash::make('sup5@')
         ]);
 
         //ingredients
@@ -1001,13 +1035,13 @@ class DatabaseSeeder extends Seeder
 
         DB::table('all_users')->insert([
             'id'=>'admin',
-            'password'=>'admin',
+            'password'=>Hash::make('admin'),
             'roll'=>'admin'
         ]);
         DB::table('admins')->insert([
             'id'=>'admin',
             'username'=>'Vishva',
-            'password'=>'admin',
+            'password'=>Hash::make('admin'),
             'phone'=>'0771234567',
             'email'=>'anuavantha@gmail.com',
             
