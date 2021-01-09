@@ -11,7 +11,7 @@ use App\Models\Patient;
 use App\Models\AllUsers;
 use App\Models\add_symptomps;
 use App\Models\OnlineBooking;
-use App\Models\Pat_med_ordering;
+use App\Models\pat_med_ordering;
 
 
 
@@ -329,7 +329,7 @@ class patientsController extends Controller
         }
         $cnt = count(DB::table('pat_med_orderings')->get())+1;
 
-        $ordering = new Pat_med_ordering();
+        $ordering = new pat_med_ordering;
         $ordering->PatMedOrder_id = "Ord".($cnt).rand(1,50);
         $ordering->Pat_id = $id;
         $date = date('Y-m-d');
@@ -352,7 +352,7 @@ class patientsController extends Controller
         if(session()->get('session') != $a){
             return redirect()->route('login')->with('msg','Login First');
         }
-        
+
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $hist = DB::table('medical_histories')->where('medical_histories.Pat_id',$id)
                                             ->orderBy('created_at','desc')

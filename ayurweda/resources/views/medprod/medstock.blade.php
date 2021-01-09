@@ -241,7 +241,7 @@
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
                                         <label>Unit price</label>
-                                        <input type="number" name = "uprice"  class="form-control">
+                                        <input type="number" name = "uprice" step="0.01"  class="form-control">
                                    </div>
                               </div>
                               <br>

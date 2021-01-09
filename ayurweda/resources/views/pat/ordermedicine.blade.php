@@ -227,7 +227,7 @@
  <!--Pharmacist modal-->
                               <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="pharmacists" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">
-                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                        <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
                                                   <h4 class="modal-title" id="exampleModalLabel">Pharmacists Details</h4>
                                                  

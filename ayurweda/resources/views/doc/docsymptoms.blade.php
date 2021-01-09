@@ -219,11 +219,11 @@ tbody tr:hover {
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:80%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5); class="container">
+                                   <div style="height:80%; width:90%; margin: -12% 5% ; background-color:rgba(255,255,255,0.5); class="container">
                                    <div style="width:90%; margin-left:5%; margin-right:5%;" class="col-lg-3">
                                    <h2 style="color:#222222; width:100%; float:left; ">Patients' Medical Symptomps History</h2>
                                     <a style=" font-size:20px; margin-top:-3%; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>  
-                                   <div class="tableFixHead">
+                                   <div style="width:100%;" class="tableFixHead">
                                    <table style="background-color:white;border:5px; " class="table table-bordered" >
                                         
                                              <thead>
@@ -282,7 +282,7 @@ tbody tr:hover {
 <!--Patients modal-->
                               <div style = "overflow:scroll;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">
-                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                        <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
                                                   <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
                                                  

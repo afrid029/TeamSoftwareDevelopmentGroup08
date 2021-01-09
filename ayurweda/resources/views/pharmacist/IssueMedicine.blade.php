@@ -127,7 +127,7 @@
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
      <!-- MENU -->
-     <section style="background-color:white; height:10%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+     <section style="background-color:white;  padding-bottom:4px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
      <div class="container">
           <div class="navbar-header">
                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -234,7 +234,7 @@
                          <!--Patients modal-->
                               <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">
-                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                        <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
                                                   <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
                                                  

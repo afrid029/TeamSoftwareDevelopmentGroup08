@@ -254,8 +254,8 @@ tbody tr:hover {
                                              </div>
                                              <br></br>
 
-                                             <div class="tableFixHead">
-                                        <table class="table table-bordered" >
+                                             <div >
+                                        <table class="table table-bordered table-scroll" >
                                         
                                              <thead style="position: sticky;top: 0;">
                                                   <tr>
@@ -271,7 +271,7 @@ tbody tr:hover {
                                              @else
                                              <?php $adp=$ad; ?>
                                              @endif
-                                             <tbody>
+                                             <tbody class = "body-half-screen">
                                                   @if(count($adp)>0)
                                                   <?php $no = 1;?>
                                                   @foreach($adp as $a)

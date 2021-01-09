@@ -148,11 +148,11 @@
                                    </div>
                                 
                                    <div class ="modal-body">
-                                        <div class="form-group">
+                                        <div style= "width:100%;" class="form-group">
 
                                              <form action="/showAvail" method="get">
                                                   @csrf
-                                                  <select class="form-control" name = "dr" style = "width:40%;">
+                                                  <select  class="form-control" name = "dr" style = "width:30%; float:left;">
                                                        
                                                        <option value="none" selected disabled hidden> 
                                                             Select a Doctor
@@ -166,12 +166,13 @@
                                                        @endif
                                                   </select>
                                                   <input type = "hidden" name = "patid" value = "{{$c->Pat_id}}"/>
-                                                  <div  style = " float : left ; margin-top:-5.5%; margin-left:50%; ">
+                                                  <button style="float : right; width:20%; margin-left:4%;margin-right:5%;" type = "submit" class = "btn btn-info" value = "Search">Search</button>
+                                                  <div style = " float:right; width:30%;">
                                                        <input  class="form-control"  type ="date" name="date" value="{{$date ?? ''}}"/>
                                                   </div> 
-                                                  <button style="float : right; margin-top:-5.5%;" type = "submit" class = "btn btn-info" value = "Search">Search</button>
+                                                  
                                              </form>
-                                        </div>
+                                        </div><br>
                                         <div class="p-3 mb-2 bg-info text-white">
                                              <table class="table table-bordered table-scroll" style="background-color:#ffffff; color:black">
                                                   <thead>

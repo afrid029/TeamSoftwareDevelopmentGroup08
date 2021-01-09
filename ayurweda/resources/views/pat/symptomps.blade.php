@@ -155,7 +155,7 @@
           <div class="owl-theme">
                <div  class="item item-first">
                     <div class="caption">
-                         <div style="max-height:85%; width:66%; margin: 0% 17% 0 17%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="max-height:85%; width:80%; margin: 0% 10% 0 10%; background-color:white; border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
@@ -230,7 +230,7 @@
  <!--doctors modal-->
                               <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="doctors" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">
-                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                        <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
                                                   <h4 class="modal-title" id="exampleModalLabel">Doctors Details</h4>
                                                  
@@ -274,7 +274,7 @@
 <!--Modal 2-->
 <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="viewsymp" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
      <div class="modal-dialog" role="dialog">
-          <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+          <div class="modal-content"  style="width:80%; margin-left:10%; margin-right:10%;">
                <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLabel">View Symptom</h4>
                    <h6 id="dttag" style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%;">  </h6> 
@@ -465,7 +465,7 @@ function viewSymp(id)
                          <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
                     
                </div>
-               <div class="modal-body">
+               <div style="width:100%;" class="modal-body">
                <form action="{{ route('addsymptomps',$c->Pat_id) }}" method="post" onsubmit="prepareDiv()" enctype="multipart/form-data">
                                              @csrf
                                              <input type="hidden" name="id" class="form-control" value="{{$c->Pat_id}}">
@@ -490,8 +490,8 @@ function viewSymp(id)
                                              <!--   -->
                                           
 
-                                             <div class="row">
-                                                  <div class="col-sm-11 ml-auto">
+                                              <div class="row">
+                                                  <div class="col-md-16">
                                                        <div style="margin-left: 8px" class="toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <button onclick= "document.execCommand( 'bold',false,null);" type="button" class=" btn btn-light ">
@@ -519,21 +519,23 @@ function viewSymp(id)
                                                                 </button>
                                                                 
                                                             </div>
-                                                            
-                                                       </div>
-
-                                                       <div style=" margin-top: -7%; margin-right: 5px" class="nav navbar-nav navbar-right">
+                                                            <div  style="float:right; margin-right:3%;">
                                                             <button type="submit" class="btn btn-success btn-sm">Send</button>
                                                             
                                                             <button  onclick = "document.getElementById('original').innerHTML = ''"; type="button" class="btn btn-danger btn-sm">Discard</button>
-                                                       </div>
-                                                       
+                                                       </div><br>
                                                        <div class="form-group mt-4" placeholder="Say Here" id ="original" style="-moz-appearance: textfield-multiline;
                                                             -webkit-appearance: textarea;border: 2px solid gray;font: medium -moz-fixed;font: -webkit-small-control;height:180px;
-                                                            overflow: auto;resize: both;width: 500px; margin-left: 8px; background-color:white; color:black; border-radius:10px;" contenteditable="true">
+                                                            overflow: auto;resize: both;width: 90%; margin-left:5%; margin-right:5%; background-color:white; color:black; border-radius:10px;" contenteditable="true">
                                                        </div>
-                                                       <input type="hidden" name="text" id="copy"/>
+                                                            
+                                                       </div>
+
                                                        
+                                                       
+                                                       
+                                                       <input type="hidden" name="text" id="copy"/>
+                                                       <div style="width:90%; margin: 0 5%;">
                                                        <label for="audio">Audio: &nbsp;</label>   Choose Your Voice Record
                                                             <input  type="file" name = "audio"  accept="audio/*"  placeholder="Choose Your Voice Record"/><br>
 
@@ -545,7 +547,7 @@ function viewSymp(id)
                                                                  
                                                                  <input  type="file" id="images" name = "image[]" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose File">
                                                                  <span  class="custom-file-container__custom-file__custom-file-control"></span>
-                                                            </label>
+                                                       </label>
                                                             
 
                                                                 
@@ -561,7 +563,7 @@ function viewSymp(id)
                                                             </div>
                                                            
                                                        </div>
-
+                                                       </div>
                                                        <script>
                                                             var upload = new FileUploadWithPreview('myUniqueUploadId')
                                                        </script>

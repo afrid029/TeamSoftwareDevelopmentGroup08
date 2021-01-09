@@ -188,13 +188,13 @@ Swal.fire({
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
 
-                    <div class="">
+                    <div class="owl-theme">
                     <div class="item item-first">
                               <div class="caption">
                                    <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                    <br>
                                         <div class="">
-                                             <div style="float:left;">
+                                             <div>
                                             <form action="/admitsearch" method="post" style="margin:auto;width:700px">
                                             {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
@@ -209,9 +209,9 @@ Swal.fire({
                                              </button>
                                              </div>
                                             <br></br>
-                                            <div class="tableFixHead">
+                                            <div >
 
-                                        <table class="table">
+                                        <table class="table table-bordered table-scroll">
                                         
                                              <thead>
                                                   <tr>
@@ -230,7 +230,7 @@ Swal.fire({
                                              @else
                                              <?php $adp=$ad; ?>
                                              @endif
-                                             <tbody>
+                                             <tbody class="body-half-screen">
                                                   @if(count($adp) > 0)
                                                   @foreach($adp as $a)
                                                   <tr>

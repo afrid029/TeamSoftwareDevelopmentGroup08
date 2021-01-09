@@ -122,7 +122,7 @@
      </div>
      </div>
      <!-- Modal 2 -->
-<div style ="width:40%; margin-left:30%; margin-right:30%; margin-top:5%;" class = "modal fade" id = "profile" role = "dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div style ="width:80%; margin-left:10%; margin-right:10%; margin-top:5%;" class = "modal fade" id = "profile" role = "dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role = "dialog">
           <div class="modal-content">
                <div class="modal-header">
@@ -131,14 +131,14 @@
                     <form action="{{ route ('changeprofile', ['c'=>$c->Pat_id]) }}" method="post" enctype="multipart/form-data">
                     @csrf 
                     @method('patch')
-                         <div style ="margin:20px 40px 0 40px" class="custom-file-container" data-upload-id="myUniqueUploadId">
+                         <div style ="width:80%; margin:0 10%;" class="custom-file-container" data-upload-id="myUniqueUploadId">
                               <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"> </a>
-                              <label class="custom-file-container__custom-file">
+                              <label style="width:100%;" class="custom-file-container__custom-file">
                               <input  type="file" name = "profile" class="custom-file-container__custom-file__custom-file-input" accept="image/*"  aria-label="Choose File">
                                    <span  class="custom-file-container__custom-file__custom-file-control"></span>
                               </label>
 
-                              <div style="width:50%; height:150px; margin-left:15%" class="custom-file-container__image-preview">
+                              <div style="width:80%; margin-left:10%; margin-right:10%; height:200px; " class="custom-file-container__image-preview">
                               </div>
                          </div>
                               <script>

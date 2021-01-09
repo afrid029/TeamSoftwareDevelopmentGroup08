@@ -159,7 +159,7 @@ Swal.fire({
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:95%; width:70%; margin: -2% 15% 0 15%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:95%; width:70%; margin: -2% 10% 0 15%; background-color:white; border-radius:0.5%;" class="container">
                          
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
@@ -250,8 +250,8 @@ Swal.fire({
                     <h3 style="float:left" class="modal-title" id="exampleModalLabel">Register Here</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
-               <div class="modal-body">
-                    <div style="width:90%; margin-left:5%; margin-right:5%;">
+               <div style="width:90%; margin-left:5%; margin-right:5%;" class="modal-body">
+                    <div >
                          <form action="/addnew" method="post" >
                          @csrf
                               <div style="width:50%; float:left;" >

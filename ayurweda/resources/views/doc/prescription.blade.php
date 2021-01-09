@@ -111,7 +111,7 @@ tbody tr:hover {
 }
 .table-scroll td,.table-scroll th{
  
-  width:10%;
+  width:100%;
   flex-grow:2;
   display: block;
   
@@ -127,7 +127,7 @@ tbody tr:hover {
   background-color: rgba(255,240,245,0.4);
 }
 .body-half-screen{
-  max-height: 60vh;
+  max-height: 50vh;
   
 }
 .small-col{flex-basis:10%;}
@@ -444,97 +444,85 @@ Swal.fire({
      </div>
 
      <!-- HOME -->
-     <section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
-
-                    <div class="owl-carousel owl-theme">
-                    <div class="item item-first">
-                              <div class="caption">
-                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
-                                        
-                                        <br>
-                                             <div style="float:left; width:40%;">
-                                             <form action="/pressearch" method="post">
-                                             {{csrf_field()}}
-                                                  <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <div style="float:left;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
-                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
-                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
-                                             </form>
-                                             </div>
-                                             <div style="float:right; margin-right:10%;">
-                                             <button type="button" class="btn btn-primary" style="margin-right:0%;" data-toggle="modal" data-target="#exampleModal">
-                                                       Add a prescription
-                                             </button>
-                                             <a style="float:right; font-size:20px; margin-left:20px; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
-          
-                                             </div>
-                                             <br><br>
-                                             <div class="tableFixHead">
-                                             
-                                             
-                                        <table class="table">
-                                        
-                                             <thead>
-                                                  <tr>
-                                                       <th>Meeting ID</th>
-                                                       <th>Patient ID</th>
-                                                       <th>Doctor ID</th>
-                                                       <th>Date</th>
-                                                       <th>Disease</th>
-                                                       <th>Diagnosis</th>
-                                                       <th>Medicine</th>
-                                                  </tr>
-                                             </thead>
-                                             @if($pres1=session()->get('pres1'))
-                                             <?php $press=$pres1; ?>
-                                             @else
-                                             <?php $press=$pres; ?>
-                                             @endif
-                                             <tbody>
-                                                  @if(count($press) > 0)
-                                                  <?php $no = 0; ?>
-                                                  @foreach($press as $pr)
-                                                  <tr>
-                                                       <td>{{$pr->Meeting_id}}</td>
-                                                       <td>{{$pr->Pat_id}}</td>
-                                                       <td>{{$pr->Doc_id}}</td>
-                                                       <td>{{$pr->created_at}}</td>
-                                                       <td>{{$pr->disease}}</td>
-                                                       <td>{{$pr->diagnosis}}</td>
-                                                       <td>
-                                                            <input type="hidden" id="m<?php echo $no; ?>" value="{{$pr->medicine}}">
-                                                            <input type="hidden" id="bil<?php echo $no; ?>" value="{{$pr->bill}}">
-                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+<section id="home" class="slider" data-stellar-background-ratio="0.5">
+     <div class="row">
+          <div class="owl-theme">
+               <div class="item item-first">
+                    <div class="caption">
+                         <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                          <br>
+                              <div style="float:left; width:40%;">
+                                   <form action="/pressearch" method="post">
+                                   {{csrf_field()}}
+                                        <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
+                                        <div style="float:left;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
+                                        <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
+                                        <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
+                                   </form>
+                              </div>
+                              <div style="float:right; margin-right:10%;">
+                                   <button type="button" class="btn btn-primary" style="margin-right:0%;" data-toggle="modal" data-target="#exampleModal">
+                                             Add a prescription
+                                   </button>
+                                   <a style="float:right; font-size:20px; margin-left:20px; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
+                              </div>
+                              <br><br>
+                              <div>
+                                   <table class="table table-bordered table-scroll">
+                                        <thead>
+                                             <tr>
+                                                  <th>Meeting ID</th>
+                                                  <th>Patient ID</th>
+                                                  <th>Doctor ID</th>
+                                                  <th>Date</th>
+                                                  <th>Disease</th>
+                                                  <th>Diagnosis</th>
+                                                  <th>Medicine</th>
+                                             </tr>
+                                        </thead>
+                                        @if($pres1=session()->get('pres1'))
+                                        <?php $press=$pres1; ?>
+                                        @else
+                                        <?php $press=$pres; ?>
+                                        @endif
+                                        <tbody class="body-half-screen">
+                                             @if(count($press) > 0)
+                                             <?php $no = 0; ?>
+                                             @foreach($press as $pr)
+                                             <tr>
+                                                  <td>{{$pr->Meeting_id}}</td>
+                                                  <td>{{$pr->Pat_id}}</td>
+                                                  <td>{{$pr->Doc_id}}</td>
+                                                  <td>{{$pr->created_at}}</td>
+                                                  <td>{{$pr->disease}}</td>
+                                                  <td>{{$pr->diagnosis}}</td>
+                                                  <td>
+                                                       <input type="hidden" id="m<?php echo $no; ?>" value="{{$pr->medicine}}">
+                                                       <input type="hidden" id="bil<?php echo $no; ?>" value="{{$pr->bill}}">
+                                                       <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                        
-                                                       </td>
-                                                  </tr>
-                                                  <?php $no++; ?>
-                                                  @endforeach
-                                                  @else
-                                                  <tr>
-                                                       <td colspan="7"><h3 style=" color:black;text-align: center;">No prescriptions found</h3></td>
-                                                  </tr>
-                                                  @endif
-                                             </tbody>
-                                        
-                                        </table>
-                                        </div>
-                                        
-                                        <br>
-                                        
-                                   </div>
-                             </div>
+                                                  </td>
+                                             </tr>
+                                             <?php $no++; ?>
+                                             @endforeach
+                                             @else
+                                             <tr>
+                                                  <td colspan="7"><h3 style=" color:black;text-align: center;">No prescriptions found</h3></td>
+                                             </tr>
+                                         @endif
+                                        </tbody>
+                                   </table>
+                              </div><br>
                          </div>
-                         
                     </div>
-
+               </div>
           </div>
-     </section>
+     </div>
+</section>
      <!--Patients modal-->
                               <div style = "overflow:scroll;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">
-                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                        <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
                                                   <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
                                                  

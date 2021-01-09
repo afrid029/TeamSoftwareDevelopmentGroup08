@@ -61,9 +61,8 @@
 }
 .table-scroll td,.table-scroll th{
  
-  width:10%;
-  flex-grow:2;
-  display: block;
+  width:100%;
+ 
   
   text-align:center;
 }
@@ -144,8 +143,8 @@
           <div class="owl-theme">
                <div  class="item item-first">
                     <div class="caption">
-                         <div style="max-height:85%; width:66%; margin: 0% 17% 0 17%; background-color:white; border-radius:0.5%;" class="container">
-                              <div class="col-md-16 col-sm-12">
+                         <div style="max-height:85%; width:80%; margin: 0% 10%; background-color:white; border-radius:0.5%;" class="container">
+                              <div class="col-md-16">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
                                              <div  class="table-wrapper">
@@ -212,7 +211,7 @@
  <!--doctors modal-->
 <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="doctors" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
      <div class="modal-dialog" role="dialog">
-          <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+          <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLabel">Doctors Details</h4>
                </div>

@@ -72,9 +72,9 @@
 }
 .table-scroll td,.table-scroll th{
  
-  width:10%;
+  width:100%;
   flex-grow:2;
-  display: block;
+  display: fixed;
   
   text-align:center;
 }
@@ -108,7 +108,7 @@
      <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
 <!-- MENU -->
-<section style="background-color:white; height:10%;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+<section style="background-color:white;  padding-bottom:4px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
      <div class="container">
           <div class="navbar-header">
                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
