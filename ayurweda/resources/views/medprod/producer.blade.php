@@ -226,7 +226,7 @@
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
                                               <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
-                                                       @if($c->Pro_im)
+                                                      @if($c->Pro_im)
                                                        <img class="img" src="{{asset('upload/profile')}}/{{$c->Pro_im}}" style="  border-radius:30px; height:200px; width:100%;">
                                                        <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
