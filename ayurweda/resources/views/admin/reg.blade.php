@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-     <title>Admin</title>
+     <title>Registration</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -120,12 +120,12 @@
                    <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('regist',$c->id)}}" class="smoothScroll"><font color="red">Registration</font></a></li>
-                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Profit</a></li>
+                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Report</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
 
 
                     </ul>
@@ -198,7 +198,7 @@ Swal.fire({
                                                                  <tr>
                                                                       <td>{{$user->id}}</td>
                                                                       <td>{{$user->roll}}</td>
-                                                                      <td> <a href = "{{route('profview',['c'=>$user->id,'d'=>$c->id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      <td> <a href = "{{route('profview',['c'=>$user->id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                             @endforeach

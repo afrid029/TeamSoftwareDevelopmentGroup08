@@ -16,6 +16,10 @@ class update extends Controller
 {
     //doctor
     public function doc(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
 
         $request->validate([
             'name'=>['required'],
@@ -55,6 +59,10 @@ class update extends Controller
     }
 
     public function avedit(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         DB::table('doc_available_times')->where('id',$request->id)->update(['availableDate'=>$request->date,
                                                                         'availableTime'=>$request->time,]);
@@ -63,6 +71,10 @@ class update extends Controller
         
     }
     public function avdelete($id,$docid){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         
         DB::table('doc_available_times')->where('id',$id)->delete();
         
@@ -73,12 +85,20 @@ class update extends Controller
     
     public function docreply(Request $request)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
     
         DB::table('add_symptomps')->where('id',$request->id)->update(['reply'=>$request->reply]);
         return redirect()->route('docsymp',['c'=>$request->docid]);
     }
     public function docpic(Request $request)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'image'=>'required|image'
         ],[
@@ -87,7 +107,7 @@ class update extends Controller
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
-            $request->image->move(public_path().'/upload/docprof', $name); 
+            $request->image->move(public_path().'/upload/profile', $name); 
 
             DB::table('doctors')->where('Doc_id',$request->id)->update([
                 'Doc_im' => $name
@@ -97,6 +117,10 @@ class update extends Controller
     }
 
     public function discharge($id){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         DB::table('add_pats')->where('id',$id)->update([
             'status' => "Discharged",
             'disch_date'=>date("Y-m-d"),
@@ -108,6 +132,10 @@ class update extends Controller
 
     //producer
     public function pro(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
 
         $request->validate([
             'name'=>['required'],
@@ -149,6 +177,10 @@ class update extends Controller
 
     public function proupdatemedicine(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $req->validate([
             'uprice'=>['required'],
             'qty'=>['required'],
@@ -173,12 +205,20 @@ class update extends Controller
 
     public function promeddelete($id)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         DB::table('new_med_stocks')->where('id',$id)->delete();
         return redirect()->back()->with('msg',"Medicine deleted");
     }
 
     public function proupdateing(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         DB::table('ingredient_stocks')->where('id',$req->id)->update([
             'Ing_qty'=> $req->qty,
         ]);
@@ -188,12 +228,20 @@ class update extends Controller
 
     public function proingdelete($id)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         DB::table('ingredient_stocks')->where('id',$id)->delete();
         return redirect()->back()->with('msg',"Ingredient deleted");
     }
 
     public function propic(Request $request)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'image'=>'required|image'
         ],[
@@ -202,7 +250,7 @@ class update extends Controller
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
-            $request->image->move(public_path().'/upload/proprof', $name); 
+            $request->image->move(public_path().'/upload/profile', $name); 
 
             DB::table('medicine_producers')->where('Pro_id',$request->id)->update([
                 'Pro_im' => $name
@@ -212,6 +260,10 @@ class update extends Controller
     }
     public function reorder($id)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
             DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
                 'status' =>"Issued",
             ]);
@@ -221,6 +273,10 @@ class update extends Controller
 
     //supplier
     public function sup(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
 
         $request->validate([
             'name'=>['required'],
@@ -260,6 +316,10 @@ class update extends Controller
     }
     public function suppic(Request $request)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'image'=>'required|image'
         ],[
@@ -268,7 +328,7 @@ class update extends Controller
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
-            $request->image->move(public_path().'/upload/supprof', $name); 
+            $request->image->move(public_path().'/upload/profile', $name); 
 
             DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([
                 'Sup_im' => $name
@@ -278,6 +338,10 @@ class update extends Controller
     }
     public function supreorder($id)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
             DB::table('ingredient_orderings')->where('id',$id)->update([
                 'status' =>"Issued",
             ]);
@@ -294,10 +358,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('patients')->where('Pat_id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }
@@ -310,10 +374,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('doctors')->where('Doc_id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }
@@ -326,10 +390,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('pharmacists')->where('Phar_id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }
@@ -343,10 +407,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('medicine_producers')->where('Pro_id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }
@@ -360,10 +424,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }
@@ -377,10 +441,10 @@ class update extends Controller
             if($email==$request->email){
                 $password=rand(100000,1000000);
                 DB::table('admins')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 DB::table('all_users')->where('id',$request->id)->update([
-                    'password' =>$password,
+                    'password' =>Hash::make($password),
                 ]);
                 $s="Password reset successful";
             }

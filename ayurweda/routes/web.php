@@ -28,10 +28,13 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/login', 'PageController@login')->name('login');
+
 Route::get('/register', 'PageController@register');
 
 Route::post('/saveuser', 'Store@register');
 Route::post('/log', 'login@log');
+Route::get('enter/{c}', 'login@enter')->name('enter');
+Route::get('logout/', 'PageController@logout');
 
 //doctor routings
 
@@ -170,7 +173,9 @@ Route::get('docbill',function(){
    
 });
 
-Route::get('profview/{c}/{d}',[AdminController::class, 'profview'])->name('profview');
+Route::get('profview/{c}',[AdminController::class, 'profview'])->name('profview');
+
+Route::get('back',[AdminController::class, 'back'])->name('back');
 
 //forget password
 Route::get('/forgotp','redirect@forgotp')->name('forgotp');

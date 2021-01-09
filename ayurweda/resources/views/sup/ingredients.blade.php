@@ -132,7 +132,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                        <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -262,9 +262,9 @@
                </div>
 
                <div style="margin-top:-2%;" class="modal-body">
-                    <h6 style="float:left; margin-top:0.3%; margin-right:3%;">Medicine ID: </h6>
+                    <h6 style="float:left; margin-top:0.3%; margin-right:3%;">Ingredient ID: </h6>
                     <p style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; float:left; margin-right:30%;"id="meid"></p>
-                    <h6 style="float:left; margin-top:0.3%; margin-right:3%;">Medicine Name: </h6>
+                    <h6 style="float:left; margin-top:0.3%; margin-right:3%;">Ingredient Name: </h6>
                     <p style = "font-weight:bold; margin-left:30%; color:SaddleBrown; opacity: 0.6; "id="mename"></p>
                     
 

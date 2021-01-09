@@ -78,7 +78,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -220,10 +220,10 @@
                                              <div class="col-md-6 col-sm-6">
                                               <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                                        @if($c->Doc_im)
-                                                       <img class="img" src="{{asset('upload/docprof')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:200px;">
+                                                       <img class="img" src="{{asset('upload/profile')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:100%;">
                                                        <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @else
-                                                       <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px;  height:200px;width:200px; ">
+                                                       <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px; height:200px; width:100%; ">
                                                        <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
                                                        @endif
                                              </div>

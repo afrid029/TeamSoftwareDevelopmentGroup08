@@ -88,12 +88,12 @@ Swal.fire({
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                          <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
-                         <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Profit</a></li>
+                         <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Report</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
 
 
                     </ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Profit</title>
+    <title>Report</title>
     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -137,12 +137,12 @@ console.log(e);
                    <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
-                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll"><font color="red">Profit</font></a></li>
+                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll"><font color="red">Report</font></a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                         <li><a href="/login">Logout</a></li>
+                       <li><a  href="/logout">Logout</a></li>
 
 
                     </ul>
@@ -188,7 +188,7 @@ console.log(e);
                                                             <tr>
                                                                  <th>Order ID</th>
                                                                  <th>Date</th>
-                                                                 <th>Profit</th>
+                                                                 <th>Profit (Rs)</th>
                                                             </tr>
                                                        </thead>
                                                        
@@ -200,7 +200,7 @@ console.log(e);
                                                             <tr>
                                                                  <td>{{$pbill->	PatMedOrder_id}}</td>
                                                                  <td>{{$pbill->PatMedOrder_date}}</td>
-                                                                 <td>{{$pbill->bill}}</td>
+                                                                 <td>{{$pbill->bill}} /=</td>
                                                             </tr>
                                                     @endforeach
                                                                
@@ -211,7 +211,7 @@ console.log(e);
                                                     @endif
                                                     </tbody>
                                                   </table>
-                                                  <h3   style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;"> Rs {{$patsum}} </span></h3>
+                                                  <h3   style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;">  {{$patsum}} /=</span></h3>
                                                  
                                              </div>
                                         </div>
@@ -252,7 +252,7 @@ console.log(e);
                                                             <tr>
                                                                       <th>Meeting ID</th>
                                                                       <th>Date</th>
-                                                                      <th>Profit</th>
+                                                                      <th>Profit (Rs)</th>
                                                             </tr>
                                                        </thead>
                                                        
@@ -264,7 +264,7 @@ console.log(e);
                                                             <tr>
                                                                  <td>{{$dbill->Meeting_id}}</td>
                                                                  <td>{{$dbill->date}}</td>
-                                                                 <td>{{$dbill->bill}}</td>
+                                                                 <td>{{$dbill->bill}} /=</td>
                                                           
                                                             </tr>
                                                           @endforeach
@@ -284,7 +284,7 @@ console.log(e);
                                                        </tbody>
                                                        
                                                   </table>
-                                                       <h3  style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;"> Rs {{$drsum}} </span></h3>
+                                                       <h3  style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;">  {{$drsum}} /=</span></h3>
                                                   
                                              </div>
                                         </div>

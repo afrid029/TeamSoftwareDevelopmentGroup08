@@ -1,5 +1,5 @@
     <h3>Welcome to HELA WEDA PIYASA Ayurwedic Hospital</h3>
-    <h4>You can use this id and password for login into sysytem</h4>
+    <h4>You can use this id and password for login into system</h4>
 
 <div style="color:red;">
         <p><b>User ID : {{ $ID }}</b></p>

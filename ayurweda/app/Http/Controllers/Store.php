@@ -51,7 +51,7 @@ class Store extends Controller
         $patient=new Patient;
         $user=new AllUsers;
         if($request->password==$request->rpassword){
-            $patient->Pat_id="Pat".$np;
+            $patient->Pat_id="pat".$np;
             $patient->Pat_name=$request->name;
             $patient->Pat_email=$request->email;
             $patient->Pat_addr=$request->address;
@@ -59,11 +59,11 @@ class Store extends Controller
             $patient->dob=$request->dob;
             $patient->gender=$request->gender;
             $patient->guardian=$request->guardian;
-            $patient->password=Hash::make($request->password);
+            $patient->password= Hash::make($request->password);
             $patient->save();
 
-            $user->id="Pat".$np;
-            $user->password=$request->password;
+            $user->id="pat".$np;
+            $user->password=Hash::make($request->password);
             $user->roll="patient";
             $user->save();
             $s="Registered successfully.";
@@ -79,6 +79,10 @@ class Store extends Controller
     }
 
     public function prescript(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'patientid'=>['required'],
             'diagnosis'=>['required'],
@@ -142,6 +146,10 @@ class Store extends Controller
         
     }
     public function admit(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
 
         $request->validate([
             'patientid'=>['required'],
@@ -173,6 +181,10 @@ class Store extends Controller
     }
         
     public function available(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
 
         $request->validate([
             'date'=>['required'],
@@ -201,6 +213,10 @@ class Store extends Controller
     }
 
     public function patadmit(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'patid'=>['required'],
             'disease'=>['required'],
@@ -234,6 +250,10 @@ class Store extends Controller
     //producer
     public function proaddmedicine(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        $valid =  $req->validate([
             'medname'=>'required',
             'uprice' => 'required',
@@ -271,6 +291,10 @@ class Store extends Controller
 
     public function proadding(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        $valid =  $req->validate([
             'ingname'=>'required',
             'qty' => 'required',
@@ -296,6 +320,10 @@ class Store extends Controller
 
     public function proingorder(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        $valid =  $req->validate([
             'order'=>'required',
 
@@ -319,6 +347,10 @@ class Store extends Controller
     }
     public function newmedicine(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        $valid =  $req->validate([
             'medname'=>'required',
             'descr'=>'required',
@@ -341,6 +373,10 @@ class Store extends Controller
     //supplier
     public function newingredient(Request $req)
     {
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        $valid =  $req->validate([
             'ingname'=>'required',
             'descr'=>'required',

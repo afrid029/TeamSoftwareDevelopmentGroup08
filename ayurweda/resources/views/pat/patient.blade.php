@@ -39,6 +39,7 @@
     
 </head>
 <body>
+     
     
  <!-- PRE LOADER -->
      <section class="preloader">
@@ -72,10 +73,11 @@
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                      
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Logout</a></li>
+                    <li><a  href="/logout">Logout</a></li>
                     </div>
 
                     
@@ -83,6 +85,9 @@
 
           </div>
      </section>
+   <script>
+       
+   </script>
 
      <!-- Modal 1-->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -219,12 +224,12 @@
                                <div class="col-md-8 col-sm-12">
                                    <br><br><br><br>
                                    <div class="col-md-6 col-sm-6">
-                                        <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:235px; width:50%">
+                                        <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                              @if($c->Pimage)
-                                                  <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="padding-left:1%;  border-radius:30px; width:99%; height:230px; ">
+                                                  <img class="img" src="{{asset('upload/profile')}}/{{$c->Pimage}}" style="border-radius:30px; height:200px; width:100%; ">
                                                   <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                              @else
-                                                  <img class="img" src="{{ asset('images/patient.png')}}" style="width:98% ; height:230px; ">
+                                                  <img class="img" src="{{ asset('images/patient.png')}}" style="height:200px; width:100%; ">
                                                   <button style="border-radius:30px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                              @endif
                                         </div>

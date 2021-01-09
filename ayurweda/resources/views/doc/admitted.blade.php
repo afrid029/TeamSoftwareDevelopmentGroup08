@@ -107,7 +107,7 @@ tbody tr:hover {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -170,7 +170,7 @@ tbody tr:hover {
           <div class="modal-body">
           <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
           <input class="form-control" type="text" name="patientid" placeholder="Patient ID"><br>
-          <h4>Ingredient Name</h4>
+          <h4>Medicine Name</h4>
           @if(count($medicines))
           <input type="text" name = "ingname" id="ingname" class="form-control" list="ingredients">
           <datalist id="ingredients">
@@ -314,7 +314,7 @@ tbody tr:hover {
           Swal.fire({
                position: 'top',
                width:400,
-               text:"Order details",
+               text:"Medicine details",
                icon: 'info',
                title: a,
                

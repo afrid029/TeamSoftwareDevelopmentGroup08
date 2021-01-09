@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\sendMail;
 
@@ -20,6 +21,10 @@ class AdminController extends Controller
 {
     //
     public function adminhome($id){
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c =  DB::table('admins')->where('id', $id)->first();
         
         return view('admin/admin',compact('c',))->with('msg',"");
@@ -27,6 +32,10 @@ class AdminController extends Controller
 
     public function adminedit(Request $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'name'=>'required',
             'phone' => 'required|digits:10',
@@ -76,6 +85,10 @@ class AdminController extends Controller
 ///////////////////Registering a user/////////////////////////////////////////
 
     public function register($id){
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c =  DB::table('admins')->where('id', $id)->first();
         $users = DB::table('all_users')->orderBy('id','asc')->get();
 
@@ -89,6 +102,10 @@ class AdminController extends Controller
 
     public function addnew(Request $req)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $req->validate([
             'roll' => 'required',
             'name' => 'required',
@@ -104,8 +121,8 @@ class AdminController extends Controller
         if($req->email == $req->reemail){
              
         try{
-        $to_name = 'Afrid';
-        $to_email = $req->email;
+        $to_name = $req->name;
+        $to_email =$req->email ;
         $data = array('ID'=>$req->id, "password"=>$req->password);
         new sendMail($data);
   
@@ -201,6 +218,10 @@ class AdminController extends Controller
     }
 
     public function profit($id){
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c =  DB::table('admins')->where('id', $id)->first();
         $access = DB::table('pat_med_orderings')->where('status', 'Issued')->orderBy('created_at','desc');
        $access2 = DB::table('medical_histories')->where('issued','Issued');
@@ -216,6 +237,10 @@ class AdminController extends Controller
 
     public function patbill(Request $req)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
       
         $from = $req->from;
         $to = $req->to;
@@ -260,6 +285,10 @@ class AdminController extends Controller
     }
 
     public function docbill(Request $req){
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $from = ($req->from);
         $to = $req->to;
 
@@ -309,12 +338,17 @@ class AdminController extends Controller
         
     }
 
-    public function profview($id,$id2)
+    public function profview($id)
     {
-          $c =  DB::table('admins')->where('id', $id2)->first();
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+       
         $role  = DB::table('all_users')->where('id',$id)->value('roll');
         $d;
-        $rl ;
+        $rl;
+        $age = "";
         if($role == "doctor"){
             $d = DB::table('doctors')->where('Doc_id',$id)
                                     ->select('Doc_id as id','Doc_name as name','Doc_email as email','Doc_addr as address','Doc_pNum as phone','Doc_im as image')->first();
@@ -324,8 +358,16 @@ class AdminController extends Controller
                                     ->select('Pro_id as id','Pro_name as name','Pro_email as email','Pro_addr as address','Pro_pNum as phone','Pro_im as image')->first();
             $rl = "Medicine Producer";
         }else if($role == "patient"){
+
+            $today = date('Y-m-d');
+            $dob = DB::table('patients')->where('Pat_id',$id)->value('dob');
+
+            $age = abs(strtotime($today)-strtotime($dob));
+            $age = floor($age/(365*60*60*24));
+
              $d = DB::table('patients')->where('Pat_id',$id)
                                     ->select('Pat_id as id','Pat_name as name','Pat_email as email','Pat_addr as address','Pat_pNum as phone','Pimage as image')->first();
+            
             $rl = "Patient";
         }else if($role == "pharmacist"){
              $d = DB::table('pharmacists')->where('Phar_id',$id)
@@ -333,12 +375,14 @@ class AdminController extends Controller
             $rl = "Pharmacist";
         }
         else if($role == "admin"){
-            return redirect()->route('adminpage',$id2);
+            return redirect()->route('adminpage',$id);
         }else{
             $d = DB::table('ingredient_suppliers')->where('Sup_id',$id)
                                     ->select('Sup_id as id','Sup_name as name','Sup_email as email','Sup_addr as address','Sup_pNum as phone','Sup_im as image')->first();   
             $rl = "Ingredient Supplier";
         }
-        return view('admin/viewprofile',compact('c','d','rl'));
+        return view('admin/viewprofile',compact('d','rl','age'));
     }
+
+    
 }

@@ -34,6 +34,17 @@
       th {
         background: gray;
       }
+      .btn-outline-danger:hover{
+     color: white;
+     background-color:#191970;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: #191970;
+    border-color:#191970;
+    background-color:white;
+    
+}
     </style>
 
 </head>
@@ -77,7 +88,7 @@
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
           </div>
@@ -98,6 +109,7 @@
 
                                         
                                              <h2 style="color:#333333">Pharmacist's Medicine Orders</h2>
+                                             <a style="flolat:right; font-size:20px;  margin-bottom:3px; font-weight:bold;" data-target="#pharmacists" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit">&nbsp;&nbsp; Pharmacists</a>  
                                              <div style="float:left;">
                                              <form action="/issusearch" method="post" style="margin:auto;width:700px">
                                              @csrf
@@ -165,6 +177,50 @@
                                              </tbody>
                                         
                                         </table>
+                                        <!--Pharmacist modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="pharmacists" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel" style="color:black;">Pharmacists Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th> Pharmacist Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($phr))
+                                                            
+                                                            @foreach($phr as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Phar_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Phar_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
                                         <script>
                                              function viewing(id){
                                                   var a = document.getElementById('medi'+id).value;

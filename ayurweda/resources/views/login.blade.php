@@ -82,6 +82,16 @@ Swal.fire({
                timer: 1500
           });
      </script>
+@elseif($msg == "Login First")
+<script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'warning',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+          });
+     </script>
 @else
      <script>
           Swal.fire({

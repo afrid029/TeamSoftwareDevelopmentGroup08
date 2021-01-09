@@ -26,36 +26,81 @@
      <link rel="stylesheet" type="text/css" href="{{ asset('css/preview.css')}}">
     <script src="{{ asset('js/preview.js') }}"></script>
     <style>
-   a {
-        font-weight: bold;
-   }
-   .link a:link{
-     background-color: #8B0000;
+  
+   .table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: darkred;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
      
-     text-align: center;
-     text-decoration: none;
-     display: inline-block;
-     padding:8px;
-     border-radius: 5px;
-   }
-   .link a:visited {
-     background-color: #8B0000;
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 48vh;
+  
+}
+.small-col{flex-basis:10%;}
+.btn-outline-danger:hover{
      color: white;
-     text-align: center;
-     text-decoration: none;
-     display: inline-block;
-   }
-   
-   
-   
-   .link a:active {
+     background-color:darkred;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: darkred;
+    border-color:darkred;
     
-     background-color: #8B0000;
-   }
+}
    </style>
     
 </head>
 <body>
+     <script>
+          console.log("{{session()->get('key')}}");
+     </script>
      <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
@@ -79,10 +124,11 @@
 
                     <!-- lOGO TEXT HERE -->
                     <a href="/welcome" class="navbar-brand">Hospital</a>
+                    
                </div>
               
                <!-- MENU LINKS -->
-               <div style = "width:90%;" class="collapse navbar-collapse">
+               <div style = "width:94%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
                          <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
                         <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll"><font color="red">State Medical Symptoms</font></a></li>
@@ -90,9 +136,10 @@
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
                          
+                         
                     </ul>
-                    <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Logout</a></li>
+                    <div  class="nav navbar-nav navbar-right">
+                    <li><a  href="/logout">Logout</a></li>
                     </div>
 
                     
@@ -103,83 +150,127 @@
 <!-- HOME -->
 
 
-<section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
+<section id="home"  class="slider" data-stellar-background-ratio="0.5">
+     <div class="row">
+          <div class="owl-theme">
+               <div  class="item item-first">
+                    <div class="caption">
+                         <div style="max-height:85%; width:66%; margin: 0% 17% 0 17%; background-color:white; border-radius:0.5%;" class="container">
+                              <div class="col-md-16 col-sm-12">
+                                   <div  class="container-lg">
+                                        <div  class="table-responsive">
+                                             <div  class="table-wrapper">
+                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Your Medical Symptoms</h2></div>
+                                                       <div class="table-title">
+                                                            <div style="margin-top:2%; float:right; margin-right:2%;" >
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#symptomp"><i class="fa fa-plus"></i>&nbsp;&nbsp; Add New Symptom</button>
+                                                            </div>
+                                                       </div>
+                                                       <table id="myTable" style="color:black; width:100%;" class="table table-bordered table-scroll">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Date </th>
+                                                                      <th>Time</th>
+                                                                      <th>Medical Symptoms</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody  class="body-half-screen">
+                                                            @if(count($d) > 0)
+                                                            <?php $z = 0; ?>
+                                                                 @foreach($d as $info)
+                                                                 <tr>
+                                                                      <td><p style=" text-align:center" ><b>{{$info->date}}</b></p></td>
+                                                                      <td><p style=" text-align:center"><b>{{$info->time}}</b></p></td>
+                                                                      <input type="hidden" id = "dbtext<?php echo $z; ?>" value = "{{$info->text}}"/>
+                                                                      <input type="hidden" id = "dbid<?php echo $z; ?>" value = "{{$info->id}}"/>
+                                                                      <input type="hidden" id = "dbdate<?php echo $z; ?>" value = "{{$info->date}}"/>
+                                                                      <input type="hidden" id = "dbtime<?php echo $z; ?>" value = "{{$info->time}}"/>
+                                                                      <input type="hidden" id = "dbdrid<?php echo $z; ?>" value = "{{$info->Doc_id}}"/>
+                                                                      <input type="hidden" id = "dbaudio<?php echo $z; ?>" value = "{{$info->audio}}"/>
+                                                                      <input type="hidden" id = "dbimg<?php echo $z; ?>" value = "{{$info->img}}"/>
+                                                                      <input type="hidden" id = "dbreply<?php echo $z; ?>" value = "{{$info->reply}}"/>
 
-                    <div class="owl-theme">
-                         <div class="item item-first">
-                              <div class="caption">
-                                   <div class="container">
-                                   <button style="width:40%; margin-left:30%; margin-right:30%; margin-top:-5%;" data-toggle = "modal" data-target = "#symptomp" type="button" class="btn btn-primary btn-lg">Add Symptomp</button>
-                                   <div style="width:60%; margin-left:20%; margin-right:20%;" class="col-lg-3">
-                                        <h2 style="color:#ffffff; text-align:center; width:96%; margin: 0 2%;">Your Medical Symptoms History</h2>
-                              
-                                        <table style="background-color:white;border:5px; " class="table table-bordered" >
-                                        
-                                             <thead >
+                                                                      
+                                                                 
+                                                                      <td style=" text-align:center">
+                                                                 
+                                                                      
+                                                                      <button type="submit" id = "button" data-toggle="modal" onclick="viewSymp(<?php echo $z; ?>)" data-target="#viewsymp" class="btn btn-primary btn-sm" >View</button>
+                                                                      @if($info->reply)
+                                                                      <span>&nbsp;<b style = "color:red;">Replied</b></span> 
+                                                                      @endif
+                                                                      </td>
+
+                                                                 
+                                                                      
+                                                                 </tr>
+                                                                 <?php $z++;?>
+                                                                 @endforeach   
+                                                                 
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="3"><h3 style=" color:black;text-align: center;">You don't state any symptoms</h3></td>
+                                                                 </tr>
+                                                            @endif   
+                                                       </tbody>
                                              
-                                                  <tr style="background-color:#800000; height:1px;">
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Date</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Time</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Medical Symptoms</b></th> 
-                                                  </tr>
-                                             </thead>
-                                             <tbody>
-                                             @if(count($d) > 0)
-                                             <?php $z = 0; ?>
-                                                  @foreach($d as $info)
-                                                  <tr>
-                                                       <td><p style=" text-align:center" >{{$info->date}}</p></td>
-                                                       <td><p style=" text-align:center">{{$info->time}}</p></td>
-                                                       <input type="hidden" id = "dbtext<?php echo $z; ?>" value = "{{$info->text}}"/>
-                                                       <input type="hidden" id = "dbid<?php echo $z; ?>" value = "{{$info->id}}"/>
-                                                       <input type="hidden" id = "dbdate<?php echo $z; ?>" value = "{{$info->date}}"/>
-                                                       <input type="hidden" id = "dbtime<?php echo $z; ?>" value = "{{$info->time}}"/>
-                                                       <input type="hidden" id = "dbdrid<?php echo $z; ?>" value = "{{$info->Doc_id}}"/>
-                                                       <input type="hidden" id = "dbaudio<?php echo $z; ?>" value = "{{$info->audio}}"/>
-                                                       <input type="hidden" id = "dbimg<?php echo $z; ?>" value = "{{$info->img}}"/>
-                                                       <input type="hidden" id = "dbreply<?php echo $z; ?>" value = "{{$info->reply}}"/>
-
-                                                       
-                                                      
-                                                       <td style=" text-align:center">
-                                                       
-                                                       <button type="submit" id = "button" data-toggle="modal" onclick="viewSymp(<?php echo $z; ?>)" data-target="#viewsymp" class="btn btn-primary btn-sm" >View</button>
-                                                       
-                                                       </td>
-
-                                                  
-                                                       
-                                                  </tr>
-                                                  <?php $z++;?>
-                                                  @endforeach   
-                                                  
-                                             @else
-                                             <tr>
-                                                  <td colspan="3"><h3 style=" color:black;text-align: center;">You don't state any symptoms</h3></td>
-                                             </tr>
-                                             @endif     
-                                             </tbody>
-                                        
-                                        </table>
-                                        <div class="link" style="width:30%;border-radius:10%; margin-top:-12px; margin-bottom: 10px; font-size:12px;">
-                                             <a> {{ $d->links() }}</a>
+                                                  </table>
+                                                       <a style="flolat:right; font-size:20px; margin-top:-2%; margin-bottom:3px; font-weight:bold;" data-target="#doctors" data-toggle="modal" class = "btn btn-outline-danger fa fa-user-md ">&nbsp;&nbsp; Doctors</a>  
+                                             </div>
                                         </div>
-                                        
-                              
-                                   </div>
-                              </div>
-                             
-                                        
-                                   </div>
-                                   
-                                   <div>
-                              
+                                   </div>                                
                               </div>
                          </div>
                     </div>
+               </div>
           </div>
+     <div>
 </section>
+ <!--doctors modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="doctors" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Doctors Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th> Doctor Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($dr))
+                                                            
+                                                            @foreach($dr as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Doc_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Doc_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Doctors In Hospital</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
 <!--Modal 2-->
 <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="viewsymp" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">
      <div class="modal-dialog" role="dialog">
@@ -482,9 +573,12 @@ function viewSymp(id)
                                              
                                         </form>
                                         </div>
+                                        
                </div>
           </div>
+          
      </div>
+    
 </div>
 
 
@@ -501,4 +595,6 @@ function viewSymp(id)
 
 
 </body>
+
+
 </html>

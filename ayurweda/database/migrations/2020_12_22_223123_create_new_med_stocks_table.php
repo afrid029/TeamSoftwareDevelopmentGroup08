@@ -24,7 +24,7 @@ class CreateNewMedStocksTable extends Migration
             $table->date('manufactureDate');
             $table->date('expireDate');
             $table->foreign('Pro_id')->references('Pro_id')->on('medicine_producers');
-            $table->foreign('Med_id')->references('Med_id')->on('medicine_stocks');
+            $table->foreign('Med_id')->references('Med_id')->on('medicines');
             $table->timestamps();
         });
     }

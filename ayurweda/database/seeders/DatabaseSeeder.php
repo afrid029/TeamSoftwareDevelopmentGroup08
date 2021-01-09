@@ -650,7 +650,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Ashwagandha',
             'unitprice' => '30',
             'stock_qty' => '200',
-            
+             'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
             'Wlimit'=>'50',
             
             'manufactureDate' => '2020-02-02',
@@ -661,7 +661,8 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Boswellia',
             'unitprice' => '50',
             'stock_qty' => '250',
-          
+           'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
+            
             'Wlimit'=>'75',
             'manufactureDate' => '2020-04-02',
             'expireDate' => '2023-04-02'
@@ -671,7 +672,8 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Brahmi',
             'unitprice' => '90',
             'stock_qty' => '150',
-           
+           'description' => 'Brahmi is an Ayurvedic herb believed to lower inflammation, improve brain function, and reduce symptoms of ADHD. It may also increase your body’s ability to deal with stress, though more research is needed.',
+            
             'Wlimit'=>'100',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
@@ -681,6 +683,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Cumin',
             'unitprice' => '45',
             'stock_qty' => '70',
+            'description' => 'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
             
             'Wlimit'=>'50',
             'manufactureDate' => '2020-04-08',
@@ -691,17 +694,19 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Turmeric',
             'unitprice' => '100',
             'stock_qty' => '450',
-           
+           'description' => 'Turmeric is the Ayurvedic spice that gives curry its yellow color. Curcumin, its main compound, may help reduce inflammation and improve heart and brain health. However, large amounts are likely needed to attain these benefits.',
+            
             'Wlimit'=>'100',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2023-04-08'
         ]);
         DB::table('medicine_stocks')->insert([
             'Med_id' => 'med6',
-            'Med_name' => 'Licorice',
+            'Med_name' => 'Licorice root',
             'unitprice' => '80',
             'stock_qty' => '90',
-       
+       'description' => 'Licorice root, which is considered one of the worlds oldest herbal remedies, comes from the root of the licorice plant (Glycyrrhiza glabra) ( 1 ). Native to Western Asia and Southern Europe, licorice has long been used to treat various ailments and flavor candies, drinks, and medicines',
+            
             'Wlimit'=>'50',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-12-08'
@@ -711,6 +716,7 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Bitter melon',
             'unitprice' => '40',
             'stock_qty' => '100',
+            'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
             
             'Wlimit'=>'40',
             'manufactureDate' => '2020-04-08',
@@ -721,7 +727,8 @@ class DatabaseSeeder extends Seeder
             'Med_name' => 'Cardamom',
             'unitprice' => '40',
             'stock_qty' => '210',
-          
+          'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
+            
             'Wlimit'=>'80',
             'manufactureDate' => '2020-04-08',
             'expireDate' => '2022-04-08'

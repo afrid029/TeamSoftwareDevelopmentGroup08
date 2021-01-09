@@ -17,7 +17,7 @@
      <link rel="stylesheet" href="{{ asset('css/owl.carousel.css')}}">
      <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
      <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{{ asset('css/login.css')}}">
@@ -132,7 +132,7 @@
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style= "color:black;" href="/login">Logout</a></li>
+                    <li><a style="color:black;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -234,20 +234,20 @@
                                                             <?php $n = 0;?>
                                                             @foreach($med as $medi)
                                                                  <tr>
-                                                                      <td>{{$medi->Med_id	}}</td>
-                                                                      <td>{{$medi->Med_name}}</td>
+                                                                      <td><b>{{$medi->Med_id}}</b></td>
+                                                                      <td><b>{{$medi->Med_name}}</b></td>
                                                                       <td>
                                                                            <input type="hidden" id = "id<?php echo $n; ?>" value="{{$medi->Med_id }}">
                                                                            <input type="hidden" id = "name<?php echo $n; ?>" value = "{{$medi->Med_name}}">
                                                                            <input type="hidden" id = "desc<?php echo $n; ?>" value = "{{$medi->description}}">
                                                                            <button class = "btn btn-success btn-sm " data-toggle = "modal" onclick = "viewdesc(<?php echo $n; ?>)" data-target="#viewdesc">View</button>
                                                                       </td>
-                                                                      <td>{{$medi->manufactureDate}}</td>
-                                                                      <td>{{$medi->expireDate}}</td>
-                                                                      <td>{{$medi->unitprice}}</td>
-                                                                      <td>{{$medi->stock_qty}}</td>
-                                                                      <td>{{$medi->orders}}</td>
-                                                                      <td>{{$medi->Wlimit}}</td>
+                                                                      <td><b>{{$medi->manufactureDate}}</b></td>
+                                                                      <td><b>{{$medi->expireDate}}</b></td>
+                                                                      <td><b>{{$medi->unitprice}}</b></td>
+                                                                      <td><b>{{$medi->stock_qty}}</b></td>
+                                                                      <td><b>{{$medi->orders}}</b></td>
+                                                                      <td><b>{{$medi->Wlimit}}</b></td>
                                                                       <td>
                                                                            <input type="hidden" id = "mdate<?php echo $n; ?>" value="{{$medi->manufactureDate}}">
                                                                            <input type="hidden" id = "edate<?php echo $n; ?>" value = "{{$medi->expireDate}}">
@@ -381,7 +381,7 @@
                               <div class="row">
                                    <div style="width:20%; margin-right:15%; float:left;" class="column">
                                         <label>Unit price</label>
-                                        <input type="number" name = "uprice"  class="form-control">
+                                        <input type="number" step="0.01" name = "uprice"  class="form-control">
                                    </div>
                                    <div style="width:20%; margin-right:15%; float:left;" class="column">
                                         <label>Quantity</label>

@@ -133,7 +133,7 @@
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style= "color:black;" href="/login">Logout</a></li>
+                    <li><a style="color:black;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -213,13 +213,13 @@
                                    <div class="col-md-8 col-sm-12">
                                    <br><br><br><br>
                                         <div class="col-md-6 col-sm-6">
-                                        <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:235px; width:50%">
+                                        <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:50%">
                                              
                                              @if($c->PImage)
-                                                  <img class="img" src="{{asset('upload/profile')}}/{{$c->PImage}}" style="padding-left:1%;  border-radius:30px; width:99%; height:230px; ">
+                                                  <img class="img" src="{{asset('upload/profile')}}/{{$c->PImage}}" style="border-radius:30px; height:200px; width:100%;">
                                                   <button style="border-radius:20px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                              @else
-                                                  <img class="img" src="{{ asset('images/pharmacistProfile.jpg')}}" style="width:98% ; height:230px; ">
+                                                  <img class="img" src="{{ asset('images/pharmacistProfile.jpg')}}" style="border-radius:30px;height:200px; width:100%;">
                                                   <button style="border-radius:20px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile</b></button>
                                              @endif
                                         </div>

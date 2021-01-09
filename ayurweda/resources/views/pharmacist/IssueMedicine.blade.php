@@ -87,6 +87,17 @@
   
 }
 .small-col{flex-basis:10%;}
+
+.btn-outline-danger:hover{
+     color: white;
+     background-color:#191970;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: #191970;
+    border-color:#191970;
+    
+}
  </style>
 
 </head>
@@ -140,7 +151,7 @@
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style= "color:black;" href="/login">Logout</a></li>
+                    <li><a style="color:black;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -162,9 +173,11 @@
                                    <div class="table-responsive">
                                         <div class="table-wrapper">
                                             <div class="table-title">
-                                                  <div ><h2>Patient's Medicine Orders</h2></div>
-                                                       <!--<div class="row">-->
-                                                  </div>
+                                                  <h2 style="width:60%; float:left; font-size:20px; margin-left:2%;">Patient's Medicine Orders</h2>
+                                                  <a style="font-size:20px; float:right; margin-top:3%; margin-right:3%; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
+                                                
+                                                  
+                                             </div>
                                                   <table  class="table table-bordered table-scroll">
                                                        <thead>
                                                             <tr>
@@ -179,8 +192,8 @@
                                                        <?php $q = 0; ?>
                                                        @foreach($pat as $patient)
                                                             <tr>
-                                                                 <td>{{$patient->Pat_id}}</td>
-                                                                 <td>{{$patient->PatMedOrder_date}}</td>
+                                                                 <td><b>{{$patient->Pat_id}}</b></td>
+                                                                 <td><b>{{$patient->PatMedOrder_date}}</b></td>
                                                                  <td>
                                                                       <input type="hidden" id = "pid<?php echo $q; ?>" value="{{$patient->Pat_id}}">
                                                                       <input type="hidden" id = "oid<?php echo $q; ?>" value="{{$patient->PatMedOrder_id}}">
@@ -206,13 +219,6 @@
                                                             </tr>
                                                        @endif  
                                                       
-                                                            
-                                                       
-                                                       
-                                                        
-
-                                                       
-                                                       
                                                        </tbody>
                                                     
                                                   </table>
@@ -224,6 +230,51 @@
                               </div>
                                    
                          </div>
+
+                         <!--Patients modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th> Patient Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($pa))
+                                                            
+                                                            @foreach($pa as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Pat_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Patients</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
                                   
 <!-- Patient Orders-->
 <div class="modal fade" id="issueorder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -334,7 +385,7 @@
                     form.appendChild(in3);
                     form.appendChild(sub);
 
-                   document.getElementById('pbill').innerHTML = "Bill : Rs "+pay;
+                   document.getElementById('pbill').innerHTML = "Bill : "+pay+" /=";
           console.log(i);
           
      }
@@ -375,9 +426,9 @@
                                                        <?php $q = 0; ?>
                                                        @foreach($doc as $doctor)
                                                             <tr>
-                                                                 <td>{{$doctor->Doc_id}}</td>
-                                                                 <td>{{$doctor->Pat_id}}</td>
-                                                                 <td>{{$doctor->date}}</td>
+                                                                 <td><b>{{$doctor->Doc_id}}</b></td>
+                                                                 <td><b>{{$doctor->Pat_id}}</b></td>
+                                                                 <td><b>{{$doctor->date}}</b></td>
                                                                  <td>
                                                                       <input type="hidden" id = "paid<?php echo $q; ?>" value="{{$doctor->Pat_id}}">
                                                                       <input type="hidden" id = "meid<?php echo $q; ?>" value="{{$doctor->Meeting_id}}">
@@ -523,7 +574,7 @@
                     inp3.setAttribute("value", j);
                     formdr.appendChild(inp3);
                     formdr.appendChild(subdr);
-                    document.getElementById('drbill').innerHTML = "Bill : Rs "+pay;
+                    document.getElementById('drbill').innerHTML = "Bill : "+pay+" /=";
           
      }
 </script>

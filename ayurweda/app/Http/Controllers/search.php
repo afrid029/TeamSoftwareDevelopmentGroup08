@@ -10,6 +10,10 @@ class search extends Controller
 {
     //doctor
     public function pressearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->patid!=""&&$request->date!=""){
             $p=DB::table('medical_histories')->where('Pat_id',$request->patid)->whereDate('created_at',$request->date)->get();
@@ -32,6 +36,10 @@ class search extends Controller
     }
 
     public function adsearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->patid!=""&&$request->date!=""){
             $p=DB::table('add_pat_ups')->where('Pat_id',$request->patid)->whereDate('created_at',$request->date)->get();
@@ -52,6 +60,10 @@ class search extends Controller
     }
 
     public function admitsearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
         if($request->patid!=""&&$request->date!=""){
             $p=DB::table('add_pats')->where('Pat_id',$request->patid)->whereDate('ad_date',$request->date)->get();
@@ -71,6 +83,10 @@ class search extends Controller
         
     }
     public function appsearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $td=DB::table('online_bookings')->where('Doc_id',$request->docid)->where('availableDate',date("Y-m-d"))->get();
         $na=count($td);
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
@@ -87,6 +103,10 @@ class search extends Controller
 
     //producer
     public function ordersearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         if($request->supid!=""&&$request->date!=""){
             $p1=DB::table('ingredient_orderings')->where('Pro_id',$request->id)->where('Sup_id',$request->patid)->whereDate('created_at',$request->date)->get();
         }
@@ -106,6 +126,10 @@ class search extends Controller
     }
 
     public function issusearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         if($request->pharid!=""&&$request->date!=""){
             $p1=DB::table('medicine_orderings')->where('Pro_id',$request->id)->where('Phar_id',$request->pharid)->whereDate('MedOrder_date',$request->date)->get();
         }
@@ -126,6 +150,10 @@ class search extends Controller
 
     //supplier
     public function issuingsearch(Request $request){
+          $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         if($request->proid!=""&&$request->date!=""){
             $p1=DB::table('ingredient_orderings')->where('Sup_id',$request->id)->where('Pro_id',$request->proid)->whereDate('IngOrder_date',$request->date)->get();
         }

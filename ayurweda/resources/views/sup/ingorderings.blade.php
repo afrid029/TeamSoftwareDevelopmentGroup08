@@ -25,17 +25,75 @@
      <script src="{{ asset('js/preview.js') }}"></script>
      
 <style>
-.btn-dark{
-     display:none;
-    margin-top:2px;
-    width:100%;
-     background-color:Black;
-     opacity:0.8;
+   
+   .table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
 }
-.img:hover + .btn-dark, .btn-dark:hover{
-     display:inline-block;
+.table-scroll thead{
+  background-color: #191970;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
 }
-</style>
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 55vh;
+  
+}
+.small-col{flex-basis:10%;}
+.btn-outline-danger:hover{
+     color: white;
+     background-color:#191970;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: #191970;
+    border-color:#191970;
+    
+}
+ </style>
 
     
 </head>
@@ -74,7 +132,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -118,7 +176,7 @@
                          <br><br>
                          <br><br>
                          <br><br>
-                         <div style="height:70%; width:88%; margin: -12% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:85%; width:88%; margin: -6% 6% 0 6%; background-color:white; border-radius:0.5%;" class="container">
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
@@ -135,14 +193,16 @@
                                                             </div>
                                                             <input type="hidden" name="id" value = "{{$c->Sup_id}}"/>
                                                             <button style="margin-top:2%; width: 5%; float:left;" class="form-control" type="submit"><i style="color:black" class="fa fa-search"></i></button>
+                                                            <a style="flolat:right; font-size:20px; margin-top:2%; margin-left: 2%; font-weight:bold;" data-target="#producers" data-toggle="modal" class = "btn btn-outline-danger fa fa-industry">&nbsp;&nbsp; Producers</a>  
+                                            
                                                        </div>
                                                        </form>
                                                        <div class="tableFixHead">
                                                        <table id="myTable" style="color:black;" class="table table-bordered table-scroll">
                                                             <thead>
                                                                  <tr>
-                                                                 <th>Ingredient</th>
-                                                                 <th>Producer ID</th>
+                                                                 <th>Ingredient Orders</th>
+                                                                 <th>Producer Name</th>
                                                                  <th>Order Date</th>
                                                                  <th>Order status</th>
 
@@ -150,7 +210,7 @@
                                                             </thead>
 
                                                             
-                                                            <tbody>
+                                                            <tbody class="body-half-screen">
                                              @if($p1=session()->get('p1'))
                                              <?php $orders=$p1; ?>
                                              @else
@@ -167,7 +227,7 @@
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                                                                                        
                                                        </td>
-                                                       <td><p >{{$order->Pro_id}}</p></td>
+                                                       <td><p >{{$order->name}}</p></td>
                                                        <td><p >{{$order->IngOrder_date}}</p></td>
                                                        @if($order->status=="Not Issued")
                                                        <td><a href="{{route('supreorder',$order->id)}}" class="btn btn-primary btn-sm">Issue</a></td>
@@ -223,6 +283,42 @@
           </div>
      </div>
 </section>
+<div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="producers" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+     <div class="modal-dialog" role="dialog">
+          <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+               <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Pharmacists Details</h4>
+               </div>
+               <div  class="modal-body">
+                    <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                         <thead>
+                              <tr>
+                                   <th> Pharmacist Name</th>
+                                   <th>View</th>
+                              </tr>
+                         </thead>
+                         <tbody class="body-half-screen">
+                          @if(count($prod))
+                          @foreach($prod as $d)
+                              <tr>
+                                   <td>{{$d->Pro_name}}</td>
+                                   <td><a href = "{{route('profview',['c'=>$d->Pro_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                              </tr>
+                         @endforeach
+                         @else
+                              <tr>
+                                   <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
+                              </tr>
+                         @endif        
+                         </tbody>
+                    </table>             
+               </div>
+               <div class="modal-footer">
+                    <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+               </div>
+          </div>
+     </div>
+ </div>
 
 
      <!-- SCRIPTS -->

@@ -22,18 +22,30 @@ class patientsController extends Controller
     /*--------------Patient Home------------------*/
     public function pathome($id)
     {
+       
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $today = date('Y-m-d');
         $dob = DB::table('patients')->where('Pat_id',$id)->value('dob');
 
         $diff = abs(strtotime($today)-strtotime($dob));
         $diff = floor($diff/(365*60*60*24));
+       
+      
 
        return view('pat/patient',compact('c','diff'))->with('msg','');
         
     }
     public function edit(Request $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         $request->validate([
             'name'=>'required',
             'address'=>'required',
@@ -73,7 +85,11 @@ class patientsController extends Controller
     }
 
     public function changeprofile(Request $request,$id)
-    {       
+    {     
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }  
         $request->validate([
             'profile'=>'required|image'
         ],[
@@ -95,14 +111,30 @@ class patientsController extends Controller
     /*-----------Symptomps-------------*/
     public function symp($id)
     {
+         /*$st = session()->get('status');
+        if(!$st){
+            return redirect()->route('login');
+        }*/
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $c = DB::table('patients')->where('Pat_id',$id)->first();
-        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->paginate(5);
-        $dr = DB::table('doctors')->get();
+        $d = DB::table('add_symptomps')->where('Pat_id',$id)->orderBy('created_at','desc')->get();
+        $dr = DB::table('doctors')->orderBy('Doc_name','asc')->get();
+
+        
         return view('pat/symptomps',compact('c','d','dr'))->with('msg',"");
     }
 
     public function Add_Symptomps(Request $request,$id)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $valid = $request->validate([
             'dr'=>'required'
         ]);
@@ -143,6 +175,11 @@ class patientsController extends Controller
 
     public function book($id)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $d = date('Y-m-d');
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $t = DB::table('online_bookings')
@@ -152,18 +189,27 @@ class patientsController extends Controller
                         ['Pat_id','=',$id],
                         ['availableDate', '>=', $d]
                         ])
-                    ->orderBy('updated_at','desc')->paginate(5);
-        return view('pat/booking',compact('c','t'))->with('msg');
+                    ->orderBy('updated_at','desc')->get();
+         $dr = DB::table('doctors')->orderBy('Doc_name','asc')->get();
+        return view('pat/booking',compact('c','t','dr'))->with('msg');
     }
    
     public function showAvailable(Request  $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
        
        if($request->date && $request->dr)
        {
             $t = DB::table('doc_available_times')->where('Doc_id',$request->dr)
                                                 ->where('availableDate',$request->date)
-                                                ->where('availableDate',$request->date)->get();
+                                                ->orderBy('availableDate','asc')->get();
+       }else if($request->date){
+           $t = DB::table('doc_available_times')
+                                                ->where('availableDate',$request->date)
+                                                ->orderBy('availableDate','asc')->get();
        }else if($request->dr)
        {
         $date = date('Y-m-d');
@@ -180,7 +226,7 @@ class patientsController extends Controller
       
 
         $c = DB::table('patients')->where('Pat_id',$request->patid)->first();
-        $dr = DB::table('doctors')->get();
+        $dr = DB::table('doctors')->orderBy('Doc_name','asc')->get();
         $doc = $request->dr;
 
         return view('pat/appoint',compact('c','t','dr','doc'));
@@ -189,6 +235,11 @@ class patientsController extends Controller
 
     public function appoint(Request $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $c = DB::table('patients')->where('Pat_id',$request->id)->first();
         $dr = DB::table('doctors')->orderBy('Doc_name','asc')->get(); 
         $date = date('Y-m-d');
@@ -200,6 +251,11 @@ class patientsController extends Controller
 
     public function confirmAppoinment(Request $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $z = DB::table('online_bookings')->get();
         $dc = DB::table('doctors')->where('Doc_id',$request->get('did'))->value('Doc_name');
         $cnt = count($z)+1;
@@ -218,6 +274,11 @@ class patientsController extends Controller
     }
     public function deleteAppointment(Request $request)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         DB::table('online_bookings')->where('App_id',$request->appid)->delete();
 
         return redirect()->back()->with('msg',"Appoinment is cancelled");
@@ -227,6 +288,11 @@ class patientsController extends Controller
 
     public function order($id)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $stocks = DB::table('medicine_stocks')->whereRaw("stock_qty - orders > 100")
                                             ->orderBy('Med_name','asc') 
@@ -234,11 +300,15 @@ class patientsController extends Controller
         $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
                                                ->orderBy('status','desc')
                                                ->orderBy('created_at','desc')
-                                                ->paginate(5);
-        return view('pat/ordermedicine',compact('c','stocks','orders'))->with('msg',"");
+                                                ->get();
+        $phr = DB::table('pharmacists')->get();
+        return view('pat/ordermedicine',compact('c','stocks','orders','phr'))->with('msg',"");
     }
     public function ordermedicine(Request $req,$id){
-
+        $q = session()->getId();
+        if(session()->get('session') != $q){
+            return redirect()->route('login')->with('msg','Login First');
+        }
         
         $name;
 
@@ -278,10 +348,15 @@ class patientsController extends Controller
     
     public function history($id)
     {
+        $a = session()->getId();
+        if(session()->get('session') != $a){
+            return redirect()->route('login')->with('msg','Login First');
+        }
+        
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $hist = DB::table('medical_histories')->where('medical_histories.Pat_id',$id)
                                             ->orderBy('created_at','desc')
-                                            ->paginate(5);
+                                            ->get();
         return view('pat/medicalHistory',compact('c','hist'));
     }
 }

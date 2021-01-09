@@ -25,12 +25,25 @@
      <style>
       .tableFixHead {
         overflow-y: auto;
-        height: 200px;
+        height: 250px;
+        
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
+        background-color:#800000;
+      
       }
+      .btn-outline-danger:hover{
+     color: white;
+     background-color:darkred;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: darkred;
+    border-color:red;
+     background-color:white;
+}
     </style>
 
 </head>
@@ -99,7 +112,7 @@
 
                      
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -153,21 +166,23 @@
                                         <br></br>
                                         
                                          
-                                             <button style="width:60%; margin-left:42%; margin-right:30%; margin-top:-5%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
+                                             <button style="width:60%; margin-left:42%; margin-right:30%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
 
                                              <h2 style="color:#ffffff; text-align:center; width:96%; margin-left:22%;">Your Orders</h2>
                                    
 
                                         <div style="width:90%; margin-left:26%; margin-right:22%;" class="col-lg-3">
-                                             <form action="/ordersearch" method="post" style="margin:auto;width:700px">
+                                             <form action="/ordersearch" method="post" style="margin:auto;width:70%; float:left;">
                                              @csrf
                                                   <input style="color:black" type="text" placeholder="Supplier ID" name="supid">
                                                   <input style="color:black" type="date" name="date">
                                                   <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
                                                   <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
                                              </form>
+                                             <a style="flolat:right; font-size:18px; margin-bottom:3px; font-weight:bold;" data-target="#suppliers" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit">&nbsp;&nbsp; Suppliers</a>  
+                                             
                                              <div class="tableFixHead">
-                                             <table class="table table-bordered" style="background-color:#ffffff">
+                                             <table class="table table-bordered tableFixHead" style="background-color:#ffffff">
                                         
                                              <thead>
                                             
@@ -229,6 +244,50 @@
 
           </div>
      </section>
+      <!--Supplier modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="suppliers" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel" style="color:black;">Ingredient Suppliers Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Supplier Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($sup))
+                                                            
+                                                            @foreach($sup as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Sup_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Sup_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
 
 <!--Modal-->
 <div class="modal fade" id="ordermedicine" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">

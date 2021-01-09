@@ -93,6 +93,74 @@ tbody tr:nth-child(2n-1) {
 tbody tr:hover {
     background-color: rgba(129,208,177,.3);
 }
+.btn-outline-danger:hover{
+     color: #31bc86;
+     background-color:white;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: black;
+    border-color:white;
+    
+}
+
+.table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #2ea879;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 60vh;
+  
+}
+.small-col{flex-basis:10%;}
     </style>
 
 
@@ -136,7 +204,7 @@ tbody tr:hover {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -151,9 +219,10 @@ tbody tr:hover {
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:70%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5); class="container">
-                                   <div style="width:50%; margin-left:25%; margin-right:25%;" class="col-lg-3">
-                                   <h2 style="color:#222222; width:96%; margin: 0 2%;">Patients' Medical Symptomps History</h2>
+                                   <div style="height:80%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5); class="container">
+                                   <div style="width:90%; margin-left:5%; margin-right:5%;" class="col-lg-3">
+                                   <h2 style="color:#222222; width:100%; float:left; ">Patients' Medical Symptomps History</h2>
+                                    <a style=" font-size:20px; margin-top:-3%; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>  
                                    <div class="tableFixHead">
                                    <table style="background-color:white;border:5px; " class="table table-bordered" >
                                         
@@ -176,8 +245,11 @@ tbody tr:hover {
 
                                                        <form action="{{ route ('docviewSymp',['i'=> $info->id, 'j'=>$c->Doc_id]) }}" method = "get">
                                                       
-                                                            <td><button type="submit" id = "button" class="btn btn-primary btn-sm" >View</button></td>
-
+                                                            <td><button type="submit" id = "button" class="btn btn-primary btn-sm" >View</button>
+                                                            @if($info->reply)
+                                                                 <span>&nbsp;<b style = "color:red;">Replied</b></span> 
+                                                            @endif
+                                                       </td>
                                                        </form>
                                                        
                                                   </tr>
@@ -207,6 +279,50 @@ tbody tr:hover {
                     </div>
           </div>
 </section>
+<!--Patients modal-->
+                              <div style = "overflow:scroll;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Patient Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($pa))
+                                                            
+                                                            @foreach($pa as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Pat_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Patients</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($errors->any())
      <script> var a=""; </script>

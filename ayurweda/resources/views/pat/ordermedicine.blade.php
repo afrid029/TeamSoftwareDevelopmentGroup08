@@ -24,32 +24,7 @@
      <link rel="stylesheet" href="{{ asset('css/doctor.CSS')}}">
 
      <style>
-   a {
-        font-weight: bold;
-   }
-   .link a:link{
-     background-color: #8B0000;
-     color:white;
-     text-align: center;
-     text-decoration: none;
-     display: inline-block;
-     padding:8px;
-     border-radius: 5px;
-   }
-   .link a:visited {
-     background-color: #8B0000;
-     color: white;
-     text-align: center;
-     text-decoration: none;
-     display: inline-block;
-   }
    
-   
-   
-   .link a:active {
-    
-     background-color: #8B0000;
-   }
     
     .table-scroll{
   width:100%; 
@@ -65,7 +40,7 @@
   
 }
 .table-scroll thead{
-  background-color: #191970;  
+  background-color: darkred;  
   position:relative;
   display: block;
   width:100%;
@@ -104,10 +79,21 @@
   background-color: rgba(255,240,245,0.4);
 }
 .body-half-screen{
+    
   max-height: 55vh;
   
 }
 .small-col{flex-basis:10%;}
+.btn-outline-danger:hover{
+     color: white;
+     background-color:darkred;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: darkred;
+    border-color:darkred;
+    
+}
  
    </style>
 
@@ -163,7 +149,7 @@
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Logout</a></li>
+                   <li><a  href="/logout">Logout</a></li>
                     </div>
 
                     
@@ -172,107 +158,141 @@
           </div>
      </section>
 <!-- HOME -->
-<section id="home" class="slider" data-stellar-background-ratio="0.5">
-          <div class="row">
-                    <div class="owl-theme">
-                         <div class="item item-first">
-                         <div class="caption">
-                                   <div class="container">
-                                   
-                                   <button style="width:40%; margin-left:30%; margin-right:30%; margin-top:-5%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Medicine</button>
-                                   <div style="width:60%; margin-left:20%; margin-right:20%;" class="col-lg-3">
-                                        <h2 style="color:#ffffff; text-align:center; width:96%; margin: 0 2%;">Unrecieved Orders</h2>
-                              
-                                        <table style="background-color:white;border:5px; " class="table table-bordered" >
-                                        
-                                             <thead>
+
+
+<section id="home"  class="slider" data-stellar-background-ratio="0.5">
+     <div class="row">
+          <div class="owl-theme">
+               <div  class="item item-first">
+                    <div class="caption">
+                         <div style="max-height:85%; width:66%; margin: 0% 17% 0 17%; background-color:white; border-radius:0.5%;" class="container">
+                              <div class="col-md-16 col-sm-12">
+                                   <div  class="container-lg">
+                                        <div  class="table-responsive">
+                                             <div  class="table-wrapper">
+                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Unecieved Orders</h2></div>
+                                                       <div class="table-title">
+                                                            <div style="margin-top:2%; float:right; margin-right:2%;" >
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordermedicine"><i class="fa fa-plus"></i>&nbsp;&nbsp;Order Medicine</button>
+                                                            </div>
+                                                       </div>
+                                                       <table id="myTable" style="color:black; width:100%;" class="table table-bordered table-scroll">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Date </th>
+                                                                      <th>View</th>
+                                                                      <th>Order Status</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody  class="body-half-screen">
+                                                            @if(count($orders) > 0)
                                             
-                                                  <tr style="background-color:#800000; ">
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Date</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>View</b></th>
-                                                       <th style=" color:#FFFFFF;text-align:center"><b>Order Status</b></th> 
-                                                       
-                                                  </tr>
-                                             </thead> 
-                                             @if(count($orders) > 0)
-                                             <tbody>
-                                                  <?php $no = 1;?>
-                                                  @foreach($orders as $order)
-                                                  <tr>
-                                                       <td><p >{{$order->PatMedOrder_date}}</p></td>
-                                                       <td>
-                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
-                                                            <input type="hidden" id="bil<?php echo $no; ?>" value="{{$order->bill}}">
-                                                            <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
-                                                                                                                       
-                                                       </td>
-                                                       <td><p>{{$order->status}}</p></td>
-                                                      
-                                                       
-                                                  </tr>
-                                                  <?php $no++; ?>
-                                                  @endforeach 
-                                                  @else
-                                                       <tr>
-                                                            <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Have Any Orders</h3></td>
-                                                       </tr>
-                                                       
-                                                  @endif
+                                                            <?php $no = 1;?>
+                                                            @foreach($orders as $order)
+                                                            <tr>
+                                                                 <td><p ><b>{{$order->PatMedOrder_date}}</b></p></td>
+                                                                 <td>
+                                                                      <input type="hidden" id="medi<?php echo $no; ?>" value="{{$order->medicines}}">
+                                                                      <input type="hidden" id="bil<?php echo $no; ?>" value="{{$order->bill}}">
+                                                                      <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
+                                                                                                                             
+                                                                 </td>
+                                                                 <td><p><b>{{$order->status}}</b></p></td>
+                                                            
+                                                                 
+                                                            </tr>
+                                                            <?php $no++; ?>
+                                                            @endforeach 
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="3"><h3 style=" color:black;text-align: center;">You Don't Send Any Orders</h3></td>
+                                                                 </tr>
+                                                                 
+                                                            @endif
                                              </tbody>
-                                                 
-                                              
-                                                  
-                                                   
-                                                  
-                                              
                                              
-                                          
-                                        </table>
-                                       
-                                        <div class="link" style="width:30%;border-radius:10%; margin-top:-12px; margin-bottom: 10px; font-size:12px;">
-                                             <a> {{ $orders->links() }}</a>
+                                                  </table>
+                                                       <a style="flolat:right; font-size:20px; margin-top:-2%; margin-bottom:3px; font-weight:bold;" data-target="#pharmacists" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit">&nbsp;&nbsp; Pharmacists</a>  
+                                             </div>
                                         </div>
-                                        <script>
-                                             function viewing(id){
-                                                  var a = document.getElementById('medi'+id).value;
-                                                  var z = document.getElementById('bil'+id).value;
-                                                  var k = a.substring(2, a.length-2)
-                                                  var d = k.split(",");
-                                                  var result = "";
-                                                  for(var i = 0; i < d.length ; i++){
-                                                       if(i%2 == 0){
-                                                            result = result + d[i]; 
-                                                       }else{
-                                                            result = result + " "+d[i]+"\n";
-                                                       }
-                                                  }
-                                                 var bill = "Bill : Rs "+z;
-                                                
-                                                 
-                                                  Swal.fire({
-                                                       position: 'top',
-                                                       width:400,
-                                                     
-                                                       text:bill,
-                                                       icon: 'info',
-                                                       title: result,
-                                                      
-                                                       showConfirmButton: true,
-                                                      
-                                                  
-                                                  });
-                                             }
-                                                 
-                                        </script>
-                              
-                                   </div>
-                                        
-                                   </div>
+                                   </div>                                
                               </div>
                          </div>
                     </div>
+               </div>
           </div>
-</section>
+     <div>
+ </section>
+ <!--Pharmacist modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="pharmacists" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Pharmacists Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th> Pharmacist Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($phr))
+                                                            
+                                                            @foreach($phr as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Phar_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Phar_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+ <script>
+     function viewing(id){
+          var a = document.getElementById('medi'+id).value;
+          var z = document.getElementById('bil'+id).value;
+          var k = a.substring(2, a.length-2)
+          var d = k.split(",");
+          var result = "";
+          for(var i = 0; i < d.length ; i++){
+               if(i%2 == 0){
+                    result = result + d[i]; 
+               }else{
+                    result = result + " "+d[i]+"\n";
+               }
+          }
+          var bill = "Bill : Rs "+z;
+          Swal.fire({
+               position: 'top',
+               width:400,
+               text:bill,
+               icon: 'info',
+               title: result,
+               showConfirmButton: true,
+          });
+     }
+</script>
 
 <!--Modal-->
 <div class="modal fade" id="ordermedicine" tabindex="-1" role="dialog" aria-labelledby="symptomp" aria-hidden="true">

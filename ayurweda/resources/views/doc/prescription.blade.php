@@ -62,6 +62,76 @@ tbody tr:nth-child(2n-1) {
 tbody tr:hover {
     background-color: rgba(129,208,177,.3);
 }
+.btn-outline-danger:hover{
+     color: white;
+     background-color:#4682B4;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: #4682B4;
+    border-color:#4682B4;
+    
+}
+
+
+.table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #2ea879;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 60vh;
+  
+}
+.small-col{flex-basis:10%;}
+
     </style>
     <script>
     function myFunction() {
@@ -131,7 +201,7 @@ tbody tr:hover {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -189,8 +259,9 @@ Swal.fire({
      <div class="modal-content">
           <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add a prescription</h5>
-          
+           
           </div>
+
           <div class="modal-body">
           <form id = "form" method="post" action="/savepres" onsubmit="submitting()" enctype="multipart/form-data">
           {{csrf_field()}}
@@ -200,7 +271,7 @@ Swal.fire({
           <input style = "width:40%; float:right; margin-top:-4%;" class="form-control" type="text" name="disease" placeholder="Disease"><br>
           <textarea class="form-control" rows="3" cols="3"name="diagnosis" placeholder="Diagnosis"></textarea><br>
          
-<!-------------------------------------------------------------------------------------->
+
                     <h4>Medicine Name</h4>
                     @if(count($stocks) > 0)                          
                     
@@ -232,12 +303,12 @@ Swal.fire({
                     </div>
                     
                     <input type="hidden" name = "medic[]" id = "medic" >
-<!----------------------------------------------------------------------------------------------------------------->
+
           
 
           <button id="send" type = "submit" class="btn btn-primary btn-sm" style="display:none; overflow-y:fixed;">Prescript Medicine</button>
           </form>
-     <!------------------------------------------------------------------------>
+   
 
 
      <script>
@@ -361,7 +432,7 @@ Swal.fire({
 
 
 
-     <!------------------------------------------------------------------------>
+ 
           </div>
           
           <div class="modal-footer">
@@ -382,7 +453,7 @@ Swal.fire({
                                    <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
                                         <br>
-                                             <div style="float:left;">
+                                             <div style="float:left; width:40%;">
                                              <form action="/pressearch" method="post">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
@@ -391,10 +462,12 @@ Swal.fire({
                                                   <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
                                              </div>
-                                             <div style="float:right;">
-                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                             <div style="float:right; margin-right:10%;">
+                                             <button type="button" class="btn btn-primary" style="margin-right:0%;" data-toggle="modal" data-target="#exampleModal">
                                                        Add a prescription
                                              </button>
+                                             <a style="float:right; font-size:20px; margin-left:20px; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
+          
                                              </div>
                                              <br><br>
                                              <div class="tableFixHead">
@@ -458,6 +531,50 @@ Swal.fire({
 
           </div>
      </section>
+     <!--Patients modal-->
+                              <div style = "overflow:scroll;" class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Patient Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($pa))
+                                                            
+                                                            @foreach($pa as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Pat_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Patients</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
      <script>
                                              function viewing(id){
                                                   var a = document.getElementById('m'+id).value;

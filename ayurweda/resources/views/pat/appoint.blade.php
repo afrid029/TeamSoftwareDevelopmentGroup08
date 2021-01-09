@@ -117,7 +117,7 @@
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Logout</a></li>
+                    <li><a  href="/logout">Logout</a></li>
                     </div>
 
                     

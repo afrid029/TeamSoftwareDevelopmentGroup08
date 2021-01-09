@@ -62,6 +62,75 @@ tbody tr:nth-child(2n-1) {
 tbody tr:hover {
     background-color: rgba(129,208,177,.3);
 }
+.btn-outline-danger:hover{
+     color: #31bc86;
+     background-color:white;
+     border-color:grey;
+}
+.btn-outline-danger{
+     color: white;
+    border-color:white;
+    
+}
+
+
+.table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #2ea879;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:10%;
+  flex-grow:2;
+  display: block;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 60vh;
+  
+}
+.small-col{flex-basis:10%;}
     </style>
 
 </head>
@@ -106,7 +175,7 @@ tbody tr:hover {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/login">Logout</a></li>
+                         <li><a  href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -137,24 +206,34 @@ tbody tr:hover {
                                         
                                         <br>
                                         <div class="">
-                                        <div style="float:left;"><p style="font-size:20px;color:white;">No. of appointments today:<span class="label label-default">{{$na}}</span><p></div>
+                                             
+                                        <div style="float:left;"><p style="font-size:20px;color:white;">No. of appointments today:<span class="label label-default">{{$na}}</span><p>
+                                             
+                                          
+
+                                        </div>
+                                            
                                              <div style="float:right;">
-                                             <form action="/appsearch" method="post">
+                                             
+                                             <form action="/appsearch" method="post" >
                                                   {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
                                                   <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
                                                   <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
-                                             </div>
-                                             <br></br>
                                              
-                                             <div class="tableFixHead">
+                                            
+                                             </div>
+                                             
+                                             <br><br>
+                                             <a style=" font-size:20px; margin-top:1%; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
+                                              <div class="tableFixHead">
                                         <table class="table" >
                                         
                                              <thead style="position: sticky;top: 0;">
                                                   <tr>
                                                        <th>Appointment ID</th>
-                                                       <th>Patient ID</th>
+                                                       <th>Patient Name</th>
                                                        <th>Date</th>
                                                        <th>Time</th>
                                                   </tr>
@@ -169,7 +248,7 @@ tbody tr:hover {
                                                   @foreach($adp as $a)
                                                   <tr>
                                                        <td>{{$a->App_id}}</td>
-                                                       <td>{{$a->Pat_id}}</td>
+                                                       <td>{{$a->name}}</td>
                                                        <td>{{$a->availableDate}}</td>
                                                        <td>{{$a->availableTime}}</td>
                                                   </tr>
@@ -194,7 +273,50 @@ tbody tr:hover {
 
           </div>
      </section>
+ <!--Patients modal-->
+                              <div class="modal fade" id="patients" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:150%; margin-left:-25%; margin-right:-25%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Patient Name</th>
+                                                                      <th>View</th>
+                                                                      
+                                                                 </tr>
+                                                            </thead>
 
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($pa))
+                                                            
+                                                            @foreach($pa as $d)
+                                                                 <tr>
+                                                                      <td>{{$d->Pat_name}}</td>
+                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      
+                                                                 </tr>
+                                                       
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Patients</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>             
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>
