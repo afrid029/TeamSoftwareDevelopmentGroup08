@@ -17,7 +17,7 @@ class update extends Controller
     //doctor
     public function doc(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -60,7 +60,7 @@ class update extends Controller
 
     public function avedit(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
@@ -72,7 +72,7 @@ class update extends Controller
     }
     public function avdelete($id,$docid){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         
@@ -86,7 +86,7 @@ class update extends Controller
     public function docreply(Request $request)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
     
@@ -96,7 +96,7 @@ class update extends Controller
     public function docpic(Request $request)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -116,9 +116,9 @@ class update extends Controller
         return redirect()->back()->with('msg',$s);
     }
 
-    public function discharge($id){
+    public function discharge($id,$id2){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('add_pats')->where('id',$id)->update([
@@ -133,7 +133,7 @@ class update extends Controller
     //producer
     public function pro(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -178,7 +178,7 @@ class update extends Controller
     public function proupdatemedicine(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->proid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $req->validate([
@@ -203,10 +203,10 @@ class update extends Controller
 
     }
 
-    public function promeddelete($id)
+    public function promeddelete($id,$id2)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('new_med_stocks')->where('id',$id)->delete();
@@ -216,7 +216,7 @@ class update extends Controller
     public function proupdateing(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->proid){
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('ingredient_stocks')->where('id',$req->id)->update([
@@ -226,10 +226,10 @@ class update extends Controller
 
     }
 
-    public function proingdelete($id)
+    public function proingdelete($id,$id1)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id1){
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('ingredient_stocks')->where('id',$id)->delete();
@@ -239,7 +239,7 @@ class update extends Controller
     public function propic(Request $request)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -258,10 +258,10 @@ class update extends Controller
             
             return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
     }
-    public function reorder($id)
+    public function reorder($id,$id2)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
             DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
@@ -274,7 +274,7 @@ class update extends Controller
     //supplier
     public function sup(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -317,7 +317,7 @@ class update extends Controller
     public function suppic(Request $request)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -336,10 +336,10 @@ class update extends Controller
             
             return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
     }
-    public function supreorder($id)
+    public function supreorder($id,$id2)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
             DB::table('ingredient_orderings')->where('id',$id)->update([

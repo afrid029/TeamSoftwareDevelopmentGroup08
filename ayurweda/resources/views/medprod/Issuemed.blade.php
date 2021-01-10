@@ -158,7 +158,7 @@
                                                        <td><p >{{$order->Phar_id}}</p></td>
                                                        <td><p >{{$order->MedOrder_date}}</p></td>
                                                        @if($order->status=="Not Issued")
-                                                       <td><a href="{{route('reorder',$order->MedOrder_id)}}" class="btn btn-primary btn-sm">Issue Order</a></td>
+                                                       <td><a href="{{route('reorder',['c'=>$order->MedOrder_id,'d'=>$c->Pro_id])}}" class="btn btn-primary btn-sm">Issue Order</a></td>
                                                        @else
                                                        <td><p >Issued</p></td>
                                                        @endif

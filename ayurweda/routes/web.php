@@ -60,7 +60,7 @@ Route::post('/docreply', 'update@docreply');
 Route::get('appointment/{c}/', 'redirect@appointment')->name('appointment');
 Route::post('/appsearch', 'search@appsearch');
 Route::post('/docpic', 'update@docpic');
-Route::get('discharge/{c}/', 'update@discharge')->name('discharge');
+Route::get('discharge/{c}/{d}', 'update@discharge')->name('discharge');
 
 
 //Patients Routings
@@ -96,15 +96,15 @@ Route::get('ordering/{c}/', 'redirect@ordering')->name('ordering');
 Route::post('/proedit', 'update@pro');
 Route::post('/proaddmedicine', 'store@proaddmedicine');
 Route::post('/proupdatemedicine', 'update@proupdatemedicine');
-Route::get('promeddelete/{c}/', 'update@promeddelete')->name('promeddelete');
+Route::get('promeddelete/{c}/{d}', 'update@promeddelete')->name('promeddelete');
 Route::post('/proadding', 'store@proadding');
-Route::get('proingdelete/{c}/', 'update@proingdelete')->name('proingdelete');
+Route::get('proingdelete/{c}/{d}', 'update@proingdelete')->name('proingdelete');
 Route::post('/proupdateing', 'update@proupdateing');
 Route::post('/proingorder', 'store@proingorder');
 Route::post('/propic', 'update@propic');
 Route::post('/ordersearch', 'search@ordersearch');
 Route::post('/issusearch', 'search@issusearch');
-Route::get('reorder/{c}/', 'update@reorder')->name('reorder');
+Route::get('reorder/{c}/{d}', 'update@reorder')->name('reorder');
 Route::get('medicines/{c}/', 'redirect@medicines')->name('medicines');
 Route::post('/newmedicine', 'store@newmedicine');
 
@@ -119,8 +119,8 @@ Route::post('updatemedicine/{c}',[pharmacistController::class, 'Updatemedicine']
 Route::post('DelMedicine/{c}',[pharmacistController::class, 'DeleteMedicine']);
 
 Route::get('issueMedicine/{c}/',[pharmacistController::class, 'issueMedicine'])->name('issueMedicine');
-Route::post('issuepatorder',[pharmacistController::class, 'issuepatorder'])->name('issuepatorder');
-Route::post('issuedocorder',[pharmacistController::class, 'issuedocorder'])->name('issuedocorder');
+Route::post('issuepatorder/{c}',[pharmacistController::class, 'issuepatorder'])->name('issuepatorder');
+Route::post('issuedocorder/{c}',[pharmacistController::class, 'issuedocorder'])->name('issuedocorder');
 
 Route::get('phaordermedicine/{c}/',[pharmacistController::class, 'ordermedicine'])->name('phaordermedicine');
 Route::post('oredertopro/{c}/',[pharmacistController::class, 'oredertopro'])->name('oredertopro');
@@ -131,7 +131,7 @@ Route::post('/supedit', 'update@sup');
 Route::post('/suppic', 'update@suppic');
 Route::get('issueing/{c}/', 'redirect@issueing')->name('issueing');
 Route::get('newing/{c}/', 'redirect@newing')->name('newing');
-Route::get('supreorder/{c}/', 'update@supreorder')->name('supreorder');
+Route::get('supreorder/{c}/{d}', 'update@supreorder')->name('supreorder');
 Route::post('/newingredient', 'store@newingredient');
 Route::post('/issuingsearch', 'search@issuingsearch');
 

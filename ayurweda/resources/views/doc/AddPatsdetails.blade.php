@@ -62,6 +62,63 @@ tbody tr:nth-child(2n-1) {
 tbody tr:hover {
     background-color: rgba(129,208,177,.3);
 }
+.table-scroll{
+  width:100%; 
+  display: block;
+ 
+  empty-cells: show;
+
+  border-radius:1.5%;
+  margin-top:2%;
+  
+  /* Decoration */
+
+  
+}
+.table-scroll thead{
+  background-color: #2ea879;  
+  position:relative;
+  display: block;
+  width:100%;
+  color:white;
+  
+  overflow-y: scroll;
+}
+.table-scroll tbody{
+     
+  /* Position */
+  display: block; position:relative;
+  width:100%; overflow-y:scroll;
+  /* Decoration */
+  border-top: 4px solid rgba(128,128,128,0.3);
+}
+.table-scroll tr{
+  width: 100%;
+  display:flex;
+  
+}
+.table-scroll td,.table-scroll th{
+ 
+  width:100%;
+  flex-grow:2;
+  display: fixed;
+  
+  text-align:center;
+}
+/* Other options */
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+  flex-basis:100%;
+  flex-grow:1;
+}
+.table-scroll tbody tr:nth-child(2n){
+  background-color: rgba(255,240,245,0.4);
+}
+.body-half-screen{
+  max-height: 50vh;
+  
+}
+.small-col{flex-basis:10%;}
     </style>
 
 </head>
@@ -191,7 +248,7 @@ Swal.fire({
                     <div class="owl-theme">
                     <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                   <div style="height:80%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                    <br>
                                         <div class="">
                                              <div>
@@ -240,7 +297,7 @@ Swal.fire({
                                                        <td>{{$a->disease}}</td>
                                                        <td>{{$a->bedno}}</td>
                                                        @if($a->status=="Admitted")
-                                                       <td><a href="{{route('discharge',$a->id)}}" class = "btn btn-danger btn-sm">Discharge</a></td>
+                                                       <td><a href="{{route('discharge',['c'=>$a->id,'d'=>$c->Doc_id])}}" class = "btn btn-danger btn-sm">Discharge</a></td>
                                                        @else
                                                        <td>{{$a->status}}</td>
                                                        @endif

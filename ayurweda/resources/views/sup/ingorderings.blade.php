@@ -230,7 +230,7 @@
                                                        <td><p >{{$order->name}}</p></td>
                                                        <td><p >{{$order->IngOrder_date}}</p></td>
                                                        @if($order->status=="Not Issued")
-                                                       <td><a href="{{route('supreorder',$order->id)}}" class="btn btn-primary btn-sm">Issue</a></td>
+                                                       <td><a href="{{route('supreorder',['c'=>$order->id,'d'=>$c->Sup_id])}}" class="btn btn-primary btn-sm">Issue</a></td>
                                                        @else
                                                        <td><p >{{$order->status}}</p></td>
                                                        @endif
@@ -287,13 +287,13 @@
      <div class="modal-dialog" role="dialog">
           <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Pharmacists Details</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Producers Details</h4>
                </div>
                <div  class="modal-body">
                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
                          <thead>
                               <tr>
-                                   <th> Pharmacist Name</th>
+                                   <th> Producer Name</th>
                                    <th>View</th>
                               </tr>
                          </thead>

@@ -11,7 +11,7 @@ class search extends Controller
     //doctor
     public function pressearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
@@ -37,7 +37,7 @@ class search extends Controller
 
     public function adsearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
@@ -61,7 +61,7 @@ class search extends Controller
 
     public function admitsearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$request->docid)->first();
@@ -84,7 +84,7 @@ class search extends Controller
     }
     public function appsearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid ){
             return redirect()->route('login')->with('msg','Login First');
         }
         $td=DB::table('online_bookings')->where('Doc_id',$request->docid)->where('availableDate',date("Y-m-d"))->get();
@@ -104,7 +104,7 @@ class search extends Controller
     //producer
     public function ordersearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         if($request->supid!=""&&$request->date!=""){
@@ -127,7 +127,7 @@ class search extends Controller
 
     public function issusearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         if($request->pharid!=""&&$request->date!=""){
@@ -151,7 +151,7 @@ class search extends Controller
     //supplier
     public function issuingsearch(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         if($request->proid!=""&&$request->date!=""){

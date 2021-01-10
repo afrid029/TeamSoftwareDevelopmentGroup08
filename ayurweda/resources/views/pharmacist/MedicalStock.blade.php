@@ -331,6 +331,7 @@
                     <div style="margin-left:5%;" class="form-group">
                          <form action="/addmedicine" method = "post">
                               @csrf 
+                              <input type="hidden" name="usid" value = "{{$c->Phar_id}}">
                               <div class="row">
                                    
                                    

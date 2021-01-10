@@ -13,6 +13,7 @@ class login extends Controller
 
       
             $password=DB::table('all_users')->where('id',$request->id)->value('password');
+            $uid=DB::table('all_users')->where('id',$request->id)->value('id');
         $roll=DB::table('all_users')->where('id',$request->id)->value('roll');
    
         
@@ -21,53 +22,53 @@ class login extends Controller
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('pathome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('pathome',['c'=>$uid]);
             }
             elseif($roll=="doctor"){
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('dochome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('dochome',['c'=>$uid]);
             }
             elseif($roll=="pharmacist"){
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('phahome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('phahome',['c'=>$uid]);
                 
             }
             elseif($roll=="producer"){
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('mphome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('mphome',['c'=>$uid]);
 
             }
             elseif($roll=="supplier"){
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('suphome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('suphome',['c'=>$uid]);
 
             }
             elseif($roll=="admin"){
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('adminpage',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('adminpage',['c'=>$uid]);
             }
             else{
                 session()->regenerate();
                 $sid = session()->getId();
                 session(['session'=>$sid]);
-                session(['userid'=>$request->id]);
-                return redirect()->route('suphome',['c'=>$request->id]);
+                session(['userid'=>$uid]);
+                return redirect()->route('suphome',['c'=>$uid]);
 
             }
         }

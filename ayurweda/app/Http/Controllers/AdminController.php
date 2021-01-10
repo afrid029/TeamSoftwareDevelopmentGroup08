@@ -22,7 +22,7 @@ class AdminController extends Controller
     //
     public function adminhome($id){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c =  DB::table('admins')->where('id', $id)->first();
@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function adminedit(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
     public function register($id){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c =  DB::table('admins')->where('id', $id)->first();
@@ -103,7 +103,7 @@ class AdminController extends Controller
     public function addnew(Request $req)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->usid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $req->validate([
@@ -219,7 +219,7 @@ class AdminController extends Controller
 
     public function profit($id){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c =  DB::table('admins')->where('id', $id)->first();
@@ -238,7 +238,7 @@ class AdminController extends Controller
     public function patbill(Request $req)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->aid){
             return redirect()->route('login')->with('msg','Login First');
         }
       
@@ -286,7 +286,7 @@ class AdminController extends Controller
 
     public function docbill(Request $req){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->aid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $from = ($req->from);

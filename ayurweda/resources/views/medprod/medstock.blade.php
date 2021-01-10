@@ -186,7 +186,7 @@
                                                                            <input type="hidden" id = "edate<?php echo $n; ?>" value = "{{$medi->expireDate}}">
                                                                            <input type="hidden" id = "prc<?php echo $n; ?>" value = "{{$medi->unitprice}}">
                                                                            <input type="hidden" id = "stk<?php echo $n; ?>" value = "{{$medi->stock_qty}}">
-                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<a href="{{route('promeddelete',$medi->id)}}" class = "btn btn-danger btn-sm">Delete</a>
+                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<a href="{{route('promeddelete',['c'=>$medi->id,'d'=>$c->Pro_id])}}" class = "btn btn-danger btn-sm">Delete</a>
                                                                       </td>
                                                                  </tr>
                                                             <?php $n++; ?>

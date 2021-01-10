@@ -28,10 +28,10 @@ class Store extends Controller
             'dob'=>['required'],
             'gender'=>['required'],
             'address'=>['required'],
-            'phone'=>['required'],
+            'phone'=>'required|digits:10',
             'guardian'=>['required'],
             'email'=>['required'],
-            'password'=>['required'],
+            'password'=>'required|min:6',
             'rpassword'=>['required'],
         ],
         [
@@ -43,7 +43,8 @@ class Store extends Controller
             'guardian.required' => 'Guardian is empty',
             'email.required' => 'Email is empty',
             'password.required' => 'Password is empty',
-            'rpassword.required' => 'Password retype is empty'
+            'rpassword.required' => 'Password retype is empty',
+            
         ]);
 
         $p=DB::table('patients')->get();
@@ -80,7 +81,7 @@ class Store extends Controller
 
     public function prescript(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -147,7 +148,7 @@ class Store extends Controller
     }
     public function admit(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -182,7 +183,7 @@ class Store extends Controller
         
     public function available(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -214,7 +215,7 @@ class Store extends Controller
 
     public function patadmit(Request $request){
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->docid){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -251,7 +252,7 @@ class Store extends Controller
     public function proaddmedicine(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([
@@ -292,7 +293,7 @@ class Store extends Controller
     public function proadding(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([
@@ -321,7 +322,7 @@ class Store extends Controller
     public function proingorder(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([
@@ -348,7 +349,7 @@ class Store extends Controller
     public function newmedicine(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([
@@ -374,7 +375,7 @@ class Store extends Controller
     public function newingredient(Request $req)
     {
           $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([

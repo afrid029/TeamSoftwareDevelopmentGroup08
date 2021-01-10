@@ -18,7 +18,7 @@ class pharmacistController extends Controller
     public function phaHome($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
@@ -28,7 +28,7 @@ class pharmacistController extends Controller
     public function phaEdit(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -80,7 +80,7 @@ class pharmacistController extends Controller
     public function pharprofilepicture(Request $request, $id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
@@ -104,7 +104,7 @@ class pharmacistController extends Controller
     public function medicalstock($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
@@ -124,7 +124,7 @@ class pharmacistController extends Controller
     public function AddMedicine(Request $req)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $req->usid){
             return redirect()->route('login')->with('msg','Login First');
         }
        $valid =  $req->validate([
@@ -180,7 +180,7 @@ class pharmacistController extends Controller
     public function Updatemedicine(Request $req,$id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $valid =  $req->validate([
@@ -219,7 +219,7 @@ class pharmacistController extends Controller
     public function DeleteMedicine(Request $req, $id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('medicine_stocks')->where('Med_id',$req->delid)->delete();
@@ -230,7 +230,7 @@ class pharmacistController extends Controller
     public function issueMedicine($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
@@ -244,10 +244,10 @@ class pharmacistController extends Controller
         return view('pharmacist/IssueMedicine',compact('c','pat','doc','pa'))->with('orbill','ok')->with('msg', "");
     }
 
-    public function issuepatorder(Request $req)
+    public function issuepatorder(Request $req,$id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $count = $req->count;
@@ -272,10 +272,10 @@ class pharmacistController extends Controller
         return redirect()->back()->with('msg','Order Issued');
     }
 
-    public function issuedocorder(Request $req)
+    public function issuedocorder(Request $req,$id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $count = $req->countdr;
@@ -303,7 +303,7 @@ class pharmacistController extends Controller
     public function ordermedicine($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
@@ -322,7 +322,7 @@ class pharmacistController extends Controller
     public function oredertopro(Request $req, $id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
        $ord = new Medicine_ordering;

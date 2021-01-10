@@ -12,7 +12,7 @@ class redirect extends Controller
 
     public function dochome($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
@@ -20,7 +20,7 @@ class redirect extends Controller
     }
     public function prescription($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
@@ -34,7 +34,7 @@ class redirect extends Controller
     }
     public function admitted($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $medicines = DB::table('medicines')->get();
@@ -45,7 +45,7 @@ class redirect extends Controller
     }
     public function available($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
@@ -56,7 +56,7 @@ class redirect extends Controller
     }
     public function addpatdetails($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $p=DB::table('add_pats')->get();
@@ -67,7 +67,7 @@ class redirect extends Controller
     }
     public function docsymp($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
@@ -78,7 +78,7 @@ class redirect extends Controller
     public function show($id,$id2)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('doctors')->where('Doc_id',$id2)->first();
@@ -88,7 +88,7 @@ class redirect extends Controller
 
     public function appointment($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $td=DB::table('online_bookings')->where('Doc_id',$t)->where('availableDate',date("Y-m-d"))->get();
@@ -109,7 +109,7 @@ class redirect extends Controller
 
     public function mphome($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
@@ -117,7 +117,7 @@ class redirect extends Controller
     }
     public function issuemedicine($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
@@ -128,7 +128,7 @@ class redirect extends Controller
     }
     public function Ingstock($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
@@ -139,7 +139,7 @@ class redirect extends Controller
     }
     public function medstock($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
@@ -150,7 +150,7 @@ class redirect extends Controller
     }
     public function ordering($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $ingredients = DB::table('ingredients')->get();
@@ -162,7 +162,7 @@ class redirect extends Controller
     }
     public function medicines($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
@@ -174,7 +174,7 @@ class redirect extends Controller
     //supplier
     public function suphome($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
@@ -182,7 +182,7 @@ class redirect extends Controller
     }
     public function issueing($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
@@ -197,7 +197,7 @@ class redirect extends Controller
     }
     public function newing($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('ingredient_suppliers')->where('Sup_id',$t)->first();
@@ -208,10 +208,11 @@ class redirect extends Controller
 
     public function adminhome($t){
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
-        return view('admin/admin')->with('msg',"");
+        return redirect()->route('adminpage',$t);
+        
     }
 
     //forget password

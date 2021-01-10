@@ -285,7 +285,7 @@
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
                <div class="modal-body">
-                   <form id = "form" action="{{ route('issuepatorder') }}" method="post">
+                   <form id = "form" action="{{ route('issuepatorder',$c->Phar_id) }}" method="post">
                    @csrf
                   
                    <label style=" font-size:10px; float:left; margin-top:1%;" for="">Order ID: </label>
@@ -473,7 +473,7 @@
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
                <div class="modal-body">
-                   <form id = "formdr" action="{{ route('issuedocorder') }}" method="post">
+                   <form id = "formdr" action="{{ route('issuedocorder',$c->Phar_id) }}" method="post">
                    @csrf
                   
                    <label style=" font-size:10px; float:left; margin-top:1%;" for="">Meeting ID: </label>

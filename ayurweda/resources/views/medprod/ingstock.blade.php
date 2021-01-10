@@ -173,7 +173,7 @@
                                                                            <input type="hidden" id = "id<?php echo $n; ?>" value="{{$ingr->Ing_id }}">
                                                                            <input type="hidden" id = "name<?php echo $n; ?>" value = "{{$ingr->Ing_name}}">
                                                                            <input type="hidden" id = "stk<?php echo $n; ?>" value = "{{$ingr->Ing_qty}}">
-                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<a href="{{route('proingdelete',$ingr->id)}}" class = "btn btn-danger btn-sm">Delete</a>
+                                                                           <button data-toggle="modal" onclick = "edit(<?php echo $n; ?>)" data-target="#edit" class = "btn btn-primary btn-sm">Edit</button>&nbsp;<a href="{{route('proingdelete',['c'=>$ingr->id,'d'=>$c->Pro_id])}}" class = "btn btn-danger btn-sm">Delete</a>
                                                                       </td>
                                                                  </tr>
                                                             <?php $n++; ?>

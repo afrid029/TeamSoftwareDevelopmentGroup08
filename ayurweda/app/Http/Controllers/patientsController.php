@@ -24,7 +24,7 @@ class patientsController extends Controller
     {
        
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -43,14 +43,14 @@ class patientsController extends Controller
     public function edit(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
         $request->validate([
             'name'=>'required',
             'address'=>'required',
             'phone'=>'required|max:10',
-            'npassword'=>'required',
+            'npassword'=>'required|min:6',
             'opassword'=>'required'
         ],
         [
@@ -58,7 +58,8 @@ class patientsController extends Controller
             'address.required' => 'Address is empty',
             'phone.required' => 'Phone is empty',
             'npassword.required' => 'New password is empty',
-            'opassword.required' => 'Old Password is empty'
+            'opassword.required' => 'Old Password is empty',
+           
         ]);
         
             $pw = DB::table('all_users')->where('id', $request->id)->value('password');
@@ -87,7 +88,7 @@ class patientsController extends Controller
     public function changeprofile(Request $request,$id)
     {     
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }  
         $request->validate([
@@ -116,7 +117,8 @@ class patientsController extends Controller
             return redirect()->route('login');
         }*/
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
+            
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -131,7 +133,7 @@ class patientsController extends Controller
     public function Add_Symptomps(Request $request,$id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -176,7 +178,7 @@ class patientsController extends Controller
     public function book($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -197,7 +199,7 @@ class patientsController extends Controller
     public function showAvailable(Request  $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->patid){
             return redirect()->route('login')->with('msg','Login First');
         }
        
@@ -236,7 +238,7 @@ class patientsController extends Controller
     public function appoint(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -252,7 +254,7 @@ class patientsController extends Controller
     public function confirmAppoinment(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->pid){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -275,7 +277,7 @@ class patientsController extends Controller
     public function deleteAppointment(Request $request)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $request->ptid){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -289,7 +291,7 @@ class patientsController extends Controller
     public function order($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
 
@@ -306,7 +308,7 @@ class patientsController extends Controller
     }
     public function ordermedicine(Request $req,$id){
         $q = session()->getId();
-        if(session()->get('session') != $q){
+        if(session()->get('session') != $q || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
         
@@ -349,7 +351,7 @@ class patientsController extends Controller
     public function history($id)
     {
         $a = session()->getId();
-        if(session()->get('session') != $a){
+        if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
         }
 

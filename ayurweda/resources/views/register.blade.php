@@ -123,7 +123,7 @@ Swal.fire({
                                              <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><h4>{{"your id is $id"}}</h4><br>
-                                                       <input class="form-control" type="date" name="dob" placeholder="Date Of Birth"><br>
+                                                       <input class="form-control" type="text" name="dob" onblur="(this.type='text')" onfocus="(this.type='date')"  placeholder="Date Of Birth"><br>
 
                                                        <select name="gender" class="form-control" placeholder="Select a gender">
                                                             <option value="none" selected disabled hidden> 

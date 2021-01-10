@@ -254,6 +254,7 @@ Swal.fire({
                     <div >
                          <form action="/addnew" method="post" >
                          @csrf
+                         <input type="hidden" name = "usid" value="{{$c->id}}">
                               <div style="width:50%; float:left;" >
                                    <select id = "roll" name ="roll" class="form-control" onchange="selectroll()" >
                                         <option value="none" selected disabled hidden>Select a roll</option>
