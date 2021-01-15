@@ -114,7 +114,8 @@ tbody tr:hover {
   width:100%;
   flex-grow:2;
   display: block;
-  
+  overflow:hidden;
+  word-wrap: break-word;
   text-align:center;
 }
 /* Other options */
