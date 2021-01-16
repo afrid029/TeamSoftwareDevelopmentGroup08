@@ -25,7 +25,7 @@
      <style>
       .tableFixHead {
         overflow-y: auto;
-        height: 340px;
+        height:73%;
         
       }
       .tableFixHead thead th {
@@ -449,8 +449,9 @@ Swal.fire({
           <div class="owl-theme">
                <div class="item item-first">
                     <div class="caption">
-                         <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
-                          <br>
+                         <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container"><br>
+                         <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Patients' Prescriptions</h2>
+                          
                               <div style="float:left; width:40%;">
                                    <form action="/pressearch" method="post">
                                    {{csrf_field()}}
@@ -461,14 +462,14 @@ Swal.fire({
                                    </form>
                               </div>
                               <div style="float:right; margin-right:10%;">
-                                   <button type="button" class="btn btn-primary" style="margin-right:0%;" data-toggle="modal" data-target="#exampleModal">
+                                   <button type="button" class="btn btn-primary" style="" data-toggle="modal" data-target="#exampleModal">
                                              Add a prescription
                                    </button>
                                    <a style="float:right; font-size:20px; margin-left:20px; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
                               </div>
                               <br><br>
-                              <div>
-                                   <table class="table table-bordered table-scroll">
+                              <div class="tableFixHead">
+                                   <table class="table">
                                         <thead>
                                              <tr>
                                                   <th>Meeting ID</th>

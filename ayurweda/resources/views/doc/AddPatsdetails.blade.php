@@ -25,7 +25,7 @@
      <style>
       .tableFixHead {
         overflow-y: auto;
-        height: 340px;
+        height:340px;
         
       }
       .tableFixHead thead th {
@@ -248,10 +248,11 @@ Swal.fire({
                     <div class="owl-theme">
                     <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:80%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                   <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                    <br>
+                                   <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Admit New Patients</h2>
                                         <div class="">
-                                             <div>
+                                        <div style="float:left;">
                                             <form action="/admitsearch" method="post" style="margin:auto;width:700px">
                                             {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
@@ -265,10 +266,9 @@ Swal.fire({
                                                             Admit a patient
                                              </button>
                                              </div>
-                                            <br></br>
-                                            <div >
-
-                                        <table class="table table-bordered table-scroll">
+                                            <br><br>
+                                            <div class="tableFixHead">
+                                        <table>
                                         
                                              <thead>
                                                   <tr>
@@ -287,7 +287,7 @@ Swal.fire({
                                              @else
                                              <?php $adp=$ad; ?>
                                              @endif
-                                             <tbody class="body-half-screen">
+                                             <tbody>
                                                   @if(count($adp) > 0)
                                                   @foreach($adp as $a)
                                                   <tr>

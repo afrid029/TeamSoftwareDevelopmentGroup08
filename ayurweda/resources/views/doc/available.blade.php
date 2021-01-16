@@ -186,20 +186,24 @@ $time="";
             <div class="">
                             <div class="item item-first">
                                 <div class="caption">
-                                    <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                    <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         <br>
+                                        <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Your Available Time Periods</h2>
                                         <div class="">
-                                             
+                                             <div style="float:left;">
+                                             <div style=" color:gray;  float:left;">
+                                             <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Date" title="Type ID">   
+                                             </div>
+                                             </div>
                                              <div style="float:right;">
-                                             <div style="margin-top:2%; float:left; margin-left:4%;" class="col-sm-1">
+                                             <div style=" float:left; margin-left:5%;" class="col-sm-1">
                                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add new available time</button>
                                              </div>
-                                             
                                              </div>
                                              <br><br>
                                              
                                              <div class="tableFixHead">
-                                        <table class="table table-hover" >
+                                        <table class="table table-hover" id="myTable">
                                              <thead>
                                                   <tr>
                                                        <th>Available Date</th>
@@ -326,6 +330,28 @@ $time="";
           document.getElementById('atime').value = atime;
      }
 </script>
+<script>
+    function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+               td = tr[i].getElementsByTagName("td")[0];
+               if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+               }       
+          }
+     }
+
+     
+     </script>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

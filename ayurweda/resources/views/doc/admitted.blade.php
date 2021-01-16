@@ -232,17 +232,17 @@ tbody tr:hover {
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                   <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
                                         <br>
-                                   
+                                        <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Admitted Patients' Records</h2>
                                         <div class="">
                                         
                                              <div style="float:left;">
                                              <form action="/adsearch" method="post" style="margin:auto;width:700px">
                                              {{csrf_field()}}
                                                   <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <div style="float:left;margin-right:10px;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
+                                                  <div style="float:left;"><input class="form-control" type="text" placeholder="Patient ID" name="patid"></div>
                                                   <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
                                                   <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
@@ -254,8 +254,8 @@ tbody tr:hover {
                                              </div>
                                              <br></br>
 
-                                             <div >
-                                        <table class="table table-bordered table-scroll" >
+                                             <div  class="tableFixHead" >
+                                        <table>
                                         
                                              <thead style="position: sticky;top: 0;">
                                                   <tr>

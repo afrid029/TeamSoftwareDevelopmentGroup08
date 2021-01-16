@@ -219,12 +219,14 @@ tbody tr:hover {
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:80%; width:90%; margin: -12% 5% ; background-color:rgba(255,255,255,0.5); class="container">
-                                   <div style="width:90%; margin-left:5%; margin-right:5%;" class="col-lg-3">
-                                   <h2 style="color:#222222; width:100%; float:left; ">Patients' Medical Symptomps History</h2>
-                                    <a style=" font-size:20px; margin-top:-3%; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>  
+                                   <div style="height:78%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5);" class="container"><br>
+                                   <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Patients' Medical Symptomps History</h2>
+                                    <a style=" font-size:20px; margin-bottom:5px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a> 
+                                    <div style="float:right; color:gray;  margin-bottom:5px; ">
+                                   <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Date" title="Type ID">   
+                                   </div> 
                                    <div style="width:100%;" class="tableFixHead">
-                                   <table style="background-color:white;border:5px; " class="table table-bordered" >
+                                   <table style="background-color:white;border:5px; " class="table table-bordered" id="myTable">
                                         
                                              <thead>
                                              @if(count($d) > 0)
@@ -473,6 +475,29 @@ tbody tr:hover {
           </div>
      </div>
 </div>
+
+<script>
+    function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+               td = tr[i].getElementsByTagName("td")[0];
+               if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+               }       
+          }
+     }
+
+     
+     </script>
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>

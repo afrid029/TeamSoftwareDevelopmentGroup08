@@ -202,33 +202,25 @@ tbody tr:hover {
                     <div class="">
                          <div class="item item-first">
                               <div class="caption">
-                                   <div style="height:70%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
+                                   <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
                                         <br>
-                                        <div class="">
-                                             
-                                        <div style="float:left;"><p style="font-size:20px;color:white;">No. of appointments today:<span class="label label-default">{{$na}}</span><p>
-                                             
-                                          
-
+                                        <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Your Appointments</h2>
+                                       <div class="">
+                                              
+                                        <div style="float:left;">
+                                        <p style="font-size:20px;color:white;float:left;">No. of appointments today:<span class="label label-default">{{$na}}</span><p>
                                         </div>
+                                        <div style=" color:gray; float:right;">
+                                        <input style="margin-left:-40%;float:left;" class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Date" title="Type ID">
+                                        <a style="float:right; font-size:20px;  margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
+                                        
+                                        </div>
+                                             
+                                        <br><br>
                                             
-                                             <div style="float:right;">
-                                             
-                                             <form action="/appsearch" method="post" >
-                                                  {{csrf_field()}}
-                                                  <input class="form-control" type="hidden" name="docid" value="{{$c->Doc_id}}">
-                                                  <div style="float:left;"><input class="form-control" type="date" placeholder="Date" name="date"></div>
-                                                  <div style="float:left;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
-                                             </form>
-                                             
-                                            
-                                             </div>
-                                             
-                                             <br><br>
-                                             <a style=" font-size:20px; margin-top:1%; margin-bottom:3px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
                                               <div class="tableFixHead">
-                                        <table class="table" >
+                                        <table class="table" id="myTable">
                                         
                                              <thead style="position: sticky;top: 0;">
                                                   <tr>
@@ -317,6 +309,29 @@ tbody tr:hover {
                                         </div>
                                    </div>
                               </div>
+
+                              <script>
+    function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+               td = tr[i].getElementsByTagName("td")[2];
+               if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+               }       
+          }
+     }
+
+     
+     </script>                            
 
      <!-- SCRIPTS -->
      <script src="{{ asset('js/jquery.js')}}"></script>
