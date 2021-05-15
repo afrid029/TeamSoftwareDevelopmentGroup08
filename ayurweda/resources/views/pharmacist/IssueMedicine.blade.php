@@ -70,6 +70,8 @@
   flex-basis:100%;
   flex-grow:2;
   display: block;
+  overflow:hidden;
+  word-wrap: break-word;
   padding: 1rem;
   text-align:center;
 }

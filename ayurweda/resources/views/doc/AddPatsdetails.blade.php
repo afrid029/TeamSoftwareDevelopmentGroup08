@@ -102,7 +102,8 @@ tbody tr:hover {
   width:100%;
   flex-grow:2;
   display: fixed;
-  
+  overflow:hidden;
+  word-wrap: break-word;
   text-align:center;
 }
 /* Other options */

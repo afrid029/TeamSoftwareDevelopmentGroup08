@@ -62,8 +62,8 @@
 .table-scroll td,.table-scroll th{
  
   width:100%;
- 
-  
+ overflow:hidden;
+  word-wrap: break-word;
   text-align:center;
 }
 /* Other options */

@@ -65,13 +65,6 @@ Route::get('discharge/{c}/{d}', 'update@discharge')->name('discharge');
 
 //Patients Routings
 Route::patch('/patedit',[patientsController::class,'edit']);
-Route::get('pathome/{c}/','redirect@pathome')->name('pathome');
-Route::get('symp/{c}/','redirect@symp')->name('symp');
-Route::get('order/{c}/','redirect@order')->name('order');
-Route::get('book/{c}/','redirect@book')->name('book');
-
-
-
 Route::get('pathome/{c}/',[patientsController::class,'pathome'])->name('pathome');
 Route::get('symp/{c}/',[patientsController::class,'symp'])->name('symp');
 Route::get('order/{c}/',[patientsController::class,'order'])->name('order');
@@ -175,7 +168,7 @@ Route::get('docbill',function(){
 
 Route::get('profview/{c}',[AdminController::class, 'profview'])->name('profview');
 
-Route::get('back',[AdminController::class, 'back'])->name('back');
+
 
 //forget password
 Route::get('/forgotp','redirect@forgotp')->name('forgotp');
