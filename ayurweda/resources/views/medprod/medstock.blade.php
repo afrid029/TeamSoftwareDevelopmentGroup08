@@ -3,7 +3,7 @@
 <head>
 
      <title>Medicine Stock</title>
-
+     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -62,13 +62,15 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital </a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa </a>
                </div>
 
                <!-- MENU LINKS -->
               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
                          <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine <br>Stock</font></a></li>

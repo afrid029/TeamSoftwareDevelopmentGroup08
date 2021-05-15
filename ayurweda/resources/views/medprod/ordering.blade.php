@@ -3,7 +3,7 @@
 <head>
 
      <title>Order Ingredients</title>
-
+     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -24,26 +24,17 @@
 
      <style>
       .tableFixHead {
+          width:100%;
         overflow-y: auto;
-        height: 250px;
-        
+        height: 300px;
       }
       .tableFixHead thead th {
         position: sticky;
         top: 0;
-        background-color:#800000;
-      
       }
-      .btn-outline-danger:hover{
-     color: white;
-     background-color:darkred;
-     border-color:grey;
-}
-.btn-outline-danger{
-     color: darkred;
-    border-color:red;
-     background-color:white;
-}
+      th {
+        background: gray;
+      }
     </style>
 
 </head>
@@ -96,13 +87,15 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital </a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa </a>
                </div>
 
                <!-- MENU LINKS -->
                <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
                          <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
@@ -158,31 +151,34 @@
                          <div class="item item-first">
                               <div class="caption">
                                   
-                                   <div class="container">
+                                   <div style="height:73%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
 
-                                        <div class="col-md-8 col-sm-12">
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
+                                        <div class="">
+                                        
                                         
                                          
-                                             <button style="width:60%; margin-left:42%; margin-right:30%;" type="button" class="btn btn-primary btn-lg" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
-
-                                             <h2 style="color:#ffffff; text-align:center; width:96%; margin-left:22%;">Your Orders</h2>
+                                            
+                                             <h2 style="color:#ffffff; text-align:center; width:96%;">Your Orders</h2>
                                    
 
-                                        <div style="width:90%; margin-left:26%; margin-right:22%;" class="col-lg-3">
-                                             <form action="/ordersearch" method="post" style="margin:auto;width:70%; float:left;">
+                                        
+                                             <div style="float:left;margin-bottom:10px;">
+                                             <form action="/ordersearch" method="post" style="margin:auto;width:700px">
                                              @csrf
-                                                  <input style="color:black" type="text" placeholder="Supplier ID" name="supid">
-                                                  <input style="color:black" type="date" name="date">
                                                   <input type="hidden" name="id" value = "{{$c->Pro_id}}"/>
-                                                  <button type="submit"><i style="color:black" class="fa fa-search"></i></button>
+                                                  <div style="float:left;margin-right:10px;"><input class="form-control" style="color:black" type="text" placeholder="Supplier ID" name="supid"></div>
+                                                  <div style="float:left;margin-right:10px;"><input class="form-control" style="color:black" type="date" name="date"></div>
+                                                  <div style="float:left;margin-right:10px;"><button class="form-control" type="submit"><i class="fa fa-search"></i></button></div>
                                              </form>
-                                             <a style="flolat:right; font-size:18px; margin-bottom:3px; font-weight:bold;" data-target="#suppliers" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit">&nbsp;&nbsp; Suppliers</a>  
+                                             </div>
+                                             <div style="float:right;margin-right:10px;">
+                                             <button type="button" class="btn btn-primary" data-target = "#ordermedicine" data-toggle = "modal">Order Ingredients</button>
+                                             <a style="flolat:right; font-size:18px; margin-bottom:3px; font-weight:bold;" data-target="#suppliers" data-toggle="modal" class = "btn btn-primary fa fa-medkit">&nbsp;&nbsp; Suppliers</a>
+                                             </div>
+                                               
                                              
                                              <div class="tableFixHead">
-                                             <table class="table table-bordered tableFixHead" style="background-color:#ffffff">
+                                             <table class="table table-bordered" style="background-color:#ffffff">
                                         
                                              <thead>
                                             

@@ -3,7 +3,7 @@
 <head>
 
      <title>Issue Medicine</title>
-
+     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -72,14 +72,16 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital </a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa </a>
                </div>
 
                <!-- MENU LINKS -->
               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll"><font color="red">Issue <br>Medicines</font></a></li>
                          <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
                          <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
@@ -95,7 +97,19 @@
      </section>
 
      
-
+@if($msg=session()->get('msg'))
+ @if($msg == "not enough")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'warning',
+               title: 'Store is not enough',
+               showConfirmButton: false,
+               timer: 1500
+          });
+     </script>
+@endif
+@endif
      
 
      <!-- HOME -->

@@ -123,15 +123,17 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
                     
                </div>
               
                <!-- MENU LINKS -->
                <div style = "width:94%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll"><font color="red">State Medical Symptoms</font></a></li>
+                         <li style="margin-left:-100px"><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll"><font color="red">State Medical Symptoms</font></a></li>
                          <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
                          <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
                          <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>

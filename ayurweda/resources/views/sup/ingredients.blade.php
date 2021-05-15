@@ -119,13 +119,15 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
                </div>
 
                <!-- MENU LINKS -->
-               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
+               <div style="background-color:#154360; margin-left:-25px; padding-right:25px;padding-bottom:40px; border-radius:10px;" class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
                          <li><a href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
                          <li><a href="{{route('newing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingridients</font></a></li>
                          

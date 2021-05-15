@@ -108,7 +108,7 @@
      
 
      <!-- MENU -->
-<section style="background-color:white; padding-bottom:4px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+<section style="background-color:white; padding-bottom:4px;height:100px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
      <div class="container">
           <div class="navbar-header">
                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -118,14 +118,16 @@
                </button>
 
                <!-- lOGO TEXT HERE -->
-               <a style= "color:black;" href="/welcome" class="navbar-brand">Hospital</a>
+               <a style= "color:black;" href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
           </div>
           
 
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                     <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
                     <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
                     <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>

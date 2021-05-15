@@ -264,11 +264,37 @@ class update extends Controller
         if(session()->get('session') != $a || session()->get('userid') != $id2){
             return redirect()->route('login')->with('msg','Login First');
         }
+        $m=DB::table('medicine_orderings')->where('MedOrder_id',$id)->value('medicines');
+        $a=explode(",",$m);
+        $a=preg_replace("/[^a-zA-Z 0-9]+/","",$a);
+        $msg="";
+        for($i=0;$i<sizeof($a);$i+=2){
+            $n=$a[$i];
+            $v=(int)$a[$i+1];
+            $qty=DB::table('new_med_stocks')->where('Med_name',$n)->value('stock_qty');
+            $qty=$qty-$v;
+            if($qty<0){
+                $msg="not enough";
+            }
+        }
+        if($msg==""){   
+            for($i=0;$i<sizeof($a);$i+=2){
+                $n=$a[$i];
+                $v=(int)$a[$i+1];
+                $qty=DB::table('new_med_stocks')->where('Med_name',$n)->value('stock_qty');
+                $qty=$qty-$v;
+                DB::table('new_med_stocks')->where('Med_name',$n)->update([
+                    'stock_qty' =>$qty,
+                ]);
+                echo nl2br($n." ".$v."\r\n");
+            }
             DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
                 'status' =>"Issued",
             ]);
+        }   
+        
             
-            return redirect()->back();
+            return redirect()->back()->with('msg',$msg);
     }
 
     //supplier

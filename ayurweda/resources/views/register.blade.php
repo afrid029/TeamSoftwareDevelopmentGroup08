@@ -3,7 +3,7 @@
 <head>
 
      <title>Register</title>
-
+     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -47,7 +47,9 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -122,7 +124,8 @@ Swal.fire({
                                              {{csrf_field()}} 
                                              <h1>Patient register here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
-                                                       <input class="form-control" type="text" name="name" placeholder="Name"><h4>{{"your id is $id"}}</h4><br>
+                                                  <h4>Your ID: {{$id}}</h4>
+                                                       <input class="form-control" type="text" name="name" placeholder="Name"><br>
                                                        <input class="form-control" type="text" name="dob" onblur="(this.type='text')" onfocus="(this.type='date')"  placeholder="Date Of Birth"><br>
 
                                                        <select name="gender" class="form-control" placeholder="Select a gender">

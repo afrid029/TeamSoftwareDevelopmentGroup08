@@ -3,7 +3,7 @@
 <head>
 
      <title>Doctor</title>
-
+     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -61,13 +61,15 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/welcome" class="navbar-brand">Hospital</a>
+                    <a href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li style="margin-left:-100px"><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
                          <li><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>

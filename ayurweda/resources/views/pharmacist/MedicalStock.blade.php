@@ -108,7 +108,7 @@
      <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 
 <!-- MENU -->
-<section style="background-color:white;  padding-bottom:4px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
+<section style="background-color:white;  padding-bottom:4px;height:100px;" class="navbar custom-navbar navbar-fixed-top" role="navigation">
      <div class="container">
           <div class="navbar-header">
                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -118,13 +118,15 @@
                </button>
 
                <!-- lOGO TEXT HERE -->
-               <a style= "color:black;" href="/welcome" class="navbar-brand">Hospital</a>
+               <a style= "color:black;" href="/welcome" class="navbar-brand">
+                    <img src="{{asset('images/logo4.png')}}" style="float:left;width:50px;">
+                    Hela Weda Piyasa</a>
           </div>
 
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
+                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
                     <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll"><font color="red">Maintain medical stock</font></a></li>
                     <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
                     <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
@@ -196,7 +198,7 @@
                <div class="item item-first">
                     <div class="caption">
                          <br><br>
-                         <div style="height:70%; width:95%; margin: -12% 5% 0 2%; background-color:white; border-radius:0.5%;" class="container">
+                         <div style="height:70%; width:95%; margin: -5% 5% 0 2%; background-color:white; border-radius:0.5%;" class="container">
                          
                               <div class="col-md-16 col-sm-12">
                                    <div  class="container-lg">
@@ -274,7 +276,7 @@
                                    </div>
                                </div>
                                
-                         </div>
+                         </div><br><br><br><br>
                          <div style="background-color:white;border-radius:1%; width:93.2%;  max-height: 170px; margin:-12% 6% 0 3.9%;padding-bottom:1%; padding-left:1%;">
                               <h3 style="color:red;">Warnings:</h3>
                               
