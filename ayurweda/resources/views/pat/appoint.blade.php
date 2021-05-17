@@ -208,7 +208,7 @@
                                                        @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No Doctors Available. Search Another</h3></td>
+                                                       <td colspan="4"><h3  style=" color:black;text-align: center; text-transform:capitalize">No Doctors Available. Search Another</h3></td>
                                                   </tr>
                                                   @endif                    
                                                   </tbody>
