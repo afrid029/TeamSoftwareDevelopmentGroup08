@@ -70,16 +70,16 @@
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-120px"><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
-                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
-                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         <li style="margin-left:-120px" ><a href="{{route('pathome',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">State Medical Symptoms</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Medical History</a></li>
                       
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a  href="/logout">Logout</a></li>
+                    <li><a  href="/logout" style="text-transform:capitalize">Logout</a></li>
                     </div>
 
                     
@@ -146,7 +146,7 @@
                               <script>
                                    var upload = new FileUploadWithPreview('myUniqueUploadId')
                               </script>
-                         <button style ="margin-left:35%; margin-top:-30px" type="submit" class="btn btn-success"><b>UPLOAD</b></button>
+                         <button style ="margin-left:35%; margin-top:-30px" type="submit" class="btn btn-success"><b>Upload</b></button>
                     </form>
                     <div  class="modal-footer">
                           <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -240,7 +240,7 @@
                                              <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                         </div>
                                         <div>
-                                             <h3>{{$c->Pat_name}}</h3>
+                                             <h3 style="text-transform:capitalize">{{$c->Pat_name}}</h3>
                                              <p style="color:white; opacity:60%;"><strong>{{$c->Pat_id}}</strong></p>
                                         </div>
                                         <br><br>
@@ -259,12 +259,12 @@
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/gender.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->gender}}</h3>
+                                        <h3 style="text-transform:capitalize">{{$c->gender}}</h3>
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/guard.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->guardian}}</h3>
+                                        <h3 style="text-transform:capitalize">{{$c->guardian}}</h3>
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
@@ -274,12 +274,12 @@
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->Pat_email}}</h3>
+                                        <h3 style="text-transform:lowercase">{{$c->Pat_email}}</h3>
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->Pat_addr}}</h3>
+                                        <h3 style="text-transform:capitalize">{{$c->Pat_addr}}</h3>
                                             
                                    </div>
                               </div>

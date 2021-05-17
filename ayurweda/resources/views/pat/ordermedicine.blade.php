@@ -144,15 +144,15 @@
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-120px"><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                         <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
-                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll"><font color="red">Order Medicines</font></a></li>
-                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
-                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll">Medical History</a></li>
+                         <li style="margin-left:-120px"><a href="{{route('pathome',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">State Medical Symptoms</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Order Medicines</font></a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Medical History</a></li>
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                   <li><a  href="/logout">Logout</a></li>
+                   <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </div>
 
                     
@@ -173,7 +173,7 @@
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
                                              <div  class="table-wrapper">
-                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Unecieved Orders</h2></div>
+                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Unrecieved Orders</h2></div>
                                                        <div class="table-title">
                                                             <div style="margin-top:2%; float:right; margin-right:2%;" >
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordermedicine"><i class="fa fa-plus"></i>&nbsp;&nbsp;Order Medicine</button>

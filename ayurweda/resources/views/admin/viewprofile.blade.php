@@ -51,7 +51,7 @@
                             
                             <div class="col-md-6 col-sm-6">
                            
-                                <h3>Role: {{$rl}}</h3>
+                                <h3 style="text-transform:capitalize">Role: {{$rl}}</h3>
                                 <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                 
                                     @if($d->image)
@@ -66,13 +66,13 @@
                                 <div style="float:left; margin-right:15px">
                                     <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                 </div>
-                                <h3>{{$d->name}}</h3>
+                                <h3 style="text-transform:capitalize">{{$d->name}}</h3>
                                 <p style="color:white; opacity:60%;"><strong>{{$d->id}}</strong></p>
                                  <br><br>
                             </div>
                                         
                             <div class="col-md-6 col-sm-6">
-                                <h2 style="color:white"> Contact details </h2>
+                                <h2 style="color:white"> Contact Details </h2>
                                  @if($age)
                                     <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/age.png') }}" style="width:25px ; height:25px;">
@@ -91,12 +91,12 @@
                                 <div style="float:left; margin-right:40px">
                                     <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                 </div>
-                                <h3>{{$d->email}}</h3>
+                                <h3 style="text-transform:lowercase">{{$d->email}}</h3>
                                 <br><br>
                                 <div style="float:left; margin-right:40px">
                                     <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                 </div>
-                                <h3>{{$d->address}}</h3>
+                                <h3 style="text-transform:capitalize">{{$d->address}}</h3>
                                             
                             </div>
                         </div>
