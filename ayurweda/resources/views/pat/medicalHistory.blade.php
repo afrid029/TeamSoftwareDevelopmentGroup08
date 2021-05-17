@@ -164,7 +164,7 @@
                                                         @foreach($hist as $history)
                                                             <tr>
                                                                 <td><p><b>{{$history->Meeting_id}}</b></p></td>
-                                                                <td><p><b>{{$history->created_at}}</b></p></td>
+                                                                <td><p><b>{{$history->date}}</b></p></td>
                                                                 <td>
                                                                     <input type="hidden" value="{{$history->Doc_id}}" id="did<?php echo $n; ?>">
                                                                     <input type="hidden" value="{{$history->disease}}" id="dis<?php echo $n; ?>">
