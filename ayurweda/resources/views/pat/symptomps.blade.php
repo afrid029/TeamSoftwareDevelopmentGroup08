@@ -281,7 +281,7 @@
                <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLabel">View Symptom</h4>
                    <h6 id="dttag" style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%;">  </h6> 
-                   <h6 id ="tmtag"style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%; margin-right:20%;">Time: </h6>
+                   <h6 id ="tmtag"style="color:grey; float:right; margin-bottom:-2%; margin-top:-2%; margin-right:30%;">Time: </h6>
                     
                </div>
                <div id="bdy" class="modal-body">
@@ -438,7 +438,7 @@ function viewSymp(id)
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 1000
+               timer: 5000
             
           });
      </script>
@@ -450,7 +450,7 @@ function viewSymp(id)
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 5000
             
           });
      </script>

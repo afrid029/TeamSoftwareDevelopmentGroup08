@@ -138,7 +138,9 @@ class patientsController extends Controller
         }
 
         $valid = $request->validate([
-            'dr'=>'required'
+            'dr'=>'required' ],
+            [
+            'dr.required'=>'Select Doctor'
         ]);
         $symp = new add_symptomps;
         $symp->Doc_id = $request->get('dr');
