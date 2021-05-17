@@ -120,15 +120,15 @@
                <!-- MENU LINKS -->
                <div style = "width:90%;" class="collapse navbar-collapse">
                <ul   class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-120px"><a href="{{route('pathome',$c->Pat_id)}}" class="smoothScroll">Home</a></li>
-                        <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" class="smoothScroll">State Medical Symptoms</a></li>
-                         <li><a href="{{route('order',$c->Pat_id)}}" class="smoothScroll">Order Medicines</a></li>
-                         <li><a href="{{route('book',$c->Pat_id)}}" class="smoothScroll">Online Booking</a></li>
-                         <li><a href="{{route('history',$c->Pat_id)}}" class="smoothScroll"><font color="red">Medical History</font></a></li>
+                         <li style="margin-left:-120px"><a href="{{route('pathome',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                        <li style="margin-left:-50px"><a href="{{route('symp',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">State Medical Symptoms</a></li>
+                         <li><a href="{{route('order',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Order Medicines</a></li>
+                         <li><a href="{{route('book',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll">Online Booking</a></li>
+                         <li><a href="{{route('history',$c->Pat_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Medical History</font></a></li>
                          
                     </ul>
                     <div style=" width:8%; margin-left:2%;" class="nav navbar-nav navbar-right">
-                    <li><a  href="/logout">Logout</a></li>
+                    <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </div>
 
                     
