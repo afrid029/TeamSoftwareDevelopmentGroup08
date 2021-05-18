@@ -127,15 +127,15 @@
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                    <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
-                    <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
-                    <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
+                    <li style="margin-left:-100px"><a  style= "color:black;text-transform:capitalize;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                    <li ><a  style= "color:black;text-transform:capitalize;"  href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
+                    <li><a  style= "color:black;text-transform:capitalize;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
+                    <li><a  style= "color:black;text-transform:capitalize;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
                          
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style="color:black;" href="/logout">Logout</a></li>
+                    <li><a style="color:black;text-transform:capitalize;" style="text-transform:capitalize"href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -153,7 +153,7 @@
                <div class="modal-body">
                     <form method="post" action="/phaedit">
                          {{csrf_field()}}
-                         <input type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Phar_name}}"><br>
+                         <input  type="text" name="name" class="form-control" placeholder="Name" value="{{$c->Phar_name}}"><br>
                          <input type="text" name="address" class="form-control" placeholder="Address" value="{{$c->Phar_addr}}"><br>
                          <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{$c->Phar_pNum}}"><br>
                          <input type="email" name="email" class="form-control" placeholder="Email Address" value="{{$c->Phar_email}}"><br>
@@ -193,7 +193,7 @@
                               <script>
                                    var upload = new FileUploadWithPreview('myUniqueUploadId')
                               </script>
-                         <button style ="width : 30%; margin: 0 35%;" type="submit" class="btn btn-success"><b>UPLOAD</b></button>
+                         <button style ="width : 30%; margin: 0 35%;" type="submit" class="btn btn-success"><b>Upload</b></button>
                     </form>
                     <div  class="modal-footer">
                           <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -230,7 +230,7 @@
                                              <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                         </div>
                                         <div>
-                                             <h3>{{$c->Phar_name}}</h3>
+                                             <h3 style="text-transform:capitalize">{{$c->Phar_name}}</h3>
                                              <p style="color:white; opacity:60%;"><strong>{{$c->Phar_id}}</strong></p>
                                         </div>
                                         <br><br>
@@ -239,7 +239,7 @@
                                         </button>
                                    </div>
                                    <div class="col-md-6 col-sm-6">
-                                        <h2 style="color:white"> Contact details </h2>
+                                        <h2 style="color:white"> Contact Details </h2>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
                                         </div>
@@ -248,12 +248,12 @@
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->Phar_email}}</h3>
+                                        <h3 style="text-transform:lowercase">{{$c->Phar_email}}</h3>
                                         <br><br>
                                         <div style="float:left; margin-right:40px">
                                              <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                         </div>
-                                        <h3>{{$c->Phar_addr}}</h3>
+                                        <h3 style="text-transform:capitalize">{{$c->Phar_addr}}</h3>
                                    </div>
                               </div>
                          </div>

@@ -124,15 +124,15 @@
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
-                    <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
-                    <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
-                    <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll"><font color="red">Order medicine</font></a></li>
+                    <li style="margin-left:-100px"><a style= "color:black;text-transform:capitalize;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll"><font color="red">Order medicine</font></a></li>
                          
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style="color:black;" href="/logout">Logout</a></li>
+                    <li><a style="color:black;text-transform:capitalize;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>

@@ -121,14 +121,14 @@
                <div class="collapse navbar-collapse">
 
                    <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('regist',$c->id)}}" class="smoothScroll"><font color="red">Registration</font></a></li>
-                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Report</a></li>
+                         <li><a href="{{route('adminpage',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('regist',$c->id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Registration</font></a></li>
+                          <li><a href="{{route('profit',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Report</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
 
 
                     </ul>
@@ -260,7 +260,7 @@ Swal.fire({
                          <input type="hidden" name = "usid" value="{{$c->id}}">
                               <div style="width:50%; float:left;" >
                                    <select id = "roll" name ="roll" class="form-control" onchange="selectroll()" >
-                                        <option value="none" selected disabled hidden>Select a roll</option>
+                                        <option value="none" selected disabled hidden>Select A Roll</option>
                                         <option value="Doctor">Doctor</option>
                                         <option value="Pharmacist">Pharmacist</option>
                                         <option value="Medicine Producer">Medicine Producer</option>

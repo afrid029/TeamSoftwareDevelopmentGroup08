@@ -88,14 +88,14 @@ Swal.fire({
                <div class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
-                         <li><a href="{{route('profit',$c->id)}}" class="smoothScroll">Report</a></li>
+                         <li><a href="{{route('adminpage',$c->id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li><a href="{{route('regist',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Registration</a></li>
+                         <li><a href="{{route('profit',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Report</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a  style="text-transform:capitalize" href="/logout">Logout</a></li>
 
 
                     </ul>
@@ -178,7 +178,7 @@ Swal.fire({
                                                        <div style="float:left; margin-right:15px">
                                                             <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                                        </div>
-                                                       <h3>{{$c->username}}</h3>
+                                                       <h3 style="text-transform:capitalize">{{$c->username}}</h3>
                                                        <h4 style="opacity:0.6;">{{$c->id}}</h4>
                                                        
                                                        
@@ -192,7 +192,7 @@ Swal.fire({
                                         
                                              <div class="col-md-6 col-sm-6">
 
-                                                  <h2 style="color:white"> Contact details </h2>
+                                                  <h2 style="color:white"> Contact Details </h2>
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
@@ -204,7 +204,7 @@ Swal.fire({
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>{{$c->email}}</h3>
+                                                  <h3 style="text-transform:lowercase">{{$c->email}}</h3>
                                             
                                              </div>
                                         </div>

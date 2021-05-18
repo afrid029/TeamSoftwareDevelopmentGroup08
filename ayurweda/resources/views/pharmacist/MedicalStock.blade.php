@@ -124,18 +124,18 @@
                     Hela Weda Piyasa</a>
           </div>
 
-          <!-- MENU LINKS -->
+          <!-- MENU LINKS style="text-transform:capitalize"-->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
-                    <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll"><font color="red">Maintain medical stock</font></a></li>
-                    <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
-                    <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
+                    <li style="margin-left:-100px"><a style= "color:black;text-transform:capitalize;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll"><font color="red">Maintain medical stock</font></a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll">Issue medicine</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
                          
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style="color:black;" href="/logout">Logout</a></li>
+                    <li><a style="color:black;text-transform:capitalize;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -223,10 +223,10 @@
                                                                       <th>Description</th>
                                                                       <th>Manufacture Date</th>
                                                                       <th>Expiration Date</th>
-                                                                      <th>Unit Price</th>
+                                                                      <th>Unit Price(Rs)</th>
                                                                       <th>Stock Qty</th>
                                                                       <th>Ordered Qty</th>
-                                                                      <th>Warning limit</th>
+                                                                      <th>Warning Limit</th>
                                                                       <th>Actions</th>
                                                                  </tr>
                                                             </thead>
@@ -279,7 +279,7 @@
                                
                          </div><br><br><br><br>
                          <div style="background-color:white;border-radius:1%; width:93.2%;  max-height: 170px; margin:-12% 6% 0 3.9%;padding-bottom:1%; padding-left:1%;">
-                              <h3 style="color:red;">Warnings:</h3>
+                              <h3 style="color:red;text-transform:capitalize;">Warnings:</h3>
                               
                               <div style="overflow-y:scroll; position:relative; display:block;  max-height:130px;">
                                    @if(count($warn)>0)
@@ -289,7 +289,7 @@
                                                   $dt = date('Y-m-d');
                                                 
                                                   if($dt >="{$warning->expireDate}"){ ?>
-                                                       <li><b style = "color:red">{{$warning->Med_name}}</b> is <b style = "color:red">EXPIRED</b></li>
+                                                       <li><b style = "color:red">{{$warning->Med_name}}</b> is <b style = "color:red">expired</b></li>
                                                  <?php }else{?>
                                                        <li><b style = "color:red">{{$warning->Med_name}}</b>'s expire date is <b style = "color:red">{{$warning->expireDate}}</b></li>
                                                  <?php }
@@ -305,14 +305,14 @@
                                         <ul>
                                         @foreach($warn1 as $warning)
                                              @if($warning->stock_qty <= 0)
-                                                  <li><b style = "color:red">{{$warning->Med_name}}</b> stock is <b style = "color:red">EMPTY</b></li>
+                                                  <li><b style = "color:red">{{$warning->Med_name}}</b> stock is <b style = "color:red">Empty</b></li>
                                              @else
                                              <li><b style = "color:red">{{$warning->Med_name}}</b>'s stock quantity is <b style = "color:red">{{$warning->stock_qty}}</b></li>
                                              @endif
                                         @endforeach
                                         </ul>
                                    @else
-                                        <h3 style = "color: grey;">All medicine stocks are available</h3>
+                                        <h3 style = "color: grey;text-transform:capitalize;">All medicine stocks are available</h3>
                                    @endif
                               </div>
                          </div>
@@ -384,7 +384,7 @@
                               <br>
                               <div class="row">
                                    <div style="width:20%; margin-right:15%; float:left;" class="column">
-                                        <label>Unit price</label>
+                                        <label>Unit Price(Rs)</label>
                                         <input type="number" step="0.01" name = "uprice"  class="form-control">
                                    </div>
                                    <div style="width:20%; margin-right:15%; float:left;" class="column">
@@ -429,7 +429,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine description</h3>
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine Description</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
 

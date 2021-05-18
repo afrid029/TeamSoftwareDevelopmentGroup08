@@ -147,15 +147,15 @@
           <!-- MENU LINKS -->
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                    <li style="margin-left:-100px"><a style= "color:black;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
-                    <li><a style= "color:black;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
-                    <li><a style= "color:black;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll"><font color="red">Issue medicine</font></a></li>
-                    <li><a style= "color:black;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
+                    <li style="margin-left:-100px"><a style= "color:black;text-transform:capitalize;" href="{{route('phahome',$c->Phar_id)}}" class="smoothScroll">Home</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('medicalstock',$c->Phar_id)}}" class="smoothScroll">Maintain medical stock</a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('issueMedicine',$c->Phar_id)}}" class="smoothScroll"><font color="red">Issue medicine</font></a></li>
+                    <li><a style= "color:black;text-transform:capitalize;" href="{{route('phaordermedicine',$c->Phar_id)}}" class="smoothScroll">Order medicine</a></li>
                          
                </ul>
 
                <ul class="nav navbar-nav navbar-right">
-                    <li><a style="color:black;" href="/logout">Logout</a></li>
+                    <li><a style="color:black;text-transform:capitalize;" href="/logout">Logout</a></li>
                </ul>
           </div>
      </div>
@@ -285,7 +285,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3  style="float:left; color:black;  font-size:25px;" class="modal-title" id="exampleModalLabel">Issue Patient's Order</h3>
+                    <h3  style="float:left; text-transform:capitalize; color:black;  font-size:25px;" class="modal-title" id="exampleModalLabel">Issue Patient's Order</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
                <div class="modal-body">
@@ -300,7 +300,7 @@
 
                    <label style=" font-size:10px;  float:left; margin-right:1%; margin-top:1%;" for="">Order Date: </label>
                    <input class = "form-control" style="font-size:10px; font-weight:bold; color:navy; width: 22.5%; margin-left: 12%; height:25px;" type="date" name = "odate" id = "odate" readonly/>
-                   <br><h3 style="float:left; color:gray;  font-size: 20">Medicine List</h3><br><br>
+                   <br><h3 style="float:left; text-transform:capitalize; color:gray;  font-size: 20">Medicine List</h3><br><br>
 
                    <div id = "myIn">
                    
@@ -309,7 +309,7 @@
                     
                    <button id="sub" type = "submit" class="btn btn-primary btn-sm">Issue Order</button>                   
                    </form><br>
-                    <h3 id="pbill" style = "color:Darkred;"></h3>
+                    <h3 id="pbill" style = "color:Darkred;text-transform:capitalize;"></h3>
                </div>
               
           </div>
@@ -473,7 +473,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3  style="float:left; color:black;  font-size:22px;" class="modal-title" id="exampleModalLabel">Issue Doctor's Prescription</h3>
+                    <h3  style="float:left; color:black; text-transform:capitalize; font-size:22px;" class="modal-title" id="exampleModalLabel">Issue Doctor's Prescription</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
                <div class="modal-body">
@@ -488,7 +488,7 @@
 
                    <label style=" font-size:10px;  float:left; margin-right:1%; margin-top:1%;" for="">Doctor ID: </label>
                    <input class = "form-control" style="font-size:10px; font-weight:bold; color:navy; width: 22.5%; margin-left: 12%; height:30px;" type="text" name = "dcid" id = "dcid" readonly/>
-                   <br><h3 style="float:left; color:gray;  font-size: 20">Medicine List</h3><br><br>
+                   <br><h3 style="float:left; text-transform:capitalize; color:gray;  font-size: 20">Medicine List</h3><br><br>
 
                    <div id = "myIndr">
                    
@@ -498,7 +498,7 @@
                    <button id="subdr" type = "submit" class="btn btn-primary btn-sm">Issue Order</button>   
                                  
                    </form><br>
-                   <h3 id = "drbill" style = "color:Darkred;"></h3>    
+                   <h3 id = "drbill" style = "color:Darkred;text-transform:capitalize;"></h3>    
                </div>
               
           </div>

@@ -139,14 +139,14 @@ console.log(e);
                <div class="collapse navbar-collapse">
 
                    <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="{{route('adminpage',$c->id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('regist',$c->id)}}" class="smoothScroll">Registration</a></li>
-                          <li><a href="{{route('profit',$c->id)}}" class="smoothScroll"><font color="red">Report</font></a></li>
+                         <li><a href="{{route('adminpage',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('regist',$c->id)}}" style="text-transform:capitalize" class="smoothScroll">Registration</a></li>
+                          <li><a href="{{route('profit',$c->id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Report</font></a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
 
-                       <li><a  href="/logout">Logout</a></li>
+                       <li><a  style="text-transform:capitalize" href="/logout">Logout</a></li>
 
 
                     </ul>
@@ -215,7 +215,7 @@ console.log(e);
                                                     @endif
                                                     </tbody>
                                                   </table>
-                                                  <h3   style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;">  {{$patsum}} /=</span></h3>
+                                                  <h3   style="color:gray; text-align:center; margin-bottom:12px;text-transform:capitalize;">Total Profit: <span style="color : red;">  {{$patsum}} /=</span></h3>
                                                  
                                              </div>
                                         </div>
@@ -288,7 +288,7 @@ console.log(e);
                                                        </tbody>
                                                        
                                                   </table>
-                                                       <h3  style="color:gray; text-align:center; margin-bottom:12px;">Total Profit: <span style="color : red;">  {{$drsum}} /=</span></h3>
+                                                       <h3  style="color:gray; text-align:center;text-transform:capitalize; margin-bottom:12px;">Total Profit: <span style="color : red;">  {{$drsum}} /=</span></h3>
                                                   
                                              </div>
                                         </div>
