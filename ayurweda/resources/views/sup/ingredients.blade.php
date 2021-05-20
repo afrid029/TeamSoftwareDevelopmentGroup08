@@ -128,14 +128,14 @@
                <!-- MENU LINKS -->
                <div style="background-color:#154360; margin-left:-25px; padding-right:25px;padding-bottom:40px; border-radius:10px;" class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-100px"><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
-                         <li><a href="{{route('newing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingridients</font></a></li>
+                         <li style="margin-left:-100px"><a style="text-transform:capitalize" href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingridients</font></a></li>
                          
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a  href="/logout">Logout</a></li>
+                        <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -197,7 +197,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no ingredients</h3></td>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;text-transform:capitalize;">There are no ingredients</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>
@@ -244,7 +244,7 @@
                                    </div>
                                <div style=" margin-right:10%;" class="column">
                                <br>
-                              <button style="float:right;" class="btn btn-success">Add to list</button><br>
+                              <button style="float:right;" class="btn btn-success">Add To List</button><br>
                               </div>
                               
                          </form>
@@ -260,7 +260,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine description</h3>
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine Description</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
 

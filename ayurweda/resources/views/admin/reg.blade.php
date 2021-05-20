@@ -189,7 +189,7 @@ Swal.fire({
                                                                  <tr>
                                                                      
                                                                       <th>User Name</th>
-                                                                      <th>Roll</th>
+                                                                      <th>Role</th>
                                                                       <th>View Profile</th>
                                                                  </tr>
                                                             </thead>
@@ -260,7 +260,7 @@ Swal.fire({
                          <input type="hidden" name = "usid" value="{{$c->id}}">
                               <div style="width:50%; float:left;" >
                                    <select id = "roll" name ="roll" class="form-control" onchange="selectroll()" >
-                                        <option value="none" selected disabled hidden>Select A Roll</option>
+                                        <option value="none" selected disabled hidden>Select A Role</option>
                                         <option value="Doctor">Doctor</option>
                                         <option value="Pharmacist">Pharmacist</option>
                                         <option value="Medicine Producer">Medicine Producer</option>

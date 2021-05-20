@@ -68,14 +68,14 @@
                <!-- MENU LINKS -->
                <div style="background-color:#154360; margin-left:-25px; padding-right:25px;padding-bottom:40px; border-radius:10px;" class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-100px"><a href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
-                         <li><a href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
-                         <li><a href="{{route('newing',$c->Sup_id)}}" class="smoothScroll">Ingridients</a></li>
+                         <li style="margin-left:-100px"><a style="text-transform:capitalize" href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll"><font color="red">Home</font></a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll">Ingridients</a></li>
                          
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a  href="/logout">Logout</a></li>
+                        <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -193,7 +193,7 @@
                               <script>
                                    var upload = new FileUploadWithPreview('myUniqueUploadId')
                               </script>
-                         <button style ="width : 30%; margin: 0 35%;" type="submit" class="btn btn-success"><b>UPLOAD</b></button>
+                         <button style ="width : 30%; margin: 0 35%;" type="submit" class="btn btn-success"><b>Upload</b></button>
                     </form>
                     <div  class="modal-footer">
                           <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -222,17 +222,17 @@
                                              <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
                                                       @if($c->Sup_im)
                                                        <img class="img" src="{{asset('upload/profile')}}/{{$c->Sup_im}}" style="  border-radius:30px; height:200px; width:100%;">
-                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Photo</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/supplier.jpg')}}" style="  border-radius:30px;  height:200px; width:100%;">
-                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Photo</b></button>
                                                        @endif
                                                        </div>
                                                        <br><br>
                                                        <div style="float:left; margin-right:15px">
                                                             <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                                        </div>
-                                                       <h3>{{$c->Sup_name}}</h3>
+                                                       <h3 style="text-transform:capitalize">{{$c->Sup_name}}</h3>
                                                        <h3>{{$c->Sup_id}}</h3>
                                                        
                                                        <br><br>
@@ -244,7 +244,7 @@
                                         
                                              <div class="col-md-6 col-sm-6">
 
-                                                  <h2 style="color:white"> Contact details </h2>
+                                                  <h2 style="color:white"> Contact Details </h2>
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
@@ -256,13 +256,13 @@
                                                    <div style="float:left; margin-right:40px">
                                                        <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>{{$c->Sup_email}}</h3>
+                                                  <h3 style="text-transform:lowercase">{{$c->Sup_email}}</h3>
                                                   <br><br>
                                                   
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>{{$c->Sup_addr}}</h3>
+                                                  <h3 style="text-transform:capitalize">{{$c->Sup_addr}}</h3>
                                             
                                              </div>
                                         </div>

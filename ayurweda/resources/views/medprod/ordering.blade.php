@@ -95,17 +95,17 @@
                <!-- MENU LINKS -->
                <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll"><font color="red">Order <br>Ingredients</font></a></li>
-                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Issue <br>Medicines</a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Medicine <br>Stock</a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Order <br>Ingredients</font></a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Medicines</a></li>
                     </ul>
-
+                    
                      
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </ul>
                </div>
 

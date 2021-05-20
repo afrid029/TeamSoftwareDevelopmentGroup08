@@ -70,16 +70,16 @@
                <!-- MENU LINKS -->
               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll">Medicine <br>Stock</a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order <br>Ingredients</a></li>
-                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicines</font></a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Issue <br>Medicines</a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Medicine <br>Stock</a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Order <br>Ingredients</a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Medicines</font></a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </ul>
                </div>
           </div>
@@ -178,7 +178,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines</h3></td>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;text-transform:capitalize">There are no medicines</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>
@@ -225,7 +225,7 @@
                                    </div>
                                <div style=" margin-right:10%;" class="column">
                                <br>
-                              <button style="float:right;" class="btn btn-success">Add to list</button><br>
+                              <button style="float:right;text-transform:capitalize" class="btn btn-success">Add to list</button><br>
                               </div>
                               
                          </form>
@@ -243,7 +243,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine description</h3>
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine Description</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
 

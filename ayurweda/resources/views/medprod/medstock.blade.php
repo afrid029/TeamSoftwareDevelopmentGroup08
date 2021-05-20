@@ -70,16 +70,16 @@
                <!-- MENU LINKS -->
               <div style="background-color:#154360; margin-left:-25px; padding-right:25px; border-radius:10px;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" class="smoothScroll">Home</a></li>
-                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" class="smoothScroll">Issue <br>Medicines</a></li>
-                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" class="smoothScroll">Ingredients <br>Stock</a></li>
-                         <li><a href="{{route('medstock',$c->Pro_id)}}" class="smoothScroll"><font color="red">Medicine <br>Stock</font></a></li>
-                         <li><a href="{{route('ordering',$c->Pro_id)}}" class="smoothScroll">Order <br>Ingredients</a></li>
-                         <li><a href="{{route('medicines',$c->Pro_id)}}" class="smoothScroll">Medicines</a></li>
+                         <li style="margin-left:-100px"><a href="{{route('mphome',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Home</a></li>
+                         <li><a href="{{route('issuemedicine',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Issue <br>Medicines</a></li>
+                         <li><a href="{{route('Ingstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Ingredients <br>Stock</a></li>
+                         <li><a href="{{route('medstock',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll"><font color="red">Medicine <br>Stock</font></a></li>
+                         <li><a href="{{route('ordering',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Order <br>Ingredients</a></li>
+                         <li><a href="{{route('medicines',$c->Pro_id)}}" style="text-transform:capitalize" class="smoothScroll">Medicines</a></li>
                     </ul>
                      
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style="text-transform:capitalize" href="/logout">Logout</a></li>
                     </ul>
                </div>
           </div>
@@ -195,7 +195,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines</h3></td>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;text-transform:capitalize;">There are no medicines</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>
@@ -242,7 +242,7 @@
                                         </datalist>
                                    </div>
                                    <div style="width:40%; margin-right:10%; float:right;" class="column">
-                                        <label>Unit price</label>
+                                        <label>Unit Price</label>
                                         <input type="number" name = "uprice" step="0.01"  class="form-control">
                                    </div>
                               </div>
@@ -262,14 +262,14 @@
                               <div class="row">
                                    
                                    <div style="width:40%; margin-right:10%; float:left;" class="column">
-                                        <label>Expiration date</label>
+                                        <label>Expiration Date</label>
                                         <input type="date" name = "exp" placeholder="Expiration Date" class="form-control">
                                    </div>
                               </div>
                               <br>
-                              <button style="float:right;" class="btn btn-success">Add to Stock</button><br>
+                              <button style="float:right;text-transform:capitalize" class="btn btn-success">Add to Stock</button><br>
                               @else
-                                   <h3>Adding is unavailable</h3>
+                                   <h3 style="text-transform:capitalize">Adding is unavailable</h3>
                               @endif
                          </form>
                     
