@@ -198,7 +198,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
@@ -211,7 +211,7 @@ tbody tr:hover {
           </div>
      </section>
 @if($msg = session()->get('msg'))
-@if($msg=="Prescription added successfully")
+@if($msg=="Prescription Added Successfully")
 <script>
 Swal.fire({
   position: 'middle',
@@ -221,7 +221,7 @@ Swal.fire({
   timer: 1500
 });
 </script>
-@elseif($msg=="The patient doesn't exist.")
+@elseif($msg=="The Patient Doesn't Exist.")
 <script>
 Swal.fire({
   position: 'middle',
@@ -261,7 +261,7 @@ Swal.fire({
      <div class="modal-dialog" role="document">
      <div class="modal-content">
           <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add a prescription</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add a Prescription</h5>
            
           </div>
 
@@ -275,7 +275,7 @@ Swal.fire({
           <textarea class="form-control" rows="3" cols="3"name="diagnosis" placeholder="Diagnosis"></textarea><br>
          
 
-                    <h4>Medicine Name</h4>
+                    <h4 style="text-transform:capitalize">Medicine Name</h4>
                     @if(count($stocks) > 0)                          
                     
                     <?php $k = 0; ?>
@@ -284,7 +284,7 @@ Swal.fire({
                     @foreach($stocks as $stock)
                          
                          <input type="checkbox"  id = "med<?php echo $k; ?>" name = "med<?php echo $k; ?>" value = "{{$stock->Med_name}}" onclick="qtybox(<?php echo $k; ?>)"/>
-                         <label>{{$stock->Med_name}}</label>
+                         <label style="text-transform:capitalize">{{$stock->Med_name}}</label>
                          <button type="button" class="btn btn-info btn-sm fa fa-plus-circle " onclick="add(<?php echo $k; ?>)" id="btn<?php echo $k; ?>" style="display:none; float:right; padding:0.7%;"></button>
                          <input type="number" id="qnt<?php echo $k; ?>" name="qnt<?php echo $k; ?>" class="form-control" style="display:none; width : 20%; height:18px; float:right; margin-right:2%; margin-top:0.5%;">
                          <label style="display:none; margin-top:0.5%; float:right; font-size:10px; margin-right:12px; color:gray;"  id="qnty<?php echo $k; ?>">Quantity: </label>
@@ -296,11 +296,11 @@ Swal.fire({
                     @endforeach
                     </div>
                     @else
-                         <p><i>No Medicines in Stock</i></p>
+                         <p style="text-transform:capitalize"><i>No Medicines in Stock</i></p>
                     @endif
                     
                     
-                    <h3 id="head" style="display:none;">Medicine Order Details</h3>
+                    <h3 style="text-transform:capitalize" id="head" style="display:none;">Medicine Order Details</h3>
                     <div id = "myDiv" style="max-height:150px; overflow-y :scroll;">
                     
                     </div>
@@ -494,12 +494,12 @@ Swal.fire({
                                              <?php $no = 0; ?>
                                              @foreach($press as $pr)
                                              <tr>
-                                                  <td>{{$pr->Meeting_id}}</td>
-                                                  <td>{{$pr->Pat_id}}</td>
-                                                  <td>{{$pr->Doc_id}}</td>
-                                                  <td>{{$pr->created_at}}</td>
-                                                  <td>{{$pr->disease}}</td>
-                                                  <td>{{$pr->diagnosis}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->Meeting_id}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->Pat_id}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->Doc_id}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->created_at}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->disease}}</td>
+                                                  <td style="text-transform:capitalize">{{$pr->diagnosis}}</td>
                                                   <td>
                                                        <input type="hidden" id="m<?php echo $no; ?>" value="{{$pr->medicine}}">
                                                        <input type="hidden" id="bil<?php echo $no; ?>" value="{{$pr->bill}}">
@@ -511,7 +511,7 @@ Swal.fire({
                                              @endforeach
                                              @else
                                              <tr>
-                                                  <td colspan="7"><h3 style=" color:black;text-align: center;">No prescriptions found</h3></td>
+                                                  <td colspan="7"><h3 style=" color:black;text-align: center;">No Prescriptions Found</h3></td>
                                              </tr>
                                          @endif
                                         </tbody>
@@ -528,7 +528,7 @@ Swal.fire({
                                    <div class="modal-dialog" role="dialog">
                                         <div class="modal-content"  style="width:90%; margin-left:5%; margin-right:5%;">
                                              <div class="modal-header">
-                                                  <h4 class="modal-title" id="exampleModalLabel">Patients Details</h4>
+                                                  <h4 style="text-transform:capitalize" class="modal-title" id="exampleModalLabel">Patients Details</h4>
                                                  
                                              </div>
                                              <div  class="modal-body">
@@ -547,8 +547,8 @@ Swal.fire({
                                                             
                                                             @foreach($pa as $d)
                                                                  <tr>
-                                                                      <td>{{$d->Pat_name}}</td>
-                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      <td style="text-transform:capitalize">{{$d->Pat_name}}</td>
+                                                                      <td style="text-transform:capitalize"><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                        

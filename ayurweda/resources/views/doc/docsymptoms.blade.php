@@ -3,7 +3,7 @@
 <head>
     
     
-    <title>Say Your Symptomps here</title>
+    <title>Say Your Symptoms Here</title>
     <link rel="icon" href="{{asset('images/logo4.png')}}" type="image/x-icon">
     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -202,7 +202,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                        <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll"><font color="red">Medical <br>Symptomps</font></a></li>
+                        <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll"><font color="red">Medical <br>Symptoms</font></a></li>
                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                     </ul>
 
@@ -308,8 +308,8 @@ tbody tr:hover {
                                                             
                                                             @foreach($pa as $d)
                                                                  <tr>
-                                                                      <td>{{$d->Pat_name}}</td>
-                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      <td style="text-transform:capitalize">{{$d->Pat_name}}</td>
+                                                                      <td style="text-transform:capitalize"a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                        
@@ -383,7 +383,7 @@ tbody tr:hover {
                                                       @if($pa)
                                                   @foreach($pa as $a)
                                                  
-                                                     <option style="font-size:10px;">{{$a->Pat_id}} &nbsp; &nbsp; &nbsp;  {{$a->Pat_name}}</option>
+                                                     <option style="font-size:10px; text-transform:capitalize">{{$a->Pat_id}} &nbsp; &nbsp; &nbsp;  {{$a->Pat_name}}</option>
                                                   
                                                      
                                                      @endforeach

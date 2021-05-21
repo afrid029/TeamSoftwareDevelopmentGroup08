@@ -172,7 +172,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll"><font color="red">Appointments</font></a></li>
                          
                     </ul>
@@ -212,7 +212,7 @@ tbody tr:hover {
                                        <div class="">
                                               
                                         <div style="float:left;">
-                                        <p style="font-size:20px;color:white;float:left;">No. of appointments today:<span class="label label-default">{{$na}}</span><p>
+                                        <p style="font-size:20px; text-transform:capitalize; color:white;float:left;">No. of appointments today:<span class="label label-default">{{$na}}</span><p>
                                         </div>
                                         <div style=" color:gray; float:right;">
                                         <input style="margin-left:-40%;float:left;" class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Date" title="Type ID">
@@ -242,15 +242,15 @@ tbody tr:hover {
                                                   @if(count($adp)>0)
                                                   @foreach($adp as $a)
                                                   <tr>
-                                                       <td>{{$a->App_id}}</td>
-                                                       <td>{{$a->name}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->App_id}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->name}}</td>
                                                        <td>{{$a->availableDate}}</td>
                                                        <td>{{$a->availableTime}}</td>
                                                   </tr>
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="7"><h3 style=" color:black;text-align: center;">No appointments found</h3></td>
+                                                       <td style="text-transform:capitalize" colspan="7"><h3 style=" color:black;text-align: center;">No appointments found</h3></td>
                                                   </tr>
                                                   @endif
                                                   
@@ -292,8 +292,8 @@ tbody tr:hover {
                                                             
                                                             @foreach($pa as $d)
                                                                  <tr>
-                                                                      <td>{{$d->Pat_name}}</td>
-                                                                      <td><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      <td style="text-transform:capitalize">{{$d->Pat_name}}</td>
+                                                                      <td style="text-transform:capitalize"a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                        

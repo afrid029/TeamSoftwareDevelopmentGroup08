@@ -74,7 +74,7 @@
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
@@ -233,8 +233,8 @@
                                                        <div style="float:left; margin-right:15px">
                                                             <img src="{{ asset('images/name_icon1.png') }}" style="width:34px ; height:34px; ">
                                                        </div>
-                                                       <h3>{{$c->Doc_name}}</h3>
-                                                       <p style="color:white; opacity:60%;"><strong>{{$c->Doc_id}}</strong></p>
+                                                       <h3 style="text-transform:capitalize">{{$c->Doc_name}}</h3>
+                                                       <p style="color:white; opacity:60%; text-transform:capitalize"><strong>{{$c->Doc_id}}</strong></p>
                                                        <br><br>
                                                                                   
                                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -244,7 +244,7 @@
                                         
                                              <div class="col-md-6 col-sm-6">
 
-                                                  <h2 style="color:white"> Contact details </h2>
+                                                  <h2 style="color:white"> Contact Details </h2>
                                                  
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/phone.png') }}" style="width:25px ; height:25px;">
@@ -255,12 +255,12 @@
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/email.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>{{$c->Doc_email}}</h3>
+                                                  <h3 style="text-transform:lowercase">{{$c->Doc_email}}</h3>
                                                   <br><br>
                                                   <div style="float:left; margin-right:40px">
                                                         <img src="{{ asset('images/address.png') }}" style="width:25px ; height:25px;">
                                                   </div>
-                                                  <h3>{{$c->Doc_addr}}</h3>
+                                                  <h3 style="text-transform:capitalize">{{$c->Doc_addr}}</h3>
                                             
                                              </div>
                                         </div>

@@ -160,7 +160,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patient <br>Details</font></a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                         </ul>
@@ -221,7 +221,7 @@ Swal.fire({
      <div class="modal-dialog" role="document">
      <div class="modal-content">
           <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Admit a patient</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Admit A Patient</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
           </button>
@@ -266,7 +266,7 @@ Swal.fire({
                                             </div>
                                             <div style="float:right;">
                                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            Admit a patient
+                                                            Admit a Patient
                                              </button>
                                              </div>
                                             <br><br>
@@ -294,22 +294,22 @@ Swal.fire({
                                                   @if(count($adp) > 0)
                                                   @foreach($adp as $a)
                                                   <tr>
-                                                       <td>{{$a->Pat_id}}</td>
-                                                       <td>{{$a->Doc_id}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->Pat_id}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->Doc_id}}</td>
                                                        <td>{{$a->ad_date}}</td>
-                                                       <td>{{$a->disease}}</td>
-                                                       <td>{{$a->bedno}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->disease}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->bedno}}</td>
                                                        @if($a->status=="Admitted")
-                                                       <td><a href="{{route('discharge',['c'=>$a->id,'d'=>$c->Doc_id])}}" class = "btn btn-danger btn-sm">Discharge</a></td>
+                                                       <td style="text-transform:capitalize"><a href="{{route('discharge',['c'=>$a->id,'d'=>$c->Doc_id])}}" class = "btn btn-danger btn-sm">Discharge</a></td>
                                                        @else
-                                                       <td>{{$a->status}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->status}}</td>
                                                        @endif
-                                                       <td>{{$a->disch_date}}</td>
+                                                       <td >{{$a->disch_date}}</td>
                                                   </tr>
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="6"><h3 style=" color:black;text-align: center;">No patients found</h3></td>
+                                                       <td style="text-transform:capitalize" colspan="6"><h3 style=" color:black;text-align: center;">No patients found</h3></td>
                                                   </tr>
                                                   @endif
                                                   

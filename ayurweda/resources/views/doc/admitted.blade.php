@@ -103,7 +103,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patients</font></a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
@@ -165,7 +165,7 @@ tbody tr:hover {
      <div class="modal-dialog" role="document">
      <div class="modal-content">
           <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update records</h5>
+          <h5 style="text-transform:capitalize" class="modal-title" id="exampleModalLabel">Update records</h5>
           </div>
           <form method="post" action="/saveadmit" enctype="multipart/form-data">
           {{csrf_field()}}
@@ -177,7 +177,7 @@ tbody tr:hover {
           <input type="text" name = "ingname" id="ingname" class="form-control" list="ingredients">
           <datalist id="ingredients">
           @foreach($medicines as $med)
-               <option value="{{$med->Med_name}}">
+               <option style="text-transform:capitalize" value="{{$med->Med_name}}">
           @endforeach
           </datalist>                            
           
@@ -186,7 +186,7 @@ tbody tr:hover {
           <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
           <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
           @else
-               <h3>Adding is unavailable</h3>
+               <h3 style="text-transform:capitalize">Adding is unavailable</h3>
           @endif
           <textarea class="form-control" name="medicine" placeholder="Medicines" id="order" cols="5" rows="5"></textarea>
                          
@@ -237,7 +237,7 @@ tbody tr:hover {
                                    <div style="height:78%; width:88%; margin: -12% 6% -10% 6%; background-color:rgba(255,255,255,0.5); border-radius:0.5%;" class="container">
                                         
                                         <br>
-                                        <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Admitted Patients' Records</h2>
+                                        <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Admitted Patient's Records</h2>
                                         <div class="">
                                         
                                              <div style="float:left;">
@@ -251,7 +251,7 @@ tbody tr:hover {
                                              </div>
                                              <div style="float:right;">
                                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                             Update records
+                                             Update Records
                                              </button>
                                              </div>
                                              <br></br>
@@ -278,20 +278,20 @@ tbody tr:hover {
                                                   <?php $no = 1;?>
                                                   @foreach($adp as $a)
                                                   <tr>
-                                                       <td>{{$a->Pat_id}}</td>
-                                                       <td>{{$a->Doc_id}}</td>
-                                                       <td>{{$a->created_at}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->Pat_id}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->Doc_id}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->created_at}}</td>
                                                        <td>
-                                                            <input type="hidden" id="medi<?php echo $no; ?>" value="{{$a->medicines}}">
+                                                            <input style="text-transform:capitalize" type="hidden" id="medi<?php echo $no; ?>" value="{{$a->medicines}}">
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                        </td>
-                                                       <td>{{$a->condition}}</td>
+                                                       <td style="text-transform:capitalize">{{$a->condition}}</td>
                                                   </tr>
                                                   <?php $no++; ?>
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="5"><h3 style=" color:black;text-align: center;">No records found</h3></td>
+                                                       <td colspan="5"><h3 style=" color:black;text-align: center;">No Records Found</h3></td>
                                                   </tr>
                                                   @endif
                                                   

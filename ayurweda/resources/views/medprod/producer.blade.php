@@ -135,7 +135,7 @@
      </script>
      
      
-@elseif($msg == "Old password is wrong")
+@elseif($msg == "Old Password Is Wrong")
      <script>
           Swal.fire({
                position: 'middle',

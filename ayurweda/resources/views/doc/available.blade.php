@@ -102,7 +102,7 @@ tbody tr:hover {
                          <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll"><font color="red">Available <br>Time</font></a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
@@ -125,7 +125,7 @@ Swal.fire({
   timer: 1500
 });
 </script>
-@elseif($msg=="The perticular time is already exist.")
+@elseif($msg=="The Perticular Time Is Already Exist.")
 <script>
 Swal.fire({
   position: 'middle',
@@ -199,7 +199,7 @@ $time="";
                                              </div>
                                              <div style="float:right;">
                                              <div style=" float:left; margin-left:5%;" class="col-sm-1">
-                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add new available time</button>
+                                                  <button style="text-transform:capitalize" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmedi"><i class="fa fa-plus"></i> Add new available time</button>
                                              </div>
                                              </div>
                                              <br><br>
@@ -233,7 +233,7 @@ $time="";
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No available times found</h3></td>
+                                                       <td colspan="4"><h3 style=" color:black;text-align: center;">No Available Times Found</h3></td>
                                                   </tr>
                                                   @endif
                                              </tbody>
@@ -257,7 +257,7 @@ $time="";
      <div class="modal-dialog" role="document">
           <div style = "margin-top:35%;" class="modal-content">
                <div class="modal-header">
-                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Add new available time</h3>
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Add New Available Time</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
                <div class="modal-body">
