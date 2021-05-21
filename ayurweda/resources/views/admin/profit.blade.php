@@ -202,7 +202,7 @@ console.log(e);
                                                      @foreach($patbill as $pbill)
                                                        
                                                             <tr>
-                                                                 <td>{{$pbill->	PatMedOrder_id}}</td>
+                                                                 <td style = "text-transform:capitalize">{{$pbill-> PatMedOrder_id}}</td>
                                                                  <td>{{$pbill->PatMedOrder_date}}</td>
                                                                  <td>{{$pbill->bill}} /=</td>
                                                             </tr>
@@ -210,7 +210,7 @@ console.log(e);
                                                                
                                                     @else
                                                             <tr>
-                                                                 <td colspan="3"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Profits By Issuing Medicine Order</h3></td>
+                                                                 <td colspan="3"><h3 style=" text-transform:capitalize; color:black;text-align: center; font-size:20px;">There Are No Profits By Issuing Medicine Order</h3></td>
                                                             </tr>
                                                     @endif
                                                     </tbody>
@@ -266,7 +266,7 @@ console.log(e);
                                                         @foreach($drbill as $dbill)
                                                       
                                                             <tr>
-                                                                 <td>{{$dbill->Meeting_id}}</td>
+                                                                 <td style = "text-transform:capitalize">{{$dbill->Meeting_id}}</td>
                                                                  <td>{{$dbill->date}}</td>
                                                                  <td>{{$dbill->bill}} /=</td>
                                                           
@@ -279,7 +279,7 @@ console.log(e);
                                                         @else
                                                      
                                                             <tr>
-                                                                 <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Profits By Issuing Doctor Prescription</h3></td>
+                                                                 <td colspan="4"><h3 style=" text-transform:capitalize; color:black;text-align: center; font-size:20px;">There Are No Profits By Issuing Doctor Prescription</h3></td>
                                                             </tr>
                                                         @endif
                                                       

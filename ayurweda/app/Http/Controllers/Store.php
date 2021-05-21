@@ -39,7 +39,7 @@ class Store extends Controller
             'dob.required' => 'Date Of Birth is empty',
             'gender.required' => 'Gender is empty',
             'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
+            'phone.required' => 'Phone Number is empty',
             'guardian.required' => 'Guardian is empty',
             'email.required' => 'Email is empty',
             'password.required' => 'Password is empty',

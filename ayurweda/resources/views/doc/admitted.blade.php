@@ -98,18 +98,18 @@ tbody tr:hover {
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-120px"><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
-                         <li style="margin-left:-50px"><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patients</font></a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
-                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
+                         <li style="margin-left:-120px"><a style = "text-transform:capitalize;" href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-50px"><a style = "text-transform:capitalize;" href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patients</font></a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style = "text-transform:capitalize;" href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -186,7 +186,7 @@ tbody tr:hover {
           <input style="width:50%; " class="form-control" type="number" id="qty" style="color:black;"/>
           <button  style="float:right; margin-top:-6%; margin-right:30%;" type="button" class=" btn-uservar btn btn-primary" onclick="addtext()"> Add</button><br> 
           @else
-               <h3 style="text-transform:capitalize">Adding is unavailable</h3>
+               <h3 style="text-transform:capitalize">Adding Is Unavailable</h3>
           @endif
           <textarea class="form-control" name="medicine" placeholder="Medicines" id="order" cols="5" rows="5"></textarea>
                          
@@ -291,7 +291,7 @@ tbody tr:hover {
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td colspan="5"><h3 style=" color:black;text-align: center;">No Records Found</h3></td>
+                                                       <td colspan="5"><h3 style="text-transform:capitalize; color:black;text-align: center;">No Records Found</h3></td>
                                                   </tr>
                                                   @endif
                                                   

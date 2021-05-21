@@ -173,7 +173,7 @@ Swal.fire({
                                                        </div><h2 style="float:left;">All Users</h2>
                                                             <div style="float:right; margin-top:2%;">
                                                                  <div style="margin-top:2%;margin-left:-20%; margin-right:4%;color:gray; width:60%; float:left;">
-                                                                      <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search User name" title="Type ID">   
+                                                                      <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search User Name" title="Type ID">   
                                                                  </div>
                                              
                                                                  <div style="margin-top:2%; float:left; margin-right:-14%;" class="col-sm-1">
@@ -199,8 +199,8 @@ Swal.fire({
                                                            
                                                             @foreach($users as $user)
                                                                  <tr>
-                                                                      <td>{{$user->id}}</td>
-                                                                      <td>{{$user->roll}}</td>
+                                                                      <td style = "text-transform:capitalize">{{$user->id}}</td>
+                                                                      <td style = "text-transform:capitalize">{{$user->roll}}</td>
                                                                       <td> <a href = "{{route('profview',['c'=>$user->id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>

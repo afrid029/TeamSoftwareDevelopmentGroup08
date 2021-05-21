@@ -258,7 +258,7 @@
                          @endforeach
                          @else
                               <tr>
-                                   <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
+                                   <td colspan="8"><h3 style="text-transform:capitalize; color:black;text-align: center; font-size:20px;">There Are No Pharmacists In Hospital</h3></td>
                               </tr>
                          @endif        
                          </tbody>
@@ -354,7 +354,7 @@
                                         @endforeach
                                    </tbody>
                                    @else
-                                        <p><i>No Medicines in Stock</i></p>
+                                        <p><i style = "text-transform:capitalize;">No Medicines In Stock</i></p>
                                    @endif
                          
                          </table>

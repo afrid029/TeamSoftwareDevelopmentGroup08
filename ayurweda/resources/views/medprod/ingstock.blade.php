@@ -182,7 +182,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no ingredients in stock</h3></td>
+                                                                      <td colspan="8"><h3 style="text-transform:capitalize; color:black;text-align: center; font-size:20px;">There Are No Ingredients In Stock</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>

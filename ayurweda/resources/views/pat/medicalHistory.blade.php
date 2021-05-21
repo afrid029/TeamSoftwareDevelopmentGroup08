@@ -207,7 +207,7 @@
                 <button style = "float:right; margin-top:-4%;" type="submit" class="btn btn-warning" data-dismiss="modal"  aria-label="Close">Close</button>
             </div>
             <div style="margin-top:-2%;" class="modal-body">
-            <p style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; float:left; margin-right:30%;"id="dr"></p>
+            <p style = "font-weight:bold; color:SaddleBrown; opacity: 0.6; float:left; margin-right:30%; text-transform:capitalize;"id="dr"></p>
             <p style = "font-weight:bold; margin-left:30%; color:SaddleBrown; opacity: 0.6; "id="meet"></p>
             <p style = "font-weight:bold; float:right; margin-top:-6%; color:SaddleBrown; opacity: 0.6; "id="date"></p>
 

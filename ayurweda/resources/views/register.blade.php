@@ -122,7 +122,7 @@ Swal.fire({
                                         <div class="col-md-8 col-sm-12">
                                              <form name="regform" action="/saveuser" method="post" class="wow fadeInUp">
                                              {{csrf_field()}} 
-                                             <h1>Patient register here....</h1><br><br>
+                                             <h1>Patient Register Here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
                                                   <h4>Your ID: {{$id}}</h4>
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><br>
@@ -130,7 +130,7 @@ Swal.fire({
 
                                                        <select name="gender" class="form-control" placeholder="Select a gender">
                                                             <option value="none" selected disabled hidden> 
-                                                                      Select a gender
+                                                                      Select A Gender
                                                             </option> 
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>

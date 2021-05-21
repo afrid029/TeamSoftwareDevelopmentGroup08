@@ -130,7 +130,7 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li style="margin-left:-100px"><a style="text-transform:capitalize" href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
                          <li><a style="text-transform:capitalize" href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingredients Orderings</font></a></li>
-                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll">Ingridients</a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll">Ingredients</a></li>
                          
                     </ul>
 
@@ -243,7 +243,7 @@
                                                   @endforeach 
                                                   @else
                                                        <tr>
-                                                            <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">You Don't Have Any Orders</h3></td>
+                                                            <td colspan="4"><h3 style="text-transform:capitalize; color:black;text-align: center; font-size:20px;">You Don't Have Any Orders</h3></td>
                                                        </tr>
                                                        
                                                   @endif

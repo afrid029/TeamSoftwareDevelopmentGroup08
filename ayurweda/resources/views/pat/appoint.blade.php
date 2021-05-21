@@ -148,7 +148,7 @@
                         <div class="modal-dialog" role="dialog">
                               <div class="modal-content">
                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Book a Doctor</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Book A Doctor</h5>
                                    </div>
                                 
                                    <div class ="modal-body">
@@ -159,7 +159,7 @@
                                                   <select  class="form-control" name = "dr" style = "width:30%; float:left;">
                                                        
                                                        <option value="none" selected disabled hidden> 
-                                                            Select a Doctor
+                                                            Select A Doctor
                                                        </option> 
                                                        @if($dr)
                                                        @foreach($dr as $a)
@@ -191,13 +191,13 @@
                                                   @if(count($t) > 0)
                                                        @foreach($t as $time)
                                                             <tr>
-                                                                 <td>{{$time->Doc_id}}</td>
+                                                                 <td style = "text-transform:capitalize;">{{$time->Doc_id}}</td>
                                                                  <td>{{$time->availableDate}}</td>
                                                                  <td>{{$time->availableTime}}</td>
                                                                  <td>
                                                                       <form action = "/confirmAppoinment" method="post">
                                                                       @csrf
-                                                                           <input type = "hidden" name = "pid" value = "{{$c->Pat_id}}">
+                                                                           <input  type = "hidden" name = "pid" value = "{{$c->Pat_id}}">
                                                                            <input type = "hidden" name = "did" value = "{{$time->Doc_id}}">
                                                                            <input type = "hidden" name = "tm" value = "{{$time->availableTime}}">
                                                                            <input type = "hidden" name = "dt" value = "{{$time->availableDate}}">

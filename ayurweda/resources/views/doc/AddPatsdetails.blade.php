@@ -155,18 +155,18 @@ tbody tr:hover {
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-nav-first">
-                         <li style="margin-left:-120px"><a href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
-                         <li style="margin-left:-50px"><a href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
-                         <li><a href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patient <br>Details</font></a></li>
-                         <li><a href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
-                         <li><a href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
-                         <li><a href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
+                         <li style="margin-left:-120px"><a style = "text-transform:capitalize;" href="{{route('dochome',$c->Doc_id)}}" class="smoothScroll">Home</a></li>
+                         <li style="margin-left:-50px"><a style = "text-transform:capitalize;" href="{{route('prescription',$c->Doc_id)}}" class="smoothScroll">Prescriptions</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll"><font color="red">Admitted <br>Patient <br>Details</font></a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                         </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a  href="/logout">Logout</a></li>
+                         <li><a style = "text-transform:capitalize;" href="/logout">Logout</a></li>
                     </ul>
                </div>
 
@@ -309,7 +309,7 @@ Swal.fire({
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td style="text-transform:capitalize" colspan="6"><h3 style=" color:black;text-align: center;">No patients found</h3></td>
+                                                       <td style="text-transform:capitalize" colspan="6"><h3 style="text-transform:capitalize; color:black;text-align: center;">No Patients Found</h3></td>
                                                   </tr>
                                                   @endif
                                                   

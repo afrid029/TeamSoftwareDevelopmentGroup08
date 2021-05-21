@@ -130,7 +130,7 @@
                <ul class="nav navbar-nav navbar-nav-first">
                          <li style="margin-left:-100px"><a style="text-transform:capitalize" href="{{route('suphome',$c->Sup_id)}}" class="smoothScroll">Home</a></li>
                          <li><a style="text-transform:capitalize" href="{{route('issueing',$c->Sup_id)}}" class="smoothScroll">Ingredients Orderings</a></li>
-                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingridients</font></a></li>
+                         <li><a style="text-transform:capitalize" href="{{route('newing',$c->Sup_id)}}" class="smoothScroll"><font color="red">Ingredients</font></a></li>
                          
                     </ul>
 

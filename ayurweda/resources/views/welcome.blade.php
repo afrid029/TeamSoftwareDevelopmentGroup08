@@ -86,7 +86,7 @@
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
                                              
-                                             <h1>You can register for the hospital now....</h1>
+                                             <h1>You Can Register For The Hospital Now.</h1>
                                              <a href="register" class="section-btn btn btn-default smoothScroll">Register</a>
                                         </div>
                                    </div>
@@ -98,7 +98,7 @@
                                    <div class="container">
                                         <div class="col-md-8 col-sm-12">
                                              
-                                             <h1>Already registered! Then login here....</h1>
+                                             <h1>Already Registered! Then Login Here.</h1>
                                              <a href="login" class="section-btn btn btn-default smoothScroll">Login</a>
                                         </div>
                                    </div>

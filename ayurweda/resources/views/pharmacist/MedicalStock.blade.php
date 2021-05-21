@@ -237,8 +237,8 @@
                                                             <?php $n = 0;?>
                                                             @foreach($med as $medi)
                                                                  <tr>
-                                                                      <td><b>{{$medi->Med_id}}</b></td>
-                                                                      <td><b>{{$medi->Med_name}}</b></td>
+                                                                      <td><b style = "text-transform:capitalize;">{{$medi->Med_id}}</b></td>
+                                                                      <td><b style = "text-transform:capitalize;">{{$medi->Med_name}}</b></td>
                                                                       <td>
                                                                            <input type="hidden" id = "id<?php echo $n; ?>" value="{{$medi->Med_id }}">
                                                                            <input type="hidden" id = "name<?php echo $n; ?>" value = "{{$medi->Med_name}}">
@@ -298,7 +298,7 @@
                                         @endforeach
                                         </ul>
                                    @else
-                                        <h3 style = "color: grey;">All medicines are upto date</h3>
+                                        <h3 style = "text-transform:capitalize; color: grey;">All Medicines Are Upto Date</h3>
                                    @endif
 
                                    @if(count($warn1)>0)
@@ -312,7 +312,7 @@
                                         @endforeach
                                         </ul>
                                    @else
-                                        <h3 style = "color: grey;text-transform:capitalize;">All medicine stocks are available</h3>
+                                        <h3 style = "color: grey;text-transform:capitalize;">All Medicine Stocks Are Available</h3>
                                    @endif
                               </div>
                          </div>

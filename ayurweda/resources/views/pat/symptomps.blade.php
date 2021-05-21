@@ -213,7 +213,7 @@
                                                                  
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="3"><h3 style=" color:black;text-align: center;">You don't state any symptoms</h3></td>
+                                                                      <td colspan="3"><h3 style=" text-transform:capitalize; color:black;text-align: center;">You Have Not Stated Any Symptoms</h3></td>
                                                                  </tr>
                                                             @endif   
                                                        </tbody>

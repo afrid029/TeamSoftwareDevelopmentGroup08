@@ -178,7 +178,7 @@
                                                             @endforeach
                                                             @else
                                                                  <tr>
-                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;text-transform:capitalize">There are no medicines</h3></td>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;text-transform:capitalize">There Are No Medicines</h3></td>
                                                                  </tr>
                                                             @endif        
                                                             </tbody>

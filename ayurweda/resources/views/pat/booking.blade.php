@@ -191,7 +191,7 @@
 
                                                        @else
                                                             <tr>
-                                                                 <td colspan="5"><h3 style=" color:black;text-align: center; text-transform:capitalize">At the moment you don't have any appointment</h3></td>
+                                                                 <td colspan="5"><h3 style=" color:black;text-align: center; text-transform:capitalize">At The Moment You Don't Have Any Appointment</h3></td>
                                                             </tr>
                                                        @endif
                                                        
