@@ -293,7 +293,7 @@ tbody tr:hover {
                                                             @foreach($pa as $d)
                                                                  <tr>
                                                                       <td style="text-transform:capitalize">{{$d->Pat_name}}</td>
-                                                                      <td style="text-transform:capitalize"a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
+                                                                      <td style="text-transform:capitalize"><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
                                                                  </tr>
                                                        

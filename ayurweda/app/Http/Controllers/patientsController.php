@@ -250,7 +250,7 @@ class patientsController extends Controller
         $t = DB::table('doc_available_times')
                                              ->where('availableDate','>=' , $date)
                                              ->orderBy('availableDate','asc')->get();
-        return view('pat\appoint' ,compact('c','dr','t'));
+        return view('pat.appoint' ,compact('c','dr','t'));
     }
 
     public function confirmAppoinment(Request $request)
