@@ -218,7 +218,7 @@ Swal.fire({
   icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2000
 });
 </script>
 @elseif($msg=="The Patient Doesn't Exist.")
@@ -228,7 +228,7 @@ Swal.fire({
   icon: 'error',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2000
 });
 </script>
 @endif

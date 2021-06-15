@@ -110,6 +110,19 @@ Swal.fire({
      </script>
 @endif
 
+@if ($msg = session()->get('reg'))
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'error',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 3000
+            
+          });
+     </script>
+@endif
+
 
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -125,6 +138,7 @@ Swal.fire({
                                              <h1>Patient Register Here....</h1><br><br>
                                                   <div class="col-md-6 col-sm-6">
                                                   <h4>Your ID: {{$id}}</h4>
+                                                       <input type="hidden" value = "{{$id}}" name = "id">
                                                        <input class="form-control" type="text" name="name" placeholder="Name"><br>
                                                        <input class="form-control" type="text" name="dob" onblur="(this.type='text')" onfocus="(this.type='date')"  placeholder="Date Of Birth"><br>
 

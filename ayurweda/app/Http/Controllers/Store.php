@@ -46,6 +46,10 @@ class Store extends Controller
             'rpassword.required' => 'Password retype is empty',
             
         ]);
+        if(DB::table('all_users')->where('id',$request->id)->first()){
+            return redirect()->back()->with('reg', 'Another Patient Is Registered In This Id. Try Again');
+        }
+        
 
         $p=DB::table('patients')->get();
         $np=count($p)+1;
@@ -130,12 +134,12 @@ class Store extends Controller
             $pr->save();
         }
         catch(\Illuminate\Database\QueryException $exception){
-            $s="The patient doesn't exist.";
+            $s="The Patient Doesn't Exist.";
             
         
             return redirect()->back()->with('msg',$s);
         }
-        $s="Prescription added successfully";
+        $s="Prescription Added Successfully";
         
         
 
@@ -173,7 +177,7 @@ class Store extends Controller
         }
         catch(\Illuminate\Database\QueryException $exception){
             $s="The patient doesn't exist.";
-            return redirect()->back()>with('msg',$s);
+            return redirect()->back()->with('msg',$s);
         }
         $s="Inserted successfully.";
         

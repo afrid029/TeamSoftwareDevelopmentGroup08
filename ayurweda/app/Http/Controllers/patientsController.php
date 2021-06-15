@@ -292,6 +292,9 @@ class patientsController extends Controller
 
     public function order($id)
     {
+        $dt = date("Y-m-d", strtotime("+ 10 days"));
+        
+        
         $a = session()->getId();
         if(session()->get('session') != $a || session()->get('userid') != $id){
             return redirect()->route('login')->with('msg','Login First');
@@ -299,6 +302,7 @@ class patientsController extends Controller
 
         $c = DB::table('patients')->where('Pat_id',$id)->first();
         $stocks = DB::table('medicine_stocks')->whereRaw("stock_qty - orders > 100")
+                                                ->whereDate("expireDate",">",$dt)
                                             ->orderBy('Med_name','asc') 
                                             ->get();
         $orders = DB::table('pat_med_orderings')->where('Pat_id',$id)
