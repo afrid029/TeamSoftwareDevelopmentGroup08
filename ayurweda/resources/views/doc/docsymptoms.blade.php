@@ -232,7 +232,7 @@ tbody tr:hover {
                                    <table style="background-color:white;border:5px; " class="table table-bordered" id="myTable">
                                         
                                              <thead>
-                                             @if(count($d) > 0)
+                                             
                                                   <tr style="background-color:#800000; ">
                                                        <th><p style=" color:#FFFFFF;text-align:center"><b>Date</p></b></th>
                                                        <th><p style="color:#FFFFFF;text-align:center" ><b>Time</p></b></th>
@@ -240,6 +240,7 @@ tbody tr:hover {
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                             @if(count($d) > 0)
                                                   
                                                   @foreach($d as $info)
                                                   <tr>
@@ -261,7 +262,9 @@ tbody tr:hover {
                                                   @endforeach   
                                                   
                                              @else
-                                             <button style="width:100%;" disabled type="button" class="btn btn-danger btn-lg">No Any Symptomps Added Yet</button>
+                                              <tr>
+                                                       <td style="text-transform:capitalize" colspan="7"><h3 style="text-transform:capitalize; color:black;text-align: center;">No one has state any symptoms</h3></td>
+                                                  </tr>
                                              @endif     
                                              </tbody>
                                         

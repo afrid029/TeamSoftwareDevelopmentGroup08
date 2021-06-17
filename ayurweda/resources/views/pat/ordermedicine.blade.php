@@ -173,7 +173,7 @@
                                    <div  class="container-lg">
                                         <div  class="table-responsive">
                                              <div  class="table-wrapper">
-                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Unrecieved Orders</h2></div>
+                                                  <div style="width:60%; float:left; margin-left:2%;"><h2>Medicine Orders Details</h2></div>
                                                        <div class="table-title">
                                                             <div style="margin-top:2%; float:right; margin-right:2%;" >
                                                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordermedicine"><i class="fa fa-plus"></i>&nbsp;&nbsp;Order Medicine</button>

@@ -155,7 +155,7 @@ class redirect extends Controller
         }
         $ingredients = DB::table('ingredients')->get();
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
-        $p=DB::table('ingredient_orderings')->where('Pro_id',$t)->get();
+        $p=DB::table('ingredient_orderings')->orderBy('status','desc')->where('Pro_id',$t)->get();
         $sup = DB::table('ingredient_suppliers')->orderBy('Sup_name','asc')->get();
         return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('p',$p)->with('ingredients',$ingredients)->with('sup',$sup);
         

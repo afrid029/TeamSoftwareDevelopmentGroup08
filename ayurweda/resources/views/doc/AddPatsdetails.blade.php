@@ -309,7 +309,7 @@ Swal.fire({
                                                   @endforeach
                                                   @else
                                                   <tr>
-                                                       <td style="text-transform:capitalize" colspan="6"><h3 style="text-transform:capitalize; color:black;text-align: center;">No Patients Found</h3></td>
+                                                       <td style="text-transform:capitalize" colspan="7"><h3 style="text-transform:capitalize; color:black;text-align: center;">No Patients Found</h3></td>
                                                   </tr>
                                                   @endif
                                                   

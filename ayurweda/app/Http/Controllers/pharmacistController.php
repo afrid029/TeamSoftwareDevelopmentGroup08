@@ -307,8 +307,7 @@ class pharmacistController extends Controller
             return redirect()->route('login')->with('msg','Login First');
         }
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
-        $stocks = DB::table('medicines')
-                                              ->orderBy('Med_name','asc') 
+        $stocks = DB::table('medicines')->orderBy('Med_name','asc') 
                                               ->get();
         $orders = DB::table('medicine_orderings')->where('Phar_id',$id)
                                                 ->orderBy('status','desc')

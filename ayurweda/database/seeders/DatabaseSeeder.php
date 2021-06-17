@@ -63,6 +63,21 @@ class DatabaseSeeder extends Seeder
             'Pro_im' => '',
             'password' => Hash::make('prod1@')
         ]);
+
+         DB::table('all_users')->insert([
+            'id'=> 'prod2',
+            'password' => Hash::make('prod2@'),
+            'roll' => 'producer'
+        ]);
+        DB::table('medicine_producers')->insert([
+            'Pro_id' => 'prod2',
+            'Pro_name' => 'Raju Gandhi',
+            'Pro_addr' => '45,Navalar road, Jaffna',
+            'Pro_pNum' => '0784574523',
+            'Pro_email'=>'raju8525@gmail.com',
+            'Pro_im' => '',
+            'password' => Hash::make('prod2@')
+        ]);
         
         //patient sample data
         DB::table('all_users')->insert([
@@ -244,6 +259,51 @@ class DatabaseSeeder extends Seeder
             'guardian' => 'Kamal Varan',
             'password' => Hash::make('pat10@')
         ]);
+        //Pharmacist sample data
+        DB::table('all_users')->insert([
+            'id'=> 'pha1',
+            'password' => Hash::make('pha1@'),
+            'roll' => 'pharmacist'
+        ]);
+        DB::table('pharmacists')->insert([
+            'Phar_id' => 'pha1',
+            'Phar_name' => 'Dilki Hasara',
+            'Phar_addr' => 'No.618/80 E, Buddhagaya mawatha, Anuradhapura',
+            'Phar_pNum' => '0715397001',
+            'Phar_email'=>'dhwways@gmail.com',
+            'password' => Hash::make('pha1@')
+        ]);
+
+        DB::table('all_users')->insert([
+            'id'=> 'pha2',
+            'password' => Hash::make('pha2@'),
+            'roll' => 'pharmacist'
+        ]);
+        DB::table('pharmacists')->insert([
+            'Phar_id' => 'pha2',
+            'Phar_name' => 'S.Lokavennilavan',
+            'Phar_addr' => '14, Alli nagar road, Poonakari, Jaffna',
+            'Phar_pNum' => '0778545789',
+            'Phar_email'=>'lokavan007@gmail.com',
+            'password' => Hash::make('pha2@')
+        ]);
+
+         ///admin
+
+        DB::table('all_users')->insert([
+            'id'=>'admin',
+            'password'=>Hash::make('admin'),
+            'roll'=>'admin'
+        ]);
+        DB::table('admins')->insert([
+            'id'=>'admin',
+            'username'=>'Vishva',
+            'password'=>Hash::make('admin'),
+            'phone'=>'0774585654',
+            'email'=>'vishwasasanka@gmail.com',
+            
+        ]);
+        
         
 		
         //admitted patients details
@@ -268,21 +328,6 @@ class DatabaseSeeder extends Seeder
             'status'=>'Admitted'
         ]);
        
-		
-		//Pharmacist sample data
-        DB::table('all_users')->insert([
-            'id'=> 'pha1',
-            'password' => Hash::make('pha1@'),
-            'roll' => 'pharmacist'
-        ]);
-        DB::table('pharmacists')->insert([
-            'Phar_id' => 'pha1',
-            'Phar_name' => 'Dilki Hasara',
-            'Phar_addr' => 'No.618/80 E, Buddhagaya mawatha, Anuradhapura',
-            'Phar_pNum' => '0715397001',
-            'Phar_email'=>'dhwways@gmail.com',
-            'password' => Hash::make('pha1@')
-        ]);
         
         //medicines
 
@@ -406,7 +451,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2021-06-17 14:23:40',
             'medicine' => "['Ashwagandha,2,Boswellia,5']",
             'bill' => '310',
-            'issued' => 'issued'
+            'issued' => 'Issued'
         ]);
         DB::table('medical_histories')->insert([
             'Meeting_id' => 'Pres2',
@@ -418,7 +463,7 @@ class DatabaseSeeder extends Seeder
              'created_at' => '2021-06-17 14:35:40',
             'bill'=>'920',
             'medicine' => "['Ashwagandha,8,Cardamom,17']",
-            'issued' => 'Not issued'
+            'issued' => 'Not Issued'
         ]);
         DB::table('medical_histories')->insert([
             'Meeting_id' => 'Pres3',
@@ -430,7 +475,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2021-03-15 14:23:40',
             'bill'=>'850',
             'medicine' => "['Cumin,10,Bitter melon,10']",
-            'issued'=> 'issued'
+            'issued'=> 'Issued'
         ]);
 
         //Patient Order
@@ -449,7 +494,7 @@ class DatabaseSeeder extends Seeder
             'bill'=>'900',
             'medicines' =>"['Licorice,10,Bitter melon,14']",
             'PatMedOrder_date' => '2021-06-16',
-             'status'=> 'Not issued'
+             'status'=> 'Not Issued'
         ]);
         DB::table('pat_med_orderings')->insert([
             'PatMedOrder_id'=>'Ord3',
@@ -457,7 +502,7 @@ class DatabaseSeeder extends Seeder
             'bill'=>'860',
             'medicines' =>"['Ashwagandha,10,Cardamom,14']",
             'PatMedOrder_date' => '2021-06-17',
-            'status'=> 'Not issued'
+            'status'=> 'Not Issued'
         ]);
         DB::table('pat_med_orderings')->insert([
             'PatMedOrder_id'=>'Ord4',
@@ -465,7 +510,7 @@ class DatabaseSeeder extends Seeder
             'bill'=>'1280',
             'medicines' =>"['Ashwagandha,10,Cumin,14,Cardamom,14']",
             'PatMedOrder_date' => '2021-05-15',
-            'status'=> 'issued'
+            'status'=> 'Issued'
         ]);
 
         //maintain medicine stock
@@ -591,7 +636,7 @@ class DatabaseSeeder extends Seeder
             'App_id'=> 'App1',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'availableDate' => '2021-06-18',
+            'availableDate' => '2021-06-17',
             'availableTime' => '15:00:00'
         ]);
         DB::table('online_bookings')->insert([
@@ -724,23 +769,24 @@ class DatabaseSeeder extends Seeder
             'Ingredients' => 'Aralu',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
-            'IngOrder_date' => '2020-04-06',
+            'IngOrder_date' => '2021-04-06',
             'status' => 'Issued'
+            
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '002',
             'Ingredients' => 'Thippili',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
-            'IngOrder_date' => '2020-05-20',
-            'status' => 'Issued'
+            'IngOrder_date' => '2021-06-17',
+            'status' => 'Not Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '003',
             'Ingredients' => 'Rasakida',
-            'Pro_id' => 'prod1',
+            'Pro_id' => 'prod2',
             'Sup_id' => 'sup1',
-            'IngOrder_date' => '2020-06-21',
+            'IngOrder_date' => '2021-06-15',
             'status' => 'Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
@@ -748,7 +794,7 @@ class DatabaseSeeder extends Seeder
             'Ingredients' => 'Walmi',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup2',
-            'IngOrder_date' => '2020-05-01',
+            'IngOrder_date' => '2021-05-01',
             'status' => 'Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
@@ -756,15 +802,15 @@ class DatabaseSeeder extends Seeder
             'Ingredients' => 'Lunuvila',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup2',
-            'IngOrder_date' => '2020-04-30',
-            'status' => 'Issued'
+            'IngOrder_date' => '2021-06-17',
+            'status' => 'Not Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
             'id' => '006',
             'Ingredients' => 'Daththa',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
-            'IngOrder_date' => '2020-07-06',
+            'IngOrder_date' => '2021-05-06',
             'status' => 'Issued'
         ]);
 
@@ -806,21 +852,87 @@ class DatabaseSeeder extends Seeder
             'Ing_qty' => '200'
         ]);
 
-        ///admin
+        ///Order from pharmacist
+         DB::table('medicine_orderings')->insert([
+            'MedOrder_id' => 'M_Ord302',
+            'medicines' => "['Cumin,350']",
+            'Pro_id'=>'prod1',
+            'Phar_id'=>'pha1',
+            'MedOrder_date'=> '2021-06-14',
+            'status'=>'Not Issued',
+            'created_at'=>'2021-06-14 10:05:54'
+        ]);
 
-        DB::table('all_users')->insert([
-            'id'=>'admin',
-            'password'=>Hash::make('admin'),
-            'roll'=>'admin'
+        DB::table('medicine_orderings')->insert([
+            'MedOrder_id' => 'M_Ord242',
+            'medicines' => "['Brahmi,300']",
+            'Pro_id'=>'prod1',
+            'Phar_id'=>'pha1',
+            'MedOrder_date'=> '2021-06-14',
+            'status'=>'Not Issued',
+            'created_at'=>'2021-06-14 10:05:54'
         ]);
-        DB::table('admins')->insert([
-            'id'=>'admin',
-            'username'=>'Vishva',
-            'password'=>Hash::make('admin'),
-            'phone'=>'0774585654',
-            'email'=>'vishwasasanka@gmail.com',
-            
+        DB::table('medicine_orderings')->insert([
+            'MedOrder_id' => 'M_Ord145',
+            'medicines' => "['Ashwagandha,250']",
+            'Pro_id'=>'prod1',
+            'Phar_id'=>'pha1',
+            'MedOrder_date'=> '2021-02-01',
+            'status'=>'Issued',
+            'created_at'=>'2021-02-01 11:05:54'
         ]);
+        //producer Medicine table
+
+        DB::table('new_med_stocks')->insert([
+            'id'=>'001',
+            'Pro_id'=>'prod1',
+            'Med_id'=>'med1',
+            'Med_name'=>'Ashwagandha',
+            'unitprice'=> 25,
+            'stock_qty'=> 500,
+            'description'=>'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
+            'manufactureDate'=>'2021-06-15',
+            'expireDate'=>'2021-07-15',
+            'created_at'=>'2021-06-15 17:45:14'
+        ]);
+        DB::table('new_med_stocks')->insert([
+            'id'=>'002',
+            'Pro_id'=>'prod2',
+            'Med_id'=>'med10',
+            'Med_name'=>'Licorice root',
+            'unitprice'=> 16,
+            'stock_qty'=> 400,
+            'description'=>'Licorice root, which is considered one of the worlds oldest herbal remedies, comes from the root of the licorice plant (Glycyrrhiza glabra) ( 1 ). Native to Western Asia and Southern Europe, licorice has long been used to treat various ailments and flavor candies, drinks, and medicines',
+            'manufactureDate'=>'2021-05-15',
+            'expireDate'=>'2021-07-30',
+            'created_at'=>'2021-05-15 15:45:14'
+        ]);
+        DB::table('new_med_stocks')->insert([
+            'id'=>'003',
+            'Pro_id'=>'prod1',
+            'Med_id'=>'med3',
+            'Med_name'=>'Brahmi',
+            'unitprice'=> 85,
+            'stock_qty'=> 320,
+            'description'=>'Brahmi is an Ayurvedic herb believed to lower inflammation, improve brain function, and reduce symptoms of ADHD. It may also increase your body’s ability to deal with stress, though more research is needed.',
+            'manufactureDate'=>'2021-06-10',
+            'expireDate'=>'2021-07-15',
+            'created_at'=>'2021-06-10 17:45:14'
+        ]);
+        DB::table('new_med_stocks')->insert([
+            'id'=>'004',
+            'Pro_id'=>'prod1',
+            'Med_id'=>'med4',
+            'Med_name'=>'Cumin',
+            'unitprice'=> 50,
+            'stock_qty'=> 700,
+            'description'=>'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
+            'manufactureDate'=>'2021-05-31',
+            'expireDate'=>'2021-07-01',
+            'created_at'=>'2021-05-31 09:45:14'
+        ]);
+
+       
         
 
 }

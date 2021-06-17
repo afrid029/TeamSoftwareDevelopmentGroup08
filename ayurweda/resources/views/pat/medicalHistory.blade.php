@@ -180,7 +180,7 @@
 
                                                         @else
                                                             <tr>
-                                                                <td colspan="3"><h3 style=" color:black;text-align: center;">At the moment you don't have any medical history</h3></td>
+                                                                <td colspan="3"><h3  style="text-transform:capitalize; color:black;text-align: center;">At the moment you don't have any medical history</h3></td>
                                                             </tr>
                                                         @endif
                                                         </tbody>

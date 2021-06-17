@@ -191,7 +191,7 @@
                                                                  @endforeach 
                                                                  @else
                                                                       <tr>
-                                                                           <td colspan="4"><h3 style=" color:black;text-align: center; font-size:20px;">You Don't Have Any Orders</h3></td>
+                                                                           <td colspan="4"><h3 style=" text-transform:capitalize; color:black;text-align: center; font-size:20px;">You Have not placed any orders</h3></td>
                                                                       </tr>
                                                                       
                                                                  @endif
