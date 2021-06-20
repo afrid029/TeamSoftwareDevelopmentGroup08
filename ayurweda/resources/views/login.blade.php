@@ -58,31 +58,31 @@
                     
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>
+                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 055 020 0340</a></li>
                     </ul>
                </div>
 
           </div>
      </section>
 @if($msg = session()->get('msg'))
-@if($msg=="Wrong password or username")
+@if($msg=="Wrong Password or Username")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'error',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
-@elseif($msg=="Password reset successful")
+@elseif($msg=="Password Reset Successful")
 <script>
           Swal.fire({
                position: 'middle',
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
 @elseif($msg == "Login First")
@@ -92,7 +92,7 @@ Swal.fire({
                icon: 'warning',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 2500
           });
      </script>
 @else
@@ -102,7 +102,7 @@ Swal.fire({
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
 

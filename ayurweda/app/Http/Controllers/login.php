@@ -73,7 +73,7 @@ class login extends Controller
             }
         }
             else{
-                return redirect()->back()->with('msg','Wrong password or username');
+                return redirect()->back()->with('msg','Wrong Password or Username');
             }
     
 

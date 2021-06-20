@@ -89,7 +89,7 @@
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>

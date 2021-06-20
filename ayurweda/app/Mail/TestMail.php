@@ -29,9 +29,9 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Password reset mail from Helawedapiyasa.')->view('email')->with([
+        return $this->from('contact.helaweda@gmail.com','Forgot Password')->subject('Password reset mail from Helawedapiyasa.')->view('email')->with([
             'title'=>$this->details['title'],
             'body'=>$this->details['body']
-        ]);;
+        ]);
     }
 }

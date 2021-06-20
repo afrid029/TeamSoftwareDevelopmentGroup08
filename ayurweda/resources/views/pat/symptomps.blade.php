@@ -404,11 +404,11 @@ function viewSymp(id)
 
           var data = document.getElementById('dbreply'+id).value;
           if(data.length > 0){
-               p.style = "color:Teal; font-weight:bold;"
+               p.style = "text-transform:capitalize; color:Teal; font-weight:bold;"
                p.innerHTML = data;
           }else{
-              
-               p.innerHTML = "Doctor doesn't send any reply"
+               p.style = "text-transform:capitalize"
+               p.innerHTML = "Doctor have not Sent Any Reply"
           }
 
           div2.appendChild(p);
@@ -450,7 +450,7 @@ function viewSymp(id)
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 5000
+               timer: 2500
             
           });
      </script>

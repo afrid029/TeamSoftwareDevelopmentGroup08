@@ -148,7 +148,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 2500
             
           });
      </script>
@@ -160,7 +160,7 @@
                icon: 'warning',
                title: '{{$msg}}',
                showConfirmButton: true,
-               timer: 4000
+               timer: 3500
             
           });
      </script>
@@ -186,7 +186,7 @@
                icon: 'warning',
                title: k,
                showConfirmButton: true,
-               timer:3500
+               timer:4000
                
             
           });

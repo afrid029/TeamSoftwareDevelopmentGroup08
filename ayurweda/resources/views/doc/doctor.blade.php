@@ -27,13 +27,13 @@
      <style>
 .btn-dark{
      display:none;
-    margin-top:2px;
+    margin-top:-25px;
     width:100%;
      background-color:Black;
      opacity:0.8;
 }
 .img:hover + .btn-dark, .btn-dark:hover{
-     display:inline-block;
+     display:flex;
 }
 </style>
 </head>
@@ -157,19 +157,19 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
      
      
-@elseif($msg == "Old password is wrong")
+@elseif($msg == "Old Password Is Wrong")
      <script>
           Swal.fire({
                position: 'middle',
                icon: 'error',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
 @else
@@ -179,7 +179,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
 @endif
@@ -200,7 +200,7 @@
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>
@@ -220,13 +220,13 @@
                                              <br><br>
                                              <br><br>
                                              <div class="col-md-6 col-sm-6">
-                                              <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
+                                             <div class="wow fadeInUp" style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:50%" data-wow-delay = "0.1s">
                                                       @if($c->Doc_im)
                                                        <img class="img" src="{{asset('upload/profile')}}/{{$c->Doc_im}}" style="  border-radius:30px; height:200px; width:100%;">
-                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                      <button style="border-radius:05px" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> &nbsp; Change Profile Photo</b></button>
                                                        @else
                                                        <img class="img" src="{{ asset('images/doctorimage.jpg')}}" style="  border-radius:30px; height:200px; width:100%; ">
-                                                       <button style="border-radius:30px;width:200px;" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> Change Profile Pic</b></button>
+                                                       <button style="border-radius:05px" href = "#profile" data-toggle = "modal" class = "btn btn-dark btn-sm fa fa-camera"><b> &nbsp; Change Profile Photo</b></button>
                                                        @endif
                                              </div>
                                                        <br><br>

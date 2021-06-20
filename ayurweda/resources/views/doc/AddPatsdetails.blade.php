@@ -173,24 +173,24 @@ tbody tr:hover {
           </div>
      </section>
 @if($msg=session()->get('msg'))
-@if($msg=="Patient admitted successfully." || $msg=="Patient was discharged")
+@if($msg=="Patient Admitted Successfully." || $msg=="Patient Was Discharged")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
-@elseif($msg=="The patient doesn't exist.")
+@elseif($msg=="The Patient Doesn't Exist.")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'error',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
 @endif
@@ -211,7 +211,7 @@ Swal.fire({
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>

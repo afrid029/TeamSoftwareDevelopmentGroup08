@@ -254,14 +254,14 @@
      
 
 @if($msg=session()->get('msg'))
-@if($msg == "Appoinment is cancelled")
+@if($msg == "Appoinment Is Cancelled")
 <script>
           Swal.fire({
                position: 'middle',
                icon: 'error',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
           });
      </script>
 @else

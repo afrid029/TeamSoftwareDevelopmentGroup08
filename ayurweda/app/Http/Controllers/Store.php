@@ -35,15 +35,15 @@ class Store extends Controller
             'rpassword'=>['required'],
         ],
         [
-            'name.required' => 'Name is empty',
-            'dob.required' => 'Date Of Birth is empty',
-            'gender.required' => 'Gender is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone Number is empty',
-            'guardian.required' => 'Guardian is empty',
-            'email.required' => 'Email is empty',
-            'password.required' => 'Password is empty',
-            'rpassword.required' => 'Password retype is empty',
+            'name.required' => 'Name is Required',
+            'dob.required' => 'Date Of Birth Is Required',
+            'gender.required' => 'Gender Is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required' => 'Phone Number Is Required',
+            'guardian.required' => 'Guardian Is Required',
+            'email.required' => 'Email Is Required',
+            'password.required' => 'Password Is Required',
+            'rpassword.required' => 'Password Retype Is Empty',
             
         ]);
         if(DB::table('all_users')->where('id',$request->id)->first()){
@@ -53,9 +53,10 @@ class Store extends Controller
 
         $p=DB::table('patients')->get();
         $np=count($p)+1;
-        $patient=new Patient;
-        $user=new AllUsers;
+        
         if($request->password==$request->rpassword){
+            $patient=new Patient;
+            $user=new AllUsers;
             $patient->Pat_id="pat".$np;
             $patient->Pat_name=$request->name;
             $patient->Pat_email=$request->email;
@@ -71,10 +72,11 @@ class Store extends Controller
             $user->password=Hash::make($request->password);
             $user->roll="patient";
             $user->save();
-            $s="Registered successfully.";
+            $s="Registered Successfully.";
         }
         else{
-            $s="Password retype is wrong.";
+            $s="Password Retype Is Wrong.";
+            return redirect()->back()->with('msg',$s);
         }
         $p=DB::table('patients')->get();
         $np1=count($p)+1;
@@ -95,10 +97,10 @@ class Store extends Controller
             'medic'=>['required'],
         ],
         [
-            'patientid.required' => 'Patient ID is empty',
-            'diagnosis.required' => 'Diagnosis is empty',
-            'disease.required' => 'Disease is empty',
-            'medic.required' => 'Medicine is empty',
+            'patientid.required' => 'Patient ID Is Required',
+            'diagnosis.required' => 'Diagnosis is Required',
+            'disease.required' => 'Disease is Required',
+            'medic.required' => 'Medicine is Required',
         ]);
 
         $name;
@@ -162,9 +164,9 @@ class Store extends Controller
             'condition'=>['required'],
         ],
         [
-            'patientid.required' => 'Patient ID is empty',
-            'medicine.required' => 'Medicine is empty',
-            'condition.required' => 'Condition is empty',
+            'patientid.required' => 'Patient ID Is Required',
+            'medicine.required' => 'Medicine Is Required',
+            'condition.required' => 'Condition Is Required',
         ]);
         try{
             $a=new Add_pat_up;
@@ -176,10 +178,10 @@ class Store extends Controller
             $a->save();
         }
         catch(\Illuminate\Database\QueryException $exception){
-            $s="The patient doesn't exist.";
+            $s="The Patient Doesn't Exist.";
             return redirect()->back()->with('msg',$s);
         }
-        $s="Inserted successfully.";
+        $s="Inserted Successfully.";
         
         return redirect()->back()->with('msg',$s);
         
@@ -196,12 +198,12 @@ class Store extends Controller
             'time'=>['required'],
         ],
         [
-            'date.required' => 'Date is empty',
-            'time.required' => 'Time is empty',
+            'date.required' => 'Date is Required',
+            'time.required' => 'Time is Required',
         ]);
         $x=DB::table('doc_available_times')->where('Doc_id',$request->docid)->where('availableDate',$request->date)->where('availableTime',$request->time)->get();
         if(count($x)>0){
-            $s="The perticular time is already exist.";
+            $s="The Particular Time Is Already Exist.";
         }
         else{
             $a=new Doc_available_time;
@@ -209,7 +211,7 @@ class Store extends Controller
             $a->availableDate=$request->date;
             $a->availableTime=$request->time;
             $a->save();
-            $s="Inserted successfully.";
+            $s="Inserted Successfully.";
         }
         
         
@@ -228,9 +230,9 @@ class Store extends Controller
             'bedno'=>['required'],
         ],
         [
-            'patid.required' => 'Patient ID is empty',
-            'disease.required' => 'Disease is empty',
-            'bedno.required' => 'Bed no. is empty',
+            'patid.required' => 'Patient ID is Required',
+            'disease.required' => 'Disease is Required',
+            'bedno.required' => 'Bed No. is Required',
         ]);
 
         try{
@@ -244,10 +246,10 @@ class Store extends Controller
             $a->save();
         }
         catch(\Illuminate\Database\QueryException $exception){
-            $s="The patient doesn't exist.";
+            $s="The Patient Doesn't Exist.";
             return redirect()->back()->with('msg',$s);
         }
-        $s="Patient admitted successfully.";
+        $s="Patient Admitted Successfully.";
         return redirect()->back()->with('msg',$s);
         
     }
@@ -267,12 +269,12 @@ class Store extends Controller
             'exp' => 'required|date|after:mfd',
 
         ],[
-            'medname.required' => 'Medicine Name is missing',
-            'uprice.required' => 'Set a unit price',
-            'qty.required' => 'Set a Quantity',
-            'mfd.required'=> 'MFD required',
-            'exp.required' => 'EXP required',
-            'exp.after' => 'Logically date combination is wrong'
+            'medname.required' => 'Medicine Name is Required',
+            'uprice.required' => 'Set A Unit Price',
+            'qty.required' => 'Set A Quantity',
+            'mfd.required'=> 'MFD Required',
+            'exp.required' => 'EXP Required',
+            'exp.after' => 'Logically Date Combination Is Wrong'
         ]);
         $id=DB::table('medicines')->where('Med_name',$req->medname)->value('Med_id');
         $d=DB::table('medicines')->where('Med_name',$req->medname)->value('description');
@@ -305,8 +307,8 @@ class Store extends Controller
             'qty' => 'required',
 
         ],[
-            'ingname.required' => 'Ingredient Name is missing',
-            'qty.required' => 'Set a Quantity',
+            'ingname.required' => 'Ingredient Name is Required',
+            'qty.required' => 'Set A Quantity',
         ]);
         $id=DB::table('ingredients')->where('Ing_name',$req->ingname)->value('Ing_id');
         $ing = new Ingredient_stock;
@@ -333,7 +335,7 @@ class Store extends Controller
             'order'=>'required',
 
         ],[
-            'order.required' => 'Order is empty',
+            'order.required' => 'Order Is Required',
         ]);
         $ord = new Ingredient_ordering;
         
@@ -346,7 +348,7 @@ class Store extends Controller
 
     
 
-        return redirect()->back()->with('msg',"Your Order is placed");
+        return redirect()->back()->with('msg',"Your Order Is Placed");
        
 
     }
@@ -361,8 +363,8 @@ class Store extends Controller
             'descr'=>'required',
 
         ],[
-            'medname.required' => 'Name is empty',
-            'descr.required' => 'Description is empty',
+            'medname.required' => 'Name Is Required',
+            'descr.required' => 'Description Is Required',
         ]);
         $n=DB::table('medicines')->get();
         $no=count($n)+1;
@@ -372,7 +374,7 @@ class Store extends Controller
         $med->Med_name = $req->medname;
         $med->description = $req->descr;
         $med->save();
-        return redirect()->back()->with('msg',"New medicine added successfully");
+        return redirect()->back()->with('msg',"New Medicine Added Successfully");
     }
 
     //supplier
@@ -387,8 +389,8 @@ class Store extends Controller
             'descr'=>'required',
 
         ],[
-            'ingname.required' => 'Name is empty',
-            'descr.required' => 'Description is empty',
+            'ingname.required' => 'Ingredient Name Is Required',
+            'descr.required' => 'Description Is Required',
         ]);
         $n=DB::table('ingredients')->get();
         $no=count($n)+1;
@@ -398,6 +400,6 @@ class Store extends Controller
         $ing->Ing_name = $req->ingname;
         $ing->description = $req->descr;
         $ing->save();
-        return redirect()->back()->with('msg',"New ingredient added successfully");
+        return redirect()->back()->with('msg',"New Ingredient Has Added Successfully");
     }
 }

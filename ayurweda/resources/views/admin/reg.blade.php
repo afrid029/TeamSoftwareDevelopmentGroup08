@@ -142,17 +142,42 @@
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 @if($msg=session()->get('msg'))
 
+@if ($msg == "Check Your Network Connection")
+     <script>
 
-<script>
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 2500
+});
+</script>
+     
+@elseif ($msg == "Double Check Your Email")
+     <script>
+
+Swal.fire({
+  position: 'middle',
+  icon: 'error',
+  title: '{{$msg}}',
+  showConfirmButton: false,
+  timer: 2500
+});
+</script>
+@else
+     <script>
 
 Swal.fire({
   position: 'middle',
   icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 2000
+  timer: 4000
 });
 </script>
+@endif
+
 @endif
      
      <!-- for registration part -->

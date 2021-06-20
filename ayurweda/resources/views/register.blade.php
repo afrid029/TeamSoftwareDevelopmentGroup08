@@ -57,7 +57,7 @@
                     
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>
+                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 055 020 0340</a></li>
                     </ul>
                </div>
 
@@ -75,14 +75,14 @@ Swal.fire({
   timer: 1500
 });
 </script>
-@elseif($msg=="Password retype is wrong.")
+@elseif($msg=="Password Retype Is Wrong.")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'error',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
 @endif
@@ -104,7 +104,7 @@ Swal.fire({
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>

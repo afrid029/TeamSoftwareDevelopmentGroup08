@@ -115,24 +115,24 @@ tbody tr:hover {
           </div>
      </section>
 @if($msg=session()->get('msg'))
-@if($msg=="Inserted successfully.")
+@if($msg=="Inserted Successfully.")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
-@elseif($msg=="The Perticular Time Is Already Exist.")
+@elseif($msg=="The Particular Time Is Already Exist.")
 <script>
 Swal.fire({
   position: 'middle',
   icon: 'error',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
 @elseif($msg=="Updated Successfully")
@@ -142,7 +142,7 @@ Swal.fire({
   icon: 'success',
   title: '{{$msg}}',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2500
 });
 </script>
 @endif
@@ -163,7 +163,7 @@ Swal.fire({
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>

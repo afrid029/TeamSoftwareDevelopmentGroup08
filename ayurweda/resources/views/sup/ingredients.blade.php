@@ -99,6 +99,34 @@
     
 </head>
 <body>
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($msg=session()->get('msg'))
+ @if($msg == "New Ingredient Has Added Successfully")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2500
+          });
+     </script>
+@endif
+@endif
+@if($errors->any())
+@foreach($errors->all() as $err)
+<script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: '{{$err}}',
+               showConfirmButton: false,
+               timer: 4000
+            
+          });
+     </script>
+@endforeach
+@endif
 
      <!-- MENU -->
        <!-- PRE LOADER -->
@@ -260,7 +288,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Medicine Description</h3>
+                    <h3 style="float:left" class="modal-title" id="exampleModalLabel">Ingredient Description</h3>
                     <button style="float:right" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                </div>
 

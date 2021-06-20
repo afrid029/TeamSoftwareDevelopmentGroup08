@@ -54,11 +54,11 @@ class patientsController extends Controller
             'opassword'=>'required'
         ],
         [
-            'name.required' => 'Name is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
-            'npassword.required' => 'New password is empty',
-            'opassword.required' => 'Old Password is empty',
+            'name.required' => 'Name is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required' => 'Phone Is Required',
+            'npassword.required' => 'New Password Is Required',
+            'opassword.required' => 'Old Password Is Required',
            
         ]);
         
@@ -78,7 +78,7 @@ class patientsController extends Controller
             }
             else
             {
-                $m="Password is wrong";
+                $m="Password Is Wrong";
             }
         
          
@@ -94,8 +94,8 @@ class patientsController extends Controller
         $request->validate([
             'profile'=>'required|image'
         ],[
-            'profile.required' => 'You have not choose any file',
-            'profile.image'=>'Only Image is allowed'
+            'profile.required' => 'You Have Not Choosen Image',
+            'profile.image'=>'Only Image is Allowed'
         ]);
 
       
@@ -106,7 +106,7 @@ class patientsController extends Controller
                 'Pimage' => $name
             ]);
 
-            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+            return redirect()->back()->with('msg',"Profile Image Is Successfully Updated");
     }
 
     /*-----------Symptomps-------------*/
@@ -172,7 +172,7 @@ class patientsController extends Controller
             $symp->audio = $aud;
         }
          $symp->save();
-        return redirect()->back()->with('msg',"Symptomp note has sent");
+        return redirect()->back()->with('msg',"Symptom Note Has Sent");
     }
 
     /*--------Online Booking----------------*/
@@ -285,7 +285,7 @@ class patientsController extends Controller
 
         DB::table('online_bookings')->where('App_id',$request->appid)->delete();
 
-        return redirect()->back()->with('msg',"Appoinment is cancelled");
+        return redirect()->back()->with('msg',"Appoinment Is Cancelled");
     }
 
     /*--------------Order Medicine----------------*/
@@ -346,7 +346,7 @@ class patientsController extends Controller
         $ordering->medicines = json_encode($req->orders);
         $ordering->save();
 
-        return redirect()->back()->with('msg',"Your Order is placed");
+        return redirect()->back()->with('msg',"Your Order Is Placed");
       
     }
 

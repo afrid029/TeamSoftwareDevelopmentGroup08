@@ -56,7 +56,7 @@
                     
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>
+                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 055 020 0340</a></li>
                     </ul>
                </div>
 
@@ -130,12 +130,11 @@
                     <div class="col-md-3 col-sm-8">
                          <div class="footer-info">
                               <div class="section-title">
-                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Contact Us</h2>
                               </div>
                               <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>090-080-0650 | 090-070-0430</p>
-                                   <p><a href="mailto:info@company.com">info@company.com</a></p>
-                                   <p>LINE: eatery247 </p>
+                                   <p> 055 020 0340</p>
+                                   <p><a href="mailto:info@company.com">contact.helaweda@gmail.com</a></p>
                               </address>
                          </div>
                     </div>
@@ -146,9 +145,9 @@
                                    <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
                               </div>
                               <div class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>Sunday: Closed</p>
+                                   
                                    <div>
-                                        <strong>Monday to Saturday</strong>
+                                        <strong>Monday to Sunday</strong>
                                         <p>7:00 AM - 9:00 PM</p>
                                    </div>
                                    
@@ -165,9 +164,7 @@
                          </ul>
 
                          <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s"> 
-                              <p><br>Copyright &copy; 2018 <br>Your Company Name 
-                              
-                              <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a></p>
+                              <p><br>Copyright&copy; 2021 <br>DEALA </p>
                          </div>
                     </div>
                     

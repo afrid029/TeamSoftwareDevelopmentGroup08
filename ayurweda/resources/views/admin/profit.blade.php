@@ -113,7 +113,7 @@ console.log(e);
      icon: 'error',
      title: e,
      showConfirmButton: false,
-     timer: 2500
+     timer: 4000
      });
 </script>
 @endif

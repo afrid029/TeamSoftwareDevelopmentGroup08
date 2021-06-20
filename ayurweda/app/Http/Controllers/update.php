@@ -30,12 +30,12 @@ class update extends Controller
             'npassword'=>['required'],
         ],
         [
-            'name.required' => 'Name is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
-            'email.required' => 'Email is empty',
-            'opassword.required' => 'New password is empty',
-            'npassword.required' => 'Old Password is empty',
+            'name.required' => 'Name Is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required' => 'Phone Is Required',
+            'email.required' => 'Email Is Required',
+            'opassword.required' => 'New password Is Required',
+            'npassword.required' => 'Old Password Is Required',
         ]);
 
         $pw=DB::table('doctors')->where('Doc_id',$request->id)->value('password');
@@ -52,7 +52,7 @@ class update extends Controller
             $s="Profile Successfully Updated";
         }
         else{
-            $s="Old password is wrong";
+            $s="Old Password Is Wrong";
         }
         return redirect()->back()->with('msg',$s);
         
@@ -102,8 +102,8 @@ class update extends Controller
         $request->validate([
             'image'=>'required|image'
         ],[
-            'image.required' => 'You have not choose any file',
-            'image.image'=>'Only Image is allowed'
+            'image.required' => 'You Have Not Choosen Image',
+            'image.image'=>'Only Image Is Allowed'
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
@@ -112,7 +112,7 @@ class update extends Controller
             DB::table('doctors')->where('Doc_id',$request->id)->update([
                 'Doc_im' => $name
             ]);
-            $s="Profile picture changed";
+            $s="Profile Picture Changed";
         return redirect()->back()->with('msg',$s);
     }
 
@@ -126,7 +126,7 @@ class update extends Controller
             'disch_date'=>date("Y-m-d"),
         ]);
         
-        return redirect()->back()->with('msg',"Patient was discharged");
+        return redirect()->back()->with('msg',"Patient Was Discharged");
         
     }
 
@@ -146,12 +146,12 @@ class update extends Controller
             'npassword'=>['required'],
         ],
         [
-            'name.required' => 'Name is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
-            'email.required' => 'Email is empty',
-            'opassword.required' => 'New password is empty',
-            'npassword.required' => 'Old Password is empty',
+            'name.required' => 'Name Is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required' => 'Phone Is Required',
+            'email.required' => 'Email Is Required',
+            'opassword.required' => 'New Password Is Required',
+            'npassword.required' => 'Old Password Is Required',
         ]);
 
         $pw=DB::table('medicine_producers')->where('Pro_id',$request->id)->value('password');
@@ -169,7 +169,7 @@ class update extends Controller
             $s="Profile Successfully Updated";
         }
         else{
-            $s="Old password is wrong";
+            $s="Old Password Is Wrong";
         }
         return redirect()->back()->with('msg',$s);
         
@@ -188,10 +188,10 @@ class update extends Controller
             'exp'=>['required'],
         ],
         [
-            'uprice.required' => 'Unit price is empty',
-            'qty.required' => 'Quantity is empty',
-            'mfd.required' => 'Manufacture date is empty',
-            'exp.required' => 'Expire date is empty',
+            'uprice.required' => 'Unit Price Is Required',
+            'qty.required' => 'Quantity Is Required',
+            'mfd.required' => 'Manufacture Date Is Required',
+            'exp.required' => 'Expire Date Is Required',
         ]);
         DB::table('new_med_stocks')->where('id',$req->id)->update([
             'unitprice' => $req->uprice,
@@ -199,7 +199,7 @@ class update extends Controller
             'manufactureDate' => $req->mfd,
             'expireDate' => $req->exp
         ]);
-        return redirect()->back()->with('msg',"Medicine details updated");
+        return redirect()->back()->with('msg',"Medicine Details Updated");
 
     }
 
@@ -210,7 +210,7 @@ class update extends Controller
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('new_med_stocks')->where('id',$id)->delete();
-        return redirect()->back()->with('msg',"Medicine deleted");
+        return redirect()->back()->with('msg',"Medicine Deleted");
     }
 
     public function proupdateing(Request $req)
@@ -222,7 +222,7 @@ class update extends Controller
         DB::table('ingredient_stocks')->where('id',$req->id)->update([
             'Ing_qty'=> $req->qty,
         ]);
-        return redirect()->back()->with('msg',"Ingredient details updated");
+        return redirect()->back()->with('msg',"Ingredient Details Updated");
 
     }
 
@@ -233,7 +233,7 @@ class update extends Controller
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('ingredient_stocks')->where('id',$id)->delete();
-        return redirect()->back()->with('msg',"Ingredient deleted");
+        return redirect()->back()->with('msg',"Ingredient Deleted");
     }
 
     public function propic(Request $request)
@@ -245,8 +245,8 @@ class update extends Controller
         $request->validate([
             'image'=>'required|image'
         ],[
-            'image.required' => 'You have not choose any file',
-            'image.image'=>'Only Image is allowed'
+            'image.required' => 'You Have Not Choosen Image',
+            'image.image'=>'Only Image Is Allowed'
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
@@ -256,7 +256,7 @@ class update extends Controller
                 'Pro_im' => $name
             ]);
             
-            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+            return redirect()->back()->with('msg',"Profile Image Is Successfully Updated");
     }
     public function reorder($id,$id2)
     {
@@ -274,7 +274,7 @@ class update extends Controller
             $qty=DB::table('new_med_stocks')->where('Med_name',$n)->value('stock_qty');
             $qty=$qty-$v;
             if($qty<0){
-                $msg="not enough";
+                $msg="Not Enough";
             }
         }
         if($msg==""){   
@@ -291,6 +291,7 @@ class update extends Controller
             DB::table('medicine_orderings')->where('MedOrder_id',$id)->update([
                 'status' =>"Issued",
             ]);
+            $msg = "Order Is Issued";
         }   
         
             
@@ -313,12 +314,12 @@ class update extends Controller
             'npassword'=>['required'],
         ],
         [
-            'name.required' => 'Name is empty',
-            'address.required' => 'Address is empty',
-            'phone.required' => 'Phone is empty',
-            'email.required' => 'Email is empty',
-            'opassword.required' => 'New password is empty',
-            'npassword.required' => 'Old Password is empty',
+            'name.required' => 'Name Is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required' => 'Phone Is Required',
+            'email.required' => 'Email Is Required',
+            'opassword.required' => 'New Password Is Required',
+            'npassword.required' => 'Old Password Is Required',
         ]);
 
         $pw=DB::table('ingredient_suppliers')->where('Sup_id',$request->id)->value('password');
@@ -335,7 +336,7 @@ class update extends Controller
             $s="Profile Successfully Updated";
         }
         else{
-            $s="Old password is wrong";
+            $s="Old Password Is Wrong";
         }
         return redirect()->back()->with('msg',$s);
         
@@ -349,8 +350,8 @@ class update extends Controller
         $request->validate([
             'image'=>'required|image'
         ],[
-            'image.required' => 'You have not choose any file',
-            'image.image'=>'Only Image is allowed'
+            'image.required' => 'You Have Not Choose Image',
+            'image.image'=>'Only Image Is Allowed'
         ]);
 
             $name = $request->id.'.'.$request->image->extension();
@@ -360,7 +361,7 @@ class update extends Controller
                 'Sup_im' => $name
             ]);
             
-            return redirect()->back()->with('msg',"Profile Image is Successfully Updated");
+            return redirect()->back()->with('msg',"Profile Image Is Successfully Updated");
     }
     public function supreorder($id,$id2)
     {
@@ -389,10 +390,10 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
         }
         elseif($roll=="doctor"){
@@ -405,10 +406,10 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
         }
         elseif($roll=="pharmacist"){
@@ -421,10 +422,10 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
             
         }
@@ -438,10 +439,10 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
 
         }
@@ -455,10 +456,10 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
 
         }
@@ -472,16 +473,16 @@ class update extends Controller
                 DB::table('all_users')->where('id',$request->id)->update([
                     'password' =>Hash::make($password),
                 ]);
-                $s="Password reset successful";
+                $s="Password Reset Successful";
             }
             else{
-                $s="Email is wrong";
+                $s="Email Is Wrong";
             }
         }
         else{
-            $s="User ID is wrong";
+            $s="User ID Is Wrong";
         }
-        if($s=="Password reset successful"){
+        if($s=="Password Reset Successful"){
             $details=['title'=>'Your password has reset.',
                    'body'=>'Your new password : '.$password];
             Mail::to($email)->send(new TestMail($details));

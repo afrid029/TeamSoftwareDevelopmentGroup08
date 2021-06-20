@@ -75,7 +75,7 @@ class AdminController extends Controller
            $msg = "Profile Successfully Updated";
 
         }else{
-            $msg = "Old password is wrong";
+            $msg = "Old Password Is Wrong";
         }
 
         return redirect()->back()->with('msg', $msg);
@@ -129,13 +129,13 @@ class AdminController extends Controller
         Mail::send('userdetails', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
             ->subject('User Name Password');
-            $message->from('contact.helaweda@gmail.com','HelaWedaPiyasa registration details');
+            $message->from('contact.helaweda@gmail.com','HelaWedaPiyasa Registration Details');
 
 
            
         });
         }catch(\Exception $ex){
-            return redirect()->back()->with('msg','Check your network connection');
+            return redirect()->back()->with('msg','Check Your Network Connection');
         }
          if($req->roll=="Doctor"){
             $user = new Doctor;
@@ -207,12 +207,12 @@ class AdminController extends Controller
            
         }
 
-        return redirect()->back()->with('msg','User added and send user details to '.$req->email.'for '.$req->roll);
+        return redirect()->back()->with('msg','User Has Added and Sent User Details To '.$req->email.' For '.$req->roll);
 
 
         }
         else{
-            return redirect()->back()->with('msg','Double check your email');
+            return redirect()->back()->with('msg','Double Check Your Email');
         }
     
     }

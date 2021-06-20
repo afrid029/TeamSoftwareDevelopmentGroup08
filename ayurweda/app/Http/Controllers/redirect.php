@@ -59,7 +59,7 @@ class redirect extends Controller
         if(session()->get('session') != $a || session()->get('userid') != $t){
             return redirect()->route('login')->with('msg','Login First');
         }
-        $p=DB::table('add_pats')->get();
+        $p=DB::table('add_pats')->orderBy('status','asc')->get();
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
         
         return view('doc/AddPatsdetails')->with('c',$c)->with('msg',"")->with('ad',$p);

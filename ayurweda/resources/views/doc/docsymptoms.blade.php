@@ -348,7 +348,7 @@ tbody tr:hover {
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 1000
+               timer: 4000
             
           });
      </script>
@@ -360,7 +360,7 @@ tbody tr:hover {
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 2500
             
           });
      </script>

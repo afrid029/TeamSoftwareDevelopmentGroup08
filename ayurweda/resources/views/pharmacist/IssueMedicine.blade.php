@@ -112,7 +112,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 2500
             
           });
      </script>

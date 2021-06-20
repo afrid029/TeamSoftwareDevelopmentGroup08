@@ -117,7 +117,7 @@
                icon: 'error',
                title: '{{$err}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 4000
             
           });
      </script>
@@ -558,7 +558,7 @@
                icon: 'success',
                title: '{{$msg}}',
                showConfirmButton: false,
-               timer: 2000
+               timer: 2500
             
           });
      </script>

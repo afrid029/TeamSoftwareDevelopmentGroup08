@@ -98,14 +98,25 @@
 
      
 @if($msg=session()->get('msg'))
- @if($msg == "not enough")
+ @if($msg == "Not Enough")
      <script>
           Swal.fire({
                position: 'middle',
                icon: 'warning',
-               title: 'Store is not enough',
+               title: 'Store Is Not Enough',
                showConfirmButton: false,
-               timer: 1500
+               timer: 2500
+          });
+     </script>
+
+@elseif ($msg = "Order Is Issued")
+     <script>
+          Swal.fire({
+               position: 'middle',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2500
           });
      </script>
 @endif

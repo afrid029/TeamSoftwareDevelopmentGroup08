@@ -40,12 +40,12 @@ class pharmacistController extends Controller
             'npassword' => 'required'
         ],
         [
-            'name.required' => 'Name field required',
-            'address.required' => 'Address field required',
-            'phone.required'=> 'Phone field required',
-            'phone.digits'=>'Enter a valid phone number',
-            'opassword.required'=>'Old password is must',
-            'npassword.required' => 'New Password or Re-type Old Password is must'
+            'name.required' => 'Name Is Required',
+            'address.required' => 'Address Is Required',
+            'phone.required'=> 'Phone Is Required',
+            'phone.digits'=>'Enter A Valid Phone Number',
+            'opassword.required'=>'Old Password Is Required',
+            'npassword.required' => 'New Password or Re-type Old Password'
         ]);
         $pw = DB::table('pharmacists')->where('Phar_id',$request->id)->value('password');
         $msg;
@@ -71,7 +71,7 @@ class pharmacistController extends Controller
            $msg = "Profile Successfully Updated";
 
         }else{
-            $msg = "Old password is wrong";
+            $msg = "Old Password Is Wrong";
         }
 
         return redirect()->back()->with('msg', $msg);
@@ -86,8 +86,8 @@ class pharmacistController extends Controller
         $request->validate([
             'profile'=>'required|image'
         ],[
-            'profile.required' => 'You have not choose any file',
-            'profile.image'=>'Only Image is allowed'
+            'profile.required' => 'You Have Not Choosen Image',
+            'profile.image'=>'Only Image is Allowed'
         ]);
 
             $name = time().rand(1,100).'.'.$request->profile->extension();
@@ -138,16 +138,16 @@ class pharmacistController extends Controller
             'warn'=> 'required'
 
         ],[
-            'medid.required' => 'Medicine ID missing',
-            'medname.required' => 'Medicine Name is missing',
-            'uprice.required' => 'Set a unit price',
-            'uprice.gt'=> 'Price should be in positive',
-            'qty.gt'=> 'Quantity should be in positive',
-            'qty.required' => 'Set a Quantity',
-            'mfd.required'=> 'MFD required',
-            'exp.required' => 'EXP required',
-            'descr.required' => 'Decription required',
-            'exp.after' => 'Logically date combination is wrong',
+            'medid.required' => 'Medicine ID Is Missing',
+            'medname.required' => 'Medicine Name Is Missing',
+            'uprice.required' => 'Set A Unit Price',
+            'uprice.gt'=> 'Price Should Be In Positive',
+            'qty.gt'=> 'Quantity Should Be In Positive',
+            'qty.required' => 'Set aA Quantity',
+            'mfd.required'=> 'MFD Required',
+            'exp.required' => 'EXP Required',
+            'descr.required' => 'Decription Required',
+            'exp.after' => 'Logically Date Combination Is Wrong',
             'warn.required'=>'Set Warning Limit'
         ]);
 
@@ -171,7 +171,7 @@ class pharmacistController extends Controller
 
         $medi->save();
 
-        return redirect()->back()->with('msg',"New Medicine Added");
+        return redirect()->back()->with('msg',"New Medicine Has Added");
         }
        
 
@@ -196,14 +196,14 @@ class pharmacistController extends Controller
         ],[
             
            
-            'uprice.required' => 'Set a unit price',
-            'uprice.gt'=> 'Price should be in positive',
-            'qty.gt'=> 'Quantity should be in positive',
-            'qty.required' => 'Set a Quantity',
-            'mfd.required'=> 'MFD required',
-            'exp.required' => 'EXP required',
+            'uprice.required' => 'Set A Unit Price',
+            'uprice.gt'=> 'Price Should Be In Positive',
+            'qty.gt'=> 'Quantity Should Be In Positive',
+            'qty.required' => 'Set A Quantity',
+            'mfd.required'=> 'MFD Required',
+            'exp.required' => 'EXP Required',
             'warn.required'=>'Set Warning Limit',
-            'exp.after' => 'Logically date combination is wrong'
+            'exp.after' => 'Logically Date Combination Is Wrong'
         ]);
         DB::table('medicine_stocks')->where('Med_id',$req->medid)->update([
             'unitprice' => $req->uprice,
@@ -212,7 +212,7 @@ class pharmacistController extends Controller
             'expireDate' => $req->exp,
             'Wlimit'=>$req->warn
         ]);
-        return redirect()->back()->with('msg',"Medicine details updated");
+        return redirect()->back()->with('msg',"Medicine Details Have Updated");
 
     }
 
@@ -223,7 +223,7 @@ class pharmacistController extends Controller
             return redirect()->route('login')->with('msg','Login First');
         }
         DB::table('medicine_stocks')->where('Med_id',$req->delid)->delete();
-        return redirect()->back()->with('msg',"Medicine deleted");
+        return redirect()->back()->with('msg',"Medicine Deleted");
     }
 
     /*---------------------Issue Medicine--------------------*/
@@ -335,6 +335,6 @@ class pharmacistController extends Controller
 
        $ord->save();
 
-       return redirect()->back()->with('msg','Your Order Is sent To '.$req->ptnm);
+       return redirect()->back()->with('msg','Your Order Has Sent To '.$req->ptnm);
     }
 }
