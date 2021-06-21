@@ -267,7 +267,7 @@ class patientsController extends Controller
         $book = new OnlineBooking;
 
 
-        $book->App_id="App".rand(1,250).rand(1,100);
+        $book->App_id="App".date('d').rand(1,250).rand(1,100);
         $book->Pat_id=$request->get('pid');
         $book->Doc_id=$request->get('did');
         $book->availableDate=$request->get('dt');

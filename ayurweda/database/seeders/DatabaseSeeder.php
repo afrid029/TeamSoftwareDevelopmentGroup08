@@ -492,7 +492,7 @@ class DatabaseSeeder extends Seeder
             'PatMedOrder_id'=>'Ord2',
             'Pat_id'=>'pat1',
             'bill'=>'900',
-            'medicines' =>"['Licorice,10,Bitter melon,14']",
+            'medicines' =>"['Licorice root,10,Bitter melon,14']",
             'PatMedOrder_date' => '2021-06-16',
              'status'=> 'Not Issued'
         ]);
@@ -521,7 +521,7 @@ class DatabaseSeeder extends Seeder
             'stock_qty' => '400',
              'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
             'Wlimit'=>'50',
-            'orders'=>40,
+            'orders'=>18,
             'manufactureDate' => '2021-04-02',
             'expireDate' => '2021-10-02'
         ]);
@@ -531,7 +531,7 @@ class DatabaseSeeder extends Seeder
             'unitprice' => '50',
             'stock_qty' => '250',
            'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
-            'orders'=>5,
+            'orders'=>0,
             'Wlimit'=>'75',
             'manufactureDate' => '2021-04-02',
             'expireDate' => '2021-06-22'
@@ -553,7 +553,7 @@ class DatabaseSeeder extends Seeder
             'unitprice' => '45',
             'stock_qty' => '120',
             'description' => 'Cumin is an Ayurvedic spice commonly used to add flavor to meals. It may decrease symptoms of IBS, improve risk factors for type 2 diabetes and heart disease, and perhaps even offer some protection against foodborne infection.',
-            'orders'=>24,
+            'orders'=>0,
             'Wlimit'=>'50',
             'manufactureDate' => '2021-04-08',
             'expireDate' => '2021-04-08'
@@ -586,7 +586,7 @@ class DatabaseSeeder extends Seeder
             'unitprice' => '40',
             'stock_qty' => '110',
             'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
-            'orders'=>38,
+            'orders'=>14,
             'Wlimit'=>'40',
             'manufactureDate' => '2021-01-08',
             'expireDate' => '2023-04-08'
@@ -597,7 +597,7 @@ class DatabaseSeeder extends Seeder
             'unitprice' => '40',
             'stock_qty' => '200',
           'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
-            'orders'=>45,
+            'orders'=>31,
             'Wlimit'=>'80',
             'manufactureDate' => '2021-04-08',
             'expireDate' => '2022-04-08'

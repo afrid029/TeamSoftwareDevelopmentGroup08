@@ -207,7 +207,7 @@ class AdminController extends Controller
            
         }
 
-        return redirect()->back()->with('msg','User Has Added and Sent User Details To '.$req->email.' For '.$req->roll);
+        return redirect()->back()->with('msg','User Has Added And Sent User Details To '.$req->email.' For '.$req->roll);
 
 
         }

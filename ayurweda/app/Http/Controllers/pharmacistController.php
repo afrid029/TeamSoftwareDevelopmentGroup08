@@ -143,7 +143,7 @@ class pharmacistController extends Controller
             'uprice.required' => 'Set A Unit Price',
             'uprice.gt'=> 'Price Should Be In Positive',
             'qty.gt'=> 'Quantity Should Be In Positive',
-            'qty.required' => 'Set aA Quantity',
+            'qty.required' => 'Set A Quantity',
             'mfd.required'=> 'MFD Required',
             'exp.required' => 'EXP Required',
             'descr.required' => 'Decription Required',
