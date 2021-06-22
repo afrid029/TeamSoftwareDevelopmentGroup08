@@ -223,7 +223,7 @@ tbody tr:hover {
                          <div class="item item-first">
                               <div class="caption">
                                    <div style="height:78%; width:60%; margin: -12% 20% -10% 20%; background-color:rgba(255,255,255,0.5);" class="container"><br>
-                                   <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Patients' Medical Symptomps History</h2>
+                                   <h2 style="color:#333333; width:96%; margin: 0 2%;text-align:center;">Patients' Medical Symptoms History</h2>
                                     <a style=" font-size:20px; margin-bottom:5px; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a> 
                                     <div style="float:right; color:gray;  margin-bottom:5px; ">
                                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Date" title="Type ID">   
@@ -236,7 +236,7 @@ tbody tr:hover {
                                                   <tr style="background-color:#800000; ">
                                                        <th><p style=" color:#FFFFFF;text-align:center"><b>Date</p></b></th>
                                                        <th><p style="color:#FFFFFF;text-align:center" ><b>Time</p></b></th>
-                                                       <th><p style=" color:#FFFFFF;text-align:center"><b>Medical Symptomps</b></p></th> 
+                                                       <th><p style=" color:#FFFFFF;text-align:center"><b>Medical Symptoms</b></p></th> 
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -371,7 +371,7 @@ tbody tr:hover {
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Say Your Symptomps Here</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Say Your Symptoms Here</h5>
                     <button  type="button" class="close btn-sm" data-dismiss="modal" >Close
                          <span aria-hidden="true">&times;</span>
                     </button>

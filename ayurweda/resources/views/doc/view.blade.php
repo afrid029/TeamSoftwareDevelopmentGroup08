@@ -61,7 +61,7 @@
                          <li><a style = "text-transform:capitalize;" href="{{route('addpatdetails',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patient <br>Details</a></li>
                          <li><a style = "text-transform:capitalize;" href="{{route('admitted',$c->Doc_id)}}" class="smoothScroll">Admitted <br>Patients</a></li>
                          <li><a style = "text-transform:capitalize;" href="{{route('available',$c->Doc_id)}}" class="smoothScroll">Available <br>Time</a></li>
-                         <li><a style = "text-transform:capitalize;" href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptomps</a></li>
+                         <li><a style = "text-transform:capitalize;" href="{{route('docsymp',$c->Doc_id)}}" class="smoothScroll">Medical <br>Symptoms</a></li>
                          <li><a style = "text-transform:capitalize;" href="{{route('appointment',$c->Doc_id)}}" class="smoothScroll">Appointments</a></li>
                          
                 </ul>
@@ -114,7 +114,7 @@
                         <div class="modal-dialog" role="dialog">
                         <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">View Symptomp</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">View Symptom</h5>
                                 <h5 class="modal-title">Patient ID: {{$e->Pat_id}}</h5>
                                 </div>
                                 

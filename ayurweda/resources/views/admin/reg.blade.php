@@ -198,7 +198,7 @@ Swal.fire({
                                                        </div><h2 style="float:left;">All Users</h2>
                                                             <div style="float:right; margin-top:2%;">
                                                                  <div style="margin-top:2%;margin-left:-20%; margin-right:4%;color:gray; width:60%; float:left;">
-                                                                      <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search User Name" title="Type ID">   
+                                                                      <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search User ID" title="Type ID">   
                                                                  </div>
                                              
                                                                  <div style="margin-top:2%; float:left; margin-right:-14%;" class="col-sm-1">
@@ -213,7 +213,7 @@ Swal.fire({
                                                             <thead>
                                                                  <tr>
                                                                      
-                                                                      <th>User Name</th>
+                                                                      <th>User ID</th>
                                                                       <th>Role</th>
                                                                       <th>View Profile</th>
                                                                  </tr>

@@ -177,7 +177,7 @@
                                    <div class="table-responsive">
                                         <div class="table-wrapper">
                                             <div class="table-title">
-                                                  <h2 style="width:60%; float:left; font-size:20px; margin-left:2%;">Patient's Medicine Orders</h2>
+                                                  <h2 style="width:60%; float:left; font-size:20px; margin-left:4%;">Patient's Medicine Orders</h2>
                                                   <a style="font-size:20px; float:right; margin-top:3%; margin-right:3%; font-weight:bold;" data-target="#patients" data-toggle="modal" class = "btn btn-outline-danger fa fa-user">&nbsp;&nbsp; Patients</a>
                                                 
                                                   
@@ -412,7 +412,7 @@
                                    <div class="table-responsive">
                                         <div class="table-wrapper">
                                             <div class="table-title">
-                                                  <div ><h2>Doctor's Prescription</h2></div>
+                                                  <div ><h2 style="width:60%; float:left; font-size:20px; margin-left:4%;">Doctor's Prescription</h2></div>
                                                        <!--<div class="row">-->
                                                   </div>
                                                   <table  class="table table-bordered table-scroll">
