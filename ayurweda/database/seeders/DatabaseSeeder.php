@@ -303,31 +303,39 @@ class DatabaseSeeder extends Seeder
             'email'=>'vishwasasanka@gmail.com',
             
         ]);
-        
-        
-		
-        //admitted patients details
-        
-        DB::table('add_pats')->insert([
-            'id' => '01',
-            'Pat_id' => 'pat1',
-            'disease' => 'Skin rash',
-            'ad_date' => '2021-05-31',
-            'disch_date' => '2021-06-15',
-            'Doc_id' => 'doc1',
-            'bedno' => '01',
-            'status'=>'Discharged'
+
+        //supplier
+        DB::table('all_users')->insert([
+            'id'=> 'sup1',
+            'password' => Hash::make('sup1@'),
+            'roll' => 'supplier'
         ]);
-        DB::table('add_pats')->insert([
-            'id' => '02',
-            'Pat_id' => 'pat2',
-            'disease' => 'Vericose',
-            'ad_date' => '2021-06-14',
-            'Doc_id' => 'doc1',
-            'bedno' => '02',
-            'status'=>'Admitted'
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup1',
+            'Sup_name' => 'Sanath Geegana',
+            'Sup_addr' => 'No. 123, ABC road, Rabukkana',
+            'Sup_pNum' => '0716720783',
+            'Sup_email'=>'Sanathg@gmail.com',
+            'Sup_im' => '',
+            'password' => Hash::make('sup1@')
         ]);
-       
+
+        DB::table('all_users')->insert([
+            'id'=> 'sup2',
+            'password' => Hash::make('sup2@'),
+            'roll' => 'supplier'
+        ]);
+        DB::table('ingredient_suppliers')->insert([
+            'Sup_id' => 'sup2',
+            'Sup_name' => 'Yogarajan Danesh',
+            'Sup_addr' => 'No. 13, QOP road, Jaffna',
+            'Sup_pNum' => '0782349345',
+            'Sup_email'=>'danesh678@gmail.com',
+            'Sup_im' => '',
+            'password' => Hash::make('sup2@')
+        ]);
+
+            
         
         //medicines
 
@@ -401,6 +409,27 @@ class DatabaseSeeder extends Seeder
             'description'=>'Triphala has been used in traditional Ayurvedic medicine since ancient times as a multi-purpose treatment for symptoms ranging from stomach ailments to dental cavities. It is also believed to promote longevity and overall health'
         ]);
 
+ //admitted patients details
+        
+        DB::table('add_pats')->insert([
+            'id' => '01',
+            'Pat_id' => 'pat1',
+            'disease' => 'Skin rash',
+            'ad_date' => '2021-05-31',
+            'disch_date' => '2021-06-15',
+            'Doc_id' => 'doc1',
+            'bedno' => '01',
+            'status'=>'Discharged'
+        ]);
+        DB::table('add_pats')->insert([
+            'id' => '02',
+            'Pat_id' => 'pat2',
+            'disease' => 'Vericose',
+            'ad_date' => '2021-06-22',
+            'Doc_id' => 'doc1',
+            'bedno' => '02',
+            'status'=>'Admitted'
+        ]);
         //addmitted patients
         
         DB::table('add_pat_ups')->insert([
@@ -426,8 +455,8 @@ class DatabaseSeeder extends Seeder
             'Pat_id' => 'pat2',
             'Doc_id' => 'doc1',
             'medicines' => 'Cumin',
-            'date' => '2021-06-14',
-            'created_at' => '2021-06-14 10:23:40',
+            'date' => '2021-06-22',
+            'created_at' => '2021-06-22 10:23:40',
             'condition' => 'Sugar level increased'
         ]);
         DB::table('add_pat_ups')->insert([
@@ -435,8 +464,8 @@ class DatabaseSeeder extends Seeder
             'Pat_id' => 'pat2',
             'Doc_id' => 'doc1',
             'medicines' => 'Ashwagandha,Cumin',
-            'date' => '2021-06-18',
-             'created_at' => '2021-06-18 11:05:40',
+            'date' => '2021-06-23',
+             'created_at' => '2021-06-23 11:05:40',
             'condition' => 'Sugar level is still increased'
         ]);
         //prescription
@@ -447,8 +476,8 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'diagnosis' => 'rash',
             'disease' => 'Skin rash',
-            'date' => '2021-06-17',
-            'created_at' => '2021-06-17 14:23:40',
+            'date' => '2021-06-19',
+            'created_at' => '2021-06-19 14:23:40',
             'medicine' => "['Ashwagandha,2,Boswellia,5']",
             'bill' => '310',
             'issued' => 'Issued'
@@ -459,8 +488,8 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'diagnosis' => 'leg pain',
             'disease' => 'Vericose',
-            'date' => '2021-06-17',
-             'created_at' => '2021-06-17 14:35:40',
+            'date' => '2021-06-24',
+             'created_at' => '2021-06-24 13:55:40',
             'bill'=>'920',
             'medicine' => "['Ashwagandha,8,Cardamom,17']",
             'issued' => 'Not Issued'
@@ -471,8 +500,8 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc2',
             'diagnosis' => 'High blood suger',
             'disease' => 'Diabetic',
-            'date' => '2021-03-15',
-            'created_at' => '2021-03-15 14:23:40',
+            'date' => '2021-06-22',
+            'created_at' => '2021-06-22 14:23:40',
             'bill'=>'850',
             'medicine' => "['Cumin,10,Bitter melon,10']",
             'issued'=> 'Issued'
@@ -485,7 +514,7 @@ class DatabaseSeeder extends Seeder
             'Pat_id'=>'pat1',
             'bill'=>'860',
             'medicines' =>"['Ashwagandha,10,Bitter melon,14']",
-            'PatMedOrder_date' => '2021-04-15',
+            'PatMedOrder_date' => '2021-06-15',
             'status'=> 'Issued'
         ]);
         DB::table('pat_med_orderings')->insert([
@@ -493,7 +522,7 @@ class DatabaseSeeder extends Seeder
             'Pat_id'=>'pat1',
             'bill'=>'900',
             'medicines' =>"['Licorice root,10,Bitter melon,14']",
-            'PatMedOrder_date' => '2021-06-16',
+            'PatMedOrder_date' => '2021-06-23',
              'status'=> 'Not Issued'
         ]);
         DB::table('pat_med_orderings')->insert([
@@ -501,7 +530,7 @@ class DatabaseSeeder extends Seeder
             'Pat_id'=>'pat8',
             'bill'=>'860',
             'medicines' =>"['Ashwagandha,10,Cardamom,14']",
-            'PatMedOrder_date' => '2021-06-17',
+            'PatMedOrder_date' => '2021-06-22',
             'status'=> 'Not Issued'
         ]);
         DB::table('pat_med_orderings')->insert([
@@ -509,7 +538,7 @@ class DatabaseSeeder extends Seeder
             'Pat_id'=>'pat5',
             'bill'=>'1280',
             'medicines' =>"['Ashwagandha,10,Cumin,14,Cardamom,14']",
-            'PatMedOrder_date' => '2021-05-15',
+            'PatMedOrder_date' => '2021-06-10',
             'status'=> 'Issued'
         ]);
 
@@ -522,7 +551,7 @@ class DatabaseSeeder extends Seeder
              'description' => 'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
             'Wlimit'=>'50',
             'orders'=>18,
-            'manufactureDate' => '2021-04-02',
+            'manufactureDate' => '2021-06-02',
             'expireDate' => '2021-10-02'
         ]);
         DB::table('medicine_stocks')->insert([
@@ -533,7 +562,7 @@ class DatabaseSeeder extends Seeder
            'description' => 'Boswellia is an Ayurvedic spice with anti-inflammatory properties. It may reduce joint pain, enhance oral health, and improve digestion, as well as increase breathing capacity in people with chronic asthma.',
             'orders'=>0,
             'Wlimit'=>'75',
-            'manufactureDate' => '2021-04-02',
+            'manufactureDate' => '2021-06-02',
             'expireDate' => '2021-06-22'
         ]);
         DB::table('medicine_stocks')->insert([
@@ -556,7 +585,7 @@ class DatabaseSeeder extends Seeder
             'orders'=>0,
             'Wlimit'=>'50',
             'manufactureDate' => '2021-04-08',
-            'expireDate' => '2021-04-08'
+            'expireDate' => '2021-06-29'
         ]);
         DB::table('medicine_stocks')->insert([
             'Med_id' => 'med5',
@@ -588,8 +617,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Bitter melon is an Ayurvedic spice that may help lower blood sugar levels and boost insulin secretion. It may also reduce LDL (bad) cholesterol levels, though more research is needed before strong conclusions can be made.',
             'orders'=>14,
             'Wlimit'=>'40',
-            'manufactureDate' => '2021-01-08',
-            'expireDate' => '2023-04-08'
+            'manufactureDate' => '2021-06-08',
+            'expireDate' => '2021-07-20'
         ]);
         DB::table('medicine_stocks')->insert([
             'Med_id' => 'med8',
@@ -599,8 +628,8 @@ class DatabaseSeeder extends Seeder
           'description' => 'Cardamom is an Ayurvedic spice that may lower blood pressure, improve breathing, and potentially help stomach ulcers heal. However, more research is necessary.',
             'orders'=>31,
             'Wlimit'=>'80',
-            'manufactureDate' => '2021-04-08',
-            'expireDate' => '2022-04-08'
+            'manufactureDate' => '2021-03-08',
+            'expireDate' => '2021-08-08'
         ]);
 
         //Available Time
@@ -608,14 +637,14 @@ class DatabaseSeeder extends Seeder
         DB::table('doc_available_times')->insert([
             'id'=> '01',
             'Doc_id' => 'doc1',
-            'availableDate' => '2021-06-18',
-            'availableTime' => '15:00:00'
+            'availableDate' => '2021-06-24',
+            'availableTime' => '17:00:00'
         ]);
         DB::table('doc_available_times')->insert([
             'id'=> '02',
             'Doc_id' => 'doc1',
             'availableDate' => '2021-06-26',
-            'availableTime' => '15:00:00'
+            'availableTime' => '17:00:00'
         ]);
         DB::table('doc_available_times')->insert([
             'id'=> '03',
@@ -636,15 +665,15 @@ class DatabaseSeeder extends Seeder
             'App_id'=> 'App1',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
-            'availableDate' => '2021-06-17',
-            'availableTime' => '15:00:00'
+            'availableDate' => '2021-06-24',
+            'availableTime' => '17:00:00'
         ]);
         DB::table('online_bookings')->insert([
             'App_id'=> 'App2',
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat2',
             'availableDate' => '2021-06-26',
-            'availableTime' => '15:00:00'
+            'availableTime' => '17:00:00'
         ]);
         DB::table('online_bookings')->insert([
             'App_id'=> 'App3',
@@ -662,9 +691,9 @@ class DatabaseSeeder extends Seeder
             'Pat_id' => 'pat1',
             'text' => 'Skin rash',
             'reply'=> 'Use cream continuously',
-            'date' => '2021-05-04',
+            'date' => '2021-06-01',
             'time' => '08:00:00',
-            'created_at' => '2020-05-04 08:00:00'
+            'created_at' => '2021-06-01 08:00:00'
 
         ]);
         DB::table('add_symptomps')->insert([
@@ -672,43 +701,13 @@ class DatabaseSeeder extends Seeder
             'Doc_id' => 'doc1',
             'Pat_id' => 'pat1',
             'text' => 'Feeling sick',
-            'date' => '2021-06-17',
-            'time' => '08:30:00',
-            'created_at' => '2020-09-04 08:30:00'
+            'date' => '2021-06-24',
+            'time' => '13:30:00',
+            'created_at' => '2021-06-24 13:30:00'
         ]);
         
 
-        //supplier
-        DB::table('all_users')->insert([
-            'id'=> 'sup1',
-            'password' => Hash::make('sup1@'),
-            'roll' => 'supplier'
-        ]);
-        DB::table('ingredient_suppliers')->insert([
-            'Sup_id' => 'sup1',
-            'Sup_name' => 'Sanath Geegana',
-            'Sup_addr' => 'No. 123, ABC road, Rabukkana',
-            'Sup_pNum' => '0716720783',
-            'Sup_email'=>'Sanathg@gmail.com',
-            'Sup_im' => '',
-            'password' => Hash::make('sup1@')
-        ]);
-
-        DB::table('all_users')->insert([
-            'id'=> 'sup2',
-            'password' => Hash::make('sup2@'),
-            'roll' => 'supplier'
-        ]);
-        DB::table('ingredient_suppliers')->insert([
-            'Sup_id' => 'sup2',
-            'Sup_name' => 'Yogarajan Danesh',
-            'Sup_addr' => 'No. 13, QOP road, Jaffna',
-            'Sup_pNum' => '0782349345',
-            'Sup_email'=>'danesh678@gmail.com',
-            'Sup_im' => '',
-            'password' => Hash::make('sup2@')
-        ]);
-
+        
         
         //ingredients
 
@@ -778,7 +777,7 @@ class DatabaseSeeder extends Seeder
             'Ingredients' => 'Thippili',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup1',
-            'IngOrder_date' => '2021-06-17',
+            'IngOrder_date' => '2021-06-23',
             'status' => 'Not Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
@@ -802,7 +801,7 @@ class DatabaseSeeder extends Seeder
             'Ingredients' => 'Lunuvila',
             'Pro_id' => 'prod1',
             'Sup_id' => 'sup2',
-            'IngOrder_date' => '2021-06-17',
+            'IngOrder_date' => '2021-06-24',
             'status' => 'Not Issued'
         ]);
         DB::table('ingredient_orderings')->insert([
@@ -860,7 +859,7 @@ class DatabaseSeeder extends Seeder
             'Phar_id'=>'pha1',
             'MedOrder_date'=> '2021-06-14',
             'status'=>'Not Issued',
-            'created_at'=>'2021-06-14 10:05:54'
+            'created_at'=>'2021-06-22 10:05:54'
         ]);
 
         DB::table('medicine_orderings')->insert([
@@ -870,7 +869,7 @@ class DatabaseSeeder extends Seeder
             'Phar_id'=>'pha1',
             'MedOrder_date'=> '2021-06-14',
             'status'=>'Not Issued',
-            'created_at'=>'2021-06-14 10:05:54'
+            'created_at'=>'2021-06-23 10:05:54'
         ]);
         DB::table('medicine_orderings')->insert([
             'MedOrder_id' => 'M_Ord145',
@@ -892,7 +891,7 @@ class DatabaseSeeder extends Seeder
             'stock_qty'=> 500,
             'description'=>'Ashwagandha is an Ayurvedic spice that may help your body manage stress more effectively. It may also lower your blood sugar levels and improve sleep, memory, muscle growth, and male fertility.',
             'manufactureDate'=>'2021-06-15',
-            'expireDate'=>'2021-07-15',
+            'expireDate'=>'2021-08-15',
             'created_at'=>'2021-06-15 17:45:14'
         ]);
         DB::table('new_med_stocks')->insert([

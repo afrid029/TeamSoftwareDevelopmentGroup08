@@ -146,7 +146,7 @@
                               <script>
                                    var upload = new FileUploadWithPreview('myUniqueUploadId')
                               </script>
-                         <button style ="margin-left:35%; margin-top:-30px" type="submit" class="btn btn-success"><b>Upload</b></button>
+                         <button style =" width: 20%; margin-left:40%; margin-right:40%; margin-bottom:4%;" type="submit" class="btn btn-success"><b>Upload</b></button>
                     </form>
                     <div  class="modal-footer">
                           <button style="margin-right:12%;" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -172,8 +172,7 @@
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 40
-               00
+               timer: 4000
             
           });
      </script>

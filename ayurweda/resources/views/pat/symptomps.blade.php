@@ -438,7 +438,7 @@ function viewSymp(id)
                icon: 'warning',
                title: a,
                showConfirmButton: false,
-               timer: 5000
+               timer: 2500
             
           });
      </script>

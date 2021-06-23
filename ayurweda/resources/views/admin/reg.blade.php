@@ -140,6 +140,27 @@
 
      <br><br>
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+@if($errors->any())
+     <script> var a=""; </script>
+     @foreach($errors->all() as $err)
+  
+     <script>
+          a = a + "{{$err}}\n";
+     </script>
+    
+     @endforeach
+
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'warning',
+               title: a,
+               showConfirmButton: false,
+               timer: 4000
+            
+          });
+     </script>
+@endif
 @if($msg=session()->get('msg'))
 
 @if ($msg == "Check Your Network Connection")

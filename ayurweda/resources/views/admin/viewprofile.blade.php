@@ -52,7 +52,7 @@
                             <div class="col-md-6 col-sm-6">
                            
                                 <h3 style="text-transform:capitalize">Role: {{$rl}}</h3>
-                                <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:60%">
+                                <div style="background-color:white; padding:1% 1% 1% 1%; border-radius:10px; height:208px; width:50%">
                                 
                                     @if($d->image)
                                     <img class="img" src="{{asset('upload/profile')}}/{{$d->image}}" style="  border-radius:30px; height:200px; width:100%;">

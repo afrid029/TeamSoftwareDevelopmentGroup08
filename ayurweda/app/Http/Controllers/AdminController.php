@@ -109,12 +109,13 @@ class AdminController extends Controller
         $req->validate([
             'roll' => 'required',
             'name' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'email' => 'required',
             'reemail'=>'required'
         ],[
             'roll.require'=>'Specify Aa roll',
             'password.required'=>'Password required',
+            'password.min'=>'Minimum Password Length Is Six',
             'name.required'=>'Name required',
             'email.required'=>'Email required'
         ]);

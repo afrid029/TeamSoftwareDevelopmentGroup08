@@ -125,7 +125,7 @@
                                 <div>
                                 <audio id="audio"  controls>
                                     <source style="height:10%" src="{{asset('upload/voicerecordings')}}/{{$e->audio}}">
-                                    Browser doesn't support this audio file
+                                    Browser Doesn't Support This Audio File
                                 </audio>
                                 <br><br>
                                 </div>
