@@ -444,6 +444,19 @@ function viewSymp(id)
      </script>
 @endif
 @if($msg = session()->get('msg'))
+
+@if ($msg == "There Is Nothing To Send To Doctor")
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'error',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2500
+            
+          });
+     </script>
+@else
 <script>
      Swal.fire({
                position: 'top',
@@ -454,6 +467,7 @@ function viewSymp(id)
             
           });
      </script>
+@endif
 @endif
 
 <!--Modal-->

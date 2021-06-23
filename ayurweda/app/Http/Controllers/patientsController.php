@@ -142,37 +142,43 @@ class patientsController extends Controller
             [
             'dr.required'=>'Select Doctor'
         ]);
-        $symp = new add_symptomps;
-        $symp->Doc_id = $request->get('dr');
-        $symp->text = $request->get('text');
-        $symp->Pat_id = $id;
-        $d = date('Y-m-d');
-       
-        $t = date('H:i');
+        if($request->hasfile('image') || $request->hasfile('audio') || $request->get('text')){
+            $symp = new add_symptomps;
+            $symp->Doc_id = $request->get('dr');
+            $symp->text = $request->get('text');
+            $symp->Pat_id = $id;
+            $d = date('Y-m-d');
+        
+            $t = date('H:i');
 
-        $symp->date = $d;
-        $symp->time = $t;
-        $imagedata;
-       if($request->hasfile('image'))
-        {
-           foreach($request->file('image') as $file)
-           {
-               $name = time().rand(1,100).'.'.$file->extension();
-               $file->move(public_path().'/upload/images', $name); 
-               $imagedata[] = $name;
-           }
-           $symp->img = json_encode($imagedata);
-        }
+            $symp->date = $d;
+            $symp->time = $t;
+            $imagedata;
+            if($request->hasfile('image'))
+            {
+                foreach($request->file('image') as $file)
+                {
+                    $name = time().rand(1,100).'.'.$file->extension();
+                    $file->move(public_path().'/upload/images', $name); 
+                    $imagedata[] = $name;
+                }
+                $symp->img = json_encode($imagedata);
+            }
 
-        if($request->hasFile('audio'))
-        {
-            $aud = time().rand(1,250).'.'.$request->audio->extension();
-            $request->audio->move(public_path().'/upload/voicerecordings', $aud);
-            
-            $symp->audio = $aud;
+            if($request->hasFile('audio'))
+            {
+                $aud = time().rand(1,250).'.'.$request->audio->extension();
+                $request->audio->move(public_path().'/upload/voicerecordings', $aud);
+                
+                $symp->audio = $aud;
+            }
+            $symp->save();
+            return redirect()->back()->with('msg',"Symptom Note Has Sent");
         }
-         $symp->save();
-        return redirect()->back()->with('msg',"Symptom Note Has Sent");
+        else{
+             return redirect()->back()->with('msg','There Is Nothing To Send To Doctor');
+        }
+        
     }
 
     /*--------Online Booking----------------*/
