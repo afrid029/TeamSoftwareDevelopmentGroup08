@@ -205,7 +205,7 @@
                                                             <thead>
                                                                  <tr>
                                                                  <th>Ingredient Orders</th>
-                                                                 <th>Producer Name</th>
+                                                                 <th>Producer ID</th>
                                                                  <th>Order Date</th>
                                                                  <th>Order status</th>
 
@@ -230,7 +230,7 @@
                                                             <button type="submit" id = "button<?php echo $no; ?>" onclick="viewing(<?php echo $no; ?>)" class="btn btn-primary btn-sm" >View</button>
                                                                                                                        
                                                        </td>
-                                                       <td><p >{{$order->name}}</p></td>
+                                                       <td><p >{{$order->Pro_id}}</p></td>
                                                        <td><p >{{$order->IngOrder_date}}</p></td>
                                                        @if($order->status=="Not Issued")
                                                        <td><a href="{{route('supreorder',['c'=>$order->id,'d'=>$c->Sup_id])}}" class="btn btn-primary btn-sm">Issue</a></td>
