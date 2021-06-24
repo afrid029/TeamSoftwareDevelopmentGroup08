@@ -28,7 +28,7 @@ class redirect extends Controller
         $stocks = DB::table('medicine_stocks')->whereRaw('stock_qty - orders > 50')
                                             ->orderBy('Med_name','asc') 
                                             ->get();
-        $pa = DB::table('patients')->orderBy('Pat_name','asc')->get();
+        $pa = DB::table('patients')->orderBy('Pat_id','asc')->get();
         return view('doc/prescription')->with('c',$c)->with('msg',"")->with('pres',$p)->with('stocks',$stocks)->with('pa',$pa);
         
     }
@@ -72,7 +72,7 @@ class redirect extends Controller
         }
         $c=DB::table('doctors')->where('Doc_id',$t)->first();
         $d = DB::table('add_symptomps')->where('Doc_id',$t)->orderBy('created_at','desc')->get();
-        $pa = DB::table('patients')->orderBy('Pat_name','asc')->get();
+        $pa = DB::table('patients')->orderBy('Pat_id','asc')->get();
         return view('doc/docsymptoms',compact('c','d','pa'))->with('msg',"");
     }
     public function show($id,$id2)
@@ -122,7 +122,7 @@ class redirect extends Controller
         }
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
         $p=DB::table('medicine_orderings')->where('Pro_id',$t)->get();
-        $phr = DB::table('pharmacists')->orderBy('Phar_name','asc')->get();
+        $phr = DB::table('pharmacists')->orderBy('Phar_id','asc')->get();
         return view('medprod/Issuemed')->with('c',$c)->with('msg',"")->with('p',$p)->with('phr',$phr);
             
     }
@@ -156,7 +156,7 @@ class redirect extends Controller
         $ingredients = DB::table('ingredients')->get();
         $c = DB::table('medicine_producers')->where('Pro_id',$t)->first();
         $p=DB::table('ingredient_orderings')->orderBy('status','desc')->where('Pro_id',$t)->get();
-        $sup = DB::table('ingredient_suppliers')->orderBy('Sup_name','asc')->get();
+        $sup = DB::table('ingredient_suppliers')->orderBy('Sup_id','asc')->get();
         return view('medprod/ordering')->with('c',$c)->with('msg',"")->with('p',$p)->with('ingredients',$ingredients)->with('sup',$sup);
         
     }

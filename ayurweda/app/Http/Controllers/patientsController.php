@@ -49,7 +49,7 @@ class patientsController extends Controller
         $request->validate([
             'name'=>'required',
             'address'=>'required',
-            'phone'=>'required|max:10',
+            'phone'=>'required|digits:10',
             'npassword'=>'required|min:6',
             'opassword'=>'required'
         ],
@@ -57,7 +57,9 @@ class patientsController extends Controller
             'name.required' => 'Name is Required',
             'address.required' => 'Address Is Required',
             'phone.required' => 'Phone Is Required',
+            'phone.digits'=> 'Enter A Valid Phone Number',
             'npassword.required' => 'New Password Is Required',
+            'npassword.min' => 'Password Length Must Be Atleast 6',
             'opassword.required' => 'Old Password Is Required',
            
         ]);
@@ -112,10 +114,7 @@ class patientsController extends Controller
     /*-----------Symptomps-------------*/
     public function symp($id)
     {
-         /*$st = session()->get('status');
-        if(!$st){
-            return redirect()->route('login');
-        }*/
+     
         $a = session()->getId();
         if(session()->get('session') != $a || session()->get('userid') != $id){
             
@@ -266,9 +265,8 @@ class patientsController extends Controller
             return redirect()->route('login')->with('msg','Login First');
         }
 
-        $z = DB::table('online_bookings')->get();
         $dc = DB::table('doctors')->where('Doc_id',$request->get('did'))->value('Doc_name');
-        $cnt = count($z)+1;
+       
 
         $book = new OnlineBooking;
 

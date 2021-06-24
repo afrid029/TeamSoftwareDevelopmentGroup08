@@ -95,11 +95,20 @@
     border-color:darkred;
     
 }
- 
+.btn-outline-primary:hover{
+     color: white;
+     background-color:indigo;
+     border-color:grey;
+}
+.btn-outline-primary{
+     color: indigo;
+    border-color:indigo;
+    
+}
    </style>
 
 </head>
-<body>
+<body style= "width:auto;">
  <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
@@ -216,7 +225,8 @@
                                              </tbody>
                                              
                                                   </table>
-                                                       <a style="flolat:right; font-size:20px; margin-top:-2%; margin-bottom:3px; font-weight:bold;" data-target="#pharmacists" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit">&nbsp;&nbsp; Pharmacists</a>  
+                                                       <a style="float:left; font-size:20px; margin-top:-2%; margin-bottom:3px; font-weight:bold;" data-target="#medicine" data-toggle="modal" class = "btn btn-outline-primary fa fa-heartbeat"  ></i>&nbsp;&nbsp; Medicines</a>  
+                                                       <a style="float:right; font-size:20px; margin-top:-2%; margin-bottom:3px; font-weight:bold;" data-target="#pharmacists" data-toggle="modal" class = "btn btn-outline-danger fa fa-medkit"  >&nbsp;&nbsp; Pharmacists</a>  
                                              </div>
                                         </div>
                                    </div>                                
@@ -227,6 +237,62 @@
           </div>
      <div>
  </section>
+ <!--Medicines modal-->
+                              <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="medicine" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
+                                   <div class="modal-dialog" role="dialog">
+                                        <div class="modal-content"  style="width:200%; margin-left:-50%; margin-right:-50%;">
+                                             <div class="modal-header">
+                                                  <h4 class="modal-title" id="exampleModalLabel">Medicine Details</h4>
+                                                 
+                                             </div>
+                                             <div  class="modal-body">
+                                                     <table id="myTable2" style="color:black;" class="table table-bordered table-scroll">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Medicine ID </th>
+                                                                      <th>Medicine Name</th>
+                                                                      <th>Description</th>
+                                                                      <th>Manufacture Date</th>
+                                                                      <th>Expiration Date</th>
+                                                                      <th>Unit Price(Rs)</th>
+                                                                     
+                                                                 </tr>
+                                                            </thead>
+
+                                                            
+                                                            <tbody class="body-half-screen">
+                                                            @if(count($stocks))
+                                                            <?php $n = 0;?>
+                                                            @foreach($stocks as $medi)
+                                                                 <tr>
+                                                                      <td><b style = "text-transform:capitalize;">{{$medi->Med_id}}</b></td>
+                                                                      <td><b style = "text-transform:capitalize;">{{$medi->Med_name}}</b></td>
+                                                                      <td>
+                                                                           <button title = "{{$medi->description}}" class = "btn btn-success btn-sm fa fa-hand-pointer-o"></button>&nbsp;&nbsp;&nbsp;View
+                                                                      
+                                                                      </td>
+                                                                      <td><b>{{$medi->manufactureDate}}</b></td>
+                                                                      <td><b>{{$medi->expireDate}}</b></td>
+                                                                      <td><b>{{$medi->unitprice}}</b></td>
+                                                                     
+                                                                   
+                                                                 </tr>
+                                                            
+                                                            @endforeach
+                                                            @else
+                                                                 <tr>
+                                                                      <td colspan="8"><h3 style=" color:black;text-align: center; font-size:20px;">There are no medicines in Pharmacy</h3></td>
+                                                                 </tr>
+                                                            @endif        
+                                                            </tbody>
+                                                       </table>           
+                                             </div>
+                                             <div class="modal-footer">
+                                             <button style = "float:right; " type="button" class="btn btn-danger" data-dismiss="modal"  aria-label="Close">Close</button>        
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
  <!--Pharmacist modal-->
                               <div style = "overflow:scroll;margin-top:5%;" class="modal fade" id="pharmacists" tabindex="-1" role="dialog" aria-labelledby="doctors" aria-hidden="true">
                                    <div class="modal-dialog" role="dialog">

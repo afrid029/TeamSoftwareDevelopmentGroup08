@@ -214,6 +214,7 @@
                                                      <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
                                                             <thead>
                                                                  <tr>
+                                                                      <th>ID</th>
                                                                       <th> Pharmacist Name</th>
                                                                       <th>View</th>
                                                                       
@@ -226,6 +227,7 @@
                                                             
                                                             @foreach($phr as $d)
                                                                  <tr>
+                                                                      <td>{{$d->Phar_id}}</td>
                                                                       <td>{{$d->Phar_name}}</td>
                                                                       <td><a href = "{{route('profview',['c'=>$d->Phar_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       

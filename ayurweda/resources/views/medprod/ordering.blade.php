@@ -251,7 +251,8 @@
                                              <div  class="modal-body">
                                                      <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
                                                             <thead>
-                                                                 <tr>
+                                                                 <tr> 
+                                                                      <th>ID</th>
                                                                       <th>Supplier Name</th>
                                                                       <th>View</th>
                                                                       
@@ -264,6 +265,7 @@
                                                             
                                                             @foreach($sup as $d)
                                                                  <tr>
+                                                                      <td>{{$d->Sup_id}}</td>
                                                                       <td>{{$d->Sup_name}}</td>
                                                                       <td><a href = "{{route('profview',['c'=>$d->Sup_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       

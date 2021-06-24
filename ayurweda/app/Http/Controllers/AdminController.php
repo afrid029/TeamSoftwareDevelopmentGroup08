@@ -41,14 +41,15 @@ class AdminController extends Controller
             'phone' => 'required|digits:10',
             'email'=>'required',
             'opassword'=> 'required',
-            'npassword' => 'required'
+            'npassword' => 'required|min:6'
         ],
         [
-            'name.required' => 'Name field required',
-            'email.required' => 'Email is required',
-            'phone.required'=> 'Phone field required',
-            'phone.digits'=>'Enter a valid phone number',
-            'opassword.required'=>'Old password is must',
+            'name.required' => 'Name Field Required',
+            'email.required' => 'Email Is Required',
+            'phone.required'=> 'Phone Field Required',
+            'phone.digits'=>'Enter A Valid Phone Number',
+            'opassword.required'=>'Old Password Is Required', 
+            'npassword.min' => 'Password Length Must Be Atleast 6',
             'npassword.required' => 'New Password or Re-type Old Password is must'
         ]);
         $pw = DB::table('admins')->where('id',$request->id)->value('password');
@@ -59,18 +60,12 @@ class AdminController extends Controller
                 'username' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'password' =>Hash::make($request->npassword)
            ]);
 
-           if(!Hash::check($request->npassword,$pw)){
-                DB::table('admins')->where('id',$request->id)->update([
-                    'password' =>Hash::make($request->npassword),
-                    
-                ]);
-
-                DB::table('all_users')->where('id' , $request->id)->update([
-                    'password' => Hash::make($request->npassword),
-                ]);
-           }
+            DB::table('all_users')->where('id' , $request->id)->update([
+                    'password' => Hash::make($request->npassword)]);
+           
 
            $msg = "Profile Successfully Updated";
 

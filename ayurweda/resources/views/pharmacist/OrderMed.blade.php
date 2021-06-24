@@ -244,6 +244,7 @@
                     <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
                          <thead>
                               <tr>
+                                   <th>ID</th>
                                    <th> Producer Name</th>
                                    <th>View</th>
                               </tr>
@@ -252,6 +253,7 @@
                           @if(count($prod))
                           @foreach($prod as $d)
                               <tr>
+                                   <td>{{$d->Pro_id}}</td>
                                    <td>{{$d->Pro_name}}</td>
                                    <td><a href = "{{route('profview',['c'=>$d->Pro_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                               </tr>

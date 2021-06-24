@@ -37,15 +37,17 @@ class pharmacistController extends Controller
             'email' => 'required',
             'phone' => 'required|digits:10',
             'opassword'=> 'required',
-            'npassword' => 'required'
+            'npassword' => 'required|min:6'
         ],
         [
             'name.required' => 'Name Is Required',
             'address.required' => 'Address Is Required',
+            'email.required' => 'Email Is Required',
             'phone.required'=> 'Phone Is Required',
             'phone.digits'=>'Enter A Valid Phone Number',
             'opassword.required'=>'Old Password Is Required',
-            'npassword.required' => 'New Password or Re-type Old Password'
+            'npassword.required' => 'New Password or Re-type Old Password',
+            'npassword.min' => 'Password Length Must Be Atleast 6'
         ]);
         $pw = DB::table('pharmacists')->where('Phar_id',$request->id)->value('password');
         $msg;
@@ -55,18 +57,12 @@ class pharmacistController extends Controller
                 'Phar_addr' => $request->address,
                 'Phar_pNum' => $request->phone,
                 'Phar_email' => $request->email,
+                'password' => Hash::make($request->npassword)
            ]);
 
-           if(!Hash::check($request->npassword,$pw)){
-                DB::table('pharmacists')->where('Phar_id',$request->id)->update([
-                    'password' => Hash::make($request->npassword)
-                    
-                ]);
-
-                DB::table('all_users')->where('id' , $request->id)->update([
+            DB::table('all_users')->where('id' , $request->id)->update([
                     'password' =>Hash::make( $request->npassword)
                 ]);
-           }
 
            $msg = "Profile Successfully Updated";
 
@@ -236,7 +232,7 @@ class pharmacistController extends Controller
         $c = DB::table('pharmacists')->where('Phar_id',$id)->first();
         $pat = DB::table('pat_med_orderings')->orderBy('status','desc')->orderBy('created_at','desc')->get();
         $doc = DB::table('medical_histories')->orderBy('issued','desc')->orderBy('created_at','desc')->get();
-        $pa = DB::table('patients')->orderBy('Pat_name','asc')->get();
+        $pa = DB::table('patients')->orderBy('Pat_id','asc')->get();
 
       
        
@@ -314,7 +310,7 @@ class pharmacistController extends Controller
                                                 ->orderBy('created_at','desc')
                                                 ->get();
 
-        $prod = DB::table('medicine_producers')->get();
+        $prod = DB::table('medicine_producers')->orderBy('Pro_id','asc')->get();
         return view('pharmacist/OrderMed',compact('c','orders','stocks','prod'))->with('msg', "");
     }
 

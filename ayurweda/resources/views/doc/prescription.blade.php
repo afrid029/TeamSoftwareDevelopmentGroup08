@@ -535,6 +535,7 @@ Swal.fire({
                                                      <table id="myTable" class="table table-bordered table-scroll" style="color:black; width:100%;" >
                                                             <thead>
                                                                  <tr>
+                                                                      <th>ID</th>
                                                                       <th>Patient Name</th>
                                                                       <th>View</th>
                                                                       
@@ -547,6 +548,7 @@ Swal.fire({
                                                             
                                                             @foreach($pa as $d)
                                                                  <tr>
+                                                                      <td>{{$d->Pat_id}}</td>
                                                                       <td style="text-transform:capitalize">{{$d->Pat_name}}</td>
                                                                       <td style="text-transform:capitalize"><a href = "{{route('profview',['c'=>$d->Pat_id])}}" class = "btn btn-primary fa fa-eye">&nbsp;View</a></td>
                                                                       
